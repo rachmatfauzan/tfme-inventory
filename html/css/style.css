@@ -4,12 +4,28 @@ body{
 .left {
     width: 40%;
     height: 100vh;
-    position: relative;
     float: left;
+    justify-content: center;
 }
 .container img{
     width: 6rem;
 }
+.left .copyright{
+    position: absolute;
+    right: 0;
+    bottom:0;
+    margin:20px;
+}
+/* start form */
+.form-group label{
+    color: white;
+}
+form .btn{
+    margin-top: 30px;
+    background-color: salmon;
+    width: 100%;
+}
+/* end form */
 
 .right {
     float: left;
@@ -17,6 +33,7 @@ body{
     height: 100vh;
     justify-content: center;
 }
+/* start carousel */
 .carousel-inner{
     width: 100%;
     height: 100%;
@@ -25,7 +42,8 @@ body{
     background-color: salmon;
 }
 .carousel-indicators li{
-    background-color: grey;
+    background-color: hsl(0, 0%, 50%);
+    border-radius: 50%;
 }
 .carousel-item {
     background-position: top;
@@ -39,3 +57,18 @@ body{
 .carousel-item h5{
     margin-top: 10px;
 }
+/* end carousel */
+/* Responsive carousel*/
+@media screen and (max-width: 850px) {
+    div.left{
+        width: 100%;
+    }
+    .left .copyright{
+        margin: 10px;
+        font-size: 14px;
+    }
+    div.right, .carousel {
+        height: 0;
+        display: none;
+    }
+  }
