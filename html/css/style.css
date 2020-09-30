@@ -10,6 +10,9 @@ body{
 .container img{
     width: 6rem;
 }
+.container h2{
+    margin-top: 100px;
+}
 .left .copyright{
     position: absolute;
     right: 0;
@@ -24,6 +27,9 @@ form .btn{
     margin-top: 30px;
     background-color: salmon;
     width: 100%;
+}
+form .btn:hover{
+    background-color: rgb(202, 104, 93);
 }
 /* end form */
 
