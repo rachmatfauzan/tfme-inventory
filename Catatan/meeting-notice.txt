@@ -1,0 +1,5 @@
+================28 September 2020 (Senin)
+Form Teknisi : 
+- dilihat dari item = moq
+
+on_po# : primary key dari teknisi
