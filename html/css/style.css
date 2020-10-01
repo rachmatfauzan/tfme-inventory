@@ -9,6 +9,15 @@ body{
     height: 100vh;
     justify-content: center;
 }
+.left h2{
+    font-size: 24px;
+}
+.left p{
+    font-size: 14px;
+}
+.left label{
+    font-size: 14px;
+}
 .container img{
     width: 6rem;
 }
@@ -19,7 +28,11 @@ body{
     position: absolute;
     left: 0;
     bottom:0;
-    margin:20px;
+    font-size: 10px;
+    margin:10px;
+}
+input::placeholder{
+    font-size: 11px;
 }
 /* start form */
 .form-group label{
@@ -59,18 +72,22 @@ form .btn:hover{
     border-radius: 50%;
 }
 .carousel-item {
-    width: 45rem;
-    height: 50rem;
+    width: 20rem;
+    height: 30rem;
 }
 .carousel-caption{
-    width: 100%;
-    transform: translate(-132px, 30px);
+    width: 40rem;
+    transform: translate(-30%);
+    justify-self: center;
 }
 .carousel-item img{
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.carousel p{
+    font-size: 14px;
 }
 /* end carousel */
 /* Responsive carousel*/
