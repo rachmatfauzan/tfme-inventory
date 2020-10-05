@@ -3,14 +3,16 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: rgb(240, 240, 240);
 }
 nav{
-    width: 15%;
     height: 95vh;
     margin: 10px;
+    flex: 1;
+    float: left;
     border-radius: 15px;
 }
-nav a{
+.nav-item a{
     color: white;
     margin-left: 20px;
     margin-right: 20px;
@@ -24,12 +26,17 @@ nav a{
 .nav-item{
     width: 100%;
 }
-nav h1 {
+.brand{
     margin-left: 20px;
     margin-top: 30px;
     color: white;
     font-weight: bold;
     font-size: 18px;
+    text-decoration: none;
+}
+.brand:hover{
+    text-decoration: none;
+    color: white;
 }
 hr{
     width: 100%;
@@ -37,7 +44,7 @@ hr{
     background-color: black;
     border-color: white;
 }
-nav a:hover{
+.nav-item a:hover{
     background-color: salmon;
     opacity: 0.7;
     color: black;
@@ -46,19 +53,25 @@ nav .active{
     background-color: white;
     color: black;
 }
+nav .active:hover{
+    background-color: white;
+}
 nav a i{
     margin-right: 10px;
 }
 
 /* Responsive sidebar */
 @media screen and (max-width:900px){
+    .grid{
+        flex-direction: column;
+    }
     nav {
         width: 100%;
         margin: auto;
         height: 40%;
         border-radius: 0;
     }
-    nav h1{
+    .brand{
         text-align: center;
     }
     .nav-item a{
@@ -66,6 +79,95 @@ nav a i{
         margin-bottom: 10px;
     }
 }
+/* Header Search */
+.konten{
+    float: left;
+    width: 100%;
+    flex: 5;
+    margin-right: 10px;
+}
+.grid {
+    display: flex;
+}
+
+.navbar {
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 15px;
+}
+
+.search{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.search input{
+    border-radius: 20px;
+}
+.search button {
+    border: none;
+    padding: 5px;
+    outline: none;
+    cursor: pointer ;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    transform: translate(-20px,0);
+}
+.search button:hover{
+    color: salmon;
+}
+
+.profile{
+    width: 25rem;
+    display: flex;
+    align-items: center;
+}
+.profile-name h5{
+    margin: 0;
+    font-family: montserrat;
+    font-weight: bold;
+    font-size: 16px;
+}
+.profile-name p{
+    margin: 0;
+    font-size: 12px;
+    font-weight: 200;
+    opacity: 0.7;
+}
+
+.wrapper-image {
+    overflow: hidden;
+    margin: 10px;
+    width: 150px;
+  }
+  
+.wrapper-image img {
+    display: block;
+    width: 100%;
+}
+@media screen and (max-width:900px){
+    .navbar{
+        margin: 0;
+        border-radius: 0;
+    }
+    .profile h5{
+        font-size: 14px;
+    }
+    .profile p{
+        font-size: 11px;
+    }
+    .profile{
+        width: 10rem;
+    }
+    .wrapper-image{
+        display: none;
+        height: 0;
+        width: 0;
+    }
+
+}
+
 
 /* Copyright */
 .copyright{
