@@ -102,6 +102,8 @@ nav a i{
     background-color: white;
     border-radius: 15px;
     margin-left: 10px ;
+    display: flex;
+    justify-content: space-between;
 }
 
 .search{
@@ -126,7 +128,6 @@ nav a i{
     color: salmon;
 }
 .profile{
-    width: 25rem;
     display: flex;
     align-items: center;
 }
@@ -194,6 +195,9 @@ nav a i{
         font-size: 11px;
     }
     .profile{
+        width: 8rem;
+    }
+    .search{
         width: 10rem;
     }
     .wrapper-image{
