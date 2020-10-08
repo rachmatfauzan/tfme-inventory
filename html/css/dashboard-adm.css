@@ -1,15 +1,15 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(240, 240, 240);
 }
 nav{
-    height: 95vh;
-    margin: 10px;
-    flex: 1;
+    height: 100%;
+    position: relative;
     float: left;
+    flex: 1;
     border-radius: 15px;
 }
 .nav-item a{
@@ -60,11 +60,17 @@ nav a i{
     margin-right: 10px;
 }
 
+/* Copyright */
+.copyright{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 11px;
+}
 /* Responsive sidebar */
 @media screen and (max-width:900px){
-    .grid{
-        flex-direction: column;
-    }
     nav {
         width: 100%;
         margin: auto;
@@ -82,18 +88,20 @@ nav a i{
 /* Header Search */
 .konten{
     float: left;
-    width: 100%;
+    width: 300px;
     flex: 5;
     margin-right: 10px;
 }
 .grid {
     display: flex;
+    height: 100vh;
+    padding: 10px;
 }
 
 .navbar {
     background-color: white;
-    margin-top: 10px;
     border-radius: 15px;
+    margin-left: 10px ;
 }
 
 .search{
@@ -117,7 +125,6 @@ nav a i{
 .search button:hover{
     color: salmon;
 }
-
 .profile{
     width: 25rem;
     display: flex;
@@ -132,6 +139,7 @@ nav a i{
 .profile-name p{
     margin: 0;
     font-size: 12px;
+    letter-spacing: 1px;
     font-weight: 200;
     opacity: 0.7;
 }
@@ -146,7 +154,35 @@ nav a i{
     display: block;
     width: 100%;
 }
+.dropdown{
+    background: transparent;
+}
+.dropdown .btn{
+    background: transparent;
+}
+.dropdown-item{
+    font-size: 11px;
+}
+.dropdown-item i {
+    margin-right: 10px;
+}
+/* Responsive Header */
 @media screen and (max-width:900px){
+    .konten{
+        width: 100%;
+    }
+    .grid{
+        flex-direction: column;
+        padding: 0;
+    }
+    .copyright{
+        top: 0;
+        right: 0;
+        text-align: right;
+        padding-right: 10px;
+        width: auto;
+        height: 20px;
+    }
     .navbar{
         margin: 0;
         border-radius: 0;
@@ -165,16 +201,52 @@ nav a i{
         height: 0;
         width: 0;
     }
-
 }
 
-
-/* Copyright */
-.copyright{
-    position: absolute;
-    bottom: 0;
+.box {
+    margin-top: 10px;
+    padding: 20px;
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: white;
+    position: relative;
+}
+.kepala{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.kepala h1 {
+    font-size: 19px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+.kepala a{
+    background-color: white;
+    border-radius: 8px;
+    width: 6rem;
+    border: 1px solid rgb(208, 208, 208);
+}
+.kepala a:hover{
+    background-color: salmon;
+    color: white;
+    transition: .2s ease-in-out;
+}
+.kepala a{
     text-align: center;
-    width: 100%;
-    margin-bottom: 5px;
-    font-size: 11px;
+    text-decoration: none;
+    color: rgb(184, 184, 184);
+    font-weight: lighter;
+    font-size: 12px;
 }
+
+
+
+/* Responsive Box */
+@media screen and (max-width:900px){
+    .box{
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
