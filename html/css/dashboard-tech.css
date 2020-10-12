@@ -78,7 +78,7 @@ nav a i{
 }
 .grid {
     display: flex;
-    height: 100vh;
+    height: 61rem;
     padding: 10px;
 }
 /* Responsive sidebar */
@@ -158,6 +158,13 @@ nav a i{
     width: 20%;
     max-width: 200px;
     white-space: pre-wrap;
+}
+/* hr style */
+.batas {
+    height: .6px;
+    width: 80%;
+    border-radius: 5px;
+    background-color: black;
 }
 /* Responsive Box */
 @media screen and (max-width:900px){
