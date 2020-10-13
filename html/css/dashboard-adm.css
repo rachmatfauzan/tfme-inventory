@@ -6,7 +6,7 @@ body{
     background-color: rgb(240, 240, 240);
 }
 nav{
-    height: 100%;
+    height: auto;
     position: relative;
     float: left;
     flex: 1;
@@ -77,8 +77,9 @@ nav a i{
 }
 .grid {
     display: flex;
-    height: 100vh;
     padding: 10px;
+    object-fit: contain;
+    height: 100%;
 }
 /* Responsive sidebar */
 @media screen and (max-width:900px){
@@ -106,27 +107,6 @@ nav a i{
     justify-content: space-between;
 }
 
-.search{
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.search input{
-    border-radius: 20px;
-}
-.search button {
-    border: none;
-    padding: 5px;
-    outline: none;
-    cursor: pointer ;
-    background: transparent;
-    position: absolute;
-    right: 0;
-    transform: translate(-20px,0);
-}
-.search button:hover{
-    color: salmon;
-}
 .profile{
     display: flex;
     align-items: center;
@@ -195,10 +175,7 @@ nav a i{
         font-size: 11px;
     }
     .profile{
-        width: 8rem;
-    }
-    .search{
-        width: 10rem;
+        width: 100vw;
     }
     .wrapper-image{
         display: none;
@@ -256,3 +233,13 @@ nav a i{
     }
 }
 /* End box content */
+
+/* data table */
+.page-item.active .page-link{
+    background-color: salmon;
+    color: white !important;
+    border: 0;
+}
+.page-link{
+    color: black !important;
+}

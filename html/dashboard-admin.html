@@ -18,7 +18,19 @@
 
     <!-- Link Font Style Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
+    <!-- link script datatable -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Bootstrap Js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
 </head>
@@ -60,12 +72,6 @@
                         </div>
                     </div>
                 </div>
-                <form class="form-inline">
-                    <div class="search">
-                        <input class="form-control mr-sm-2 " type="text" placeholder="Search" aria-label="Search">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
-                </form>
             </div>
             <div class="box">
                 <div class="content">
@@ -73,62 +79,506 @@
                         <h1>Data Inventory</h1>
                         <a href="index.html">Detail</a>
                     </div>
-                    <div class="table-responsive">          
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Part Number</th>
-                              <th>Item</th>
-                              <th>Supplier#</th>
-                              <th>CC</th>
-                              <th>Account Code</th>
-                              <th>Type</th>
-                              <th>Supplier</th>
-                              <th>Description</th>
-                              <th>moq</th>
-                              <th>Cost</th>
-                              <th>On Hand</th>
-                              <th>In Transit</th>
-                              <th>On Prep</th>
-                              <th>on_pr#</th>
-                              <th>on_po#</th>
-                              <th>batch#</th>
-                              <th>iqa</th>
-                              <th>Received Date</th>
-                              <th>Manufacturing Date</th>
-                              <th>Expiration Date</th>
-                              <th>po_date</th>
-                              <th>pr_date</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>DM00000025</td>
-                              <td>Magazine lead frame</td>
-                              <td>N/A</td>
-                              <td>30</td>
-                              <td>3010001</td>
-                              <td>N/A</td>
-                              <td>PT. Farsawa</td>
-                              <td>N/A</td>
-                              <td>N/A</td>
-                              <td>N/a</td>
-                              <td>0</td>
-                              <td>N/A</td>
-                              <td>N/A</td>
-                              <td>N/A</td>
-                              <td>N/A</td>
-                              <td>Null</td>
-                              <td>Null</td>
-                              <td>00/00/0000</td>
-                              <td>00/00/0000</td>
-                              <td>00/00/0000</td>
-                              <td>00/00/0000</td>
-                              <td>00/00/0000</td>
-                            </tr>
-                          </tbody>
+                    <div class="table-responsive">
+                        <table class="table" id="data">
+                            <thead>
+                                <tr>
+                                    <th>Part Number</th>
+                                    <th>Item</th>
+                                    <th>Supplier#</th>
+                                    <th>CC</th>
+                                    <th>Account Code</th>
+                                    <th>Type</th>
+                                    <th>Supplier</th>
+                                    <th>Description</th>
+                                    <th>moq</th>
+                                    <th>Cost</th>
+                                    <th>On Hand</th>
+                                    <th>In Transit</th>
+                                    <th>On Prep</th>
+                                    <th>on_pr#</th>
+                                    <th>on_po#</th>
+                                    <th>batch#</th>
+                                    <th>iqa</th>
+                                    <th>Received Date</th>
+                                    <th>Manufacturing Date</th>
+                                    <th>Expiration Date</th>
+                                    <th>po_date</th>
+                                    <th>pr_date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DM00000025</td>
+                                    <td>Magazine lead frame</td>
+                                    <td>N/A</td>
+                                    <td>30</td>
+                                    <td>3311801036</td>
+                                    <td>N/A</td>
+                                    <td>PT. Farsawa</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/a</td>
+                                    <td>0</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>Null</td>
+                                    <td>Null</td>
+                                    <td>00/00/0000</td>
+                                    <td>00/00/0000</td>
+                                    <td>00/00/0000</td>
+                                    <td>00/00/0000</td>
+                                    <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>KL00000025</td>
+                                <td>Rocket Rockers</td>
+                                <td>N/A</td>
+                                <td>29</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+                                </tr>
+
+                                <td>DM00000025</td>
+                                <td>Magazine lead frame</td>
+                                <td>N/A</td>
+                                <td>30</td>
+                                <td>3010001</td>
+                                <td>N/A</td>
+                                <td>PT. Farsawa</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/a</td>
+                                <td>0</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                <td>00/00/0000</td>
+                                </tr>
+
+
+                            </tbody>
+                            <tfoot>
+                                <th>Part Number</th>
+                                <th>Item</th>
+                                <th>Supplier#</th>
+                                <th>CC</th>
+                                <th>Account Code</th>
+                                <th>Type</th>
+                                <th>Supplier</th>
+                                <th>Description</th>
+                                <th>moq</th>
+                                <th>Cost</th>
+                                <th>On Hand</th>
+                                <th>In Transit</th>
+                                <th>On Prep</th>
+                                <th>on_pr#</th>
+                                <th>on_po#</th>
+                                <th>batch#</th>
+                                <th>iqa</th>
+                                <th>Received Date</th>
+                                <th>Manufacturing Date</th>
+                                <th>Expiration Date</th>
+                                <th>po_date</th>
+                                <th>pr_date</th>
+                            </tfoot>
                         </table>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -141,16 +591,13 @@
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    <!-- script data tables -->
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                scrollX: true
+            });
+        });
     </script>
 </body>
 
