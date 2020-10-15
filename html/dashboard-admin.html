@@ -44,7 +44,7 @@
             <hr>
             <div class="nav-item">
                 <a class="nav-link active" href="#"><i class="fas fa-database"></i>Data Site</a>
-                <a class="nav-link" href="dashboard-tech.html"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="dashboard-user-list.html"><i class="fas fa-users"></i>User List</a>
             </div>
 
             <div class="copyright">
@@ -79,7 +79,7 @@
                         <h1>Data Inventory</h1>
                         <a href="index.html">Detail</a>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive mt-2">
                         <table class="table" id="data">
                             <thead>
                                 <tr>
@@ -595,7 +595,8 @@
     <script>
         $(document).ready(function () {
             $('#data').DataTable({
-                scrollX: true
+                scrollX: true,
+                lengthChange: false,
             });
         });
     </script>

@@ -7,7 +7,7 @@ body{
 }
 
 nav{
-    height: 100%;
+    height: auto;
     position: relative;
     float: left;
     flex: 1;
@@ -78,7 +78,6 @@ nav a i{
 }
 .grid {
     display: flex;
-    height: 61rem;
     padding: 10px;
 }
 /* Responsive sidebar */
@@ -129,7 +128,7 @@ nav a i{
     margin-top: 2em;
 }
 .kepala h1 {
-    font-size: 19px;
+    font-size: 16px;
     font-weight: bold;
     font-family: Helvetica, sans-serif;
 }
@@ -166,7 +165,6 @@ nav a i{
 .batas {
     height: .6px;
     width: 80%;
-    border-radius: 5px;
     background-color: black;
 }
 /* Responsive Box */
@@ -177,6 +175,9 @@ nav a i{
     }
     .kepala{
         margin: 0;
+    }
+    .kepala h1, i {
+        font-size: 12px;
     }
     .table td:nth-child(4){
         width: 100%;
