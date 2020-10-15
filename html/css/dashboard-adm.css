@@ -6,11 +6,11 @@ body{
     background-color: rgb(240, 240, 240);
 }
 nav{
-    height: auto;
-    position: relative;
-    float: left;
-    flex: 1;
+    height: 98%;
+    position: fixed;
+    width: 15%;
     border-radius: 15px;
+    z-index: 1;
 }
 .nav-item a{
     color: white;
@@ -70,7 +70,7 @@ nav a i{
     font-size: 11px;
 }
 .konten{
-    float: left;
+    margin-left: 15%;
     width: 300px;
     flex: 5;
     margin-right: 10px;

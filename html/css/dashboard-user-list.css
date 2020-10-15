@@ -7,10 +7,9 @@ body{
 }
 
 nav{
-    height: auto;
-    position: relative;
-    float: left;
-    flex: 1;
+    height: 98%;
+    position: fixed;
+    width: 15%;
     border-radius: 15px;
 }
 .nav-item a{
@@ -67,18 +66,19 @@ nav a i{
     bottom: 0;
     text-align: center;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 11px;
 }
 .konten{
-    float: left;
     width: 300px;
     flex: 5;
+    margin-left: 15%;
     margin-right: 10px;
 }
 .grid {
     display: flex;
     padding: 10px;
+    margin-bottom: 10px;
 }
 /* Responsive sidebar */
 @media screen and (max-width:900px){
@@ -118,7 +118,6 @@ nav a i{
     margin-left: 10px;
     border-radius: 15px;
     background-color: white;
-    position: relative;
 }
 .kepala{
     display: flex;
@@ -138,7 +137,8 @@ nav a i{
 .kepala a{
     background-color: white;
     border-radius: 8px;
-    width: 6rem;
+    width: 8rem;
+    height: 2em;
     border: 1px solid rgb(208, 208, 208);
 }
 .kepala a:hover{
