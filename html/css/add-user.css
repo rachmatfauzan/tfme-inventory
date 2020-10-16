@@ -7,12 +7,12 @@ body{
     padding: 0;
     background-color: rgb(240, 240, 240);
 }
-
 nav{
     height: 98%;
     position: fixed;
     width: 15%;
     border-radius: 15px;
+    z-index: 1;
 }
 .nav-item a{
     color: white;
@@ -68,31 +68,37 @@ nav a i{
     bottom: 0;
     text-align: center;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 11px;
 }
+
 .konten{
+    margin-left: 15%;
     width: 300px;
     flex: 5;
-    margin-left: 15%;
     margin-right: 10px;
 }
 .grid {
     display: flex;
     padding: 10px;
-    margin-bottom: 10px;
+    object-fit: contain;
+    height: 100%;
 }
+
 /* Responsive sidebar */
 @media screen and (max-width:900px){
     nav {
         width: 100%;
         margin: auto;
         height: 40%;
-        position: unset;
         border-radius: 0;
+        position: unset;
     }
     .brand{
         text-align: center;
+    }
+    .konten{
+        margin-left: 0;
     }
     .nav-item a{
         margin-top: 10px;
@@ -100,7 +106,6 @@ nav a i{
     }
     .konten{
         width: 100%;
-        margin-left: 0;
     }
     .grid{
         flex-direction: column;
@@ -122,29 +127,25 @@ nav a i{
     margin-left: 10px;
     border-radius: 15px;
     background-color: white;
+    height: auto;
 }
 .kepala{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3rem;
-    margin-top: 2em;
 }
 .kepala h1 {
-    font-size: 16px;
+    font-size: 19px;
     font-weight: bold;
     font-family: Helvetica, sans-serif;
 }
-.kepala i {
+.kepala i{
     margin-right: 10px;
 }
 .kepala a{
-    padding: 3px;
     background-color: white;
     border-radius: 8px;
-    width: 8rem;
-    height: 2em;
-    margin-bottom: 5px;
+    width: 10rem;
     border: 1px solid rgb(208, 208, 208);
 }
 .kepala a:hover{
@@ -159,35 +160,79 @@ nav a i{
     font-weight: lighter;
     font-size: 12px;
 }
-.table td{
-    white-space: nowrap;
+/* Content-Bottom */
+.content-bottom{
+    margin-top: 4rem;
 }
-.table td:nth-child(4){
-    width: 20%;
-    max-width: 200px;
+th,td{
+    width: 100vw;
+}
+.table td{
+}
+.table td:nth-child(1){
+    white-space: nowrap;
+    min-width: 200px;
+}
+.table td:nth-child(5){
+    min-width: 200px;
     white-space: pre-wrap;
 }
-/* hr style */
-.batas {
-    height: .6px;
+.table a{
+    width: 70px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    padding: 3px;
+    border: 0;
+}
+/* Formulir */
+.formulir .btn{
     width: 80%;
-    background-color: black;
+    color: white;
+}
+textarea.form-control{
+    height: 8rem;
+}
+textarea.form-control:focus, 
+input[type]:focus, 
+input[password]:focus,
+input[email]:focus,
+select.form-control:focus,
+.uneditable-input:focus {   
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
 }
 /* Responsive Box */
 @media screen and (max-width:900px){
     .box{
         margin: 0;
         border-radius: 0;
+        height: fit-content;
     }
+    
     .kepala{
         margin: 0;
     }
     .kepala h1, i {
         font-size: 12px;
     }
-    .table td:nth-child(4){
+    .table td:nth-child(5){
         width: 100%;
         min-width: 18rem;
     }
+    .formulir .btn{
+        width: 100%;
+    }
 }
 /* End box content */
+
+/* data table */
+.page-item.active .page-link{
+    background-color: salmon;
+    color: white !important;
+    border: 0;
+}
+.page-link{
+    color: black !important;
+}
