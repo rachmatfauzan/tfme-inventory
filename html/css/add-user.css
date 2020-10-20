@@ -203,6 +203,22 @@ select.form-control:focus,
     box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
     outline: 0 none;
 }
+/* Custom Password Eye */
+.col-md-6{
+    position: relative;
+}
+.col-md-6 i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: #999;
+    transform: translate(-20px,42px);
+}
+.col-md-6 i.active{
+    color: salmon;
+}
+/* End Custom password Eye */
 /* Responsive Box */
 @media screen and (max-width:900px){
     .box{
