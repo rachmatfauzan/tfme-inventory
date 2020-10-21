@@ -4,7 +4,7 @@
 body{
     font-family: Helvetica, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     background-color: rgb(240, 240, 240);
 }
 
@@ -15,8 +15,9 @@ body{
 }
 
 .navbar {
-    background-color: white;
+    color: whitesmoke;
     display: flex;
+    border-radius: 10px;
     justify-content: space-between;
 }
 
@@ -56,6 +57,7 @@ body{
     background: transparent;
 }
 .dropdown .btn{
+    color: whitesmoke;
     background: transparent;
 }
 .dropdown-item{
@@ -81,10 +83,35 @@ body{
 .nav-item i{
     margin-right: 10px;
 }
+.table a{
+    width: 70px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    padding: 3px;
+    border: 0;
+}
 
+textarea.form-control{
+    height: 8rem;
+}
+
+textarea.form-control:focus, 
+input[type]:focus, 
+input[password]:focus,
+input[email]:focus,
+select.form-control:focus,
+.uneditable-input:focus {   
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}
 
 /* Responsive Header  */
 @media screen and (max-width:900px){
+    body{
+        padding: 0;
+    }
     .konten{
         width: 100%;
     }
@@ -143,6 +170,7 @@ body{
     height: 100%;
     padding: 20px;
     background-color: white;
+    border-radius: 10px;
 }
 .table td,th{
     white-space: nowrap;
