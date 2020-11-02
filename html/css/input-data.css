@@ -82,7 +82,8 @@ body{
 .table-responsive .btn{
     margin-bottom: 10px;
     width: 50px;
-    background-color: white;
+    background-color: transparent;
+    border-radius: 50%;
 }
 .modal-body b{
     display: inline-block;
