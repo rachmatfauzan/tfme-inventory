@@ -77,7 +77,181 @@
                 <div class="content">
                     <div class="kepala">
                         <h1>Data Inventory</h1>
-                        <a href="input-data.html"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Input Data</a>
+                        <div class="kepala-kanan">
+                            <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
+                                    class="far fa-question-circle"></i></button>
+                            <a href="input-data.html"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Input
+                                Data</a>
+                            <!-- Large modal -->
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h5 class="modal-title" id="exampleModalLabel">Glossary</h5>
+                                            <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>ITEM</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>NAME OF THE PRODUCT OR MATERIAL</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>PART NUMBER</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>THE NUMBER USED BY THE COMPANY TOWARDS INVENTORY AIMING TO SIMPLIFY AND EASY TO REFER TO THE INVENTORY</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>SUPPLIER#</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>BUYING NUMBER OF BUYERS PROVIDED BY THE COMPANY</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>COST CENTER</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>AREA USED TO DETERMINE TYPES OF INVENTORY</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>IQA</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>Internal Quality Audit</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>TYPE</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>MODEL OR INVENTORY TYPE</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>SUPPLIER</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>COMPANY'S NAME TO BUY INVENTORY</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>DWG#</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>INVENTORY NUMBER GIVEN BY SUPPLIER</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>DESCRIPTION</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>DESCRIPTION OF INVENTORY IN DETAIL</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>MOQ (MINIMUM ORDER QUANTITY)</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>THE LOWEST AMOUNT OF STOCK AVAILABLE IS SOLD BY THE SUPPLIER</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>COST</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>INVENTORY PRICE</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>ON HAND</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>NUMBER OF GOODS ARE THERE NOW</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>IN TRANSIT</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>GOODS ARE ON THE WAY TOWARDS TO THE DESTINATION</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>IN PREPARATION</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>GOODS ARE IN PREPARATION BY THE SUPPLIER</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>ON PR#</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>NUMBER OF GOODS ARE IN PREPARATION BY THE SUPPLIER</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>ON PO#</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>NUMBER OF PURCHASE ORDER</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>RECEIVED DATE</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>DATE INVENTORY UNTIL THE DESTINATION</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>MANUFACTURING DATE</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>THE DATE WHEN THE PRODUCT WAS MADE</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col-sm">
+                                                    <b>EXPIRE DATE</b>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <p>MAXIMUM TIME LIMITS A PRODUCT CAN BE USED</p>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive mt-2">
                         <table class="table" id="data">

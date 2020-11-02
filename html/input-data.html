@@ -72,7 +72,8 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label for="item-name">Item Name</label>
-                                <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name" autofocus>
+                                <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name"
+                                    autofocus>
                             </div>
                             <div class="form-group col">
                                 <label for="tipe">Type</label>
@@ -93,15 +94,23 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label for="part-number">Part Number</label>
-                                <input type="text" class="form-control bg-light" id="part-number" placeholder="Part Number">
+                                <input type="text" class="form-control bg-light" id="part-number"
+                                    placeholder="Part Number">
                             </div>
                             <div class="form-group col">
-                                <label for="cost-center">Cost Center</label>
-                                <input type="text" class="form-control bg-light" id="cost-center" placeholder="Cost Center">
+                                <label for="inputPosition">Cost Center</label>
+                                <select id="inputPosition" class="form-control custom-select  bg-light">
+                                    <option selected disabled>-- Choose CC --</option>
+                                    <option value="10">10 PCB</option>
+                                    <option value="20">20 PCBA</option>
+                                    <option value="30">30 IC PACK</option>
+                                    <option value="40">40 GENERAL</option>
+                                </select>
                             </div>
                             <div class="form-group col-md">
                                 <label for="account-code">Account Code</label>
-                                <input type="text" class="form-control bg-light" id="account-code" placeholder="Account Code">
+                                <input type="text" class="form-control bg-light" id="account-code"
+                                    placeholder="Account Code">
                             </div>
                         </div>
                     </div>
@@ -111,7 +120,8 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label for="supplier-name">Supplier Name</label>
-                                <input type="text" class="form-control bg-light" id="supplier-name" placeholder="Supplier Name">
+                                <input type="text" class="form-control bg-light" id="supplier-name"
+                                    placeholder="Supplier Name">
                             </div>
                             <div class="form-group col">
                                 <label for="supplier#">Supplier#</label>
@@ -129,7 +139,8 @@
                             </div>
                             <div class="form-group col">
                                 <label for="in-transit">In Transit</label>
-                                <input type="text" class="form-control bg-light" id="in-transit" placeholder="In Transit">
+                                <input type="text" class="form-control bg-light" id="in-transit"
+                                    placeholder="In Transit">
                             </div>
                             <div class="form-group col">
                                 <label for="on-prep">On Prep</label>
@@ -149,11 +160,11 @@
                                 <label for="cost">Cost</label>
                                 <input type="text" class="form-control bg-light" id="cost" placeholder="Cost">
                             </div>
-                            <div class="form-group col">
+                            <div class="form-group col-md">
                                 <label for="on-pr#">On PR#</label>
                                 <input type="text" class="form-control bg-light" id="on-pr#" placeholder="On PR#">
                             </div>
-                            <div class="form-group col">
+                            <div class="form-group col-md">
                                 <label for="on-po#">On PO#</label>
                                 <input type="text" class="form-control bg-light" id="on-po#" placeholder="On PO#">
                             </div>
@@ -161,11 +172,11 @@
                         <div class="row">
                             <div class="form-group col">
                                 <label for="pr-date">PR Date</label>
-                                <input type="text" class="form-control bg-light" id="pr-date" placeholder="PR Date">
+                                <input type="date" id="datepicker" class="form-control bg-light">
                             </div>
                             <div class="form-group col">
                                 <label for="po-date">PO Date</label>
-                                <input type="text" class="form-control bg-light" id="po-date" placeholder="PO Date">
+                                <input type="date" id="datepicker" class="form-control bg-light">
                             </div>
                         </div>
                     </div>
@@ -188,22 +199,25 @@
                         </div>
                     </div>
                     <div class="group mt-3">
-                        <h5 class="font-weight-bold">Date</h5>
+                        <h5 class="font-weight-bold">DATE</h5>
                         <hr class="my-4">
                         <div class="row">
-                            <div class="form-group col">
+                            <div class="form-group col-md">
                                 <label for="receive-date">Receive Date</label>
-                                <input type="text" class="form-control bg-light" id="receive-date" placeholder="Receive Date">
+                                <input type="date" id="datepicker" class="form-control bg-light">
                             </div>
-                            <div class="form-group col">
+                            <div class="form-group col-md">
                                 <label for="manufacture-date">Manufacture Date</label>
-                                <input type="text" class="form-control bg-light" id="manufacture-date" placeholder="Manufacture Date">
+                                <input type="date" id="datepicker" class="form-control bg-light">
                             </div>
-                            <div class="form-group col">
+                            <div class="form-group col-md">
                                 <label for="expiration-date">Expiration Date</label>
-                                <input type="text" class="form-control bg-light" id="expiration-date" placeholder="Expiration Date">
+                                <input type="date" id="datepicker" class="form-control bg-light">
                             </div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-end entry">
+                        <button type="submit" class="btn bg-dark text-white">Input New Data</button>
                     </div>
                 </form>
             </div>
@@ -211,6 +225,178 @@
         <div class="box">
             <div class="content">
                 <div class="table-responsive mt-2">
+                    <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
+                            class="far fa-question-circle"></i></button>
+                    <!-- Large modal -->
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h5 class="modal-title" id="exampleModalLabel">Glossary</h5>
+                                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>ITEM</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>NAME OF THE PRODUCT OR MATERIAL</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>PART NUMBER</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>THE NUMBER USED BY THE COMPANY TOWARDS INVENTORY AIMING TO SIMPLIFY AND
+                                                EASY TO REFER TO THE INVENTORY</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>SUPPLIER#</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>BUYING NUMBER OF BUYERS PROVIDED BY THE COMPANY</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>COST CENTER</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>AREA USED TO DETERMINE TYPES OF INVENTORY</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>IQA</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>Internal Quality Audit</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>TYPE</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>MODEL OR INVENTORY TYPE</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>SUPPLIER</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>COMPANY'S NAME TO BUY INVENTORY</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>DWG#</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>INVENTORY NUMBER GIVEN BY SUPPLIER</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>DESCRIPTION</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>DESCRIPTION OF INVENTORY IN DETAIL</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>MOQ (MINIMUM ORDER QUANTITY)</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>THE LOWEST AMOUNT OF STOCK AVAILABLE IS SOLD BY THE SUPPLIER</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>COST</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>INVENTORY PRICE</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>ON HAND</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>NUMBER OF GOODS ARE THERE NOW</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>IN TRANSIT</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>GOODS ARE ON THE WAY TOWARDS TO THE DESTINATION</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>IN PREPARATION</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>GOODS ARE IN PREPARATION BY THE SUPPLIER</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>ON PR#</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>NUMBER OF GOODS ARE IN PREPARATION BY THE SUPPLIER</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>ON PO#</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>NUMBER OF PURCHASE ORDER</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>RECEIVED DATE</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>DATE INVENTORY UNTIL THE DESTINATION</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>MANUFACTURING DATE</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>THE DATE WHEN THE PRODUCT WAS MADE</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm">
+                                            <b>EXPIRE DATE</b>
+                                        </div>
+                                        <div class="col-sm">
+                                            <p>MAXIMUM TIME LIMITS A PRODUCT CAN BE USED</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="table" id="data">
                         <thead>
                             <tr>

@@ -63,16 +63,20 @@
                     <div class="formulir mt-5">
                         <form>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-2">
                                     <label for="inputEmail4">ID</label>
                                     <input type="text" class="form-control" id="inputEmail4" placeholder="Your ID"
                                         autofocus>
                                 </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputEmail4">Full Name</label>
+                                    <input type="text" class="form-control" id="inputEmail4" placeholder="Full Name"
+                                        autofocus>
+                                </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="pwd"
-                                        placeholder="Password">
-                                        <i class="fa fa-eye" id="eye"></i>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Password">
+                                    <i class="fa fa-eye" id="eye"></i>
                                     <!-- Start script show Eye -->
                                     <script>
                                         var pwd = document.getElementById('pwd');
@@ -142,55 +146,14 @@
                                     <td>
                                         <a class="bg-danger text-white">Delete</a>
                                         <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white">Detail</a>
+                                        <a class="bg-success text-white" href="detail-user-list.html"
+                                            data-toggle="modal" data-target="#detail">Detail</a>
                                     </td>
                                     <td>3311801036</td>
                                     <td>Afri Almuharram</td>
                                     <td>082170132187</td>
                                     <td>Bukit Sentosa Lorem ipsum dolor sit amet consectetur adipisicing
                                         elit.epudiandae, in.</td>
-                                    <td>afrialmuharam@polibatam.ac.id</td>
-                                    <td>Technician</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a class="bg-danger text-white">Delete</a>
-                                        <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white">Detail</a>
-                                    </td>
-                                    <td>3311801055</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Repudiandae, in.</td>
-                                    <td>afrialmuharam@polibatam.ac.id</td>
-                                    <td>Technician</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a class="bg-danger text-white">Delete</a>
-                                        <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white">Detail</a>
-                                    </td>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit.Repudiandae, in.</td>
-                                    <td>afrialmuharam@polibatam.ac.id</td>
-                                    <td>Technician</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a class="bg-danger text-white">Delete</a>
-                                        <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white">Detail</a>
-                                    </td>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram Yuris</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Lorem ipsum dolor sit amet consectetur adipisicing
-                                        elit.Repudiandae, in.</td>
                                     <td>afrialmuharam@polibatam.ac.id</td>
                                     <td>Technician</td>
                                 </tr>
@@ -205,6 +168,63 @@
                                 <th>Position</th>
                             </tfoot>
                         </table>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-white">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Detail User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="inputEmail4">ID</label>
+                                            <input type="text" class="form-control" id="inputEmail4"
+                                                placeholder="Your ID" disabled>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="inputEmail4">Full Name</label>
+                                            <input type="text" class="form-control" id="inputEmail4"
+                                                placeholder="Full Name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="inputHandphone">Handphone</label>
+                                            <input type="text" class="form-control" id="inputHandphone"
+                                                placeholder="08xxx" disabled>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="inputemail">Email</label>
+                                            <input type="email" class="form-control" id="inputemail"
+                                                placeholder="Your e-mail" disabled>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="inputPosition">Position</label>
+                                            <input type="text" class="form-control" placeholder="Position" disabled>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="inputPosition">Password</label>
+                                            <input type="text" class="form-control" placeholder="password" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="inputAddress2">Address</label>
+                                            <textarea type="text" class="form-control" id="inputAddress2"
+                                                placeholder="Specific Address You're Stay Now" disabled></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -74,6 +74,52 @@ body{
     width: 40rem;
     justify-content: space-around;
 }
+/*  */
+.table-responsive{
+    display: flex;
+    flex-direction: column;
+}
+.table-responsive .btn{
+    margin-bottom: 10px;
+    width: 50px;
+    background-color: white;
+}
+.modal-body b{
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+}
+.btn i{
+    color: #9999;
+}
+.btn i:hover{
+    color: salmon;
+}
+.btn:focus, .btn:active{
+    outline: none !important;
+    box-shadow: none;
+}
+.modal-body p {
+    text-transform: lowercase;
+    font-size: 12px;
+}
+
+.modal-header span{
+    display: none;
+}
+@media screen and (max-width: 900px ){
+    .modal-body b{
+        text-align: left;
+    }
+    .table-responsive .modal-header span{
+        display: contents;
+    }
+    .table-responsive .btn{
+        width: unset;
+    }
+}
+/*  */
 .nav-item a{
     color: #999;
 }
@@ -111,6 +157,11 @@ select.form-control:focus,
 @media screen and (max-width:900px){
     body{
         padding: 0;
+    }
+    .table a{
+        width: auto;
+        font-size: 11px;
+        padding: 7px;
     }
     .konten{
         width: 100%;
@@ -162,6 +213,10 @@ select.form-control:focus,
         flex-direction: column;
         position: unset;
     }
+    .entry .btn{
+        width: 100%;
+        margin: 0;
+    }
 }
 
 /* Start box Content */
@@ -196,4 +251,10 @@ select.form-control:focus,
 }
 .page-link{
     color: black !important;
+}
+
+
+/* placeholder font custome*/
+::-webkit-input-placeholder{
+    font-size: 13px;
 }

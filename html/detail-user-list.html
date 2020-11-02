@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/detail-user-list.css">
+
+    <!-- Link CDN font-awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+
+    <!-- Link Font Style Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- link script datatable -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Bootstrap Js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="icon" href="../image/TFME.jpg">
+    <title>Dashboard Inventory</title>
+</head>
+
+<body>
+
+</body>
+
+<div class="container">
+    <div class="formulir mt-5">
+        
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detail">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">ID</label>
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="Your ID" disabled>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Full Name</label>
+                                <input type="text" class="form-control" id="inputEmail4" placeholder="Full Name" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputHandphone">Handphone</label>
+                                <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx" disabled>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputemail">Email</label>
+                                <input type="email" class="form-control" id="inputemail" placeholder="Your e-mail" disabled>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputPosition">Position</label>
+                                <input type="text" class="form-control" placeholder="Position" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputAddress2">Address</label>
+                                <textarea type="text" class="form-control" id="inputAddress2"
+                                    placeholder="Specific Address You're Stay Now" disabled></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

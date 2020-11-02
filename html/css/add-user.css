@@ -184,6 +184,7 @@ th,td{
     display: inline-block;
     padding: 3px;
     border: 0;
+    text-decoration: none;
 }
 /* Formulir */
 .formulir .btn{
@@ -192,6 +193,9 @@ th,td{
 }
 textarea.form-control{
     height: 8rem;
+}
+::-webkit-input-placeholder{
+    font-size: 13px;
 }
 textarea.form-control:focus, 
 input[type]:focus, 
@@ -226,7 +230,14 @@ select.form-control:focus,
         border-radius: 0;
         height: fit-content;
     }
-    
+    .table a{
+        width: auto;
+        font-size: 11px;
+        padding: 7px;
+    }
+    .col-md-6 i{
+        transform: translate(-20px,45px);
+    }
     .kepala{
         margin: 0;
     }
@@ -251,4 +262,14 @@ select.form-control:focus,
 }
 .page-link{
     color: black !important;
+}
+
+.modal-header span {
+    color: white;
+}
+/* Modal Responsive */
+@media screen and (max-width:900px){
+    .form-group input,select,textarea{
+        font-size: 12px;
+    }
 }
