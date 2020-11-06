@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     font-family: Helvetica, sans-serif;
     margin: 0;
@@ -76,9 +79,23 @@ body{
 }
 /*  */
 .table-responsive{
+    position: relative;
     display: flex;
     flex-direction: column;
 }
+/* Start */
+.table-responsive .top{
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+    left: 47%;
+    text-decoration: none;
+}
+.table-responsive .top:hover{
+    color: salmon;
+    transition: .5s ease-out;
+}
+/* End */
 .table-responsive .btn{
     margin-bottom: 10px;
     width: 50px;
@@ -118,6 +135,10 @@ body{
     }
     .table-responsive .btn{
         width: unset;
+    }
+    .table-responsive .top{
+        bottom: -30px;
+        left: 42%;
     }
 }
 /*  */

@@ -14,6 +14,15 @@ nav{
     border-radius: 15px;
     z-index: 1;
 }
+div.atap{
+    top: 0;
+    width: 100%;
+    position: fixed;
+    height: 10px;   
+    z-index: 999;
+    border-radius: 10px;
+    background-color: rgb(240, 240, 240);
+}
 .nav-item a{
     color: white;
     margin-left: 20px;

@@ -35,7 +35,7 @@
     <title>Dashboard Inventory</title>
 </head>
 
-<body>
+<body id="top">
     <!-- start header -->
     <div class="konten">
         <div class="navbar bg-dark justify-content-between">
@@ -227,6 +227,7 @@
                 <div class="table-responsive mt-2">
                     <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
                             class="far fa-question-circle"></i></button>
+                    <a class="top" href="#top">Go Top</a>
                     <!-- Large modal -->
                     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                         aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -536,6 +537,9 @@
         $(document).ready(function () {
             $('#data').DataTable({
                 scrollX: true,
+                scroller: {
+                    displayBuffer : 20
+                }
             });
         });
     </script>
