@@ -20,7 +20,7 @@ div.atap{
     width: 100%;
     position: fixed;
     height: 10px;
-    z-index: 9999;
+    z-index: 1;
     border-radius: 10px;
     background-color: rgb(240, 240, 240);
 }

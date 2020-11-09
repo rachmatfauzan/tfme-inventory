@@ -111,6 +111,9 @@ nav a i{
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    div.atap{
+        display: none;
+    }
 }
 
 /* Header Search */
