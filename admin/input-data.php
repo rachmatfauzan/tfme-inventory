@@ -11,7 +11,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/input-data.css">
+    <link rel="stylesheet" href="../css/input-data.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -63,7 +63,7 @@
         <div class="box">
             <div class="data-entry">
                 <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                    <h5 class="font-weight-bold text-secondary">Input New Data</h5>
+                    <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
                 </div>
                 <form>
                     <div class="group">

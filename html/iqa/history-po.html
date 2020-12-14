@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,7 +11,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/dashboard-tech.css">
+    <link rel="stylesheet" href="css/dashboard-iqa.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -36,36 +36,32 @@
 </head>
 
 <body>
-
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link active" href="#"><i class="fas fa-history"></i>History
-                    (PR)</a>
-                <a class="nav-link" href="formulir-tech.html"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.html"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link " href="dashboard-iqa.html"><i class="fas fa-box-open"></i>Input Data</a>
+                <a class="nav-link " href="po-return.html"><i class="fas fa-truck-moving"></i>PO Return</a>
+                <a class="nav-link active" href="history-po.html"><i class="fas fa-history"></i>History (PO)</a>
             </div>
 
             <div class="copyright">
                 <small class="text-white text-muted">&copy;Copyright TFME polibatam 2020 &bull; All reserved</small>
             </div>
+
         </nav>
-        <!-- End navigasi -->
-        <!-- start header -->
         <div class="konten">
             <div class="atap"><span> </span></div>
-
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../../image/TECHNICIAN.png" alt="">
+                        <img src="../../image/IQA.png" alt="">
                     </div>
                     <div class="profile-name">
                         <h5>Rachmat Fauzan</h5>
-                        <p>Technician TFME</p>
+                        <p>Internal Quality Audit</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -77,201 +73,134 @@
                 </div>
             </div>
             <div class="box">
-                <div class="content">
+                <div class="data-entry">
+                    <div class="title mb-4 text-uppercase d-flex justify-content-center">
+                        <h5 class="font-weight-bold text-secondary">History Purchase Order Return</h5>
+                    </div>
                     <div class="group">
-                        <div class="form-group col-md d-flex justify-content-between">
-                            <div class="tanda">
+                        <div class="form-group row d-flex justify-content-between">
+                            <div class="tanda col-md-6">
                                 <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" 
-                                    role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample"></a>
                                 <div class="form-group collapse" id="collapseExample">
-                                    <div class="form-group col">
+                                    <div class="form-group col table-responsive">
                                         <table class="table">
                                             <tr>
+                                                <th>Item Name</th>
+                                                <th>Specification</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Price</th>
+                                            </tr>
+                                            <tr>
                                                 <td>
-                                                    <label>Item Name</label>
+                                                    Cooper Sulfat Pentahydrate
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">magazine lead frame</p>
+                                                    20kg/bag
+                                                </td>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Rp2.600.000
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label>Description</label>
+                                                    Cooper Sulfat Pentahydrate
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">FC840 VBLUE 1KG (3D PRINTER
-                                                        STRATASYS-POLYJET
-                                                        OBJECT30)</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Type</label>
+                                                    20kg/bag
                                                 </td>
                                                 <td>
-                                                    <p>OBJ-04034</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
+                                                    1
                                                 </td>
                                                 <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
-                                                </td>
-                                                <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Cost Center</label>
-                                                </td>
-                                                <td>
-                                                    <p>40</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Account Code</label>
-                                                </td>
-                                                <td>
-                                                    <p>4010001</p>
+                                                    Rp2.600.000
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tanda form-group col d-flex flex-column align-items-end">
+                            <div class="tanda form-group col-md-6 d-flex flex-column align-items-end ">
                                 <label class="title">Date of Request</label>
                                 <p>19 November 2020</p>
 
-                                <label class="title">Status</label>
-                                <p>Rejected</p>
+                                
                                 <div class="detail">
                                     <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                 </div>
                             </div>
                         </div>
+                        <hr style="border-color: black; width: 80%; opacity: 0.3;">
                     </div>
-                </div>
-            </div>
-            <!--  -->
-            <div class="box">
-                <div class="content">
                     <div class="group">
-                        <div class="form-group col-md d-flex justify-content-between">
-                            <div class="tanda">
+                        <div class="form-group row d-flex justify-content-between">
+                            <div class="tanda col-md-6">
                                 <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse"
-                                 role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample"></a>
                                 <div class="form-group collapse" id="collapseExample">
-                                    <div class="form-group col">
+                                    <div class="form-group col table-responsive">
                                         <table class="table">
                                             <tr>
+                                                <th>Item Name</th>
+                                                <th>Specification</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Price</th>
+                                            </tr>
+                                            <tr>
                                                 <td>
-                                                    <label>Item Name</label>
+                                                    Cooper Sulfat Pentahydrate
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">magazine lead frame</p>
+                                                    20kg/bag
+                                                </td>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Rp2.600.000
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label>Description</label>
+                                                    Cooper Sulfat Pentahydrate
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">FC840 VBLUE 1KG (3D PRINTER
-                                                        STRATASYS-POLYJET
-                                                        OBJECT30)</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Type</label>
+                                                    20kg/bag
                                                 </td>
                                                 <td>
-                                                    <p>OBJ-04034</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
+                                                    1
                                                 </td>
                                                 <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
-                                                </td>
-                                                <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Cost Center</label>
-                                                </td>
-                                                <td>
-                                                    <p>40</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Account Code</label>
-                                                </td>
-                                                <td>
-                                                    <p>4010001</p>
+                                                    Rp2.600.000
                                                 </td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tanda form-group col d-flex flex-column align-items-end">
+                            <div class="tanda form-group col-md-6 d-flex flex-column align-items-end ">
                                 <label class="title">Date of Request</label>
-                                <p>31 Oktober 2020</p>
+                                <p>19 November 2020</p>
 
-                                <label class="title">Status</label>
-                                <p>Approve</p>
-
+                                
                                 <div class="detail">
                                     <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                 </div>
                             </div>
                         </div>
+                        <hr style="border-color: black; width: 80%; opacity: 0.3;">
                     </div>
                 </div>
             </div>
-            <!--  -->
-            
         </div>
     </div>
 
 
-
-
-
-
-
-    <!-- script data tables -->
-    <script>
-        $(document).ready(function () {
-            $('#data').DataTable({
-                scrollX: true,
-                lengthChange: false,
-            });
-        });
-    </script>
 
 
     <!-- Collapse  -->

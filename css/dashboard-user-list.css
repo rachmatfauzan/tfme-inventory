@@ -7,19 +7,18 @@ body{
     padding: 0;
     background-color: rgb(240, 240, 240);
 }
+
 nav{
     height: 98%;
     position: fixed;
     width: 15%;
     border-radius: 15px;
-    z-index: 1;
 }
 div.atap{
     top: 0;
     width: 100%;
     position: fixed;
-    height: 10px;   
-    z-index: 999;
+    height: 10px;
     border-radius: 10px;
     background-color: rgb(240, 240, 240);
 }
@@ -77,113 +76,39 @@ nav a i{
     bottom: 0;
     text-align: center;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 11px;
 }
 .konten{
-    margin-left: 15%;
     width: 300px;
     flex: 5;
+    margin-left: 15%;
     margin-right: 10px;
 }
 .grid {
     display: flex;
     padding: 10px;
-    object-fit: contain;
-    height: 100%;
+    margin-bottom: 10px;
 }
 /* Responsive sidebar */
 @media screen and (max-width:900px){
-    html,body{
-        max-width: 100%;
-        overflow-x: hidden;
-    }
     nav {
         width: 100%;
         margin: auto;
         height: 40%;
-        border-radius: 0;
         position: unset;
+        border-radius: 0;
     }
     .brand{
         text-align: center;
-    }
-    .konten{
-        margin: 0 !important;
     }
     .nav-item a{
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    div.atap{
-        display: none;
-    }
-}
-
-/* Header Search */
-.navbar {
-    background-color: white;
-    border-radius: 15px;
-    margin-left: 10px ;
-    display: flex;
-    justify-content: space-between;
-}
-
-.profile{
-    display: flex;
-    align-items: center;
-}
-.profile-name h5{
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-}
-.profile-name p{
-    margin: 0;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: 200;
-    opacity: 0.7;
-}
-.wrapper-image {
-    overflow: hidden;
-    margin: 10px;
-    width: 150px;
-  }
-  
-.wrapper-image img {
-    display: block;
-    width: 100%;
-}
-.dropdown{
-    background: transparent;
-}
-.dropdown-menu{
-    transition: max-height 4s;
-}
-.dropdown .btn{
-    background: transparent;
-}
-.dropdown-item{
-    font-size: 11px;
-}
-.dropdown-item i {
-    margin-right: 10px;
-}
-/* box */
-.box {
-    margin-left: 10px;
-    border-radius: 15px;
-    background-color: white;
-    margin-top: 15px;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-/* Responsive Header */
-@media screen and (max-width:900px){
     .konten{
         width: 100%;
+        margin-left: 0;
     }
     .grid{
         flex-direction: column;
@@ -197,38 +122,83 @@ nav a i{
         width: auto;
         height: 20px;
     }
-    .navbar{
+    div.atap{
+        display: none;
+    }
+}
+
+/* Start box Content */
+.box {
+    padding: 20px;
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: white;
+}
+.kepala{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    margin-top: 2em;
+}
+.kepala h1 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+.kepala i {
+    margin-right: 10px;
+}
+.kepala a{
+    padding: 3px;
+    background-color: white;
+    border-radius: 8px;
+    width: 8rem;
+    height: 2em;
+    margin-bottom: 5px;
+    border: 1px solid rgb(208, 208, 208);
+}
+.kepala a:hover{
+    background-color: salmon;
+    color: white;
+    transition: .2s ease-in-out;
+}
+.kepala a{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(184, 184, 184);
+    font-weight: lighter;
+    font-size: 12px;
+}
+.table td{
+    white-space: nowrap;
+}
+.table td:nth-child(4){
+    width: 20%;
+    max-width: 200px;
+    white-space: pre-wrap;
+}
+/* hr style */
+.batas {
+    height: .6px;
+    width: 80%;
+    background-color: black;
+}
+/* Responsive Box */
+@media screen and (max-width:900px){
+    .box{
         margin: 0;
         border-radius: 0;
     }
-    .profile h5{
-        font-size: 14px;
+    .kepala{
+        margin: 0;
     }
-    .profile p{
-        font-size: 11px;
+    .kepala h1, i {
+        font-size: 12px;
     }
-    .profile{
-        width: 100vw;
-    }
-    .wrapper-image{
-        display: none;
-        height: 0;
-        width: 0;
-    }
-    .box{
-        margin-top: 10px;
-        margin-left: 0;
+    .table td:nth-child(4){
+        width: 100%;
+        min-width: 18rem;
     }
 }
-
-
-/* End header profile */
-
- .btn:focus, .btn:active{
-    outline: none !important;
-    box-shadow: none;
-}
-/* placeholder font custome*/
-::-webkit-input-placeholder{
-    font-size: 13px;
-}
+/* End box content */

@@ -11,7 +11,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/dashboard-user-list.css">
+    <link rel="stylesheet" href="../css/dashboard-user-list.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -30,7 +30,7 @@
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link " href="dashboard-admin.html"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link " href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link active" href="#"><i class="fas fa-users"></i>User List</a>
             </div>
 
@@ -48,7 +48,7 @@
                 <div class="content">
                     <div class="kepala">
                         <h1><i class="fas fa-users"></i>List of Technician Accounts</h1>
-                        <a href="add-user.html"><i class="fas fa-user-plus"></i>Add New user</a>
+                        <a href="add-user.php"><i class="fas fa-user-plus"></i>Add New user</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">

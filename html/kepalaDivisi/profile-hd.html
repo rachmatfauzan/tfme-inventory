@@ -11,8 +11,8 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/dashboard-tech.css">
-    <link rel="stylesheet" href="css/profile-tech.css">
+    <link rel="stylesheet" href="css/dashboard-hd.css">
+    <link rel="stylesheet" href="css/profile-hd.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -37,35 +37,32 @@
 </head>
 
 <body>
+
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-tech.html"><i class="fas fa-history"></i>History
-                    (PR)</a>
-                <a class="nav-link" href="formulir-tech.html"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link active" href="profile-tech.html"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="dashboard-hd.html"><i class="fas fa-box-open"></i>Purchase Order</a>
+                <a class="nav-link active" href="#"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
                 <small class="text-white text-muted">&copy;Copyright TFME polibatam 2020 &bull; All reserved</small>
             </div>
+
         </nav>
-        <!-- End navigasi -->
-        <!-- start header -->
         <div class="konten">
             <div class="atap"><span> </span></div>
-
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../../image/TECHNICIAN.png" alt="">
+                        <img src="../../image/HOD.png" alt="">
                     </div>
                     <div class="profile-name">
                         <h5>Rachmat Fauzan</h5>
-                        <p>Technician TFME</p>
+                        <p>Head of Division</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -122,6 +119,15 @@
                 </form>
             </div>
         </div>
+    </div>
+
+
+    <!-- Collapse  -->
+    <script>
+        $('.collapser').click(function () {
+            $(this).next().collapse('toggle');
+        });
+    </script>
 </body>
 
 </html>

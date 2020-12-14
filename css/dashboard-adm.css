@@ -14,12 +14,13 @@ nav{
     border-radius: 15px;
     z-index: 1;
 }
+
 div.atap{
     top: 0;
     width: 100%;
     position: fixed;
-    height: 10px;   
-    z-index: 999;
+    height: 10px;
+    z-index: 1;
     border-radius: 10px;
     background-color: rgb(240, 240, 240);
 }
@@ -94,10 +95,6 @@ nav a i{
 }
 /* Responsive sidebar */
 @media screen and (max-width:900px){
-    html,body{
-        max-width: 100%;
-        overflow-x: hidden;
-    }
     nav {
         width: 100%;
         margin: auto;
@@ -109,7 +106,7 @@ nav a i{
         text-align: center;
     }
     .konten{
-        margin: 0 !important;
+        margin-left: 0;
     }
     .nav-item a{
         margin-top: 10px;
@@ -146,6 +143,7 @@ nav a i{
     font-weight: 200;
     opacity: 0.7;
 }
+
 .wrapper-image {
     overflow: hidden;
     margin: 10px;
@@ -159,9 +157,6 @@ nav a i{
 .dropdown{
     background: transparent;
 }
-.dropdown-menu{
-    transition: max-height 4s;
-}
 .dropdown .btn{
     background: transparent;
 }
@@ -170,15 +165,6 @@ nav a i{
 }
 .dropdown-item i {
     margin-right: 10px;
-}
-/* box */
-.box {
-    margin-left: 10px;
-    border-radius: 15px;
-    background-color: white;
-    margin-top: 15px;
-    padding: 10px;
-    margin-bottom: 15px;
 }
 /* Responsive Header */
 @media screen and (max-width:900px){
@@ -215,19 +201,116 @@ nav a i{
         height: 0;
         width: 0;
     }
-    .box{
-        margin-top: 10px;
-        margin-left: 0;
-    }
 }
-
-
 /* End header profile */
 
- .btn:focus, .btn:active{
+/* Start box Content */
+.box {
+    margin-top: 10px;
+    padding: 20px;
+    margin-left: 10px;
+    border-radius: 15px;
+    background-color: white;
+    height: 50rem;
+}
+.kepala{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.kepala h1 {
+    font-size: 19px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+.kepala-kanan a{
+    background-color: white;
+    border-radius: 8px;
+    width: 6rem;
+    padding: 5px;
+    border: 1px solid rgb(208, 208, 208);
+}
+.kepala-kanan a:hover{
+    background-color: salmon;
+    color: white;
+    transition: .2s ease-in-out;
+}
+.kepala-kanan a{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(184, 184, 184);
+    font-weight: lighter;
+    font-size: 12px;
+}
+/*  */
+.kepala-kanan .btn{
+    background-color: white;
+    border-radius: 50%;
+}
+.modal-header i{
+    color: #9999;
+}
+.modal-body{
+    padding-top: 5px;
+}
+.btn i{
+    color: #9999;
+}
+.btn i:hover{
+    color: salmon;
+}
+.kepala-kanan .modal-body b{
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+}
+.kepala-kanan .modal-body p {
+    text-transform: lowercase;
+    font-size: 12px;
+}
+.form-row, .col-sm{
+    display: flex;
+}
+.btn:focus, .btn:active{
     outline: none !important;
     box-shadow: none;
 }
+.modal-header span{
+    display: none;
+}
+@media screen and (max-width: 900px ){
+    .kepala-kanan .modal-body b{
+        text-align: left;
+    }
+    .modal-header span{
+        display: contents;
+    }
+}
+/*  */
+.table td,th{
+    white-space: nowrap;
+}
+/* Responsive Box */
+@media screen and (max-width:900px){
+    .box{
+        margin: 0;
+        border-radius: 0;
+        height: fit-content;
+    }
+}
+/* End box content */
+
+/* data table */
+.page-item.active .page-link{
+    background-color: salmon;
+    color: white !important;
+    border: 0;
+}
+.page-link{
+    color: black !important;
+}
+
 /* placeholder font custome*/
 ::-webkit-input-placeholder{
     font-size: 13px;
