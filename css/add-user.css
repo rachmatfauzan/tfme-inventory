@@ -273,3 +273,13 @@ select.form-control:focus,
         font-size: 12px;
     }
 }
+
+div.atap {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    height: 10px;
+    border-radius: 10px;
+    z-index: 999;
+    background-color: rgb(240, 240, 240);
+}

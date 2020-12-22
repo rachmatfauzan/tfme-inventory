@@ -92,6 +92,7 @@
         <!-- End navigasi -->
         <!-- start header -->
         <div class="konten">
+        <div class="atap"><span> </span></div>
             <div class="box">
                 <div class="content">
                     <div class="kepala">
@@ -104,31 +105,31 @@
                                 <div class="form-group col-md-2">
                                     <label for="inputEmail4">ID</label>
                                     <input type="number" class="form-control" id="inputEmail4" placeholder="NIK/NIP/NIM"
-                                        autofocus name="id_user">
+                                        autofocus name="id_user" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputEmail4">Full Name</label>
                                     <input type="text" class="form-control" id="inputEmail4" placeholder="Full Name"
-                                        autofocus name="name">
+                                        autofocus name="name" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password</label>
                                     <input type="password" class="form-control" id="pwd" placeholder="Password" name="password">
-                                    <i class="fa fa-eye" id="eye"></i>
+                                    <i class="fa fa-eye" id="eye" required></i>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="inputHandphone">Handphone</label>
-                                    <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx" name="handphone">
+                                    <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx" name="handphone" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputemail">Email</label>
-                                    <input type="email" class="form-control" id="inputemail" placeholder="Your e-mail" name="email">
+                                    <input type="email" class="form-control" id="inputemail" placeholder="Your e-mail" name="email" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPosition">Position</label>
-                                    <select id="inputPosition" class="form-control custom-select" name="position">
+                                    <select id="inputPosition" class="form-control custom-select" name="position" required>
                                         <option selected value="technician">Technician</option>
                                         <option value="admin">Inventory Admin</option>
                                         <option value="head">Head Division</option>
@@ -140,7 +141,7 @@
                                 <div class="form-group col-md-12">
                                     <label for="inputAddress2">Address</label>
                                     <textarea type="text" class="form-control" id="inputAddress2"
-                                        placeholder="Specific Address You're Stay Now" name="address"></textarea>
+                                        placeholder="Specific Address You're Stay Now" name="address" required></textarea>
                                     </div>
                             </div>
                             <div class="d-flex justify-content-center">
