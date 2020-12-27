@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header("location: index.php");
+}
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -69,7 +80,7 @@
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../index.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>

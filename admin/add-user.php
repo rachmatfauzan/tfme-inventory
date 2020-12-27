@@ -26,10 +26,6 @@
     // Menampilkan user ke dalama data table
     $query = mysqli_query($conn, "SELECT * FROM user");
 
-    
-
-
-
 ?>
 
 <!doctype html>
@@ -114,8 +110,8 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Password" name="password">
-                                    <i class="fa fa-eye" id="eye" required></i>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Password" name="password" required>
+                                    <i class="fa fa-eye" id="eye"></i>
                                 </div>
                             </div>
                             <div class="form-row">

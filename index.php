@@ -1,3 +1,51 @@
+<?php  
+
+session_start();
+include 'config/config.php';
+
+
+// Logic Login
+if (isset($_POST["login"])){
+    
+    $id = $_POST['id'];
+    $pass = $_POST['password'];
+
+    $query = mysqli_query($conn, "SELECT * FROM  user WHERE id_user = '$id'");
+
+
+    if(mysqli_num_rows($query) == 1){
+        // cek Password
+        $result = mysqli_fetch_assoc($query);
+        if ( $pass === $result['password']){
+            // Set session
+            $_SESSION['login'] = true;
+
+            if($result['position'] == 'admin'){
+                header("location: admin/dashboard-admin.php");
+            }else if($result['position'] == "iqa"){
+                header("location: html/iqa");
+            }
+            else if($result['position'] == "technician"){
+                header("location: html/teknisi");
+            }
+
+        }
+        else{
+            $userPass = true;
+        }
+    }
+    else{
+        $userWrong = true;
+    }
+
+}
+
+?>
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -14,6 +62,10 @@
     <link rel="stylesheet" href="css/style.css">
     <title>TFME Inventory</title>
     <link rel="icon" href="image/TFME.jpg">
+
+    <!--  CDN SWAL-->
+    <script src="swal2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="swal2/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -23,18 +75,18 @@
             <h2 class="text-white font-weight-bold  ml-5">Log in.</h2>
             <p class="text-white text-lead text-muted ml-5 mr-5">Log in with your data that you entered during in admin
                 inventory</p>
-            <form class="ml-5 mr-5 mt-5">
+            <form class="ml-5 mr-5 mt-5" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Your ID</label>
-                    <input type="text" class="form-control input-sm" id="exampleInputEmail1"
-                        aria-describedby="emailHelp" placeholder="Your ID" autofocus>
+                    <input type="number" class="form-control input-sm" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Your ID" autofocus name="id">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control input-group-sm" id="exampleInputPassword1"
-                        placeholder="Password">
+                        placeholder="Password" name="password">
                 </div>
-                <button type="submit" class="btn font-weight-bold text-white btn-sm"><a href="admin/dashboard-admin.php">Log in</a></button>
+                <button type="submit" class="btn font-weight-bold text-white btn-sm" name="login">Log in</button>
             </form>
         </div>
         <div class="copyright">
@@ -50,30 +102,30 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="image/second-slide.svg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block text-dark ml-4">
-                            <h5>TFME Polibatam</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                                quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
-                        </div>
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="image/second-slide.svg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block text-dark ml-4">
+                        <h5>TFME Polibatam</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
+                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
                     </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/third-slide.svg" alt="Second slide">
-                        <div class="carousel-caption d-none d-md-block text-dark ml-4">
-                            <h5>TFME Polibatam</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                                quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/third-slide.svg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block text-dark ml-4">
+                        <h5>TFME Polibatam</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
+                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
                     </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="image/vel.svg" alt="Third slide">
-                        <div class="carousel-caption d-none d-md-block text-dark ml-4">
-                            <h5>TFME Polibatam</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                                quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/vel.svg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block text-dark ml-4">
+                        <h5>TFME Polibatam</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
+                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -84,41 +136,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- Swal2 -->
+    <?php if(isset($userWrong)) :  ?>
+    <script>
+        swal.fire("ID Not Found", "Please Try Again !", "error");
+    </script>
+    <?php endif; ?>
+    <?php if(isset($userPass)) :  ?>
+    <script>
+        swal.fire("Wrong Password", "Please Try Again !", "error");
+    </script>
+    <?php endif; ?>
 
 
     <!-- Optional JavaScript -->
