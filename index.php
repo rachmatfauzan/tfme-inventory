@@ -3,6 +3,10 @@
 session_start();
 include 'config/config.php';
 
+if (isset($_SESSION["login"])){
+    header("location: admin/dashboard-admin.php"); //Buat session sesuaikan dengan posisi
+}
+
 
 // Logic Login
 if (isset($_POST["login"])){
@@ -16,6 +20,10 @@ if (isset($_POST["login"])){
     if(mysqli_num_rows($query) == 1){
         // cek Password
         $result = mysqli_fetch_assoc($query);
+        $_SESSION["id-user"] = $result["id_user"];
+        $id = $_SESSION["id-user"];
+        $_SESSION['user'] = $result["name"];
+
         if ( $pass === $result['password']){
             // Set session
             $_SESSION['login'] = true;

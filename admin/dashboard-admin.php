@@ -1,6 +1,8 @@
 <?php 
 session_start();
 
+require "../config/config.php";
+
 if(!isset($_SESSION['login'])){
     header("location: index.php");
 }
@@ -73,7 +75,7 @@ if(!isset($_SESSION['login'])){
                         <img src="../image/profile.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5>Rachmat Fauzan</h5>
+                        <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
                         <p>Inventory admin</p>
                     </div>
                     <div class="dropdown">

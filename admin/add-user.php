@@ -1,4 +1,6 @@
-<?php  
+<?php 
+
+    session_start();
 
     require "../config/config.php";
 
@@ -88,7 +90,7 @@
         <!-- End navigasi -->
         <!-- start header -->
         <div class="konten">
-        <div class="atap"><span> </span></div>
+            <div class="atap"><span> </span></div>
             <div class="box">
                 <div class="content">
                     <div class="kepala">
@@ -99,33 +101,37 @@
                         <form method="post">
                             <div class="form-row">
                                 <div class="form-group col-md-2">
-                                    <label for="inputEmail4">ID</label>
+                                    <label for="id_user">ID</label>
                                     <input type="number" class="form-control" id="inputEmail4" placeholder="NIK/NIP/NIM"
                                         autofocus name="id_user" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputEmail4">Full Name</label>
-                                    <input type="text" class="form-control" id="inputEmail4" placeholder="Full Name"
+                                    <input type="text" class="form-control" id="name    " placeholder="Full Name"
                                         autofocus name="name" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Password" name="password" required>
+                                    <input type="password" class="form-control" id="pwd" placeholder="Password"
+                                        name="password" required>
                                     <i class="fa fa-eye" id="eye"></i>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="inputHandphone">Handphone</label>
-                                    <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx" name="handphone" required>
+                                    <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx"
+                                        name="handphone" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputemail">Email</label>
-                                    <input type="email" class="form-control" id="inputemail" placeholder="Your e-mail" name="email" required>
+                                    <input type="email" class="form-control" id="inputemail" placeholder="Your e-mail"
+                                        name="email" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPosition">Position</label>
-                                    <select id="inputPosition" class="form-control custom-select" name="position" required>
+                                    <select id="inputPosition" class="form-control custom-select" name="position"
+                                        required>
                                         <option selected value="technician">Technician</option>
                                         <option value="admin">Inventory Admin</option>
                                         <option value="head">Head Division</option>
@@ -137,8 +143,9 @@
                                 <div class="form-group col-md-12">
                                     <label for="inputAddress2">Address</label>
                                     <textarea type="text" class="form-control" id="inputAddress2"
-                                        placeholder="Specific Address You're Stay Now" name="address" required></textarea>
-                                    </div>
+                                        placeholder="Specific Address You're Stay Now" name="address"
+                                        required></textarea>
+                                </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn bg-dark" name="register">Registered</button>
@@ -169,9 +176,14 @@
                                     <td>
                                         <a class="bg-danger text-white">Delete</a>
                                         <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white" href="detail-user-list.php"
-                                        data-toggle="modal" data-target="#detail">Detail</a>
+                                        <a class="bg-success text-white" id="view"
+                                            data-toggle="modal" data-target="#detail" data-id="<?= $user['id_user'];?>"
+                                            data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
+                                            data-email="<?= $user['email'];?>" data-position="<?= $user['position'];?>"
+                                            data-password="<?= $user['password'];?>"
+                                            data-address="<?= $user['address'];?>">Detail</a>
                                     </td>
+
                                     <td style="display: none;"><?= $no; ?></td>
                                     <td><?= $user['id_user']; ?></td>
                                     <td><?= $user['name']; ?></td>
@@ -197,8 +209,9 @@
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-dark text-white">
-                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Detail User</h5>
+                            <div class="modal-header bg-secondary text-white">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Detail
+                                    User</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -207,42 +220,42 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="inputEmail4">ID</label>
-                                            <input type="text" class="form-control" id="inputEmail4"
-                                            placeholder="Your ID" disabled>
+                                            <label for="id_user">ID</label>
+                                            <input type="text" class="form-control" id="id_user" placeholder="Your ID"
+                                                disabled>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="inputEmail4">Full Name</label>
-                                            <input type="text" class="form-control" id="inputEmail4"
-                                            placeholder="Full Name" disabled>
+                                            <label for="name">Full Name</label>
+                                            <input type="text" class="form-control" id="name_user"placeholder="Full Name" disabled style="text-transform: capitalize;">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-6">
-                                            <label for="inputHandphone">Handphone</label>
-                                            <input type="text" class="form-control" id="inputHandphone"
-                                            placeholder="08xxx" disabled>
+                                            <label for="handphone">Handphone</label>
+                                            <input type="text" class="form-control" id="handphone_user"
+                                                placeholder="08xxx" disabled>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="inputemail">Email</label>
-                                            <input type="email" class="form-control" id="inputemail"
-                                            placeholder="Your e-mail" disabled>
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email_user"
+                                                placeholder="Your e-mail" disabled>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="inputPosition">Position</label>
-                                            <input type="text" class="form-control" placeholder="Position" disabled>
+                                            <label for="position">Position</label>
+                                            <input type="text" class="form-control" placeholder="Position"
+                                                id="position_user" disabled>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="inputPosition">Password</label>
-                                            <input type="text" class="form-control" placeholder="password" disabled>
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control" placeholder="password" id="password_user" disabled>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="inputAddress2">Address</label>
-                                            <textarea type="text" class="form-control" id="inputAddress2"
+                                            <label for="address">Address</label>
+                                            <textarea type="text" class="form-control" id="address_user"
                                                 placeholder="Specific Address You're Stay Now" disabled></textarea>
-                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -254,15 +267,15 @@
     </div>
 
 
-    
 
-    
-    
+
+
+
     <!-- SWAL action -->
     <?php if(isset($berhasil)) :  ?>
-        <script>
-            swal.fire ("Register Completed", "Happy Working :)", "success");
-        </script>
+    <script>
+        swal.fire("Register Completed", "Happy Working :)", "success");
+    </script>
     <?php endif; ?>
 
     <!-- script data tables -->
@@ -271,14 +284,16 @@
             $('#data').DataTable({
                 scrollX: true,
                 lengthChange: false,
-                "order": [[1, 'desc']],
+                "order": [
+                    [1, 'desc']
+                ],
                 "lengthMenu": [
                     [4, 25, 50, -1],
                     [3, 25, 50, "All"]
                 ]
             });
         });
-        </script>
+    </script>
 
 
     <!-- Start script show Eye -->
@@ -295,6 +310,25 @@
         }
     </script>
     <!-- End cript show eye -->
+
+    <script>
+            $(document).on('click', '#view', function () {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let handphone = $(this).data('handphone');
+                let email = $(this).data('email');
+                let position = $(this).data('position');
+                let password = $(this).data('password');
+                let address = $(this).data('address');
+                $('.modal-body #id_user').val(id);
+                $('#name_user').val(name);
+                $('#handphone_user').val(handphone);
+                $('#email_user').val(email);
+                $('#position_user').val(position);
+                $('#password_user').val(password);
+                $('#address_user').val(address);
+            });
+     </script>
 </body>
 
 </html>
