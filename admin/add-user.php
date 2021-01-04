@@ -28,6 +28,31 @@
     // Menampilkan user ke dalama data table
     $query = mysqli_query($conn, "SELECT * FROM user");
 
+
+    // update
+    if (isset($_POST['ubah'])){
+        $id = $_POST['id_user'];
+        $name = $_POST['name_user'];
+        $password = $_POST['password_user'];
+        $handphone = $_POST['handphone_user'];
+        $email = $_POST['email_user'];
+        $position = $_POST['position_user'];
+        $address = $_POST['address_user'];
+
+        $update = mysqli_query($conn, "UPDATE user SET
+        name = '$name',
+        password = '$password',
+        handphone = '$handphone',
+        email = '$email',
+        position = '$position',
+        address = '$address'
+        WHERE id_user = '$id' ");
+
+        if ($update){
+            $update = true;
+        }
+    }
+
 ?>
 
 <!doctype html>
@@ -175,9 +200,14 @@
                                 <tr>
                                     <td>
                                         <a class="bg-danger text-white">Delete</a>
-                                        <a class="bg-info text-white">Update</a>
-                                        <a class="bg-success text-white" id="view"
-                                            data-toggle="modal" data-target="#detail" data-id="<?= $user['id_user'];?>"
+                                        <a class="bg-info text-white" id="updateData" data-toggle="modal"
+                                            data-target="#update" data-id="<?= $user['id_user'];?>"
+                                            data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
+                                            data-email="<?= $user['email'];?>" data-position="<?= $user['position'];?>"
+                                            data-password="<?= $user['password'];?>"
+                                            data-address="<?= $user['address'];?>">Update</a>
+                                        <a class="bg-success text-white" id="view" data-toggle="modal"
+                                            data-target="#detail" data-id="<?= $user['id_user'];?>"
                                             data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
                                             data-email="<?= $user['email'];?>" data-position="<?= $user['position'];?>"
                                             data-password="<?= $user['password'];?>"
@@ -205,6 +235,7 @@
 
                 </div>
                 <!-- Modal -->
+                <!-- ##################################################################### -->
                 <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -217,7 +248,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-6">
                                             <label for="id_user">ID</label>
@@ -226,7 +257,8 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="name">Full Name</label>
-                                            <input type="text" class="form-control" id="name_user"placeholder="Full Name" disabled style="text-transform: capitalize;">
+                                            <input type="text" class="form-control" id="name_user"
+                                                placeholder="Full Name" disabled style="text-transform: capitalize;">
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -247,7 +279,8 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="password">Password</label>
-                                            <input type="text" class="form-control" placeholder="password" id="password_user" disabled>
+                                            <input type="text" class="form-control" placeholder="password"
+                                                id="password_user" disabled>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -262,6 +295,78 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal update -->
+                <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-secondary text-white">
+                                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Update Data
+                                    User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body update">
+                                <form method="post">
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="id_user">ID</label>
+                                            <input type="text" class="form-control" id="id_user" placeholder="Your ID" name="id_user">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="name">Full Name</label>
+                                            <input type="text" class="form-control" id="name_user"
+                                                placeholder="Full Name" style="text-transform: capitalize;" name="name_user">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-6">
+                                            <label for="handphone">Handphone</label>
+                                            <input type="text" class="form-control" id="handphone_user"
+                                                placeholder="08xxx" name="handphone_user">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email_user"
+                                                placeholder="Your e-mail" name="email_user">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="position">Position</label>
+                                            <select class="form-control" name="position_user" id="position_user">
+                                                <option value="technician">Technician</option>
+                                                <option value="admin">Admin Inventory</option>
+                                                <option value="iqa">Internal Quality Audit</option>
+                                                <option value="head">Head of Division</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control" placeholder="password"
+                                                id="password_user" name="password_user">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="address">Address</label>
+                                            <textarea type="text" class="form-control" id="address_user" name="address_user"
+                                                placeholder="Specific Address You're Stay Now"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-success float-right" name="ubah">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
             </div>
         </div>
     </div>
@@ -275,6 +380,13 @@
     <?php if(isset($berhasil)) :  ?>
     <script>
         swal.fire("Register Completed", "Happy Working :)", "success");
+    </script>
+    <?php endif; ?>
+
+    <?php if(isset($update)) :  ?>
+    <script>
+        swal.fire("Success Updated", "Happy Working :)", "success");
+        setTimeout(function(){window.top.location="add-user.php"},1000);
     </script>
     <?php endif; ?>
 
@@ -312,23 +424,42 @@
     <!-- End cript show eye -->
 
     <script>
-            $(document).on('click', '#view', function () {
-                let id = $(this).data('id');
-                let name = $(this).data('name');
-                let handphone = $(this).data('handphone');
-                let email = $(this).data('email');
-                let position = $(this).data('position');
-                let password = $(this).data('password');
-                let address = $(this).data('address');
-                $('.modal-body #id_user').val(id);
-                $('#name_user').val(name);
-                $('#handphone_user').val(handphone);
-                $('#email_user').val(email);
-                $('#position_user').val(position);
-                $('#password_user').val(password);
-                $('#address_user').val(address);
-            });
-     </script>
+        $(document).on('click', '#view', function () {
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            let handphone = $(this).data('handphone');
+            let email = $(this).data('email');
+            let position = $(this).data('position');
+            let password = $(this).data('password');
+            let address = $(this).data('address');
+            $('.modal-body #id_user').val(id);
+            $('#name_user').val(name);
+            $('#handphone_user').val(handphone);
+            $('#email_user').val(email);
+            $('#position_user').val(position);
+            $('#password_user').val(password);
+            $('#address_user').val(address);
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '#updateData', function () {
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            let handphone = $(this).data('handphone');
+            let email = $(this).data('email');
+            let position = $(this).data('position');
+            let password = $(this).data('password');
+            let address = $(this).data('address');
+            $('.modal-body #id_user').val(id);
+            $('.modal-body #name_user').val(name);
+            $('.modal-body #handphone_user').val(handphone);
+            $('.modal-body #email_user').val(email);
+            $('.modal-body #position_user').val(position);
+            $('.modal-body #password_user').val(password);
+            $('.modal-body #address_user').val(address);
+        });
+    </script>
 </body>
 
 </html>

@@ -3,9 +3,15 @@
 session_start();
 include 'config/config.php';
 
-if (isset($_SESSION["login"])){
+if (isset($_SESSION["admin"] )){
     header("location: admin/dashboard-admin.php"); //Buat session sesuaikan dengan posisi
+}else if (isset($_SESSION["iqa"] )){
+    header("location: html/iqa"); //Buat session sesuaikan dengan posisi
+}else if (isset($_SESSION["technician"] )){
+    header("location: html/teknisi"); //Buat session sesuaikan dengan posisi
 }
+
+
 
 
 // Logic Login
@@ -25,16 +31,20 @@ if (isset($_POST["login"])){
         $_SESSION['user'] = $result["name"];
 
         if ( $pass === $result['password']){
-            // Set session
-            $_SESSION['login'] = true;
-
+            
             if($result['position'] == 'admin'){
                 header("location: admin/dashboard-admin.php");
+                // Set session
+                $_SESSION['admin'] = $result['position'] == 'admin';
             }else if($result['position'] == "iqa"){
-                header("location: html/iqa");
+                header("location: iqa/dashboard-iqa.php");
+                // Set session
+                $_SESSION['iqa'] = $result['position'] == 'iqa';
             }
             else if($result['position'] == "technician"){
                 header("location: html/teknisi");
+                // Set session
+                $_SESSION['technician'] = $result['position'] == 'technician';
             }
 
         }
