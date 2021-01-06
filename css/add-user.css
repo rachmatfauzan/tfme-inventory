@@ -167,8 +167,6 @@ nav a i{
 th,td{
     width: 100vw;
 }
-.table td{
-}
 .table td:nth-child(1){
     white-space: nowrap;
     min-width: 200px;
@@ -267,12 +265,6 @@ select.form-control:focus,
 .modal-header span {
     color: white;
 }
-/* Modal Responsive */
-@media screen and (max-width:900px){
-    .form-group input,select,textarea{
-        font-size: 12px;
-    }
-}
 
 div.atap {
     top: 0;
@@ -282,4 +274,14 @@ div.atap {
     border-radius: 10px;
     z-index: 999;
     background-color: rgb(240, 240, 240);
+}
+/* Modal Responsive */
+@media screen and (max-width:900px){
+    .form-group input,select,textarea{
+        font-size: 12px;
+    }
+
+    div.atap {
+        display: none;
+    }
 }

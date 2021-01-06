@@ -1,3 +1,27 @@
+<?php 
+
+session_start();
+include "../config/config.php";
+
+// Query memanggil posisi teknisi 
+$queryTech = mysqli_query($conn, "SELECT * FROM user WHERE position = 'technician'");
+
+
+// Query memanggil posisi admin 
+$queryAdmin = mysqli_query($conn, "SELECT * FROM user WHERE position = 'admin'");
+
+
+// Query memanggil posisi head
+$queryHead = mysqli_query($conn, "SELECT * FROM user WHERE position = 'head'");
+
+
+// Query memanggil posisi iqa
+$queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -63,37 +87,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php foreach ($queryTech as $teknisi) : ?>
                                 <tr>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45 Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, consequatur.</td>
-                                    <td>afrialmuharram@gmail.com</td>
-                                    <td>Technician</td>
+                                    <td><?= $teknisi["id_user"]; ?></td>
+                                    <td style="text-transform: capitalize;"><?= $teknisi['name']; ?></td>
+                                    <td><?= $teknisi['handphone']; ?></td>
+                                    <td><?= $teknisi['address']; ?></td>
+                                    <td><?= $teknisi['email']; ?></td>
+                                    <td><?= $teknisi['position']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45 Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, consequatur.</td>
-                                    <td>afrialmuharram@gmail.com</td>
-                                    <td>Technician</td>
-                                </tr>
-                                <tr>
-                                    <td>3311701055</td>
-                                    <td>Aldi Ananda Putra</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45</td>
-                                    <td>aldiananda99@gmail.com</td>
-                                    <td>Technician</td>
-                                </tr>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="content">
                     <div class="kepala">
-                        <h1><i class="fas fa-users"></i>List of Admin Inventory Account</h1>
+                        <h1><i class="fas fa-users"></i>Internal Quality Audit Administrator</h1>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -108,23 +118,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach( $queryIqa as $iqa ) :?>
                                 <tr>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45 Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloribus, consequatur.</td>
-                                    <td>afrialmuharram@gmail.com</td>
-                                    <td>Technician</td>
+                                    <td><?= $iqa["id_user"]; ?></td>
+                                    <td style="text-transform: capitalize;"><?= $iqa['name']; ?></td>
+                                    <td><?= $iqa['handphone']; ?></td>
+                                    <td><?= $iqa['address']; ?></td>
+                                    <td><?= $iqa['email']; ?></td>
+                                    <td><?= $iqa['position']; ?></td>
                                 </tr>
-
-                                <tr>
-                                    <td>3311701055</td>
-                                    <td>Aldi Ananda Putra</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45</td>
-                                    <td>aldiananda99@gmail.com</td>
-                                    <td>Technician</td>
-                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -146,23 +149,47 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach( $queryHead as $head ) :?>
                                 <tr>
-                                    <td>3311801036</td>
-                                    <td>Afri Almuharram</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45 Lorem ipsum dolor sit amet consectetur adipisicing elit.Doloribus, consequatur.</td>
-                                    <td>afrialmuharram@gmail.com</td>
-                                    <td>Technician</td>
+                                    <td><?= $head["id_user"]; ?></td>
+                                    <td style="text-transform: capitalize;"><?= $head['name']; ?></td>
+                                    <td><?= $head['handphone']; ?></td>
+                                    <td><?= $head['address']; ?></td>
+                                    <td><?= $head['email']; ?></td>
+                                    <td><?= $head['position']; ?></td>
                                 </tr>
-
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="kepala">
+                        <h1><i class="fas fa-users"></i>List of Admin Inventory Account</h1>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>3311701055</td>
-                                    <td>Aldi Ananda Putra</td>
-                                    <td>082170132187</td>
-                                    <td>Bukit Sentosa Blok C.45</td>
-                                    <td>aldiananda99@gmail.com</td>
-                                    <td>Technician</td>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Handphone</th>
+                                    <th style="width: 300px;">Address</th>
+                                    <th>Email</th>
+                                    <th>Position</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($queryAdmin as $admin ) : ?>
+                                <tr>
+                                    <td><?= $admin["id_user"]; ?></td>
+                                    <td style="text-transform: capitalize;"><?= $admin['name']; ?></td>
+                                    <td><?= $admin['handphone']; ?></td>
+                                    <td><?= $admin['address']; ?></td>
+                                    <td><?= $admin['email']; ?></td>
+                                    <td><?= $admin['position']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

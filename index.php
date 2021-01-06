@@ -42,7 +42,7 @@ if (isset($_POST["login"])){
                 $_SESSION['iqa'] = $result['position'] == 'iqa';
             }
             else if($result['position'] == "technician"){
-                header("location: html/teknisi");
+                header("location: teknisi/dashboard-tech.php");
                 // Set session
                 $_SESSION['technician'] = $result['position'] == 'technician';
             }

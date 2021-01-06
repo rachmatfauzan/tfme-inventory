@@ -7,7 +7,7 @@
     // registrasi
     if (isset($_POST['register'])){
         $id = $_POST['id_user'];
-        $username = $_POST['name'];
+        $username = htmlspecialchars(strtolower($_POST['name']));
         $password = $_POST['password'];
         $hp = $_POST['handphone'];
         $email = $_POST['email'];
@@ -32,7 +32,7 @@
     // update
     if (isset($_POST['ubah'])){
         $id = $_POST['id_user'];
-        $name = $_POST['name_user'];
+        $name = htmlspecialchars(strtolower($_POST['name_user'])); 
         $password = $_POST['password_user'];
         $handphone = $_POST['handphone_user'];
         $email = $_POST['email_user'];
@@ -145,7 +145,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="inputHandphone">Handphone</label>
-                                    <input type="text" class="form-control" id="inputHandphone" placeholder="08xxx"
+                                    <input type="number" class="form-control" id="inputHandphone" placeholder="08xxx"
                                         name="handphone" required>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -216,7 +216,7 @@
 
                                     <td style="display: none;"><?= $no; ?></td>
                                     <td><?= $user['id_user']; ?></td>
-                                    <td><?= $user['name']; ?></td>
+                                    <td style="text-transform: capitalize;"><?= $user['name']; ?></td>
                                     <td><?= $user['address']; ?></td>
                                     <td><?= $user['position']; ?></td>
                                 </tr>
