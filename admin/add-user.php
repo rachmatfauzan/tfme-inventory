@@ -199,7 +199,7 @@
                                 <?php foreach ($query as $user ) : ?>
                                 <tr>
                                     <td>
-                                        <a class="bg-danger text-white">Delete</a>
+                                        <a class="bg-danger text-white" href="delete.php?id=<?= $user['id_user']?>" onclick="return confirm('Want to Delete <?= $user['name']?>');">Delete</a>
                                         <a class="bg-info text-white" id="updateData" data-toggle="modal"
                                             data-target="#update" data-id="<?= $user['id_user'];?>"
                                             data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
@@ -232,9 +232,27 @@
                             </tfoot>
                         </table>
                     </div>
-
                 </div>
-                <!-- Modal -->
+                <!-- Modal Delete
+                <div class="modal fade" id="modalDelete">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content d-flex flex-column align-items-center justify-content-center">
+                            <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    <h4 class="modal-title">Are You Want to Delete ?</h4>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                    <form action="" id="formDelete" method="post">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        <button class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- Modal Detail -->
                 <!-- ##################################################################### -->
                 <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -395,13 +413,12 @@
         $(document).ready(function () {
             $('#data').DataTable({
                 scrollX: true,
-                lengthChange: false,
                 "order": [
                     [1, 'desc']
                 ],
                 "lengthMenu": [
                     [4, 25, 50, -1],
-                    [3, 25, 50, "All"]
+                    [4, 25, 50, "All"]
                 ]
             });
         });
