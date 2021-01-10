@@ -397,7 +397,7 @@
     <!-- SWAL action -->
     <?php if(isset($berhasil)) :  ?>
     <script>
-        swal.fire("Register Completed", "Happy Working :)", "success");
+        swal.fire("Register Completed", "Happy W orking :)", "success");
     </script>
     <?php endif; ?>
 

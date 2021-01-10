@@ -1,3 +1,72 @@
+<?php 
+
+session_start();
+include "../config/config.php";
+
+
+if(!isset($_SESSION['technician'])){
+    header("location: index.php");
+}
+
+
+// membuat logik kode_otomatis
+$sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
+$data = mysqli_fetch_array($sql);
+
+$kode = $data['maxID'];
+$kode++;
+
+$ket = "PR";
+$kodeAuto = $ket . sprintf("%05s", $kode);
+
+// echo $kodeAuto;
+
+
+if(isset($_POST['send'])){
+    $kode_pr = $kodeAuto;
+    $item_name = $_POST['item_name'];
+    $type = $_POST['type'];
+    $quantity = $_POST['quantity'];
+    $item_description = $_POST['item_description'];
+    $part_number = $_POST['part_number'];
+    $cost_center = $_POST['cost_center'];
+    $pr_date = $_POST['pr_date'];
+    $pr_number = $_POST['pr_number'];
+    $status = 'waiting';
+
+    $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
+        '',
+        '$kode_pr',
+        '$item_name',
+        '$type',
+        '$quantity',
+        '$item_description',
+        '$part_number',
+        '$cost_center',
+        '$pr_date',
+        '$pr_number',
+        '$status'
+    )");
+
+    if ($query){
+        $send = true;
+    } else {
+        echo "Failed !";
+    }
+    
+}
+
+
+
+
+?>
+
+<!-- Kode PR Auto -->
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,14 +94,15 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
+    <!--  CDN SWAL-->
+    <script src="../swal2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
+
     <!-- Bootstrap Js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
-    <!-- Bootstrap Ordered Datatables  -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="icon" href="../../image/TFME.jpg">
+    <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
 </head>
 
@@ -43,10 +113,10 @@
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-tech.html"><i class="fas fa-history"></i>History
+                <a class="nav-link" href="dashboard-tech.php"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.html"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -61,17 +131,17 @@
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../../image/TECHNICIAN.png" alt="">
+                        <img src="../image/TECHNICIAN.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5>Rachmat Fauzan</h5>
+                        <h5 style="text-transform:capitalize;"><?= $_SESSION['user']; ?></h5>
                         <p>Technician TFME</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +151,7 @@
                     <div class="title mb-4 text-uppercase d-flex justify-content-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
                     </div>
-                    <form>
+                    <form method="post" autocomplete="off">
                         <div class="group">
                             <h5 class="font-weight-bold">ITEM</h5>
                             <hr class="my-4">
@@ -89,22 +159,24 @@
                                 <div class="form-group col">
                                     <label for="item-name">Item Name</label>
                                     <input type="text" class="form-control bg-light" id="item-name"
-                                        placeholder="Item Name" autofocus>
+                                        placeholder="Item Name" name="item_name" autofocus required>
                                 </div>
                                 <div class="form-group col">
                                     <label for="tipe">Type</label>
-                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="Type">
+                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
+                                        name="type" required>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="tipe">Quantity</label>
-                                    <input type="number" class="form-control bg-light" id="tipe" placeholder="0">
+                                    <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
+                                        name="quantity" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="Item">Item Description</label>
                                     <textarea type="text" class="form-control bg-light" id="Item"
-                                        placeholder="Your Name Item"></textarea>
+                                        placeholder="Your Name Item" name="item_description" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -115,11 +187,12 @@
                                 <div class="form-group col">
                                     <label for="part-number">Part Number</label>
                                     <input type="text" class="form-control bg-light" id="part-number"
-                                        placeholder="Part Number">
+                                        placeholder="Part Number" name="part_number" required>
                                 </div>
                                 <div class="form-group col">
                                     <label for="inputPosition">Cost Center</label>
-                                    <select id="inputPosition" class="form-control custom-select  bg-light">
+                                    <select id="inputPosition" class="form-control custom-select  bg-light"
+                                        name="cost_center" required>
                                         <option selected disabled>-- Choose CC --</option>
                                         <option value="10">10 PCB</option>
                                         <option value="20">20 PCBA</option>
@@ -135,22 +208,43 @@
                             <div class="row">
                                 <div class="form-group col-md">
                                     <label for="pr-date">PR Date</label>
-                                    <input type="date" id="datepicker" class="form-control bg-light">
+                                    <input type="date" id="datepicker" class="form-control bg-light" name="pr_date"
+                                        required>
                                 </div>
 
                                 <div class="form-group col-md">
                                     <label for="on-pr#">On PR#</label>
-                                    <input type="text" class="form-control bg-light" id="on-pr#" placeholder="On PR#">
+                                    <input type="text" class="form-control bg-light" id="on-pr#" placeholder="On PR#"
+                                        name="pr_number" required>
                                 </div>
                             </div>
 
                             <div class="d-flex justify-content-end entry">
-                                <button type="submit" class="btn bg-dark text-white"><i
+                                <button type="submit" class="btn bg-dark text-white" name="send"><i
                                         class="fas fa-paper-plane mr-3"></i>Send</button>
                             </div>
                     </form>
                 </div>
             </div>
+
+
+
+
+
+
+            <!-- SWAL action -->
+            <?php if(isset($send)) :  ?>
+            <script>
+             swal.fire ({
+              title: "Request Success",
+              text: "Waiting Your Approval",
+                icon: "success",
+                showCancelButton: false,
+                showConfirmButton: false
+             });
+               setTimeout(function(){window.top.location="dashboard-tech.php"} , 2700);
+            </script>
+            <?php endif; ?>
 </body>
 
 </html>

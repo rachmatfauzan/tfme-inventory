@@ -6,9 +6,9 @@ include 'config/config.php';
 if (isset($_SESSION["admin"] )){
     header("location: admin/dashboard-admin.php"); //Buat session sesuaikan dengan posisi
 }else if (isset($_SESSION["iqa"] )){
-    header("location: html/iqa"); //Buat session sesuaikan dengan posisi
+    header("location: iqa/dashboard-iqa.php"); //Buat session sesuaikan dengan posisi
 }else if (isset($_SESSION["technician"] )){
-    header("location: html/teknisi"); //Buat session sesuaikan dengan posisi
+    header("location: teknisi/dashboard-tech.php"); //Buat session sesuaikan dengan posisi
 }
 
 

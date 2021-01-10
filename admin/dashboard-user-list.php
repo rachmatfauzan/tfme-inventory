@@ -71,7 +71,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
             <div class="box">
                 <div class="content">
                     <div class="kepala">
-                        <h1><i class="fas fa-users"></i>List of Technician Accounts</h1>
+                        <h1><i class="fas fa-users"></i>List of Technician Accounts (TECHNICIAN)</h1>
                         <a href="add-user.php"><i class="fas fa-user-plus"></i>Add New user</a>
                     </div>
                     <div class="table-responsive">
@@ -103,7 +103,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                 </div>
                 <div class="content">
                     <div class="kepala">
-                        <h1><i class="fas fa-users"></i>Internal Quality Audit Administrator</h1>
+                        <h1><i class="fas fa-users"></i>Internal Quality Audit Administrator (IQA)</h1>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -134,7 +134,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                 </div>
                 <div class="content">
                     <div class="kepala">
-                        <h1><i class="fas fa-users"></i>Head Division Administrator</h1>
+                        <h1><i class="fas fa-users"></i>Head Division Administrator (HD)</h1>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -165,7 +165,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                 </div>
                 <div class="content">
                     <div class="kepala">
-                        <h1><i class="fas fa-users"></i>List of Admin Inventory Account</h1>
+                        <h1><i class="fas fa-users"></i>List of Admin Inventory Account (ADMIN)</h1>
                     </div>
                     <div class="table-responsive">
                         <table class="table">

@@ -1,3 +1,17 @@
+<?php 
+
+session_start();
+include "../config/config.php";
+
+if(!isset($_SESSION['technician'])){
+    header("location: index.php");
+}
+
+$query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -45,8 +59,8 @@
             <div class="nav-item">
                 <a class="nav-link active" href="#"><i class="fas fa-history"></i>History
                     (PR)</a>
-                <a class="nav-link" href="formulir-tech.html"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.html"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="formulir-tech.php"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -64,7 +78,7 @@
                         <img src="../image/TECHNICIAN.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5>Rachmat Fauzan</h5>
+                    <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
                         <p>Technician TFME</p>
                     </div>
                     <div class="dropdown">
@@ -76,11 +90,13 @@
                     </div>
                 </div>
             </div>
+            <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
                     <div class="group">
                         <div class="form-group col-md d-flex justify-content-between">
                             <div class="tanda">
+                                <label style="opacity: 0.7; font-size:14px;"><?= $data['kode_pr']; ?></label> <br>
                                 <label class="title">Item Detail</label>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" 
                                     role="button" aria-expanded="false" aria-controls="collapseExample"></a>
@@ -92,7 +108,7 @@
                                                     <label>Item Name</label>
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">magazine lead frame</p>
+                                                    <p class="text-capitalize"><?= $data['item_name']; ?></p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -100,9 +116,7 @@
                                                     <label>Description</label>
                                                 </td>
                                                 <td>
-                                                    <p class="text-capitalize">FC840 VBLUE 1KG (3D PRINTER
-                                                        STRATASYS-POLYJET
-                                                        OBJECT30)</p>
+                                                    <p class="text-capitalize"><?= $data["item_description"]; ?></p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -110,7 +124,15 @@
                                                     <label>Type</label>
                                                 </td>
                                                 <td>
-                                                    <p>OBJ-04034</p>
+                                                    <p><?= $data['type']; ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>Quantity</label>
+                                                </td>
+                                                <td>
+                                                    <p><?= $data['quantity']; ?></p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -118,15 +140,7 @@
                                                     <label>Part Number</label>
                                                 </td>
                                                 <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
-                                                </td>
-                                                <td>
-                                                    <p>GN00404004</p>
+                                                    <p><?= $data['part_number']; ?></p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -134,15 +148,7 @@
                                                     <label>Cost Center</label>
                                                 </td>
                                                 <td>
-                                                    <p>40</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Account Code</label>
-                                                </td>
-                                                <td>
-                                                    <p>4010001</p>
+                                                    <p><?= $data['cost_center']; ?></p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -151,10 +157,10 @@
                             </div>
                             <div class="tanda form-group col d-flex flex-column align-items-end">
                                 <label class="title">Date of Request</label>
-                                <p>19 November 2020</p>
-
+                                <?php $date = date_create($data['pr_date']); ?>
+                                <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
-                                <p>Rejected</p>
+                                <p style="text-transform: capitalize;"><?= $data['status']; ?></p>
                                 <div class="detail">
                                     <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                 </div>
@@ -163,97 +169,7 @@
                     </div>
                 </div>
             </div>
-            <!--  -->
-            <div class="box">
-                <div class="content">
-                    <div class="group">
-                        <div class="form-group col-md d-flex justify-content-between">
-                            <div class="tanda">
-                                <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse"
-                                 role="button" aria-expanded="false" aria-controls="collapseExample"></a>
-                                <div class="form-group collapse" id="collapseExample">
-                                    <div class="form-group col">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    <label>Item Name</label>
-                                                </td>
-                                                <td>
-                                                    <p class="text-capitalize">magazine lead frame</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Description</label>
-                                                </td>
-                                                <td>
-                                                    <p class="text-capitalize">FC840 VBLUE 1KG (3D PRINTER
-                                                        STRATASYS-POLYJET
-                                                        OBJECT30)</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Type</label>
-                                                </td>
-                                                <td>
-                                                    <p>OBJ-04034</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
-                                                </td>
-                                                <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Part Number</label>
-                                                </td>
-                                                <td>
-                                                    <p>GN00404004</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Cost Center</label>
-                                                </td>
-                                                <td>
-                                                    <p>40</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Account Code</label>
-                                                </td>
-                                                <td>
-                                                    <p>4010001</p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tanda form-group col d-flex flex-column align-items-end">
-                                <label class="title">Date of Request</label>
-                                <p>31 Oktober 2020</p>
-
-                                <label class="title">Status</label>
-                                <p>Approve</p>
-
-                                <div class="detail">
-                                    <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            
+            <?php endforeach; ?>
         </div>
     </div>
 
