@@ -1,0 +1,35 @@
+.pr td:nth-child(5) a{
+    text-decoration: none;
+    color: black;
+}
+
+.kepala a{
+    background-color: white;
+    border-radius: 8px;
+    width: 10rem;
+    border: 1px solid rgb(208, 208, 208);
+}
+.kepala a:hover{
+    background-color: salmon;
+    color: white;
+    transition: .2s ease-in-out;
+}
+.kepala a{
+    text-align: center;
+    text-decoration: none;
+    color: rgb(184, 184, 184);
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.box .detail{
+    -webkit-box-shadow: inset 10px 10px 10px 0px rgba(0,0,0,0.05);
+    -moz-box-shadow: inset 10px 10px 10px 0px rgba(0,0,0,0.05);
+    box-shadow: inset 10px 10px 10px 0px rgba(0,0,0,0.05);
+}
+
+.box select.status{
+    -webkit-box-shadow: 12px 12px 13px 0px rgba(0,0,0,0.04);
+    -moz-box-shadow: 12px 12px 13px 0px rgba(0,0,0,0.04);
+    box-shadow: 12px 12px 13px 0px rgba(0,0,0,0.04);
+}

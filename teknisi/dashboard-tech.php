@@ -78,7 +78,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
                         <img src="../image/TECHNICIAN.png" alt="">
                     </div>
                     <div class="profile-name">
-                    <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
+                        <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
                         <p>Technician TFME</p>
                     </div>
                     <div class="dropdown">
@@ -96,10 +96,11 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
                     <div class="group">
                         <div class="form-group col-md d-flex justify-content-between">
                             <div class="tanda">
-                                <label style="opacity: 0.7; font-size:14px;"><?= $data['kode_pr']; ?></label> <br>
+                                <label style="opacity: 0.7; font-size:14px;"><?= $data['kode_pr']; ?> | <b>Requestor</b>
+                                    <span style="text-transform: capitalize;"> <?= $data['requestor']; ?> </span></label> <br>
                                 <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" 
-                                    role="button" aria-expanded="false" aria-controls="collapseExample"></a>
+                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample"></a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col">
                                         <table class="table">
@@ -160,7 +161,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
                                 <?php $date = date_create($data['pr_date']); ?>
                                 <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
-                                <p style="text-transform: capitalize;"><?= $data['status']; ?></p>
+                                <p style="text-transform: capitalize; font-size: 12px"><?= $data['status']; ?></p>
                                 <div class="detail">
                                     <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                 </div>

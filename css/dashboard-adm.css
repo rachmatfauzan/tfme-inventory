@@ -211,7 +211,7 @@ nav a i{
     margin-left: 10px;
     border-radius: 15px;
     background-color: white;
-    height: 50rem;
+    height: 100%;
 }
 .kepala{
     display: flex;

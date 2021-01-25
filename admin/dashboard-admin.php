@@ -58,6 +58,7 @@ if(!isset($_SESSION['admin'])){
             <div class="nav-item">
                 <a class="nav-link active" href="#"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">

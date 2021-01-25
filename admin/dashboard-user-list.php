@@ -54,8 +54,9 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link " href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link active" href="#"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">
