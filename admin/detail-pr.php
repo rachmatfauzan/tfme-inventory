@@ -5,6 +5,7 @@ session_start();
 $id = $_GET["id"];
 // querry data mahasiswa berdasarkan id
 $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE id_pr = $id");
+
 $data = mysqli_fetch_array($query);
 
 if (isset($_POST['tombol'])){
@@ -15,6 +16,51 @@ if (isset($_POST['tombol'])){
     if($query){
         $berhasil = true;
     }
+}
+
+// logic input P.O
+
+if (isset($_POST['send'])){
+
+    $id_pr = $id;
+    $supplier_name = $_POST['supplier_name'];
+    $supplier_code = $_POST['supplier_code'];
+    $on_hand = $_POST['on_hand'];
+    $in_transit = $_POST['in_transit'];
+    $on_prep = $_POST['on_prep'];
+    $moq = $_POST['moq'];
+    $cost = $_POST['cost'];
+    $po_code = $_POST['po_code'];
+    $po_date = $_POST['po_date'];
+    $batch_code = $_POST['batch_code'];
+    $dwg_code = $_POST['dwg_code'];
+    $iqa_code = $_POST['iqa_code'];
+    $status_po = 'waiting';
+
+    $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
+        null,
+        '$id_pr',
+        '$supplier_name',
+        '$supplier_code',
+        '$on_hand',
+        '$in_transit',
+        '$on_prep',
+        '$moq',
+        '$cost',
+        '$po_code',
+        '$po_date',
+        '$batch_code',
+        '$dwg_code',
+        '$iqa_code',
+        '$status_po'       
+        )");
+    if ($query){
+        $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE id_pr = $id");
+        $send = true;
+    }else{
+        echo "Failed";
+    }
+
 }
 
 
@@ -212,22 +258,19 @@ if (isset($_POST['tombol'])){
                                     <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
                                 </div>
                             </div>
-                            <form>
-                                <div class="group">
-                                    
-                                </div>
+                            <form method="post">
                                 <div class="group mt-3">
                                     <h5 class="font-weight-bold">SUPPLIER</h5>
                                     <hr class="my-4">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="supplier-name">Supplier Name</label>
-                                            <input type="text" class="form-control bg-light" id="supplier-name"
+                                            <input required type="text" class="form-control bg-light" id="supplier-name" name="supplier_name"
                                                 placeholder="Supplier Name">
                                         </div>
                                         <div class="form-group col">
                                             <label for="supplier#">Supplier#</label>
-                                            <input type="text" class="form-control bg-light" id="supplier#"
+                                            <input required type="text" class="form-control bg-light" id="supplier#" name="supplier_code"
                                                 placeholder="Supplier#">
                                         </div>
                                     </div>
@@ -238,17 +281,17 @@ if (isset($_POST['tombol'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="on-hand">On Hand</label>
-                                            <input type="text" class="form-control bg-light" id="on-hand"
+                                            <input required type="text" class="form-control bg-light" id="on-hand" name="on_hand"
                                                 placeholder="On Hand">
                                         </div>
                                         <div class="form-group col">
                                             <label for="in-transit">In Transit</label>
-                                            <input type="text" class="form-control bg-light" id="in-transit"
+                                            <input required type="text" class="form-control bg-light" id="in-transit" name="in_transit"
                                                 placeholder="In Transit">
                                         </div>
                                         <div class="form-group col">
                                             <label for="on-prep">On Prep</label>
-                                            <input type="text" class="form-control bg-light" id="on-prep"
+                                            <input required type="text" class="form-control bg-light" id="on-prep" name="on_prep"
                                                 placeholder="On Prep">
                                         </div>
                                     </div>
@@ -259,23 +302,23 @@ if (isset($_POST['tombol'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="moq">MOQ</label>
-                                            <input type="text" class="form-control bg-light" id="moq" placeholder="MOQ">
+                                            <input required type="text" class="form-control bg-light" id="moq" name="moq" placeholder="MOQ">
                                         </div>
                                         <div class="form-group col">
                                             <label for="cost">Cost</label>
-                                            <input type="text" class="form-control bg-light" id="cost"
+                                            <input required type="text" class="form-control bg-light" id="cost" name="cost"
                                                 placeholder="Cost">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="on-po#">On PO#</label>
-                                            <input type="text" class="form-control bg-light" id="on-po#"
+                                            <input required type="text" class="form-control bg-light" id="on-po#" name="po_code"
                                                 placeholder="On PO#">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="po-date">PO Date</label>
-                                            <input type="date" id="datepicker" class="form-control bg-light">
+                                            <input required type="date" id="datepicker" name="po_date" class="form-control bg-light">
                                         </div>
                                     </div>
                                 </div>
@@ -285,24 +328,24 @@ if (isset($_POST['tombol'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="batch#">Batch#</label>
-                                            <input type="text" class="form-control bg-light" id="batch#"
+                                            <input required type="text" class="form-control bg-light" id="batch#" name="batch_code"
                                                 placeholder="Batch#">
                                         </div>
                                         <div class="form-group col">
                                             <label for="dwg#">DWG#</label>
-                                            <input type="text" class="form-control bg-light" id="dwg#"
+                                            <input required type="text" class="form-control bg-light" id="dwg#" name="dwg_code"
                                                 placeholder="DWG#">
                                         </div>
                                         <div class="form-group col">
                                             <label for="iqa#">IQA#</label>
-                                            <input type="text" class="form-control bg-light" id="iqa#"
+                                            <input required type="text" class="form-control bg-light" id="iqa#" name="iqa_code"
                                                 placeholder="IQA#">
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="d-flex justify-content-end entry">
-                                    <button type="submit" class="btn bg-dark text-white">Input Data PO</button>
+                                    <button type="submit" name="send" class="btn bg-dark text-white">Input Data PO</button>
                                 </div>
                             </form>
                     </section>
@@ -330,6 +373,20 @@ if (isset($_POST['tombol'])){
         })
     </script>
     <?php endif; ?>
+
+    <!-- SWAL action -->
+    <?php if(isset($send)) :  ?>
+            <script>
+             swal.fire ({
+              title: "Request Success",
+              text: "Waiting Your Approval",
+                icon: "success",
+                showCancelButton: false,
+                showConfirmButton: false
+             });
+               setTimeout(function(){window.top.location="history-pr.php"} , 2700);
+            </script>
+            <?php endif; ?>
 </body>
 
 </html>

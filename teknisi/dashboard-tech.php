@@ -161,10 +161,19 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
                                 <?php $date = date_create($data['pr_date']); ?>
                                 <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
-                                <p style="text-transform: capitalize; font-size: 12px"><?= $data['status']; ?></p>
-                                <div class="detail">
-                                    <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
-                                </div>
+                                <?php if ($data['status'] == 'approve'): ?>
+                                    <p class="btn btn-success btn-sm disabled" style="font-size: 11px">Approve</p>
+                                    <div class="detail">
+                                        <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($data['status'] == 'rejected'): ?>
+                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px">Rejected</p>
+                                    <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <?php endif; ?>
+                                <?php if ($data['status'] == 'waiting'): ?>
+                                    <p>Waiting</p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

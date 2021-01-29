@@ -34,6 +34,7 @@ if(isset($_POST['send'])){
     $account_code = $_POST['account_code'];
     $status = 'waiting';
     $requestor = $_SESSION['user'];
+    $update_po = 0;
 
     $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
         '',
@@ -47,7 +48,8 @@ if(isset($_POST['send'])){
         '$pr_date',
         '$account_code',
         '$status',
-        '$requestor'
+        '$requestor',
+        '$update_po'
     )");
 
     if ($query){

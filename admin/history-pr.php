@@ -10,6 +10,9 @@ if(!isset($_SESSION['admin'])){
 // Ambil Data PR
 $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
 
+$po_querry = mysqli_query($conn, "SELECT * FROM form_po");
+$po_data = mysqli_fetch_assoc($po_querry);
+
 
 
 ?>
@@ -103,18 +106,38 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
                         </tr>
                         <?php foreach ($query as $data) :  ?>
                         <tr>
-                            <td><?= $data['kode_pr']; ?></td>                        
+                            <td><?= $data['kode_pr']; ?></td>
                             <td>
-                            <?php $date = date_create($data['pr_date']) ?>
-                            <?= date_format($date, 'j F Y') ; ?></td>                        
-                            <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>                        
-                            <td><?= $data['status']; ?></td>                        
-                            <td><a href="detail-pr.php?id=<?= $data['id_pr']?>" class="btn btn-outline-info p-1">See Details</a>
-                            </td>                        
+                                <?php $date = date_create($data['pr_date']) ?>
+                                <?= date_format($date, 'j F Y') ; ?></td>
+                            <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>
+                            <td>
+                            <?php if ($data['status'] == 'approve'): ?>
+                                    <p class="btn btn-success btn-sm disabled" style="font-size: 11px">Approve</p>                               
+                                <?php elseif ($data['status'] == 'rejected'): ?>
+                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px">Rejected</p>
+                                <?php elseif ($data['status'] == 'waiting'): ?>
+                                    <p>Waiting</p>
+                                <?php endif; ?>
+                            </td>
+                            
+                            <!-- disablle buton logic -->
+                            <?php if($data['update_po'] == 1 ) :?>
+                                <td>
+                                    <a href="#" class="btn btn-outline-info p-1 disabled">See
+                                        Details</a>
+                                </td>
+                                <?php elseif ($data['update_po'] == 0) : ?>
+                                    <td>
+                                        <a href="detail-pr.php?id=<?= $data['id_pr']?>" class="btn btn-outline-info p-1 ">See Details</a>
+                                    </td>    
+                            <?php endif; ?>
+                            <!-- end logic -->
+                           
                         </tr>
                         <?php endforeach; ?>
                     </table>
-                
+
                 </div>
             </div>
         </div>
