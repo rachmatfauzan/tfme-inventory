@@ -241,11 +241,19 @@ if (isset($_POST['send'])){
                             </div>
                             <div class="col-md">
                                 <p class="d-flex flex-row-reverse">
+                                    <?php if($data['status'] == 'approve') :?>
                                     <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
                                         data-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample">
                                         Update P.O
                                     </button>
+                                    <?php else :?>
+                                        <button class="btn btn-sm btn-info disabled" type="button" data-toggle="collapse"
+                                        data-target="#collapseExample" aria-expanded="false"
+                                        aria-controls="collapseExample" disabled>
+                                        Update P.O
+                                        </button>
+                                    <?php endif; ?>
                                 </p>
                             </div>
                         </div>
@@ -370,7 +378,9 @@ if (isset($_POST['send'])){
             showCancelButton: false,
             showConfirmButton: false,
             timer: 1000
-        })
+        }).then(function() {
+            window.location = "history-pr.php";
+        });
     </script>
     <?php endif; ?>
 
