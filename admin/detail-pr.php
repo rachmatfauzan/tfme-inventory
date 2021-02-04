@@ -248,7 +248,7 @@ if (isset($_POST['send'])){
                                         Update P.O
                                     </button>
                                     <?php else :?>
-                                        <button class="btn btn-sm btn-info disabled" type="button" data-toggle="collapse"
+                                        <button class="btn btn-sm btn-secondary disabled" type="button" data-toggle="collapse"
                                         data-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample" disabled>
                                         Update P.O

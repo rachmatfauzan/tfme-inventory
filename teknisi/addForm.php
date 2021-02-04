@@ -154,81 +154,83 @@ if(isset($_POST['send'])){
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="generateForm.php" style="font-size: 11px;" class="btn btn-success btn-sm"><i class="fas fa-plus mr-2"></i>add more P.r</a>
+                        <a href="formulir-tech.php" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
+                                class="fas fa-backspace mr-2"></i>back to 1 pr</a>
                     </div>
                     <form method="post" autocomplete="off">
-                        <div class="group">
-                            <h5 class="font-weight-bold">ITEM</h5>
-                            <hr class="my-4">
-                            <div class="row">
-                                <div class="form-group col">
-                                    <label for="item-name">Item Name</label>
-                                    <input type="text" class="form-control bg-light" id="item-name"
-                                        placeholder="Item Name" name="item_name" autofocus required>
+                        <input type="hidden" name="total" value="<?=$_POST['count_add']?>">
+
+                        <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
+                        <div class="container">
+                                <h5 class="font-weight-bold bg-dark disabled p-2 text-white">ITEM <?= $i; ?></h5>
+                                <hr>
+                            <div class="group">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label for="item-name">Item Name</label>
+                                        <input type="text" class="form-control bg-light" id="item-name"
+                                            placeholder="Item Name" name="item_name" autofocus required>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="tipe">Type</label>
+                                        <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
+                                            name="type" required>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="tipe">Quantity</label>
+                                        <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
+                                            name="quantity" required>
+                                    </div>
                                 </div>
-                                <div class="form-group col">
-                                    <label for="tipe">Type</label>
-                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
-                                        name="type" required>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="tipe">Quantity</label>
-                                    <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
-                                        name="quantity" required>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label for="Item">Item Description</label>
+                                        <textarea type="text" class="form-control bg-light" id="Item"
+                                            placeholder="Your Name Item" name="item_description" required></textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col">
-                                    <label for="Item">Item Description</label>
-                                    <textarea type="text" class="form-control bg-light" id="Item"
-                                        placeholder="Your Name Item" name="item_description" required></textarea>
+                            <div class="group mt-3">
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label for="part-number">Part Number</label>
+                                        <input type="text" class="form-control bg-light" id="part-number"
+                                            placeholder="Part Number" name="part_number" required>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="inputPosition">Cost Center</label>
+                                        <select id="inputPosition" class="form-control custom-select  bg-light"
+                                            name="cost_center" required>
+                                            <option selected disabled>-- Choose CC --</option>
+                                            <option value="10">10 PCB</option>
+                                            <option value="20">20 PCBA</option>
+                                            <option value="30">30 IC PACK</option>
+                                            <option value="40">40 GENERAL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group mt-3 mb-4">
+                                <div class="row">
+                                    <div class="form-group col-md">
+                                        <label for="pr-date">PR Date</label>
+                                        <input type="date" id="pr-date" class="form-control bg-light" name="pr_date"
+                                            required>
+                                    </div>
+
+                                    <div class="form-group col-md">
+                                        <label for="on-pr#">Account Code</label>
+                                        <input type="text" class="form-control bg-light" id="on-pr#"
+                                            placeholder="Account Code" name="account_code" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="group mt-3">
-                            <h5 class="font-weight-bold">NUMBERING</h5>
-                            <hr class="my-4">
-                            <div class="row">
-                                <div class="form-group col">
-                                    <label for="part-number">Part Number</label>
-                                    <input type="text" class="form-control bg-light" id="part-number"
-                                        placeholder="Part Number" name="part_number" required>
-                                </div>
-                                <div class="form-group col">
-                                    <label for="inputPosition">Cost Center</label>
-                                    <select id="inputPosition" class="form-control custom-select  bg-light"
-                                        name="cost_center" required>
-                                        <option selected disabled>-- Choose CC --</option>
-                                        <option value="10">10 PCB</option>
-                                        <option value="20">20 PCBA</option>
-                                        <option value="30">30 IC PACK</option>
-                                        <option value="40">40 GENERAL</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="group mt-3">
-                            <h5 class="font-weight-bold">ORDER</h5>
-                            <hr class="my-4">
-                            <div class="row">
-                                <div class="form-group col-md">
-                                    <label for="pr-date">PR Date</label>
-                                    <input type="date" id="pr-date" class="form-control bg-light" name="pr_date"
-                                        required>
-                                </div>
-
-                                <div class="form-group col-md">
-                                    <label for="on-pr#">Account Code</label>
-                                    <input type="text" class="form-control bg-light" id="on-pr#" placeholder="Account Code"
-                                        name="account_code" required>
-                                </div>
-                            </div>
-
+                            <?php endfor; ?>
                             <div class="d-flex justify-content-end entry">
                                 <button type="submit" class="btn bg-dark text-white" name="send"><i
                                         class="fas fa-paper-plane mr-3"></i>Send</button>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -241,14 +243,16 @@ if(isset($_POST['send'])){
             <!-- SWAL action -->
             <?php if(isset($send)) :  ?>
             <script>
-             swal.fire ({
-              title: "Request Success",
-              text: "Waiting Your Approval",
-                icon: "success",
-                showCancelButton: false,
-                showConfirmButton: false
-             });
-               setTimeout(function(){window.top.location="dashboard-tech.php"} , 2700);
+                swal.fire({
+                    title: "Request Success",
+                    text: "Waiting Your Approval",
+                    icon: "success",
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+                setTimeout(function () {
+                    window.top.location = "dashboard-tech.php"
+                }, 2700);
             </script>
             <?php endif; ?>
 </body>
