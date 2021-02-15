@@ -8,7 +8,7 @@ if(!isset($_SESSION['technician'])){
 }
 
 $name = $_SESSION['user'];
-$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' ORDER BY id_pr DESC");
+$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY id_pr DESC");
 
 
 ?>

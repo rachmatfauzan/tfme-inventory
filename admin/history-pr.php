@@ -8,7 +8,7 @@ if(!isset($_SESSION['admin'])){
 }
 
 // Ambil Data PR
-$query = mysqli_query($conn, "SELECT * FROM form_pr ORDER BY id_pr DESC");
+$query = mysqli_query($conn, "SELECT * FROM form_pr GROUP BY kode_pr ORDER BY id_pr DESC");
 
 $po_querry = mysqli_query($conn, "SELECT * FROM form_po");
 $po_data = mysqli_fetch_assoc($po_querry);
