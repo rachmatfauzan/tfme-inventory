@@ -351,7 +351,6 @@ if (isset($_POST['send'])){
                                         </div>
                                     </div>
                                 </div>
-                                
                                 <div class="d-flex justify-content-end entry">
                                     <button type="submit" name="send" class="btn bg-dark text-white">Input Data PO</button>
                                 </div>
@@ -394,7 +393,7 @@ if (isset($_POST['send'])){
                 showCancelButton: false,
                 showConfirmButton: false
              });
-               setTimeout(function(){window.top.location="history-pr.php"} , 2700);
+               setTimeout(function(){window.top.location="history-po.php"} , 2700);
             </script>
             <?php endif; ?>
 </body>

@@ -97,7 +97,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
             <div class="box">
                 <div class="content pr">
                     <table class="table table-bordered table-hover table-responsive-sm table-striped">
-                        <tr class="table-info ">
+                        <tr class="bg-dark text-white">
                             <th>PR Code</th>
                             <th>PR Date</th>
                             <th>Requestor</th>
@@ -112,31 +112,36 @@ $po_data = mysqli_fetch_assoc($po_querry);
                                 <?= date_format($date, 'j F Y') ; ?></td>
                             <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>
                             <td>
-                            <?php if ($data['status'] == 'approve'): ?>
-                                    <p class="btn btn-success btn-sm disabled" style="font-size: 11px;text-transform:uppercase;">Approve</p>                               
+                                <?php if ($data['status'] == 'approve'): ?>
+                                <p class="btn btn-success btn-sm disabled"
+                                    style="font-size: 11px;text-transform:uppercase;">Approve</p>
                                 <?php elseif ($data['status'] == 'rejected'): ?>
-                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px;text-transform:uppercase;">Rejected</p>
+                                <p class="btn btn-danger btn-sm disabled"
+                                    style="font-size: 11px;text-transform:uppercase;">Rejected</p>
                                 <?php elseif ($data['status'] == 'waiting'): ?>
-                                    <p>Waiting</p>
+                                <p>Waiting</p>
                                 <?php endif; ?>
                             </td>
-                            
+
                             <!-- disablle buton logic -->
                             <?php if($data['update_po'] == 1 ) :?>
-                                <td>
-                                    <a href="#" class="btn btn-outline-secondary p-1 disabled">P.O Updated</a>
-                                </td>
-                                <?php elseif ($data['update_po'] == 0) : ?>
-                                    <td>
-                                        <a href="detail-pr.php?id=<?= $data['id_pr']?>" class="btn btn-outline-info p-1 ">See Details</a>
-                                    </td>    
+                            <td>
+                                <a href="#" class="btn btn-outline-secondary p-1 disabled">P.O Updated</a>
+                            </td>
+                            <?php elseif ($data['update_po'] == 0) : ?>
+                            <td>
+                                <a href="detail-pr.php?id=<?= $data['id_pr']?>" class="btn btn-outline-info p-1 ">See
+                                    Details</a>
+                            </td>
                             <?php endif; ?>
                             <!-- end logic -->
-                           
+
                         </tr>
                         <?php endforeach; ?>
                     </table>
-
+                    <div class="btn">
+                        <a href="history-po.php" class="btn btn-sm btn-info">History PO</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -93,7 +93,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                                     <td><?= $teknisi["id_user"]; ?></td>
                                     <td style="text-transform: capitalize;"><?= $teknisi['name']; ?></td>
                                     <td><?= $teknisi['handphone']; ?></td>
-                                    <td><?= $teknisi['address']; ?></td>
+                                    <td style="min-width: 20rem;"><?= $teknisi['address']; ?></td>
                                     <td><?= $teknisi['email']; ?></td>
                                     <td><?= $teknisi['position']; ?></td>
                                 </tr>
@@ -113,7 +113,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Handphone</th>
-                                    <th style="width: 300px;">Address</th>
+                                    <th style="min-width: 20rem;">Address</th>
                                     <th>Email</th>
                                     <th>Position</th>
                                 </tr>
@@ -124,7 +124,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                                     <td><?= $iqa["id_user"]; ?></td>
                                     <td style="text-transform: capitalize;"><?= $iqa['name']; ?></td>
                                     <td><?= $iqa['handphone']; ?></td>
-                                    <td><?= $iqa['address']; ?></td>
+                                    <td style="min-width: 20rem;"><?= $iqa['address']; ?></td>
                                     <td><?= $iqa['email']; ?></td>
                                     <td><?= $iqa['position']; ?></td>
                                 </tr>
@@ -144,7 +144,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Handphone</th>
-                                    <th style="width: 300px;">Address</th>
+                                    <th style="min-width: 20rem;">Address</th>
                                     <th>Email</th>
                                     <th>Position</th>
                                 </tr>
@@ -175,7 +175,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Handphone</th>
-                                    <th style="width: 300px;">Address</th>
+                                    <th style="min-width: 20rem;">Address</th>
                                     <th>Email</th>
                                     <th>Position</th>
                                 </tr>

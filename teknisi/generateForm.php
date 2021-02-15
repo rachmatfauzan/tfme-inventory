@@ -9,60 +9,6 @@ if(!isset($_SESSION['technician'])){
 }
 
 
-// membuat logik kode_otomatis
-$sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
-$data = mysqli_fetch_array($sql);
-
-$kode = $data['maxID'];
-$kode++;
-
-$ket = "PR";
-$kodeAuto = $ket . sprintf("%05s", $kode);
-
-// echo $kodeAuto;
-
-
-if(isset($_POST['send'])){
-    $kode_pr = $kodeAuto;
-    $item_name = $_POST['item_name'];
-    $type = $_POST['type'];
-    $quantity = $_POST['quantity'];
-    $item_description = $_POST['item_description'];
-    $part_number = $_POST['part_number'];
-    $cost_center = $_POST['cost_center'];
-    $pr_date = $_POST['pr_date'];
-    $account_code = $_POST['account_code'];
-    $status = 'waiting';
-    $requestor = $_SESSION['user'];
-    $update_po = 0;
-
-    $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
-        '',
-        '$kode_pr',
-        '$item_name',
-        '$type',
-        '$quantity',
-        '$item_description',
-        '$part_number',
-        '$cost_center',
-        '$pr_date',
-        '$account_code',
-        '$status',
-        '$requestor',
-        '$update_po'
-    )");
-
-    if ($query){
-        $send = true;
-    } else {
-        echo "Failed !";
-    }
-    
-}
-
-
-
-
 ?>
 
 <!-- Kode PR Auto -->

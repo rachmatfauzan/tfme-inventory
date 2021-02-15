@@ -3,12 +3,10 @@
 session_start();
 include "../config/config.php";
 
-if(!isset($_SESSION['technician'])){
+if(!isset($_SESSION['admin'])){
     header("location: index.php");
 }
-
-$name = $_SESSION['user'];
-$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' ORDER BY id_pr DESC");
+$query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
 
 
 ?>
@@ -26,7 +24,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' OR
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/dashboard-tech.css">
+    <link rel="stylesheet" href="../teknisi/css/dashboard-tech.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -51,17 +49,15 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' OR
 </head>
 
 <body>
-
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link active" href="#"><i class="fas fa-history"></i>History
-                    (PR)</a>
-                <a class="nav-link" href="formulir-tech.php"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link active" href="#"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">
@@ -69,18 +65,19 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' OR
             </div>
         </nav>
         <!-- End navigasi -->
+
+
         <!-- start header -->
         <div class="konten">
             <div class="atap"><span> </span></div>
-
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../image/TECHNICIAN.png" alt="">
+                        <img src="../image/profile.png" alt="">
                     </div>
                     <div class="profile-name">
                         <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
-                        <p>Technician TFME</p>
+                        <p>Inventory admin</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -91,55 +88,70 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' OR
                     </div>
                 </div>
             </div>
+            <div class="kepala d-flex justify-content-end mt-2">
+                <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
+            </div>
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
                     <div class="group">
                         <div class="box1 form-group col-sm">
                             <div class="tanda">
-                                <label style="opacity: 0.7; font-size:14px;"><?= $data['kode_pr']; ?> | <b>Requestor</b>
-                                    <span style="text-transform: capitalize;"> <?= $data['requestor']; ?> </span></label> <br>
+                                <label style="opacity: 0.7; font-size:14px;"><?= $data['po_code']; ?> | <b>Requestor</b>
+                                    <span style="text-transform: capitalize;"> <?= $_SESSION['user']; ?>
+                                    </span></label> <br>
                                 <label class="title">Item Detail</label>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample" ></a>
+                                    aria-expanded="false" aria-controls="collapseExample"></a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
                                         <table class="table  table-bordered table-sm data">
-                                            <tr class="bg-dark text-white">
-                                                <th>Item Name</th>
-                                                <th>Type</th>
-                                                <th>Description</th>
-                                                <th>Quantity</th>
-                                                <th>Part Number</th>
-                                                <th>Cost Center</th>
+                                            <tr class="bg-dark text-white" style="font-size: 12px;">
+                                                <th>Supplier Name</th>
+                                                <th>Supplier Code</th>
+                                                <th>On Hand</th>
+                                                <th>In Transit</th>
+                                                <th>On Prep</th>
+                                                <th>MOQ</th>
+                                                <th>Cost</th>
+                                                <th>Batch Code</th>
+                                                <th>DWG Code</th>
+                                                <th>IQA Code</th>
+                                                
                                             </tr>
-                                                <td><?= $data['item_name']; ?></td>
-                                                <td><?= $data['type']; ?></td>
-                                                <td><?= $data['item_description']; ?></td>
-                                                <td><?= $data['quantity']; ?></td>
-                                                <td><?= $data['part_number']; ?></td>
-                                                <td><?= $data['cost_center']; ?></td>
+                                            <td><?= $data['supplier_name']; ?></td>
+                                            <td><?= $data['supplier_code']; ?></td>
+                                            <td><?= $data['on_hand']; ?></td>
+                                            <td><?= $data['in_transit']; ?></td>
+                                            <td><?= $data['on_prep']; ?></td>
+                                            <td><?= $data['moq']; ?></td>
+                                            <td><?= $data['cost']; ?></td>
+                                            <td><?= $data['batch_code']; ?></td>
+                                            <td><?= $data['dwg_code']; ?></td>
+                                            <td><?= $data['iqa_code']; ?></td>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <div class="tanda form-group col d-flex flex-column">
                                 <label class="title">Date of Request</label>
-                                <?php $date = date_create($data['pr_date']); ?>
+                                <?php $date = date_create($data['po_date']); ?>
                                 <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
-                                <?php if ($data['status'] == 'approve'): ?>
-                                    <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve</p>
-                                    <div class="detail">
-                                        <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
-                                    </div>
+                                <?php if ($data['status_po'] == 'approve'): ?>
+                                <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve
+                                </p>
+                                <div class="detail">
+                                    <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
+                                </div>
                                 <?php endif; ?>
-                                <?php if ($data['status'] == 'rejected'): ?>
-                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected</p>
-                                    <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <?php if ($data['status_po'] == 'rejected'): ?>
+                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
+                                </p>
+                                <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
                                 <?php endif; ?>
-                                <?php if ($data['status'] == 'waiting'): ?>
-                                    <p>Waiting</p>
+                                <?php if ($data['status_po'] == 'waiting'): ?>
+                                <p>Waiting</p>
                                 <?php endif; ?>
                             </div>
                         </div>
