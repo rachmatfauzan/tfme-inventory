@@ -124,24 +124,23 @@ if (isset($_POST["login"])){
                     <img class="d-block w-100" src="image/second-slide.svg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block text-dark ml-4">
                         <h5>TFME Polibatam</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
+                        <p>Teaching Factory Manufacturing of Electronics Politeknik Negeri Batam - Indonesia IC Packaging - PCB Manufacture and Assembly RF Test and Compliance</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="image/third-slide.svg" alt="Second slide">
                     <div class="carousel-caption d-none d-md-block text-dark ml-4">
-                        <h5>TFME Polibatam</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
+                        <h5>TFME Polibatam Vision</h5>
+                        <p>Being a Center of Technolgy in Manufacturing Electronics That Support National Electronics Ecosystem</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="image/vel.svg" alt="Third slide">
                     <div class="carousel-caption d-none d-md-block text-dark ml-4">
-                        <h5>TFME Polibatam</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur obcaecati earum culpa
-                            quisquam eligendi optio voluptas mollitia eos. Officiis, voluptas!</p>
+                        <h5>TFME Polibatam Mission</h5>
+                        <p>1. PRovides access to "real-like" manufacturing facilities to students and researchers <br>
+                        2. Provides relevant trainings to improves knowledge, practical skills and comptencies <br>
+                        3. Provide prototyping and low volume manufacturing services toSMEs, government bodies and other educational institutions</p>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,6 @@ if (isset($_POST['tombol'])){
     $status = $_POST['status'];
 
     $query = mysqli_query($conn, "UPDATE form_pr SET status = '$status' WHERE id_pr = '$id' ");
-
     if($query){
         $berhasil = true;
     }
@@ -248,11 +247,11 @@ if (isset($_POST['send'])){
                                         Update P.O
                                     </button>
                                     <?php else :?>
-                                        <button class="btn btn-sm btn-secondary disabled" type="button" data-toggle="collapse"
-                                        data-target="#collapseExample" aria-expanded="false"
+                                    <button class="btn btn-sm btn-secondary disabled" type="button"
+                                        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample" disabled>
                                         Update P.O
-                                        </button>
+                                    </button>
                                     <?php endif; ?>
                                 </p>
                             </div>
@@ -273,13 +272,13 @@ if (isset($_POST['send'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="supplier-name">Supplier Name</label>
-                                            <input required type="text" class="form-control bg-light" id="supplier-name" name="supplier_name"
-                                                placeholder="Supplier Name">
+                                            <input required type="text" class="form-control bg-light" id="supplier-name"
+                                                name="supplier_name" placeholder="Supplier Name">
                                         </div>
                                         <div class="form-group col">
                                             <label for="supplier#">Supplier#</label>
-                                            <input required type="text" class="form-control bg-light" id="supplier#" name="supplier_code"
-                                                placeholder="Supplier#">
+                                            <input required type="text" class="form-control bg-light" id="supplier#"
+                                                name="supplier_code" placeholder="Supplier#">
                                         </div>
                                     </div>
                                 </div>
@@ -289,18 +288,18 @@ if (isset($_POST['send'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="on-hand">On Hand</label>
-                                            <input required type="text" class="form-control bg-light" id="on-hand" name="on_hand"
-                                                placeholder="On Hand">
+                                            <input required type="text" class="form-control bg-light" id="on-hand"
+                                                name="on_hand" placeholder="On Hand">
                                         </div>
                                         <div class="form-group col">
                                             <label for="in-transit">In Transit</label>
-                                            <input required type="text" class="form-control bg-light" id="in-transit" name="in_transit"
-                                                placeholder="In Transit">
+                                            <input required type="text" class="form-control bg-light" id="in-transit"
+                                                name="in_transit" placeholder="In Transit">
                                         </div>
                                         <div class="form-group col">
                                             <label for="on-prep">On Prep</label>
-                                            <input required type="text" class="form-control bg-light" id="on-prep" name="on_prep"
-                                                placeholder="On Prep">
+                                            <input required type="text" class="form-control bg-light" id="on-prep"
+                                                name="on_prep" placeholder="On Prep">
                                         </div>
                                     </div>
                                 </div>
@@ -310,23 +309,25 @@ if (isset($_POST['send'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="moq">MOQ</label>
-                                            <input required type="text" class="form-control bg-light" id="moq" name="moq" placeholder="MOQ">
+                                            <input required type="text" class="form-control bg-light" id="moq"
+                                                name="moq" placeholder="MOQ">
                                         </div>
                                         <div class="form-group col">
                                             <label for="cost">Cost</label>
-                                            <input required type="text" class="form-control bg-light" id="cost" name="cost"
-                                                placeholder="Cost">
+                                            <input required type="text" class="form-control bg-light" id="cost"
+                                                name="cost" placeholder="Cost">
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="on-po#">On PO#</label>
-                                            <input required type="text" class="form-control bg-light" id="on-po#" name="po_code"
-                                                placeholder="On PO#">
+                                            <input required type="text" class="form-control bg-light" id="on-po#"
+                                                name="po_code" placeholder="On PO#">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="po-date">PO Date</label>
-                                            <input required type="date" id="datepicker" name="po_date" class="form-control bg-light">
+                                            <input required type="date" id="datepicker" name="po_date"
+                                                class="form-control bg-light">
                                         </div>
                                     </div>
                                 </div>
@@ -336,23 +337,24 @@ if (isset($_POST['send'])){
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="batch#">Batch#</label>
-                                            <input required type="text" class="form-control bg-light" id="batch#" name="batch_code"
-                                                placeholder="Batch#">
+                                            <input required type="text" class="form-control bg-light" id="batch#"
+                                                name="batch_code" placeholder="Batch#">
                                         </div>
                                         <div class="form-group col">
                                             <label for="dwg#">DWG#</label>
-                                            <input required type="text" class="form-control bg-light" id="dwg#" name="dwg_code"
-                                                placeholder="DWG#">
+                                            <input required type="text" class="form-control bg-light" id="dwg#"
+                                                name="dwg_code" placeholder="DWG#">
                                         </div>
                                         <div class="form-group col">
                                             <label for="iqa#">IQA#</label>
-                                            <input required type="text" class="form-control bg-light" id="iqa#" name="iqa_code"
-                                                placeholder="IQA#">
+                                            <input required type="text" class="form-control bg-light" id="iqa#"
+                                                name="iqa_code" placeholder="IQA#">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-end entry">
-                                    <button type="submit" name="send" class="btn bg-dark text-white">Input Data PO</button>
+                                    <button type="submit" name="send" class="btn bg-dark text-white">Input Data
+                                        PO</button>
                                 </div>
                             </form>
                     </section>
@@ -377,7 +379,7 @@ if (isset($_POST['send'])){
             showCancelButton: false,
             showConfirmButton: false,
             timer: 1000
-        }).then(function() {
+        }).then(function () {
             window.location = "history-pr.php";
         });
     </script>
@@ -385,17 +387,19 @@ if (isset($_POST['send'])){
 
     <!-- SWAL action -->
     <?php if(isset($send)) :  ?>
-            <script>
-             swal.fire ({
-              title: "Request Success",
-              text: "Waiting Your Approval",
-                icon: "success",
-                showCancelButton: false,
-                showConfirmButton: false
-             });
-               setTimeout(function(){window.top.location="history-po.php"} , 2700);
-            </script>
-            <?php endif; ?>
+    <script>
+        swal.fire({
+            title: "Request Success",
+            text: "Waiting Your Approval",
+            icon: "success",
+            showCancelButton: false,
+            showConfirmButton: false
+        });
+        setTimeout(function () {
+            window.top.location = "history-po.php"
+        }, 2700);
+    </script>
+    <?php endif; ?>
 </body>
 
 </html>

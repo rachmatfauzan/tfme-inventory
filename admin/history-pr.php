@@ -135,12 +135,11 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             </td>
                             <?php endif; ?>
                             <!-- end logic -->
-
                         </tr>
                         <?php endforeach; ?>
                     </table>
                     <div class="btn">
-                        <a href="history-po.php" class="btn btn-sm btn-info">History PO</a>
+                        <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i class="far fa-window-restore ml-2 text-white"></i></a>
                     </div>
                 </div>
             </div>

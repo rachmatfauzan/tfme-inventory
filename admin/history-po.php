@@ -88,7 +88,8 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                     </div>
                 </div>
             </div>
-            <div class="kepala d-flex justify-content-end mt-2">
+            <div class="kepala d-flex justify-content-between align-items-center mt-2 ml-2">
+                <h6 class="mt-2 list-group-item-info" style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PO <span style="font-style:italic; opacity:0.6;">(Purchase Order)</span></h6>
                 <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
             </div>
             <?php foreach ($query as $data) :?>
