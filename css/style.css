@@ -97,11 +97,11 @@ form .btn:hover{
 }
 .carousel-item {
     margin-top: 40px;
-    width: 28rem;
+    width: 36rem;
     height: 32rem;
 }
 .carousel-caption{
-    transform: translate(0,50px);
+    transform: translate(0,10em);
 }
 .carousel-item img{
     background-position: center;
