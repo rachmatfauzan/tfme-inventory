@@ -105,13 +105,12 @@ if(!isset($_SESSION['technician'])){
                         <div class="col-lg-6 col-lg-offset-3">
                            <div class="form-group">
                                 <label for="count_add">Add record</label>
-                                <input type="text" name="count_add" id="count_add" maxlength="2" pattern="[0-9]+" class="form-control" placeholder="How Many item You Need ?" required>
+                                <input type="text" autofocus name="count_add" id="count_add" maxlength="2" pattern="[0-9]+" class="form-control" placeholder="How Many item You Need ?" required>
                            </div>
                            <div class="form-group pull-right">
                                 <input type="submit" name="genarate" value="Generate" class="btn-sm btn-info">
                            </div>
                         </div>
-                        
                     </form>
                 </div>
             </div>

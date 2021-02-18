@@ -23,50 +23,40 @@ $kodeAuto = $ket . sprintf("%05s", $kode);
 
 
 if(isset($_POST['send'])){
-    
+    $kode_pr = $kodeAuto;
+    $item_name = $_POST['item_name'];
+    $type = $_POST['type'];
+    $quantity = $_POST['quantity'];
+    $item_description = $_POST['item_description'];
+    $part_number = $_POST['part_number'];
+    $cost_center = $_POST['cost_center'];
+    $pr_date = $_POST['pr_date'];
+    $account_code = $_POST['account_code'];
+    $status = 'waiting';
+    $requestor = $_SESSION['user'];
+    $update_po = 0;
 
-    for ($i=1; $i<=$_POST['total']; $i++){
+    $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
+        '',
+        '$kode_pr',
+        '$item_name',
+        '$type',
+        '$quantity',
+        '$item_description',
+        '$part_number',
+        '$cost_center',
+        '$pr_date',
+        '$account_code',
+        '$status',
+        '$requestor',
+        '$update_po'
+    )");
 
-        $kode_pr = $kodeAuto;
-        // $item_name = $_POST['item_name-'.$i];
-        $type = $_POST['type-'.$i]; 
-        $quantity = $_POST['quantity-'.$i];
-        $item_description = $_POST['item_description-'.$i];
-        $part_number = $_POST['part_number-'.$i];
-        $cost_center = $_POST['cost_center-'.$i];
-        $pr_date = $_POST['pr_date'];
-        $account_code = $_POST['account_code-'.$i];
-        $status = 'waiting';
-        $requestor = $_SESSION['user'];
-        $update_po = 0; 
-
-
-        $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
-            '',
-            '$kode_pr',
-            '',
-            '$type',
-            '$quantity',
-            '$item_description',
-            '$part_number',
-            '$cost_center',
-            '$pr_date',
-            '$account_code',
-            '$status',
-            '$requestor',
-            '$update_po'
-        )");
-
-        if ($query){
-            $send = true;
-        } else {
-            echo "Failed !";
-        }
+    if ($query){
+        $send = true;
+    } else {
+        echo "Failed !";
     }
-
-    
-
-   
     
 }
 
@@ -118,6 +108,8 @@ if(isset($_POST['send'])){
     </script>
     <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
+
+
 </head>
 
 <body>
@@ -161,15 +153,8 @@ if(isset($_POST['send'])){
                 </div>
             </div>
             <div class="box">
-                <div class="data-entry">
-                    <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
-                        <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="formulir-tech.php" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
-                                class="fas fa-backspace mr-2"></i>back to 1 pr</a>
-                    </div>
-
-<div class="form-group">
-                    <form method="post">
+                <div class="form-group">
+                    <form name="add_name" id="add_name">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tr>
@@ -194,12 +179,12 @@ if(isset($_POST['send'])){
                                                 PR Code<br />
                                                 <input type="text" name="order_no" id="order_no"
                                                     class="form-control input-sm" placeholder="Enter Invoice No." />
-                                                <input type="date" name="pr_date" id="pr_date"
-                                                    class="form-control input-sm" placeholder="Select PR Date" required />
+                                                <input type="date" name="order_date" id="order_date"
+                                                    class="form-control input-sm" placeholder="Select PR Date" />
                                             </div>
                                         </div>
                                         <br />
-                                        <table id="invoice-item-table" class="table table-bordered">
+                                        <table id="invoice-item-table"                  class="table table-bordered">
                                             <tr>
                                                 <th width="40%" colspan="3">ITEM</th>
                                                 <th width="15%" colspan="2">NUMBERING</th>
@@ -213,17 +198,14 @@ if(isset($_POST['send'])){
                                                 <th>Cost Center</th>
                                                 <th>Account Code</th>
                                             </tr>
-                                            <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
-                                            <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
-
                                             <tr>
-                                                <td><textarea name="item_description-<?= $i; ?>" id="iem_description " rows="2" class="form-control"
+                                                <td><textarea name="" id="" rows="2" class="form-control"
                                                         autofocus></textarea></td>
-                                                <td><textarea name="type-<?= $i; ?>" id="type" rows="2" class="form-control"></textarea>
+                                                <td><textarea name="" id="" rows="2" class="form-control"></textarea>
                                                 </td>
-                                                <td><input type="number" placeholder="0" name="quantity-<?= $i; ?>" class="form-control">
+                                                <td><textarea name="" id="" rows="2" class="form-control"></textarea>
                                                 </td>
-                                                <td><textarea name="part_number-<?= $i; ?>" id="par_number" rows="2" class="form-control"></textarea>
+                                                <td><textarea name="" id="" rows="2" class="form-control"></textarea>
                                                 </td>
                                                 <td>
                                                     <select id="inputPosition"
@@ -237,28 +219,44 @@ if(isset($_POST['send'])){
                                                     </select>
                                                 </div>
                                                 </td>
-                                                <td><textarea name="account_code-<?= $i; ?>"  id="account-code" rows="2" class="form-control"></textarea>
+                                                <td><textarea name="" id="" rows="2" class="form-control"></textarea>
                                                 </td>
                                             </tr>
-                                            <?php endfor; ?>
                                     </td>
                                 </tr>
                                 </table>
                         </div>
                     </form>
                 </div>
-
-
-                            <div class="d-flex justify-content-end entry">
-                                <button type="submit" class="btn bg-dark text-white" name="send"><i
-                                        class="fas fa-paper-plane mr-3"></i>Send</button>
-                            </div>
-                    </form>
-                </div>
             </div>
 
-
-
+            <script>
+                $(document).ready(function () {
+                    var i = 1;
+                    $('#add').click(function () {
+                        i++;
+                        $('#dynamic_field').append(
+                            '<tr id="row' + i +
+                            '"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list"/></td><td><input type="number" name="type[]" placeholder="Type" class="form-control"/></td> <td><button type="button" name="remove" id="' +
+                            i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+                    });
+                    $(document).on('click', '.btn_remove', function () {
+                        var button_id = $(this).attr("id");
+                        $('#row' + button_id + '').remove();
+                    });
+                    $('#submit').click(function () {
+                        $.ajax({
+                            url: "name.php",
+                            method: "POST",
+                            data: $('#add_name').serialize(),
+                            success: function (data) {
+                                alert(data);
+                                $('#add_name')[0].reset();
+                            }
+                        });
+                    });
+                });
+            </script>
 
 
 
