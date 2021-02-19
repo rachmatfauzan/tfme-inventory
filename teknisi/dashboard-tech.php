@@ -9,6 +9,10 @@ if(!isset($_SESSION['technician'])){
 
 $name = $_SESSION['user'];
 $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY id_pr DESC");
+$cek = mysqli_num_rows($query);
+if ($cek == 0){
+    header('Location:generateForm.php');
+}
 
 
 ?>
@@ -91,6 +95,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GR
                     </div>
                 </div>
             </div>
+
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
