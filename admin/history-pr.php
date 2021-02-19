@@ -106,7 +106,9 @@ $po_data = mysqli_fetch_assoc($po_querry);
                         </tr>
                         <?php foreach ($query as $data) :  ?>
                         <tr>
-                            <td><?= $data['kode_pr']; ?></td>
+                            <td>
+                            <?php $code = sprintf("%05s", $data['kode_pr']) ?>
+                            <?= "PR-".$code; ?> </td>
                             <td>
                                 <?php $date = date_create($data['pr_date']) ?>
                                 <?= date_format($date, 'j F Y') ; ?></td>

@@ -9,17 +9,23 @@ if(!isset($_SESSION['technician'])){
 }
 
 
-// membuat logik kode_otomatis
-$sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
-$data = mysqli_fetch_array($sql);
+// Panutan membuat logik kode_otomatis
+// $sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
+// $data = mysqli_fetch_array($sql);
 
-$kode = $data['maxID'];
-$kode++;
+// $kode = $data['maxID'];
+// $kode++;
 
-$ket = "PR";
-$kodeAuto = $ket . sprintf("%05s", $kode);
+// $ket = "PR";
+// $kodeAuto = $ket . sprintf("%05s", $kode);
 
 // echo $kodeAuto;
+
+$kode = mysqli_query($conn, "SELECT max(kode_pr) as pr_kode FROM form_pr ORDER BY kode_pr ASC");
+$dataKode = mysqli_fetch_assoc($kode);
+
+$code = (int)$dataKode['pr_kode'] + 1;
+$kodeOtomatis = sprintf("%05s", $code);
 
 
 if(isset($_POST['send'])){
@@ -27,7 +33,7 @@ if(isset($_POST['send'])){
 
     for ($i=1; $i<=$_POST['total']; $i++){
 
-        $kode_pr = $kodeAuto;
+        $kode_pr = $code;
         // $item_name = $_POST['item_name-'.$i];
         $type = $_POST['type-'.$i]; 
         $quantity = $_POST['quantity-'.$i];
@@ -63,11 +69,6 @@ if(isset($_POST['send'])){
             echo "Failed !";
         }
     }
-
-    
-
-   
-    
 }
 
 
@@ -167,116 +168,121 @@ if(isset($_POST['send'])){
                         <a href="formulir-tech.php" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
                                 class="fas fa-backspace mr-2"></i>back to 1 pr</a>
                     </div>
-
-<div class="form-group">
-                    <form method="post">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <h2 style="margin-top:10.5px">Purchase Request</h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                To,<br />
-                                                <b>RECEIVER (BILL TO)</b><br />
-                                                <input type="text" name="order_receiver_name" id="order_receiver_name"
-                                                    class="form-control input-sm" placeholder="Admin Inventory"
-                                                    disabled>
-                                                <textarea name="order_receiver_address" id="order_receiver_address"
-                                                    class="form-control" rows="4"
-                                                    disabled>Teaching Factory Manufacturing of Electrnoics Politeknik Negeri Batam Jalan Ahmad Yani, Batam Kota, Batam, Kepulauan Riau 29461</textarea>
-                                            </div>
-                                            <div class="col-md-4">
-                                                PR Code<br />
-                                                <input type="text" name="order_no" id="order_no"
-                                                    class="form-control input-sm" placeholder="Enter Invoice No." />
-                                                <input type="date" name="pr_date" id="pr_date"
-                                                    class="form-control input-sm" placeholder="Select PR Date" required />
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <table id="invoice-item-table" class="table table-bordered">
-                                            <tr>
-                                                <th width="40%" colspan="3">ITEM</th>
-                                                <th width="15%" colspan="2">NUMBERING</th>
-                                                <th width="15%">ORDER</th>
-                                            </tr>
-                                            <tr>
-                                                <th>Item Description</th>
-                                                <th>Type</th>
-                                                <th width="3%">Quantity</th>
-                                                <th width="20%">Part Number</th>
-                                                <th>Cost Center</th>
-                                                <th>Account Code</th>
-                                            </tr>
-                                            <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
-                                            <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
-
-                                            <tr>
-                                                <td><textarea name="item_description-<?= $i; ?>" id="iem_description " rows="2" class="form-control"
-                                                        autofocus></textarea></td>
-                                                <td><textarea name="type-<?= $i; ?>" id="type" rows="2" class="form-control"></textarea>
-                                                </td>
-                                                <td><input type="number" placeholder="0" name="quantity-<?= $i; ?>" class="form-control">
-                                                </td>
-                                                <td><textarea name="part_number-<?= $i; ?>" id="par_number" rows="2" class="form-control"></textarea>
-                                                </td>
-                                                <td>
-                                                    <select id="inputPosition"
-                                                        class="form-control custom-select bg-light"
-                                                        name="cost_center-<?= $i; ?>" required >
-                                                        <option selected disabled>-- Choose CC --</option>
-                                                        <option value="10">10 PCB</option>
-                                                        <option value="20">20 PCBA</option>
-                                                        <option value="30">30 IC PACK</option>
-                                                        <option value="40">40 GENERAL</option>
-                                                    </select>
+                    <div class="form-group">
+                        <form method="post">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <h2 style="margin-top:10.5px">Purchase Request</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    To,<br />
+                                                    <b>RECEIVER (BILL TO)</b><br />
+                                                    <input type="text" name="order_receiver_name"
+                                                        id="order_receiver_name" class="form-control input-sm"
+                                                        placeholder="Admin Inventory" disabled>
+                                                    <label name="order_receiver_address" id="order_receiver_address"
+                                                        class="form-control bg-disabled" rows="4"
+                                                        disabled>Teaching Factory Manufacturing of Electrnoics Politeknik Negeri Batam (TFME), <br> Jalan Ahmad Yani, Batam Kota, Batam, <br> Kepulauan Riau 29461</label> 
                                                 </div>
-                                                </td>
-                                                <td><textarea name="account_code-<?= $i; ?>"  id="account-code" rows="2" class="form-control"></textarea>
-                                                </td>
-                                            </tr>
-                                            <?php endfor; ?>
-                                    </td>
-                                </tr>
-                                </table>
-                        </div>
-                    </form>
-                </div>
+                                                <div class="col-md-4">
+                                                    PR Code<br /> 
+                                                    <input type="text" name="order_no" id="order_no"
+                                                        class="form-control input-sm" value="PR-<?= $kodeOtomatis; ?>" disabled />
+                                                    <input type="date" name="pr_date" id="pr_date"
+                                                        class="form-control input-sm" placeholder="Select PR Date"
+                                                        required />
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <table id="invoice-item-table" class="table table-bordered">
+                                                <tr>
+                                                    <th width="40%" colspan="3">ITEM</th>
+                                                    <th width="15%" colspan="2">NUMBERING</th>
+                                                    <th width="15%">ORDER</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Item Description</th>
+                                                    <th>Type</th>
+                                                    <th width="3%">Quantity</th>
+                                                    <th width="20%">Part Number</th>
+                                                    <th>Cost Center</th>
+                                                    <th>Account Code</th>
+                                                </tr>
+                                                <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
+                                                <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
 
-
-                            <div class="d-flex justify-content-end entry">
-                                <button type="submit" class="btn bg-dark text-white" name="send"><i
-                                        class="fas fa-paper-plane mr-3"></i>Send</button>
+                                                <tr>
+                                                    <td><textarea name="item_description-<?= $i; ?>"
+                                                            id="iem_description " rows="2" class="form-control"
+                                                            autofocus></textarea></td>
+                                                    <td><textarea name="type-<?= $i; ?>" id="type" rows="2"
+                                                            class="form-control"></textarea>
+                                                    </td>
+                                                    <td><input type="number" placeholder="0" name="quantity-<?= $i; ?>"
+                                                            class="form-control">
+                                                    </td>
+                                                    <td><textarea name="part_number-<?= $i; ?>" id="par_number" rows="2"
+                                                            class="form-control"></textarea>
+                                                    </td>
+                                                    <td>
+                                                        <select id="inputPosition"
+                                                            class="form-control custom-select bg-light"
+                                                            name="cost_center-<?= $i; ?>" required>
+                                                            <option selected disabled>-- Choose CC --</option>
+                                                            <option value="10">10 PCB</option>
+                                                            <option value="20">20 PCBA</option>
+                                                            <option value="30">30 IC PACK</option>
+                                                            <option value="40">40 GENERAL</option>
+                                                        </select>
                             </div>
+                            </td>
+                            <td><textarea name="account_code-<?= $i; ?>" id="account-code" rows="2"
+                                    class="form-control"></textarea>
+                            </td>
+                            </tr>
+                            <?php endfor; ?>
+                            </td>
+                            </tr>
+                            </table>
+                    </div>
                     </form>
                 </div>
+
+
+                <div class="d-flex justify-content-end entry">
+                    <button type="submit" class="btn bg-dark text-white" name="send"><i
+                            class="fas fa-paper-plane mr-3"></i>Send</button>
+                </div>
+                </form>
             </div>
+        </div>
 
 
 
 
 
 
-            <!-- SWAL action -->
-            <?php if(isset($send)) :  ?>
-            <script>
-                swal.fire({
-                    title: "Request Success",
-                    text: "Waiting Your Approval",
-                    icon: "success",
-                    showCancelButton: false,
-                    showConfirmButton: false
-                });
-                setTimeout(function () {
-                    window.top.location = "dashboard-tech.php"
-                }, 2700);
-            </script>
-            <?php endif; ?>
+        <!-- SWAL action -->
+        <?php if(isset($send)) :  ?>
+        <script>
+            swal.fire({
+                title: "Request Success",
+                text: "Waiting Your Approval",
+                icon: "success",
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+            setTimeout(function () {
+                window.top.location = "dashboard-tech.php"
+            }, 2700);
+        </script>
+        <?php endif; ?>
 </body>
 
 </html>

@@ -155,7 +155,6 @@ if(isset($_POST['send'])){
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
                         <a href="generateForm.php" style="font-size: 11px;" class="btn btn-success btn-sm"><i class="fas fa-plus mr-2"></i>add more P.r</a>
-                        <a href="NewForm.php"  style="font-size: 11px;"  class="btn btn-sm btn-warning mt-2">New Form</a>
                     </div>
                     <form method="post" autocomplete="off">
                         <div class="group">

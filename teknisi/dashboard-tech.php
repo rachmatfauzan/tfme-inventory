@@ -97,7 +97,9 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GR
                     <div class="group">
                         <div class="box1 form-group col-sm">
                             <div class="tanda">
-                                <label style="opacity: 0.7; font-size:14px;"><?= $data['kode_pr']; ?> | <b>Requestor</b>
+                                <label style="opacity: 0.7; font-size:14px;">
+                                <?php $code = sprintf("%05s", $data['kode_pr']) ?>
+                                <?= "PR-".$code; ?> | <b>Requestor</b>
                                     <span style="text-transform: capitalize;"> <?= $data['requestor']; ?> </span></label> <br>
                                 <label class="title">Item Detail</label>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
@@ -106,16 +108,16 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GR
                                     <div class="form-group col table-responsive">
                                         <table class="table  table-bordered table-sm data">
                                             <tr class="bg-dark text-white">
-                                                <th>Item Name</th>
+                                                <!-- <th>Item Name</th> -->
+                                                <th>Item Description</th>
                                                 <th>Type</th>
-                                                <th>Description</th>
                                                 <th>Quantity</th>
                                                 <th>Part Number</th>
                                                 <th>Cost Center</th>
                                             </tr>
-                                                <td><?= $data['item_name']; ?></td>
-                                                <td><?= $data['type']; ?></td>
+                                                <!-- <td><?= $data['item_name']; ?></td> -->
                                                 <td><?= $data['item_description']; ?></td>
+                                                <td><?= $data['type']; ?></td>
                                                 <td><?= $data['quantity']; ?></td>
                                                 <td><?= $data['part_number']; ?></td>
                                                 <td><?= $data['cost_center']; ?></td>
@@ -126,7 +128,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GR
                             <div class="tanda form-group col d-flex flex-column">
                                 <label class="title">Date of Request</label>
                                 <?php $date = date_create($data['pr_date']); ?>
-                                <p><?= date_format($date, 'j F Y'); ?></p>
+                                <p><i class="far fa-calendar-alt mr-2"></i><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
                                 <?php if ($data['status'] == 'approve'): ?>
                                     <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve</p>

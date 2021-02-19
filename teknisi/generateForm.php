@@ -104,8 +104,8 @@ if(!isset($_SESSION['technician'])){
                     <form method="post" action="addForm.php" autocomplete="off">
                         <div class="col-lg-6 col-lg-offset-3">
                            <div class="form-group">
-                                <label for="count_add">Add record</label>
-                                <input type="text" autofocus name="count_add" id="count_add" maxlength="2" pattern="[0-9]+" class="form-control" placeholder="How Many item You Need ?" required>
+                                <label for="count_add">Add record <b>< 5 Item</b></label>
+                                <input type="text" autofocus name="count_add" id="count_add" maxlength="1" pattern="[1-4]+" class="form-control" placeholder="How Many item You Need ? 1-4" required>
                            </div>
                            <div class="form-group pull-right">
                                 <input type="submit" name="genarate" value="Generate" class="btn-sm btn-info">
