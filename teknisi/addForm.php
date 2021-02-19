@@ -217,7 +217,7 @@ if(isset($_POST['send'])){
                                                 <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
                                                 <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
 
-                                                <tr>
+                                                <tr class="addForm">
                                                     <td><textarea name="item_description-<?= $i; ?>"
                                                             id="iem_description " rows="2" class="form-control"
                                                             autofocus></textarea></td>

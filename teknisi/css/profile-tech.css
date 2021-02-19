@@ -26,3 +26,6 @@
 input {
     border: none;
 }
+.addForm td textarea, select{
+    font-size: 12px;
+}
