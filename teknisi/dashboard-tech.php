@@ -9,6 +9,10 @@ if(!isset($_SESSION['technician'])){
 
 $name = $_SESSION['user'];
 $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY id_pr DESC");
+$list = mysqli_fetch_all($query);
+$kodelist = $list;
+// var_dump($kodelist);
+
 $cek = mysqli_num_rows($query);
 if ($cek == 0){
     header('Location:generateForm.php');
@@ -95,7 +99,6 @@ if ($cek == 0){
                     </div>
                 </div>
             </div>
-
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
@@ -120,13 +123,17 @@ if ($cek == 0){
                                                 <th>Part Number</th>
                                                 <th>Cost Center</th>
                                             </tr>
+                                            <tr>
                                                 <!-- <td><?= $data['item_name']; ?></td> -->
                                                 <td><?= $data['item_description']; ?></td>
                                                 <td><?= $data['type']; ?></td>
                                                 <td><?= $data['quantity']; ?></td>
                                                 <td><?= $data['part_number']; ?></td>
                                                 <td><?= $data['cost_center']; ?></td>
+                                            </tr>
                                         </table>
+                                            <p>....</p>
+                                            <a class="btn list-group-item-info btn-sm list-group-item-action" style="font-size: 11px; width:100px;">See P.R <i class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -137,16 +144,16 @@ if ($cek == 0){
                                 <label class="title">Status</label>
                                 <?php if ($data['status'] == 'approve'): ?>
                                     <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve</p>
-                                    <div class="detail">
+                                    <!-- <div class="detail">
                                         <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
-                                    </div>
+                                    </div> -->
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'rejected'): ?>
                                     <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected</p>
                                     <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'waiting'): ?>
-                                    <p>Waiting</p>
+                                    <p class="btn btn-sm btn-secondary disabled"  style="font-size: 11px; width:100px;">Waiting</p>
                                 <?php endif; ?>
                             </div>
                         </div>
