@@ -132,7 +132,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             </td>
                             <?php elseif ($data['update_po'] == 0) : ?>
                             <td>
-                                <a href="detail-pr.php?id=<?= $data['id_pr']?>" class="btn btn-outline-info p-1 ">See
+                                <a href="detail-pr.php?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1 ">See
                                     Details</a>
                             </td>
                             <?php endif; ?>

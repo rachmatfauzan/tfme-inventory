@@ -133,7 +133,7 @@ if ($cek == 0){
                                             </tr>
                                         </table>
                                             <p>....</p>
-                                            <a class="btn list-group-item-info btn-sm list-group-item-action" style="font-size: 11px; width:100px;">See P.R <i class="fas fa-file-invoice ml-2"></i></a>
+                                            <a class="btn list-group-item-info btn-sm list-group-item-action" style="font-size: 11px; width:100px;" href="invoice-pr.php?id=<?= $data['kode_pr']?>">Invoice P.R <i class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                 </div>
                             </div>
