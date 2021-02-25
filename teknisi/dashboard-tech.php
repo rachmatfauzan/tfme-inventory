@@ -106,12 +106,13 @@ if ($cek == 0){
                         <div class="box1 form-group col-sm">
                             <div class="tanda">
                                 <label style="opacity: 0.7; font-size:14px;">
-                                <?php $code = sprintf("%05s", $data['kode_pr']) ?>
-                                <?= "PR-".$code; ?> | <b>Requestor</b>
-                                    <span style="text-transform: capitalize;"> <?= $data['requestor']; ?> </span></label> <br>
+                                    <?php $code = sprintf("%05s", $data['kode_pr']) ?>
+                                    <?= "PR-".$code; ?> | <b>Requestor</b>
+                                    <span style="text-transform: capitalize;"> <?= $data['requestor']; ?>
+                                    </span></label> <br>
                                 <label class="title">Item Detail</label>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample" ></a>
+                                    aria-expanded="false" aria-controls="collapseExample"></a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
                                         <table class="table  table-bordered table-sm data">
@@ -132,8 +133,11 @@ if ($cek == 0){
                                                 <td><?= $data['cost_center']; ?></td>
                                             </tr>
                                         </table>
-                                            <p>....</p>
-                                            <a class="btn list-group-item-info btn-sm list-group-item-action" style="font-size: 11px; width:100px;" href="invoice-pr.php?id=<?= $data['kode_pr']?>">Invoice P.R <i class="fas fa-file-invoice ml-2"></i></a>
+                                        <p>....</p>
+                                        <a class="btn list-group-item-info btn-sm list-group-item-action"
+                                            style="font-size: 11px; width:100px;"
+                                            href="invoice-pr.php?id=<?= $data['kode_pr']?>">Detail P.R <i
+                                                class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -143,17 +147,20 @@ if ($cek == 0){
                                 <p><i class="far fa-calendar-alt mr-2"></i><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
                                 <?php if ($data['status'] == 'approve'): ?>
-                                    <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve</p>
-                                    <!-- <div class="detail">
+                                <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve
+                                </p>
+                                <!-- <div class="detail">
                                         <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                     </div> -->
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'rejected'): ?>
-                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected</p>
-                                    <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
+                                </p>
+                                <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'waiting'): ?>
-                                    <p class="btn btn-sm btn-secondary disabled"  style="font-size: 11px; width:100px;">Waiting</p>
+                                <p class="btn btn-sm btn-secondary disabled" style="font-size: 11px; width:100px;">
+                                    Waiting</p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -163,11 +170,6 @@ if ($cek == 0){
             <?php endforeach; ?>
         </div>
     </div>
-
-
-
-
-
 
 
     <!-- script data tables -->

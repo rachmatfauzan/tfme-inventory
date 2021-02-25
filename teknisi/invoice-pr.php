@@ -112,7 +112,7 @@ $hasil = mysqli_fetch_assoc($sql);
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="dashboard-tech.php" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
+                        <a href="dashboard-tech.php" style="font-size: 11px;" class="btn btn-info btn-sm "><i
                                 class="fas fa-backspace mr-2"></i>all history</a>
                     </div>
                     <div class="form-group">
@@ -121,7 +121,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                 <table class="table table-bordered">
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <h2 style="margin-top:10.5px">Invoice P.R</h2>
+                                            <h2 style="margin-top:10.5px">Detail <span>Purchase Request</span></h2>
                                         </td>
                                     </tr>
                                     <tr>
@@ -170,7 +170,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                 <tr class="addForm">
                                                     <td><textarea
                                                             id="item_description " rows="2" class="form-control" disabled
-                                                            autofocus> <?= $data['item_description']; ?></textarea></td>
+                                                            style="height: auto;"> <?= $data['item_description']; ?></textarea></td>
                                                     <td><textarea id="type" rows="2"
                                                             class="form-control" disabled><?= $data['type']; ?></textarea>
                                                     </td>
