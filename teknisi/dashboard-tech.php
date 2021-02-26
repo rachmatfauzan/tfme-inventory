@@ -11,7 +11,7 @@ $name = $_SESSION['user'];
 
 
 // pagination and select data
-$jumlahDataperHalaman = 1; 
+$jumlahDataperHalaman = 4; 
 $rows = mysqli_query($conn, "SELECT * FROM form_pr GROUP BY kode_pr");
 $jumlahRows = mysqli_num_rows($rows);
 
@@ -116,7 +116,9 @@ $kodelist = $list;
                     </div>
                 </div>
             </div>
-            <h5 class="mt-2 list-group-item-dark ml-3" style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PR <span style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
+            <h5 class="mt-2 list-group-item-dark ml-3"
+                style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PR <span
+                    style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
 
             <?php foreach ($query as $data) :?>
             <div class="box">
@@ -188,21 +190,30 @@ $kodelist = $list;
             </div>
             <?php endforeach; ?>
             <!-- navigasi -->
-            <div class="pagination ml-3">
-                <?php if($halamanAktif > 1) :?>
-                    <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i class="fas fa-chevron-left mr-2"></i>Prev</a>
+            <div class="pagination ml-3 d-flex justify-content-between align-items-end">
+                <div class="page-nav">
+                    <?php if($halamanAktif > 1) :?>
+                    <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i
+                            class="fas fa-chevron-left mr-2"></i>Prev</a>
                     <?php if($halamanAktif < $jumlahHalaman ) : ?>
-                        <a href="?page=<?= $halamanAktif-1;?>" class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif-1; ?></a>                       
+                    <a href="?page=<?= $halamanAktif-1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif-1; ?></a>
                     <?php endif; ?>
-                <?php endif; ?>
-                    
-                <a href="?page=<?= $halamanAktif;?>" class="ml-2 bg-dark p-2 text-white"><?= $halamanAktif; ?></a>
-                <?php if($halamanAktif < $jumlahHalaman) : ?>
+                    <?php endif; ?>
+
+                    <a href="?page=<?= $halamanAktif;?>" class="ml-2 bg-dark p-2 text-white"><?= $halamanAktif; ?></a>
+                    <?php if($halamanAktif < $jumlahHalaman) : ?>
                     <?php if($halamanAktif > 1 ) : ?>
-                        <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif+1; ?></a>               
+                    <a href="?page=<?= $halamanAktif+1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif+1; ?></a>
                     <?php endif; ?>
-                    <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-dark text-white p-2">Next<i class="fas fa-chevron-right ml-2"></i></a>
-                <?php endif; ?>
+                    <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-dark text-white p-2">Next<i
+                            class="fas fa-chevron-right ml-2"></i></a>
+                    <?php endif; ?>
+                </div>
+                <div class="align-self-end">
+                    <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> of <?= $jumlahHalaman; ?> </p>
+                </div>
             </div>
         </div>
     </div>
