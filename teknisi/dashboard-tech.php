@@ -12,7 +12,7 @@ $name = $_SESSION['user'];
 
 // pagination and select data
 $jumlahDataperHalaman = 4; 
-$rows = mysqli_query($conn, "SELECT * FROM form_pr GROUP BY kode_pr");
+$rows = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ");
 $jumlahRows = mysqli_num_rows($rows);
 
 // Jumlah halaman yang tampil
@@ -24,16 +24,12 @@ $awalData = ($jumlahDataperHalaman * $halamanAktif) - $jumlahDataperHalaman;
 
 // var_dump($awalData);
 
-
+// menampilkan group data keseluruhan 
 $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY id_pr DESC LIMIT $awalData, $jumlahDataperHalaman");
 $list = mysqli_fetch_all($query);
 $kodelist = $list;
 
 
-// $cek = mysqli_num_rows($query);
-// if ($cek == 0){
-//     header('Location:generateForm.php');
-// }
 
 
 ?>
@@ -69,6 +65,10 @@ $kodelist = $list;
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
 
+    <!--  CDN SWAL-->
+    <script src="../swal2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
+
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
@@ -76,7 +76,26 @@ $kodelist = $list;
 </head>
 
 <body>
-
+ <!-- cek History PR -->
+<?php  
+$cek = mysqli_num_rows($query);
+if ($cek == 0){
+    echo '
+    <script>
+    swal.fire({
+                title: "Please Make Your Purchase",
+                text: "Your history empty !!",
+                icon: "info",
+                showCancelButton: false,
+                showConfirmButton: false
+            });
+            setTimeout(function () {
+                window.top.location = "generateForm.php"
+            }, 2700);
+    </script>
+    ';
+}
+?>
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">

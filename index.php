@@ -156,7 +156,7 @@ if (isset($_POST["login"])){
     <!-- Swal2 -->
     <?php if(isset($userWrong)) :  ?>
     <script>
-        swal.fire("ID Not Found", "Please Try Again !", "error");
+        swal.fire("ID Not Found", "Please Try Again !", "question");
     </script>
     <?php endif; ?>
     <?php if(isset($userPass)) :  ?>
