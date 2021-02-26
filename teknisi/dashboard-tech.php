@@ -76,26 +76,6 @@ $kodelist = $list;
 </head>
 
 <body>
- <!-- cek History PR -->
-<?php  
-$cek = mysqli_num_rows($query);
-if ($cek == 0){
-    echo '
-    <script>
-    swal.fire({
-                title: "Please Make Your Purchase",
-                text: "Your history empty !!",
-                icon: "info",
-                showCancelButton: false,
-                showConfirmButton: false
-            });
-            setTimeout(function () {
-                window.top.location = "generateForm.php"
-            }, 2700);
-    </script>
-    ';
-}
-?>
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
@@ -139,6 +119,28 @@ if ($cek == 0){
                 style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PR <span
                     style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
 
+            <!-- cek History PR -->
+            <?php  
+                $cek = mysqli_num_rows($query);
+                if ($cek == 0){
+                    echo '
+                    <script>
+                    swal.fire({
+                                title: "Please Make Your Purchase",
+                                text: "Your history is empty !!",
+                                width: 600,
+                                icon: "info",
+                                showCancelButton: false,
+                                showConfirmButton: false
+                            });
+                            setTimeout(function () {
+                                window.top.location = "generateForm.php"
+                            }, 2700);
+                    </script>
+                    ';
+                    exit;
+                }
+                ?>
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
@@ -210,6 +212,9 @@ if ($cek == 0){
             <?php endforeach; ?>
             <!-- navigasi -->
             <div class="pagination ml-3 d-flex justify-content-between align-items-end">
+                <div class="align-self-end">
+                    <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> of <?= $jumlahHalaman; ?> </p>
+                </div>
                 <div class="page-nav">
                     <?php if($halamanAktif > 1) :?>
                     <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i
@@ -229,9 +234,6 @@ if ($cek == 0){
                     <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-dark text-white p-2">Next<i
                             class="fas fa-chevron-right ml-2"></i></a>
                     <?php endif; ?>
-                </div>
-                <div class="align-self-end">
-                    <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> of <?= $jumlahHalaman; ?> </p>
                 </div>
             </div>
         </div>
