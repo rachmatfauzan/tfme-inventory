@@ -9,6 +9,11 @@ body {
     background-color: rgb(240, 240, 240);
 }
 
+div.pogination,a{
+    font-size: 13px;
+    border-radius: 5px;
+}
+
 nav {
     height: 98%;
     position: fixed;

@@ -121,7 +121,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                 <table class="table table-bordered">
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <h2 style="margin-top:10.5px">Detail <span>Purchase Request</span></h2>
+                                            <h2 style="margin-top:10.5px">Detail Purchase Request</h2>
                                         </td>
                                     </tr>
                                     <tr>
@@ -134,7 +134,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                         id="order_receiver_name" class="form-control input-sm"
                                                         placeholder="Admin Inventory" disabled>
                                                     <label name="order_receiver_address" id="order_receiver_address"
-                                                        class="form-control bg-disabled" rows="4" disabled>Teaching
+                                                        class="form-control " rows="4" disabled>Teaching
                                                         Factory Manufacturing of Electrnoics Politeknik Negeri Batam
                                                         (TFME), <br> Jalan Ahmad Yani, Batam Kota, Batam, <br> Kepulauan
                                                         Riau 29461</label>
@@ -142,12 +142,10 @@ $hasil = mysqli_fetch_assoc($sql);
                                                 <div class="col-md-4">
                                                     PR Code<br />
                                                     <?php $code = sprintf("%05s", $hasil['kode_pr']) ?>
-                                                    <input type="text" name="order_no" id="order_no"
-                                                        class="form-control input-sm mb-3" value="<?= "PR-".$code; ?>" 
-                                                        disabled />
-                                                        <?php $date = date_create($hasil['pr_date']); ?>
+                                                    <p class="form-control d-flex justify-content-between align-items-center list-group-item-secondary" ><?= "PR-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
+                                                    <?php $date = date_create($hasil['pr_date']); ?>
                                                     PR Date<br />
-                                                    <p class="form-control d-flex justify-content-between align-items-center" ><?= date_format($date, 'j F Y'); ?><i class="far fa-calendar-alt mr-2"></i></p>
+                                                    <p class="form-control d-flex justify-content-between align-items-center list-group-item-secondary" ><?= date_format($date, 'j F Y'); ?><i class="far fa-calendar-alt mr-2"></i></p>
                                                 </div>
                                             </div>
                                             <br />
