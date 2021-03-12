@@ -89,7 +89,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                     </div>
                 </div>
             </div>
-            <div class="box">
+            <div class="box mt-2">
                 <div class="content">
                     <div class="kepala">
                         <h1>Data Inventory</h1>

@@ -101,7 +101,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
                 </div>
                 <div class="content pr">
-                    <table class="table select table-bordered table-hover table-responsive-sm table-striped">
+                    <table class="table select table-bordered table-hover table-responsive-sm table-striped" id="data" style="width: 100%;">
+                        <thead>
                         <tr class="bg-dark text-white">
                             <th>PR Code</th>
                             <th>PR Date</th>
@@ -109,6 +110,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php foreach ($query as $data) :  ?>
                         <tr>
                             <td>
@@ -144,6 +147,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             <!-- end logic -->
                         </tr>
                         <?php endforeach; ?>
+                        </tbody>
                     </table>
                     <div class="btn">
                         <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i
@@ -153,6 +157,17 @@ $po_data = mysqli_fetch_assoc($po_querry);
             </div>
         </div>
     </div>
+
+    <!-- script data tables -->
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                scrollX: true,
+                "ordering": true,
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
 </body>
 
 </html>

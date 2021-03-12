@@ -242,9 +242,12 @@ select.form-control:focus,
 }
 
 /* Start box Content */
+table.select th, td{
+    font-size: 13px;
+}
 .box {
     margin-top: 20px;
-    height: 100%;
+    height: auto;
     padding: 20px;
     background-color: white;
     border-radius: 10px;

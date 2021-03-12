@@ -16,6 +16,9 @@ nav {
     border-radius: 15px;
     z-index: 1;
 }
+table.inventory th, td{
+    font-size: 13px;
+}
 
 div.atap {
     top: 0;
@@ -244,7 +247,7 @@ nav a i {
     margin-left: 10px;
     border-radius: 15px;
     background-color: white;
-    height: 100%;
+    height: auto;
 }
 
 .kepala {

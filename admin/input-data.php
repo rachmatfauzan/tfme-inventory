@@ -504,7 +504,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                                             <p>MAXIMUM TIME LIMITS A PRODUCT CAN BE USED</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
