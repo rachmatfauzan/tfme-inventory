@@ -96,8 +96,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <div class="kepala-kanan">
                             <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
                                     class="far fa-question-circle"></i></button>
-                            <a href="input-data.php"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Purchase
-                                Order</a>
+                            <a href="input-data.php"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Get Action</a>
                             <!-- Large modal -->
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                                 aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -272,7 +271,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         </div>
                     </div>
                     <div class="table-responsive mt-2">
-                        <table class="table table-striped" id="data">
+                        <table class="table inventory table-striped" id="data">
                             <thead>
                                 <tr class="bg-dark text-white">
                                     <th>Part Number</th>

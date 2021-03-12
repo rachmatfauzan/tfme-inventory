@@ -77,8 +77,12 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
             </div>
         </div>
         <div class="box">
+
+            <div class="title mb-4 text-uppercase d-flex justify-content-center">
+                <h5 class="font-weight-bold text-secondary">Data Inventory</h5>
+            </div>
             <div class="table-responsive mt-2">
-                <table class="table" id="data">
+                <table class="table table-striped" id="data">
                     <thead>
                         <tr class="bg-dark text-white">
                             <th>Action</th>
@@ -180,8 +184,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <div class="row">
                             <div class="form-group col">
                                 <label for="item-name">Item Name</label>
-                                <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name"
-                                    >
+                                <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name">
                             </div>
                             <div class="form-group col">
                                 <label for="tipe">Type</label>

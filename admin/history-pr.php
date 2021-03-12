@@ -94,9 +94,14 @@ $po_data = mysqli_fetch_assoc($po_querry);
                     </div>
                 </div>
             </div>
-            <div class="box">
+            <div class="box d-flex flex-column">
+                <div class="label d-flex justify-content-center mb-3" style="width: 100%;">
+                    <h5 class="mt-2 list-group-item-info ml-3"
+                        style="width: 20em; padding:5px; border-radius:5px;text-align:center;">Select PR <span
+                            style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
+                </div>
                 <div class="content pr">
-                    <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                    <table class="table select table-bordered table-hover table-responsive-sm table-striped">
                         <tr class="bg-dark text-white">
                             <th>PR Code</th>
                             <th>PR Date</th>
@@ -107,8 +112,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
                         <?php foreach ($query as $data) :  ?>
                         <tr>
                             <td>
-                            <?php $code = sprintf("%05s", $data['kode_pr']) ?>
-                            <?= "PR-".$code; ?> </td>
+                                <?php $code = sprintf("%05s", $data['kode_pr']) ?>
+                                <?= "PR-".$code; ?> </td>
                             <td>
                                 <?php $date = date_create($data['pr_date']) ?>
                                 <?= date_format($date, 'j F Y') ; ?></td>
@@ -141,7 +146,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
                         <?php endforeach; ?>
                     </table>
                     <div class="btn">
-                        <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i class="far fa-window-restore ml-2 text-white"></i></a>
+                        <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i
+                                class="far fa-window-restore ml-2 text-white"></i></a>
                     </div>
                 </div>
             </div>
