@@ -251,10 +251,10 @@ select.form-control:focus,
 }
 .table td,th{
     white-space: nowrap;
+    max-width: 5%;
 }
-.table td:nth-child(4){
-    width: 20%;
-    max-width: 200px;
+.table td:nth-child(3){
+    width: 12%;
     white-space: pre-wrap;
 }
 /* Responsive Box */
@@ -262,6 +262,12 @@ select.form-control:focus,
     .box{
         margin: 0;
         border-radius: 0;
+    }
+    .table th, td, td a{
+        font-size: 12px;
+    }
+    .table td:nth-child(3){
+        width: unset;
     }
 }
 

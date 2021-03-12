@@ -187,13 +187,16 @@ if(isset($_POST['send'])){
                                                         id="order_receiver_name" class="form-control input-sm"
                                                         placeholder="Admin Inventory" disabled>
                                                     <label name="order_receiver_address" id="order_receiver_address"
-                                                        class="form-control bg-disabled" rows="4"
-                                                        disabled>Teaching Factory Manufacturing of Electrnoics Politeknik Negeri Batam (TFME), <br> Jalan Ahmad Yani, Batam Kota, Batam, <br> Kepulauan Riau 29461</label> 
+                                                        class="form-control bg-disabled" rows="4" disabled>Teaching
+                                                        Factory Manufacturing of Electrnoics Politeknik Negeri Batam
+                                                        (TFME), <br> Jalan Ahmad Yani, Batam Kota, Batam, <br> Kepulauan
+                                                        Riau 29461</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    PR Code<br /> 
+                                                    PR Code<br />
                                                     <input type="text" name="order_no" id="order_no"
-                                                        class="form-control input-sm" value="PR-<?= $kodeOtomatis; ?>" disabled />
+                                                        class="form-control input-sm" value="PR-<?= $kodeOtomatis; ?>"
+                                                        disabled />
                                                     <input type="date" name="pr_date" id="pr_date"
                                                         class="form-control input-sm" placeholder="Select PR Date"
                                                         required />
@@ -215,8 +218,44 @@ if(isset($_POST['send'])){
                                                     <th>Account Code</th>
                                                 </tr>
                                                 <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
-                                                <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
 
+                                                <!-- alert for form -->
+                                                <!-- SWAL action -->
+                                                <?php if(isset($send)) :  ?>
+                                                <script>
+                                                    swal.fire({
+                                                        title: "Request Success",
+                                                        text: "Waiting Your Approval",
+                                                        icon: "success",
+                                                        showCancelButton: false,
+                                                        showConfirmButton: false
+                                                    });
+                                                    setTimeout(function () {
+                                                        window.top.location = "dashboard-tech.php"
+                                                    }, 2700);
+                                                </script>
+                                                <?php endif; ?>
+                                                <!-- end alert for form -->
+
+                                                <?php if(!isset($_POST['count_add'])) :?>
+                                                    <script>
+                                                    swal.fire({
+                                                        title: "Please Generate Again",
+                                                        text: "don't refresh your page directly",
+                                                        icon: "info",
+                                                        showCancelButton: false,
+                                                        showConfirmButton: false
+                                                    });
+                                                    setTimeout(function () {
+                                                        window.top.location = "generateForm.php"
+                                                    }, 1500);
+                                                </script>
+
+                                                <?php exit; ?>
+                                                <?php endif; ?>
+
+
+                                                <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
                                                 <tr class="addForm">
                                                     <td><textarea name="item_description-<?= $i; ?>"
                                                             id="iem_description " rows="2" class="form-control"
@@ -263,26 +302,6 @@ if(isset($_POST['send'])){
             </div>
         </div>
 
-
-
-
-
-
-        <!-- SWAL action -->
-        <?php if(isset($send)) :  ?>
-        <script>
-            swal.fire({
-                title: "Request Success",
-                text: "Waiting Your Approval",
-                icon: "success",
-                showCancelButton: false,
-                showConfirmButton: false
-            });
-            setTimeout(function () {
-                window.top.location = "dashboard-tech.php"
-            }, 2700);
-        </script>
-        <?php endif; ?>
 </body>
 
 </html>

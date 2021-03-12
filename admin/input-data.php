@@ -1,3 +1,18 @@
+<?php 
+session_start();
+
+require "../config/config.php";
+
+if(!isset($_SESSION['admin'])){
+    header("location: index.php");
+}
+
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DESC");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,11 +73,103 @@
                     <a class="nav-link active" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
                     <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
                     <a class="nav-link " href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
-            </div>
+                </div>
             </div>
         </div>
         <div class="box">
-            <div class="data-entry">
+            <div class="table-responsive mt-2">
+                <table class="table" id="data">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th>Action</th>
+                            <th>Part Number</th>
+                            <th>Item</th>
+                            <th>Account Code</th>
+                            <th>Type</th>
+                            <th>Supplier</th>
+                            <th>Description</th>
+                            <th>Supplier#</th>
+                            <th>CC</th>
+                            <th>Cost</th>
+                            <th>On Hand</th>
+                            <th>In Transit</th>
+                            <th>On Prep</th>
+                            <th>moq</th>
+                            <th>DWG#</th>
+                            <th>on_pr#</th>
+                            <th>on_po#</th>
+                            <th>batch#</th>
+                            <th>iqa</th>
+                            <th>Received Date</th>
+                            <th>Manufacturing Date</th>
+                            <th>Expiration Date</th>
+                            <th>po_date</th>
+                            <th>pr_date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($query as $data) : ?>
+                        <tr>
+                            <td>
+                                <a class="bg-danger text-white">Delete</a>
+                                <a class="bg-info text-white">Update</a>
+                                <a class="bg-success text-white">Detail</a>
+                            </td>
+                            <td><?= $data['part_number']; ?></td>
+                            <td><?= $data['item']; ?></td>
+                            <td><?= $data['account_code']; ?></td>
+                            <td><?= $data['type']; ?></td>
+                            <td><?= $data['supplier']; ?></td>
+                            <td><?= $data['description']; ?></td>
+                            <td><?= $data['supplier_no']; ?></td>
+                            <td><?= $data['cc']; ?></td>
+                            <td><?= $data['cost']; ?></td>
+                            <td><?= $data['on_hand']; ?></td>
+                            <td><?= $data['in_transit']; ?></td>
+                            <td><?= $data['on_prep']; ?></td>
+                            <td><?= $data['moq']; ?></td>
+                            <td><?= $data['dwg_no']; ?></td>
+                            <td><?= $data['on_pr_no']; ?></td>
+                            <td><?= $data['on_po_no']; ?></td>
+                            <td><?= $data['batch_no']; ?></td>
+                            <td><?= $data['iqa']; ?></td>
+                            <td><?= $data['received_date']; ?></td>
+                            <td><?= $data['manufacturing_date']; ?></td>
+                            <td><?= $data['expiration_date']; ?></td>
+                            <td><?= $data['po_date']; ?></td>
+                            <td><?= $data['pr_date']; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                        <th>Action</th>
+                        <th>Part Number</th>
+                        <th>Item</th>
+                        <th>Account Code</th>
+                        <th>Type</th>
+                        <th>Supplier</th>
+                        <th>Description</th>
+                        <th>Supplier#</th>
+                        <th>CC</th>
+                        <th>Cost</th>
+                        <th>On Hand</th>
+                        <th>In Transit</th>
+                        <th>On Prep</th>
+                        <th>moq</th>
+                        <th>DWG#</th>
+                        <th>on_pr#</th>
+                        <th>on_po#</th>
+                        <th>batch#</th>
+                        <th>iqa</th>
+                        <th>Received Date</th>
+                        <th>Manufacturing Date</th>
+                        <th>Expiration Date</th>
+                        <th>po_date</th>
+                        <th>pr_date</th>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="data-entry mt-4">
                 <div class="title mb-4 text-uppercase d-flex justify-content-center">
                     <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
                 </div>
@@ -74,7 +181,7 @@
                             <div class="form-group col">
                                 <label for="item-name">Item Name</label>
                                 <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name"
-                                    autofocus>
+                                    >
                             </div>
                             <div class="form-group col">
                                 <label for="tipe">Type</label>
@@ -399,122 +506,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table" id="data">
-                        <thead>
-                            <tr>
-                                <th>Action</th>
-                                <th>Part Number</th>
-                                <th>Item</th>
-                                <th>Supplier#</th>
-                                <th>CC</th>
-                                <th>Account Code</th>
-                                <th>Type</th>
-                                <th>Supplier</th>
-                                <th>Description</th>
-                                <th>moq</th>
-                                <th>Cost</th>
-                                <th>On Hand</th>
-                                <th>In Transit</th>
-                                <th>On Prep</th>
-                                <th>on_pr#</th>
-                                <th>on_po#</th>
-                                <th>batch#</th>
-                                <th>iqa</th>
-                                <th>Received Date</th>
-                                <th>Manufacturing Date</th>
-                                <th>Expiration Date</th>
-                                <th>po_date</th>
-                                <th>pr_date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <a class="bg-danger text-white">Delete</a>
-                                    <a class="bg-info text-white">Update</a>
-                                    <a class="bg-success text-white">Detail</a>
-                                </td>
-                                <td>DM00000025</td>
-                                <td>Magazine lead frame</td>
-                                <td>N/A</td>
-                                <td>30</td>
-                                <td>3311801036</td>
-                                <td>N/A</td>
-                                <td>PT. Farsawa</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/a</td>
-                                <td>0</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>Null</td>
-                                <td>Null</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a class="bg-danger text-white">Delete</a>
-                                    <a class="bg-info text-white">Update</a>
-                                    <a class="bg-success text-white">Detail</a>
-                                </td>
-                                <td>DM00000025</td>
-                                <td>Magazine lead frame</td>
-                                <td>N/A</td>
-                                <td>30</td>
-                                <td>3010001</td>
-                                <td>N/A</td>
-                                <td>PT. Farsawa</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/a</td>
-                                <td>0</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>N/A</td>
-                                <td>Null</td>
-                                <td>Null</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                                <td>00/00/0000</td>
-                            </tr>
 
-
-                        </tbody>
-                        <tfoot>
-                            <th>Action</th>
-                            <th>Part Number</th>
-                            <th>Item</th>
-                            <th>Supplier#</th>
-                            <th>CC</th>
-                            <th>Account Code</th>
-                            <th>Type</th>
-                            <th>Supplier</th>
-                            <th>Description</th>
-                            <th>moq</th>
-                            <th>Cost</th>
-                            <th>On Hand</th>
-                            <th>In Transit</th>
-                            <th>On Prep</th>
-                            <th>on_pr#</th>
-                            <th>on_po#</th>
-                            <th>batch#</th>
-                            <th>iqa</th>
-                            <th>Received Date</th>
-                            <th>Manufacturing Date</th>
-                            <th>Expiration Date</th>
-                            <th>po_date</th>
-                            <th>pr_date</th>
-                        </tfoot>
-                    </table>
                 </div>
             </div>
         </div>
