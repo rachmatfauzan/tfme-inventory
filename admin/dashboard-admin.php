@@ -368,8 +368,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
             $('#data').DataTable({
                 scrollX: true,
                 "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 50, 100, "All"]
+                    [15, 50, 100, -1],
+                    [15, 50, 100, "All"]
                 ],
             });
         });
