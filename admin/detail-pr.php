@@ -153,7 +153,7 @@ if (isset($_POST['send'])){
                         <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back to PR</a>
                     </div>
                     <section>
-                        <div class="table-responsive">
+                        <div class="table-responsive ">
                             <table class="table table-bordered">
                                 <td colspan="2">
                                     <div class="row">
@@ -174,8 +174,8 @@ if (isset($_POST['send'])){
                                         </div>
                                         <div class="col-md-4 ">
                                             <form method="post">
-                                                <label>Status</label>
-                                                <select class="form-control form-control-sm status mb-3" name="status"
+                                                Status
+                                                <select class="form-control status mb-3" name="status"
                                                     id="status">
                                                     <option disabled selected><?= $data['status']; ?>
                                                     </option>
@@ -192,16 +192,16 @@ if (isset($_POST['send'])){
                                     <br />
                                     <table id="invoice-item-table" class="table table-bordered detail-tabel">
                                         <tr>
-                                            <th width="40%" colspan="3">ITEM</th>
-                                            <th width="15%" colspan="2">NUMBERING</th>
-                                            <th width="15%">ORDER</th>
+                                            <th colspan="3">ITEM</th>
+                                            <th colspan="2" class="">NUMBERING</th>
+                                            <th >ORDER</th>
                                         </tr>
-                                        <tr>
+                                        <tr class="row2">
                                             <th>Item Description</th>
                                             <th>Type</th>
-                                            <th width="3%">Quantity</th>
-                                            <th width="20%">Part Number</th>
-                                            <th width="3%" style="text-align: center;">Cost Center</th>
+                                            <th width="10">Quantity</th>
+                                            <th>Part Number</th>
+                                            <th width="10">Cost Center</th>
                                             <th>Account Code</th>
                                         </tr>
 
@@ -221,7 +221,7 @@ if (isset($_POST['send'])){
                                             </td>
                                             <td>
                                                 <textarea id="account-code" rows="2" class="form-control"
-                                                    disabled> <?= $data['cost_center']; ?></textarea>
+                                                    disabled style="text-align: center;"> <?= $data['cost_center']; ?></textarea>
                                             </td>
                                             <td><textarea id="account-code" rows="2" class="form-control"
                                                     disabled><?= $data['account_code']; ?></textarea>

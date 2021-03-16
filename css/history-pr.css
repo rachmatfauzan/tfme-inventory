@@ -47,4 +47,8 @@ table.select th, td{
    table.select th, td{
        font-size: 12px;
    }
+   .addForm textarea{
+       font-size: 10px;
+       height: auto;
+   }
 }
