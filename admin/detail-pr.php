@@ -4,14 +4,16 @@ session_start();
 // ambil id dari URL
 $id = $_GET["id"];
 // querry data mahasiswa berdasarkan id
-$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE id_pr = $id");
+$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE kode_pr = $id");
 
+$sql = mysqli_query($conn, "SELECT * FROM form_pr WHERE kode_pr = '$id'");
+$hasil = mysqli_fetch_assoc($sql);
 $data = mysqli_fetch_array($query);
 
 if (isset($_POST['tombol'])){
     $status = $_POST['status'];
 
-    $query = mysqli_query($conn, "UPDATE form_pr SET status = '$status' WHERE id_pr = '$id' ");
+    $query = mysqli_query($conn, "UPDATE form_pr SET status = '$status' WHERE kode_pr = '$id' ");
     if($query){
         $berhasil = true;
     }
@@ -151,111 +153,106 @@ if (isset($_POST['send'])){
                         <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back to PR</a>
                     </div>
                     <section>
-                        <div class="row mb-3 ">
-                            <div class="col-md-4 ">
-                                <label>Item Name</label>
-                                <textarea type="text" class="form-control form-control-sm detail" disabled rows="5"><?= $data['item_name']; ?>
-                                </textarea>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12 mb-4 ">
-                                        <label>PR Code</label>
-                                        <input type="text" class="form-control form-control-sm detail" disabled
-                                            value=" <?= $data['kode_pr']; ?>">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <td colspan="2">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            PR Code
+                                            <?php $code = sprintf("%05s", $hasil['kode_pr']) ?>
+                                            <p
+                                                class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
+                                                <?= "PR-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
+                                            <?php $date = date_create($hasil['pr_date']); ?>
+                                        </div>
+                                        <div class="col-md-4">
+                                            PR Date
+                                            <p
+                                                class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
+                                                <?= date_format($date, 'j F Y'); ?><i
+                                                    class="far fa-calendar-alt mr-2"></i></p>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <form method="post">
+                                                <label>Status</label>
+                                                <select class="form-control form-control-sm status mb-3" name="status"
+                                                    id="status">
+                                                    <option disabled selected><?= $data['status']; ?>
+                                                    </option>
+                                                    <option value="approve">Approve</option>
+                                                    <option value="rejected">Reject</option>
+                                                </select>
+                                                <div class="d-flex flex-row-reverse flex-column">
+                                                    <button class="btn btn-sm btn-info" name="tombol"><i
+                                                            class="far fa-hand-pointer text-white p-1"></i></button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12 ">
-                                        <label>Type</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= $data['type']; ?>">
+                                    <br />
+                                    <table id="invoice-item-table" class="table table-bordered detail-tabel">
+                                        <tr>
+                                            <th width="40%" colspan="3">ITEM</th>
+                                            <th width="15%" colspan="2">NUMBERING</th>
+                                            <th width="15%">ORDER</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Item Description</th>
+                                            <th>Type</th>
+                                            <th width="3%">Quantity</th>
+                                            <th width="20%">Part Number</th>
+                                            <th width="3%" style="text-align: center;">Cost Center</th>
+                                            <th>Account Code</th>
+                                        </tr>
+
+                                        <?php foreach($sql as $data) :?>
+                                        <tr class="addForm">
+                                            <td><textarea id="item_description " rows="2" class="form-control" disabled
+                                                    style="height: auto;"> <?= $data['item_description']; ?></textarea>
+                                            </td>
+                                            <td><textarea id="type" rows="2" class="form-control"
+                                                    disabled><?= $data['type']; ?></textarea>
+                                            </td>
+                                            <td><textarea id="par_number" rows="2" class="form-control" disabled
+                                                    style="text-align: center;"><?= $data['quantity']; ?></textarea>
+                                            </td>
+                                            <td><textarea id="par_number" rows="2" class="form-control"
+                                                    disabled><?= $data['part_number']; ?></textarea>
+                                            </td>
+                                            <td>
+                                                <textarea id="account-code" rows="2" class="form-control"
+                                                    disabled> <?= $data['cost_center']; ?></textarea>
+                                            </td>
+                                            <td><textarea id="account-code" rows="2" class="form-control"
+                                                    disabled><?= $data['account_code']; ?></textarea>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+
+                                    </table>
+                                    <div class="row d-flex justify-content-between">
+                                        <!-- <div class="col-md">
+                                            <a href="#">
+                                                <i class="far fa-file-pdf mr-2"></i>Download PR.pdf</a>
+                                        </div> -->
+                                        <div class="col-md">
+                                            <p class="d-flex flex-row-reverse">
+                                                <?php if($data['status'] == 'approve') :?>
+                                                <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
+                                                    data-target="#collapseExample" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    Update P.O
+                                                </button>
+                                                <?php else :?>
+                                                <button class="btn btn-sm btn-secondary disabled" type="button"
+                                                    data-toggle="collapse" data-target="#collapseExample"
+                                                    aria-expanded="false" aria-controls="collapseExample" disabled>
+                                                    Update P.O
+                                                </button>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12 mb-4 ">
-                                        <label>Quantity</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= $data['quantity']; ?>">
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <form method="post">
-                                            <label>Status</label>
-                                            <select class="form-control form-control-sm status mb-3" name="status"
-                                                id="status">
-                                                <option value="waiting" disabled selected><?= $data['status']; ?>
-                                                </option>
-                                                <option value="approve">Approve</option>
-                                                <option value="rejected">Reject</option>
-                                            </select>
-                                            <div class="d-flex flex-row-reverse flex-column">
-                                                <button class="btn btn-sm btn-info" name="tombol"><i
-                                                        class="far fa-hand-pointer text-white p-1"></i></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 ">
-                                <label>Item Description</label>
-                                <textarea type="text" class="form-control form-control-sm detail " disabled rows="5"><?= $data['item_description']; ?>
-                                </textarea>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12 mb-4 ">
-                                        <label>Part Number</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= $data['part_number']; ?>">
-                                    </div>
-                                    <?php $date = date_create($data['pr_date']);?>
-                                    <div class="col-md-12 ">
-                                        <label>PR Date</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= date_format($date, 'j F Y'); ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12 mb-4 ">
-                                        <label>Cost Center</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= $data['cost_center']; ?>">
-                                    </div>
-                                    <div class="col-md-12 ">
-                                        <label>Account Code</label>
-                                        <input type="text" class="form-control form-control-sm detail " disabled
-                                            value=" <?= $data['account_code']?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-between">
-                            <div class="col-md">
-                                <a href="#">
-                                    <i class="far fa-file-pdf mr-2"></i>Download PR.pdf</a>
-                            </div>
-                            <div class="col-md">
-                                <p class="d-flex flex-row-reverse">
-                                    <?php if($data['status'] == 'approve') :?>
-                                    <button class="btn btn-sm btn-info" type="button" data-toggle="collapse"
-                                        data-target="#collapseExample" aria-expanded="false"
-                                        aria-controls="collapseExample">
-                                        Update P.O
-                                    </button>
-                                    <?php else :?>
-                                    <button class="btn btn-sm btn-secondary disabled" type="button"
-                                        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                                        aria-controls="collapseExample" disabled>
-                                        Update P.O
-                                    </button>
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-                        </div>
                     </section>
 
                     <section>

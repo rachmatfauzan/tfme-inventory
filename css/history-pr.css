@@ -21,7 +21,9 @@
     font-weight: lighter;
     font-size: 12px;
 }
-
+.addForm textarea {
+    font-size: 11px;
+}
 .box .detail{
     -webkit-box-shadow: inset 10px 10px 10px 0px rgba(0,0,0,0.05);
     -moz-box-shadow: inset 10px 10px 10px 0px rgba(0,0,0,0.05);

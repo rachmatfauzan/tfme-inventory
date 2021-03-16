@@ -163,8 +163,11 @@ $po_data = mysqli_fetch_assoc($po_querry);
         $(document).ready(function () {
             $('#data').DataTable({
                 scrollX: true,
-                "ordering": true,
-                "order": [[0, "desc"]]
+                "ordering": false,
+                "lengthMenu": [
+                    [10, 50, 100, -1],
+                    [10, 50, 100, "All"]
+                ]
             });
         });
     </script>
