@@ -116,7 +116,7 @@ $kodelist = $list;
                 </div>
             </div>
             <h5 class="mt-2 list-group-item-dark ml-3"
-                style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PR <span
+                style="padding:5px; border-radius:5px;text-indent:22px;">History PR <span
                     style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
 
             <!-- cek History PR -->

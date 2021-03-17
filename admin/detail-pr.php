@@ -153,7 +153,7 @@ if (isset($_POST['send'])){
                         <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back to PR</a>
                     </div>
                     <section>
-                        <div class="table-responsive ">
+                        <div class="table-responsive">
                             <table class="table table-bordered">
                                 <td colspan="2">
                                     <div class="row">
@@ -199,9 +199,9 @@ if (isset($_POST['send'])){
                                         <tr class="row2">
                                             <th>Item Description</th>
                                             <th>Type</th>
-                                            <th width="10">Quantity</th>
+                                            <th width="20">Quantity</th>
                                             <th>Part Number</th>
-                                            <th width="10">Cost Center</th>
+                                            <th width="20">Cost Center</th>
                                             <th>Account Code</th>
                                         </tr>
 

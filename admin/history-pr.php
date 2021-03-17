@@ -100,62 +100,73 @@ $po_data = mysqli_fetch_assoc($po_querry);
                         style="width: 20em; padding:5px; border-radius:5px;text-align:center;">Select PR <span
                             style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
                 </div>
-                <div class="content pr">
-                    <table class="table select table-bordered table-hover table-responsive-sm table-striped" id="data" style="width: 100%;">
+                <div class=" table-responsive">
+                    <table class="table select table-bordered table-hover table-striped" id="data" style="width: 100%;">
                         <thead>
-                        <tr class="bg-dark text-white">
-                            <th>PR Code</th>
-                            <th>PR Date</th>
-                            <th>Requestor</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
+                            <tr class="bg-dark text-white">
+                                <th>PR Code</th>
+                                <th>PR Date</th>
+                                <th>Requestor</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($query as $data) :  ?>
-                        <tr>
-                            <td>
-                                <?php $code = sprintf("%05s", $data['kode_pr']) ?>
-                                <?= "PR-".$code; ?> </td>
-                            <td>
-                                <?php $date = date_create($data['pr_date']) ?>
-                                <?= date_format($date, 'j F Y') ; ?></td>
-                            <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>
-                            <td>
-                                <?php if ($data['status'] == 'approve'): ?>
-                                <p class="btn btn-success btn-sm disabled"
-                                    style="font-size: 11px;text-transform:uppercase;">Approve</p>
-                                <?php elseif ($data['status'] == 'rejected'): ?>
-                                <p class="btn btn-danger btn-sm disabled"
-                                    style="font-size: 11px;text-transform:uppercase;">Rejected</p>
-                                <?php elseif ($data['status'] == 'waiting'): ?>
-                                <p>Waiting</p>
-                                <?php endif; ?>
-                            </td>
+                            <?php foreach ($query as $data) :  ?>
+                            <tr>
+                                <td>
+                                    <?php $code = sprintf("%05s", $data['kode_pr']) ?>
+                                    <?= "PR-".$code; ?> </td>
+                                <td>
+                                    <?php $date = date_create($data['pr_date']) ?>
+                                    <?= date_format($date, 'j F Y') ; ?></td>
+                                <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>
+                                <td>
+                                    <?php if ($data['status'] == 'approve'): ?>
+                                    <p class="btn btn-success btn-sm disabled"
+                                        style="font-size: 11px;text-transform:uppercase;">Approve</p>
+                                    <?php elseif ($data['status'] == 'rejected'): ?>
+                                    <p class="btn btn-danger btn-sm disabled"
+                                        style="font-size: 11px;text-transform:uppercase;">Rejected</p>
+                                    <?php elseif ($data['status'] == 'waiting'): ?>
+                                    <p>Waiting</p>
+                                    <?php endif; ?>
+                                </td>
 
-                            <!-- disablle buton logic -->
-                            <?php if($data['update_po'] == 1 ) :?>
-                            <td>
-                                <a href="#" class="btn btn-outline-secondary p-1 disabled">P.O Updated</a>
-                            </td>
-                            <?php elseif ($data['update_po'] == 0) : ?>
-                            <td>
-                                <a href="detail-pr.php?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1 ">See
-                                    Details</a>
-                            </td>
-                            <?php endif; ?>
-                            <!-- end logic -->
-                        </tr>
-                        <?php endforeach; ?>
+                                <!-- disablle buton logic -->
+                                <?php if($data['update_po'] == 1 ) :?>
+                                <td>
+                                    <a href="#" class="btn btn-outline-secondary p-1 disabled">P.O Updated</a>
+                                </td>
+                                <?php elseif ($data['update_po'] == 0) : ?>
+                                <td>
+                                    <a href="detail-pr.php?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1"
+                                        style="font-size:12px;">See
+                                        Details</a>
+                                </td>
+                                <?php endif; ?>
+                                <!-- end logic -->
+                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
+                        <tfoot>
+                            <tr class="bg-dark text-white">
+                                <th>PR Code</th>
+                                <th>PR Date</th>
+                                <th>Requestor</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
                     </table>
-                    <div class="btn">
-                        <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i
-                                class="far fa-window-restore ml-2 text-white"></i></a>
-                    </div>
+                </div>
+                <div class="btn">
+                    <a href="history-po.php" class="btn btn-sm bg-info text-white">History PO<i
+                            class="far fa-window-restore ml-2 text-white"></i></a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- script data tables -->
