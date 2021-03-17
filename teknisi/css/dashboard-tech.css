@@ -9,7 +9,8 @@ body {
     background-color: rgb(240, 240, 240);
 }
 
-div.pogination,a{
+div.pogination,
+a {
     font-size: 13px;
     border-radius: 5px;
 }
@@ -43,20 +44,23 @@ div.atap {
     text-decoration: none;
     margin-top: 40px;
 }
+
 /* Kepalal back PR */
 
-.kepala a{
+.kepala a {
     background-color: white;
     border-radius: 8px;
     width: 10rem;
     border: 1px solid rgb(208, 208, 208);
 }
-.kepala a:hover{
+
+.kepala a:hover {
     background-color: salmon;
     color: white;
     transition: .2s ease-in-out;
 }
-.kepala a{
+
+.kepala a {
     text-align: center;
     text-decoration: none;
     color: rgb(184, 184, 184);
@@ -132,6 +136,28 @@ nav a i {
     height: 100%;
 }
 
+h5.judul {
+    padding: 10px;
+    text-align: center;
+    border-radius: 0px 10px 10px 10px;
+    -moz-border-radius: 0px 10px 10px 10px;
+    -webkit-border-radius: 0px 10px 10px 10px;
+    /* color */
+    background: rgba(1, 96, 228, 1);
+    background: -moz-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(8%, rgba(1, 96, 228, 1)), color-stop(30%, rgba(2, 76, 178, 1)), color-stop(100%, rgba(6, 12, 20, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: linear-gradient(135deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    color: white;
+    /* box blur */
+    border-radius: 0px 100px 0px 100px;
+    -moz-border-radius: 0px 100px 0px 100px;
+    -webkit-border-radius: 0px 100px 0px 100px;
+    font-size: 15px;
+}
+
 /* Responsive sidebar */
 @media screen and (max-width:900px) {
     nav {
@@ -140,6 +166,16 @@ nav a i {
         height: 40%;
         border-radius: 0;
         position: unset;
+    }
+
+    div.judul {
+        display: flex;
+        justify-content: center;
+    }
+
+    h5.judul {
+        border-radius: unset;
+        width: 90%;
     }
 
     .brand {
@@ -311,7 +347,7 @@ nav a i {
     transition: .3s ease-out;
 }
 
-.tanda .dropdown-toggle.collapser{
+.tanda .dropdown-toggle.collapser {
     color: #999;
 }
 
@@ -322,10 +358,12 @@ nav a i {
 .dropdown-toggle[aria-expanded="true"]:after {
     transform: rotate(180deg);
 }
-table td{
+
+table td {
     width: 130px;
     word-wrap: break-word;
 }
+
 /*for animation*/
 .dropdown-toggle:after {
     transition: 0.7s;
@@ -336,7 +374,8 @@ table td{
         margin-top: 15px;
         margin-left: 0;
     }
-    table.data{
+
+    table.data {
         font-size: 12px;
     }
 }

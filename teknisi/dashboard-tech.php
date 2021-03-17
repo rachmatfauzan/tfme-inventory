@@ -115,9 +115,10 @@ $kodelist = $list;
                     </div>
                 </div>
             </div>
-            <h5 class="mt-2 list-group-item-dark ml-3"
-                style="padding:5px; border-radius:5px;text-indent:22px;">History PR <span
-                    style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
+            <div class="judul mt-2">
+                <h5 class="mt-2 judul"><i class="fas fa-history mr-2"></i>History PR <span
+                        style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
+            </div>
 
             <!-- cek History PR -->
             <?php  
@@ -215,7 +216,7 @@ $kodelist = $list;
                 <div class="align-self-end">
                     <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> of <?= $jumlahHalaman; ?> </p>
                 </div>
-                <div class="page-nav">
+                <div class="page-nav p-3">
                     <?php if($halamanAktif > 1) :?>
                     <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i
                             class="fas fa-chevron-left mr-2"></i>Prev</a>
