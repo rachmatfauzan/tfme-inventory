@@ -6,7 +6,20 @@ include "../config/config.php";
 if(!isset($_SESSION['admin'])){
     header("location: index.php");
 }
-$query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
+
+// pagination and select data
+$jumlahDataperHalaman = 4; 
+$rows = mysqli_query($conn, "SELECT * FROM form_po ");
+$jumlahRows = mysqli_num_rows($rows);
+
+// Jumlah halaman yang tampil
+$jumlahHalaman = ceil($jumlahRows/ $jumlahDataperHalaman);
+
+// ternary logic
+$halamanAktif = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+$awalData = ($jumlahDataperHalaman * $halamanAktif) - $jumlahDataperHalaman;
+
+$query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $awalData, $jumlahDataperHalaman");
 
 
 ?>
@@ -89,7 +102,8 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                 </div>
             </div>
             <div class="kepala d-flex justify-content-between align-items-center mt-2 ml-2">
-                <h6 class="mt-2 list-group-item-info" style="width: 20em; padding:5px; border-radius:5px;text-indent:22px;">History PO <span style="font-style:italic; opacity:0.6;">(Purchase Order)</span></h6>
+                <h5 class="mt-2 judul"><i class="fas fa-history mr-2"></i>History PO <span
+                        style="font-style:italic; opacity:0.6;">(Purchase Order)</span></h5>
                 <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
             </div>
             <?php foreach ($query as $data) :?>
@@ -98,7 +112,8 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                     <div class="group">
                         <div class="box1 form-group col-sm">
                             <div class="tanda">
-                                <label style="opacity: 0.7; font-size:14px;"><?= $data['po_code']; ?> | <b>Requestor</b>
+                                <label style="opacity: 0.7; font-size:14px;"> <?php $code = sprintf("%05s", $data["id_po"]) ?>
+                                <?= "PO-". $code; ?> | <b>Requestor</b>
                                     <span style="text-transform: capitalize;"> <?= $_SESSION['user']; ?>
                                     </span></label> <br>
                                 <label class="title">Item Detail</label>
@@ -118,7 +133,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                                                 <th>Batch Code</th>
                                                 <th>DWG Code</th>
                                                 <th>IQA Code</th>
-                                                
+
                                             </tr>
                                             <td><?= $data['supplier_name']; ?></td>
                                             <td><?= $data['supplier_code']; ?></td>
@@ -131,7 +146,13 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                                             <td><?= $data['dwg_code']; ?></td>
                                             <td><?= $data['iqa_code']; ?></td>
                                         </table>
+                                        <p>....</p>
+                                        <a class="btn list-group-item-info btn-sm list-group-item-action"
+                                            style="font-size: 11px; width:100px;"
+                                            href="invoice-pr.php?id=<?= $data['kode_pr']?>">Detail P.R <i
+                                                class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="tanda form-group col d-flex flex-column">
@@ -160,6 +181,32 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC");
                 </div>
             </div>
             <?php endforeach; ?>
+            <!-- navigasi -->
+            <div class="pagination ml-3 d-flex justify-content-between align-items-end">
+                <div class="align-self-end">
+                    <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> to <?= $jumlahHalaman; ?> of <?= $jumlahRows; ?> Entries</p>
+                </div>
+                <div class="page-nav p-3">
+                    <?php if($halamanAktif > 1) :?>
+                    <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i
+                            class="fas fa-chevron-left mr-2"></i>Prev</a>
+                    <?php if($halamanAktif < $jumlahHalaman ) : ?>
+                    <a href="?page=<?= $halamanAktif-1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif-1; ?></a>
+                    <?php endif; ?>
+                    <?php endif; ?>
+
+                    <a href="?page=<?= $halamanAktif;?>" class="ml-2 bg-dark p-2 text-white"><?= $halamanAktif; ?></a>
+                    <?php if($halamanAktif < $jumlahHalaman) : ?>
+                    <?php if($halamanAktif > 1 ) : ?>
+                    <a href="?page=<?= $halamanAktif+1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif+1; ?></a>
+                    <?php endif; ?>
+                    <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-dark text-white p-2">Next<i
+                            class="fas fa-chevron-right ml-2"></i></a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
     </div>
 
