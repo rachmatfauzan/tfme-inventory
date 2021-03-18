@@ -56,7 +56,7 @@ if (isset($_POST['send'])){
         '$status_po'       
         )");
     if ($query){
-        $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE id_pr = $id");
+        $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE kode_pr = $id");
         $send = true;
     }else{
         echo "Failed";
