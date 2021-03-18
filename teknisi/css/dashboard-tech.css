@@ -137,11 +137,12 @@ nav a i {
 }
 
 h5.judul {
+    margin-left: 1%;
     padding: 10px;
     text-align: center;
-    border-radius: 0px 10px 10px 10px;
-    -moz-border-radius: 0px 10px 10px 10px;
-    -webkit-border-radius: 0px 10px 10px 10px;
+    -webkit-box-shadow: 0px 5px 5px 4px rgba(0,0,0,0.15);
+-moz-box-shadow: 0px 5px 5px 4px rgba(0,0,0,0.15);
+box-shadow: 0px 5px 5px 4px rgba(0,0,0,0.15);
     /* color */
     background: rgba(1, 96, 228, 1);
     background: -moz-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);

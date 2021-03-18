@@ -109,7 +109,7 @@ if(!isset($_SESSION['technician'])){
                     </div>
                     <hr style="border-color: gray; opacity: 0.6;">
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-sm-10">
                             <label class="text-bold">Full Name</label>
                             <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['name']; ?>" disabled>
                         </div>
@@ -119,11 +119,11 @@ if(!isset($_SESSION['technician'])){
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-sm-10">
                             <label class="text-bold">Email</label>
                             <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['email']; ?>" disabled>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-2">
                             <label>Handphone</label>
                             <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['handphone']; ?>" disabled>
                         </div>
