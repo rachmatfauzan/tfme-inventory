@@ -149,7 +149,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                         <p>....</p>
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
-                                            href="invoice-pr.php?id=<?= $data['kode_pr']?>">Detail P.R <i
+                                            href="invoice-po.php?id=<?= $data['id_po']?>">Detail P.O <i
                                                 class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                     
