@@ -14,6 +14,57 @@
     box-shadow: 0px 10px 11px 8px rgba(0, 0, 0, 0.12);
 }
 
+a.invoice {
+    /* color */
+    background: rgba(1, 96, 228, 1);
+    background: -moz-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(8%, rgba(1, 96, 228, 1)), color-stop(30%, rgba(2, 76, 178, 1)), color-stop(100%, rgba(6, 12, 20, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: linear-gradient(135deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    color: white;
+    /* box blur */
+    width: 20%;
+    border-radius: 0px 100px 0px 100px;
+    -moz-border-radius: 0px 100px 0px 100px;
+    -webkit-border-radius: 0px 100px 0px 100px;
+
+    -webkit-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+    /* transition */
+    transition: width 0.5s;
+}
+
+a.invoice:hover {
+    background: rgba(23, 162, 184, 1);
+    background: -moz-linear-gradient(-45deg, rgba(23, 162, 184, 1) 0%, rgba(23, 162, 184, 1) 13%, rgba(23, 162, 184, 1) 20%, rgba(6, 12, 20, 1) 88%, rgba(0, 0, 0, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(23, 162, 184, 1)), color-stop(13%, rgba(23, 162, 184, 1)), color-stop(20%, rgba(23, 162, 184, 1)), color-stop(88%, rgba(6, 12, 20, 1)), color-stop(100%, rgba(0, 0, 0, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(23, 162, 184, 1) 0%, rgba(23, 162, 184, 1) 13%, rgba(23, 162, 184, 1) 20%, rgba(6, 12, 20, 1) 88%, rgba(0, 0, 0, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(23, 162, 184, 1) 0%, rgba(23, 162, 184, 1) 13%, rgba(23, 162, 184, 1) 20%, rgba(6, 12, 20, 1) 88%, rgba(0, 0, 0, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(23, 162, 184, 1) 0%, rgba(23, 162, 184, 1) 13%, rgba(23, 162, 184, 1) 20%, rgba(6, 12, 20, 1) 88%, rgba(0, 0, 0, 1) 100%);
+    background: linear-gradient(135deg, rgba(23, 162, 184, 1) 0%, rgba(23, 162, 184, 1) 13%, rgba(23, 162, 184, 1) 20%, rgba(6, 12, 20, 1) 88%, rgba(0, 0, 0, 1) 100%);
+    width: 25%;
+    -webkit-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
+
+}
+
+@media screen and (max-width:900px) {
+    a.invoice {
+        width: 300px;
+    }
+    a.invoice:hover {
+        width: 300px;
+        color: black;
+    }
+    table img{
+        max-width: 30%;
+    }
+}
+
 .tag {
     margin: 10px;
 }
@@ -26,6 +77,8 @@
 input {
     border: none;
 }
-.addForm td textarea, select{
+
+.addForm td textarea,
+select {
     font-size: 12px;
 }
