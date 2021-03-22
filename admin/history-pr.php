@@ -96,8 +96,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
             </div>
             <div class="box d-flex flex-column">
                 <div class="label d-flex justify-content-center mb-3" style="width: 100%;">
-                    <h5 class="mt-2 list-group-item-info ml-3"
-                        style="width: 20em; padding:5px; border-radius:5px;text-align:center;">Select PR <span
+                    <h5 class="mt-2 judul"
+                       >Select PR <span
                             style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
                 </div>
                 <div class=" table-responsive">
