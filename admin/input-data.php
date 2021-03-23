@@ -236,7 +236,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                             </form>
                         </div>
                         <div class="modal-footer update mt-2">
-                            <a type="button" class="text-secondary mr-4" data-dismiss="modal">Close</a>
+                            <a type="button" class="text-secondary mr-4" data-dismiss="modal">Close &times;</a>
                         </div>
                     </div>
                 </div>
