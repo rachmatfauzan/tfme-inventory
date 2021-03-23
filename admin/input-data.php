@@ -115,9 +115,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <?php foreach ($query as $data) : ?>
                         <tr>
                             <td>
-                                <a class="bg-danger text-white">Delete</a>
-                                <a class="bg-info text-white">Update</a>
-                                <a class="bg-success text-white">Detail</a>
+                                <a class="bg-danger text-white"><i class="fas fa-trash-alt"></i></a> |
+                                <a class="bg-info text-white" type="button" data-target=".bd-example-modal-lg" id="myBtn3"
+                                    data-toggle="modal">Update</a>
                             </td>
                             <td><?= $data['part_number']; ?></td>
                             <td><?= $data['item']; ?></td>
@@ -173,6 +173,44 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                     </tfoot>
                 </table>
             </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="myModal3"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-box-open mr-3"></i>Edit Data
+                                Item</h5>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer update">
+                            <a type="button" class="text-secondary mr-4" data-dismiss="modal">Close</a>
+                            <button type="button" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    
+                    $("#myBtn3").click(function () {
+                        $("#myModal3").modal({
+                            backdrop: "static"
+                        });
+                    });
+                });
+            </script>
+
+
+
+
+
+
+            <!-- End Modal -->
             <div class="data-entry mt-4">
                 <div class="title mb-4 text-uppercase d-flex justify-content-center">
                     <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
