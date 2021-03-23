@@ -116,8 +116,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <tr>
                             <td>
                                 <a class="bg-danger text-white"><i class="fas fa-trash-alt"></i></a> |
-                                <a class="bg-info text-white" type="button" data-target=".bd-example-modal-lg" id="myBtn3"
-                                    data-toggle="modal">Update</a>
+                                <a class="bg-info text-white" type="button" data-target=".bd-example-modal-lg"
+                                    id="myBtn3" data-toggle="modal">Edit</a>
                             </td>
                             <td><?= $data['part_number']; ?></td>
                             <td><?= $data['item']; ?></td>
@@ -176,7 +176,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
 
 
             <!-- Modal -->
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="myModal3"
+            <div class="modal modal-fullscreen fade bd-example-modal-lg" tabindex="-1" role="dialog" id="myModal3"
                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -185,18 +185,66 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                                 Item</h5>
                         </div>
                         <div class="modal-body">
-                            ...
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Password</label>
+                                        <input type="password" class="form-control" id="inputPassword4"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input type="text" class="form-control" id="inputAddress"
+                                        placeholder="1234 Main St">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">Address 2</label>
+                                    <input type="text" class="form-control" id="inputAddress2"
+                                        placeholder="Apartment, studio, or floor">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">State</label>
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputZip">Zip</label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <label class="form-check-label" for="gridCheck">
+                                            Check me out
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm float-right">Edit Data</button>
+                            </form>
                         </div>
-                        <div class="modal-footer update">
+                        <div class="modal-footer update mt-2">
                             <a type="button" class="text-secondary mr-4" data-dismiss="modal">Close</a>
-                            <button type="button" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- logic jquery overlaynya -> mati -->
             <script>
                 $(document).ready(function () {
-                    
+
                     $("#myBtn3").click(function () {
                         $("#myModal3").modal({
                             backdrop: "static"

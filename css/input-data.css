@@ -122,15 +122,29 @@ body{
     text-transform: lowercase;
     font-size: 12px;
 }
-.modal-content{
+.modal.modal-fullscreen .modal-dialog {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
+    max-width: none; 
+  }
+  
+  .modal.modal-fullscreen .modal-content {
+    height: auto;
+    height: 100vh;
     border-radius: 0;
-}
-
+    border: none; 
+  }
+  
+  .modal.modal-fullscreen .modal-body {
+    overflow-y: auto; 
+  }
 .modal .update{
     margin: 0;
-    padding: 5px;
+    border: 0;
+    padding: 10px;
+    border-radius: 0;
     /* color */
     background: rgba(1, 96, 228, 1);
     background: -moz-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
