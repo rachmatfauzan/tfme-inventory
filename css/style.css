@@ -92,16 +92,24 @@ form .btn:hover{
 }
 .carousel-inner{
     display: flex;
+    height: 100%;
     justify-content: center;
-    height: 100vh;
 }
 .carousel-item {
     margin-top: 40px;
     width: 36rem;
-    height: 32rem;
+    height: 10rem;
 }
-.carousel-caption{
-    transform: translate(0,10em);
+.carousel-caption.second{
+    text-align: left;
+    transform: translate(-6em,20em);
+}
+.carousel-caption.start{
+    text-align: left;
+    transform: translate(-7em,18em);
+}
+.carousel-caption.third{
+    transform: translate(7em,18em);
 }
 .carousel-item img{
     background-position: center;
@@ -111,14 +119,8 @@ form .btn:hover{
 .carousel p{
     font-size: 13px;
 }
-.center {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
 /* end carousel */
+
 /* Responsive carousel*/
 @media screen and (max-width: 850px) {
     body{
