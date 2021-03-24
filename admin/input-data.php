@@ -412,8 +412,13 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                     $('.modal-body #expiration_date').val(expiration_date);
                     $('.modal-body #po_date').val(po_date);
                     $('.modal-body #pr_date').val(pr_date);
-
                 });
+                // logic autofocus
+                $(document).ready(function () {
+                    $('#myModal3').on('shown.bs.modal', function () {
+                        $('#item_name').trigger('focus');
+                    });
+                })
             </script>
 
             <!-- logic jquery overlaynya -> mati -->
