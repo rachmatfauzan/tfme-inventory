@@ -7,7 +7,8 @@ if(!isset($_SESSION['admin'])){
     header("location: index.php");
 }
 
-$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DESC");
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
+
 
 
 ?>
@@ -47,7 +48,14 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
+    
+    <!--  CDN SWAL-->
+    <script src="../swal2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
     <title>Dashboard Inventory</title>
+
+
+
 </head>
 
 <body>
@@ -117,7 +125,10 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <?php foreach ($query as $data) : ?>
                         <tr>
                             <td>
-                                <a class="bg-danger text-white"><i class="fas fa-trash-alt"></i></a> |
+                                <a class="bg-danger text-white" id="delete" data-target=".delete" data-toggle="modal"
+                                    data-part_number="<?= $data['part_number']; ?>"
+                                    data-id_item="<?= $data['id_item']; ?>"><i class="fas fa-trash-alt"></i></a>
+                                |
                                 <a class="bg-info text-white" id="updateData" type="button"
                                     data-target=".bd-example-modal-lg" data-toggle="modal"
                                     data-part_number="<?= $data['part_number']; ?>"
@@ -194,6 +205,62 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                 </table>
             </div>
 
+            <!-- Modal Delete -->
+            <div class="modal fade delete" id="modalDelete">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content d-flex flex-column align-items-center justify-content-center">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <h4 class="modal-title">Are You Want to Delete ?</h4>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formDelete" method="post" class="d-flex justify-content-center flex-column">
+                                <input type="text"  class="bg-light form-control"
+                                    style="text-align: center;" name="part" id="part_number">
+                                    <input type="text"  class="bg-light form-control d-none
+                                    style="text-align: center;" name="id_item" id="id_item">
+                                <div class="btn">
+                                    <button name="delete" class="btn btn-danger btn-sm text-white"
+                                        type="submit">Delete</button>
+                                    <button class="btn btn-light btn-sm" data-dismiss="modal">No</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- logic delete -->
+            <?php 
+            if (isset($_POST['delete'])){
+                $item = $_POST['id_item'];
+                $item = (int)$item;
+                var_dump($item);
+                $del = mysqli_query($conn, "DELETE FROM dt_inventory WHERE id_item = $item");
+            
+                if ($del){
+                    echo '<script>
+                    swal.fire("Data Deleted", "Great Work :)", "success");
+                    setTimeout(function(){window.top.location="input-data.php"},2000);
+                    </script>';
+                }else{
+                    echo "gagal";
+                }    
+            }
+            ?>
+                       
+
+            <script>
+                $(document).on('click', '#delete', function () {
+                    let partNumber = $(this).data('part_number');
+                    let id = $(this).data('id_item');
+                    $('.modal-body #part_number').val(partNumber);
+                    $('.modal-body #id_item').val(id);
+                });
+            </script>
+
+
 
 
             <!-- Modal -->
@@ -259,9 +326,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                                                 <label for="received_date">Received Date</label>
                                                 <input type="date" id="received_date" class="form-control bg-light">
                                             </div>
-
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-sm-6">
                                             <h5 class="font-weight-bold">SUPPLIER</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
@@ -421,7 +487,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
             <!-- End Modal -->
             <div class="data-entry mt-4">
                 <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                    <h5 class="font-weight-bold text-secondary">Input <b>New Part Number</b></h5>
+                    <h5 class="font-weight-bold text-secondary">Input New Part Number</h5>
                 </div>
                 <form>
                     <div class="group">
