@@ -81,8 +81,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
             <div class="title mb-4 text-uppercase d-flex justify-content-center">
                 <h5 class="font-weight-bold text-secondary" id="top">Data Inventory</h5>
                 <a type="button" data-toggle="modal" data-target=".glossary"
-                    style="font-sizen:13px; opacity:0.6; cursor:pointer;"><i
-                        class="far fa-question-circle ml-3"></i></a>
+                    style="font-size:13px; opacity:0.6; cursor:pointer;"><i class="far fa-question-circle ml-3"></i></a>
             </div>
             <div class="table-responsive mt-2">
                 <table class="table table-striped" id="data">
@@ -209,148 +208,129 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                         <div class="modal-body">
                             <form method="post" style="font-size:12px;">
                                 <div class="group">
-                                    <h5 class="font-weight-bold">ITEM</h5>
-                                    <hr class="my-4">
                                     <div class="row">
-                                        <div class="form-group col">
-                                            <label for="item_name">Item Name</label>
-                                            <input type="text" class="form-control bg-light" id="item_name">
+                                        <div class="form-group col-md-6">
+                                            <h5 class="font-weight-bold">ITEM</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="item_name">Item Name</label>
+                                                <input type="text" class="form-control bg-light" id="item_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="type">Type</label>
+                                                <input type="text" class="form-control bg-light" id="type">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="item_description">Item Description</label>
+                                                <textarea type="text" class="form-control bg-light"
+                                                    id="description"></textarea>
+                                            </div>
+                                            <h5 class="font-weight-bold">STOCK</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="on_hand">On Hand</label>
+                                                <input type="text" class="form-control bg-light" id="on_hand">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="in_transit">In Transit</label>
+                                                <input type="text" class="form-control bg-light" id="in_transit">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="on_prep">On Prep</label>
+                                                <input type="text" class="form-control bg-light" id="on_prep">
+                                            </div>
+                                            <h5 class="font-weight-bold">CHECKING</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="batch_no">Batch#</label>
+                                                <input type="text" class="form-control bg-light" id="batch_no">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dwg_no">DWG#</label>
+                                                <input type="text" class="form-control bg-light" id="dwg_no">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="iqa_no">IQA#</label>
+                                                <input type="text" class="form-control bg-light" id="iqa_no">
+                                            </div>
+                                            <h5 class="font-weight-bold">DATE</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="received_date">Received Date</label>
+                                                <input type="date" id="received_date" class="form-control bg-light">
+                                            </div>
+
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="type">Type</label>
-                                            <input type="text" class="form-control bg-light" id="type">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="item_description">Item Description</label>
-                                            <textarea type="text" class="form-control bg-light"
-                                                id="description"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">NUMBERING</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="part_number">Part Number</label>
-                                            <input type="text" class="form-control bg-light" id="part_number">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="cc">Cost Center</label>
-                                            <select id="cc" class="form-control custom-select  bg-light">
-                                                <option selected disabled>-- Choose CC --</option>
-                                                <option value="10">10 PCB</option>
-                                                <option value="20">20 PCBA</option>
-                                                <option value="30">30 IC PACK</option>
-                                                <option value="40">40 GENERAL</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="account_code">Account Code</label>
-                                            <input type="text" class="form-control bg-light" id="account_code">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">SUPPLIER</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="supplier">Supplier Name</label>
-                                            <input type="text" class="form-control bg-light" id="supplier">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="supplier_no">Supplier#</label>
-                                            <input type="text" class="form-control bg-light" id="supplier_no">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">STOCK</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="on_hand">On Hand</label>
-                                            <input type="text" class="form-control bg-light" id="on_hand">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="in_transit">In Transit</label>
-                                            <input type="text" class="form-control bg-light" id="in_transit">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="on_prep">On Prep</label>
-                                            <input type="text" class="form-control bg-light" id="on_prep">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">ORDER</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="moq">MOQ</label>
-                                            <input type="text" class="form-control bg-light" id="moq">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="cost">Cost</label>
-                                            <input type="text" class="form-control bg-light" id="cost">
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="on_pr_no">On PR#</label>
-                                            <input type="text" class="form-control bg-light" id="on_pr_no">
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="on_po_no">On PO#</label>
-                                            <input type="text" class="form-control bg-light" id="on_po_no">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="pr_date">PR Date</label>
-                                            <input type="date" id="pr_date" class="form-control bg-light">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="po_date">PO Date</label>
-                                            <input type="date" id="po_date" class="form-control bg-light">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">CHECKING</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="batch_no">Batch#</label>
-                                            <input type="text" class="form-control bg-light" id="batch_no">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="dwg_no">DWG#</label>
-                                            <input type="text" class="form-control bg-light" id="dwg_no">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="iqa_no">IQA#</label>
-                                            <input type="text" class="form-control bg-light" id="iqa_no">
+                                        <div class="form-group col-md-6">
+                                            <h5 class="font-weight-bold">SUPPLIER</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="supplier">Supplier Name</label>
+                                                <input type="text" class="form-control bg-light" id="supplier">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supplier_no">Supplier#</label>
+                                                <input type="text" class="form-control bg-light" id="supplier_no">
+                                            </div>
+                                            <h5 class="font-weight-bold">NUMBERING</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="part_number">Part Number</label>
+                                                <input type="text" class="form-control list-group-item-info"
+                                                    id="part_number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc">Cost Center</label>
+                                                <select id="cc" class="form-control custom-select  bg-light">
+                                                    <option selected disabled>-- Choose CC --</option>
+                                                    <option value="10">10 PCB</option>
+                                                    <option value="20">20 PCBA</option>
+                                                    <option value="30">30 IC PACK</option>
+                                                    <option value="40">40 GENERAL</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="account_code">Account Code</label>
+                                                <input type="text" class="form-control bg-light" id="account_code">
+                                            </div>
+                                            <h5 class="font-weight-bold">ORDER</h5>
+                                            <hr class="my-4">
+                                            <div class="form-group">
+                                                <label for="moq">MOQ</label>
+                                                <input type="text" class="form-control bg-light" id="moq">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cost">Cost</label>
+                                                <input type="text" class="form-control bg-light" id="cost">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="on_pr_no">On PR#</label>
+                                                <input type="text" class="form-control bg-light" id="on_pr_no">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="on_po_no">On PO#</label>
+                                                <input type="text" class="form-control bg-light" id="on_po_no">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="pr_date">PR Date</label>
+                                                <input type="date" id="pr_date" class="form-control bg-light">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="po_date">PO Date</label>
+                                                <input type="date" id="po_date" class="form-control bg-light">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="manufacturing_date">Manufacture Date</label>
+                                                <input type="date" id="manufacturing_date"
+                                                    class="form-control bg-light">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">DATE</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col-md">
-                                            <label for="received_date">Received Date</label>
-                                            <input type="date" id="received_date" class="form-control bg-light">
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="manufacturing_date">Manufacture Date</label>
-                                            <input type="date" id="manufacturing_date" class="form-control bg-light">
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="expiration_date">Expiration Date</label>
-                                            <input type="date" id="expiration_date" class="form-control bg-light">
-                                        </div>
+                                <div class="row">
+                                    <div class="form-group col-md">
+                                        <label for="expiration_date">Expiration Date</label>
+                                        <input type="date" id="expiration_date" class="form-control bg-light">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-sm float-right">Edit Data</button>
@@ -441,7 +421,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
             <!-- End Modal -->
             <div class="data-entry mt-4">
                 <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                    <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
+                    <h5 class="font-weight-bold text-secondary">Input <b>New Part Number</b></h5>
                 </div>
                 <form>
                     <div class="group">
