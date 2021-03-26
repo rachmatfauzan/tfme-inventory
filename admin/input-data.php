@@ -218,7 +218,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         <div class="modal-body">
                             <form id="formDelete" method="post" class="d-flex justify-content-center flex-column">
                                 <input type="text"  class="bg-light form-control"
-                                    style="text-align: center;" name="part" id="part_number">
+                                    style="text-align: center;" name="part" id="part_number" disabled>
                                     <input type="text"  class="bg-light form-control d-none
                                     style="text-align: center;" name="id_item" id="id_item">
                                 <div class="btn">
@@ -242,7 +242,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                 if ($del){
                     echo '<script>
                     swal.fire("Data Deleted", "Great Work :)", "success");
-                    setTimeout(function(){window.top.location="input-data.php"},2000);
                     </script>';
                 }else{
                     echo "gagal";
