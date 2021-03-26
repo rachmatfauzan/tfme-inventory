@@ -48,7 +48,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
-    
+
     <!--  CDN SWAL-->
     <script src="../swal2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
@@ -59,6 +59,24 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 </head>
 
 <body>
+    <!-- logic delete -->
+    <?php 
+            if (isset($_POST['delete'])){
+                $item = $_POST['id_item'];
+                $item = (int)$item;
+                $del = mysqli_query($conn, "DELETE FROM dt_inventory WHERE id_item = $item");
+            
+                if ($del){
+                    echo '<script>
+                    swal.fire("Data Deleted", "Great Work :)", "success");
+                    setTimeout(function(){window.top.location="input-data.php"},1500);
+                    </script>';
+                    exit;
+                }else{
+                    echo "gagal";
+                }    
+            }
+            ?>
     <!-- start header -->
     <div class="konten">
         <div class="navbar bg-dark justify-content-between">
@@ -67,7 +85,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     <img src="../image/profile.png" alt="">
                 </div>
                 <div class="profile-name">
-                    <h5>Rachmat Fauzan</h5>
+                    <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
                     <p>Inventory admin</p>
                 </div>
                 <div class="dropdown">
@@ -217,10 +235,10 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         </div>
                         <div class="modal-body">
                             <form id="formDelete" method="post" class="d-flex justify-content-center flex-column">
-                                <input type="text"  class="bg-light form-control"
-                                    style="text-align: center;" name="part" id="part_number" disabled>
-                                    <input type="text"  class="bg-light form-control d-none
-                                    style="text-align: center;" name="id_item" id="id_item">
+                                <input type="text" class="bg-light form-control" style="text-align: center;" name="part"
+                                    id="part_number" disabled>
+                                <input type="text" class="bg-light form-control d-none
+                                    style=" text-align: center;" name="id_item" id="id_item">
                                 <div class="btn">
                                     <button name="delete" class="btn btn-danger btn-sm text-white"
                                         type="submit">Delete</button>
@@ -231,24 +249,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     </div>
                 </div>
             </div>
-            <!-- logic delete -->
-            <?php 
-            if (isset($_POST['delete'])){
-                $item = $_POST['id_item'];
-                $item = (int)$item;
-                var_dump($item);
-                $del = mysqli_query($conn, "DELETE FROM dt_inventory WHERE id_item = $item");
-            
-                if ($del){
-                    echo '<script>
-                    swal.fire("Data Deleted", "Great Work :)", "success");
-                    </script>';
-                }else{
-                    echo "gagal";
-                }    
-            }
-            ?>
-                       
+
 
             <script>
                 $(document).on('click', '#delete', function () {
