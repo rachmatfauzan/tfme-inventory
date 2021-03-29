@@ -10,7 +10,6 @@ if(!isset($_SESSION['admin'])){
 $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
 
 
-
 ?>
 
 
@@ -59,25 +58,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 </head>
 
 <body>
-    <!-- logic delete -->
-    <?php 
-            if (isset($_POST['delete'])){
-                $item = $_POST['id_item'];
-                $item = (int)$item;
-                $del = mysqli_query($conn, "DELETE FROM dt_inventory WHERE id_item = $item");
-            
-                if ($del){
-                    echo '<script>
-                    swal.fire("Data Deleted", "Great Work :)", "success");
-                    setTimeout(function(){window.top.location="input-data.php"},1500);
-                    </script>';
-                    exit;
-                }else{
-                    echo "gagal";
-                }    
-            }
-            ?>
-    <!-- start header -->
     <div class="konten">
         <div class="navbar bg-dark justify-content-between">
             <div class="profile">
@@ -101,11 +81,99 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     <a class="nav-link " href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
                 </div>
             </div>
+
+            <!-- Logic Update -->
+            <?php  
+                // update
+                if (isset($_POST['ubah'])){
+                    $id_item = $_POST['id_item'];
+                    $part_number = $_POST['part_number'];
+                    $item_name = htmlspecialchars($_POST['item_name']); 
+                    $received_date = $_POST['received_date'];
+                    $cc = $_POST['cc'];
+                    $type = $_POST['type'];
+                    $account_code = $_POST['account_code'];
+                    $supplier = $_POST['supplier'];
+                    $description = $_POST['description'];
+                    $supplier_no = $_POST['supplier_no'];
+                    $cost = $_POST['cost'];
+                    $on_hand = $_POST['on_hand'];
+                    $in_transit = $_POST['in_transit'];
+                    $on_prep = $_POST['on_prep'];
+                    $moq = $_POST['moq'];
+                    $dwg_no = $_POST['dwg_no'];
+                    $on_pr_no = $_POST['on_pr_no'];
+                    $on_po_no = $_POST['on_po_no'];
+                    $batch_no = $_POST['batch_no'];
+                    $iqa = $_POST['iqa'];
+                    $manufacturing_date = $_POST['manufacturing_date'];
+                    $expiration_date = $_POST['expiration_date'];
+                    $po_date = $_POST['po_date'];
+                    $pr_date = $_POST['pr_date'];
+                    
+                    echo $item_name; PHP_EOL;
+                    $update = mysqli_query($conn, "UPDATE dt_inventory SET
+                    item = '$item_name',
+                    supplier_no = '$supplier_no',
+                    cc = '$cc',
+                    account_code = '$account_code',
+                    type = '$type',
+                    supplier = '$supplier',
+                    dwg_no = '$dwg_no',
+                    description = '$description',
+                    moq = '$moq',
+                    cost = '$cost',
+                    on_hand = '$on_hand',
+                    in_transit = '$in_transit',
+                    on_prep = '$on_prep',
+                    on_pr_no = '$on_pr_no',
+                    on_po_no = '$on_po_no',
+                    batch_no = '$batch_no',
+                    iqa = '$iqa',
+                    received_date = '$received_date',
+                    manufacturing_date = '$manufacturing_date',
+                    expiration_date = '$expiration_date',
+                    po_date = '$po_date',
+                    pr_date = '$pr_date'
+                    WHERE id_item = '$id_item' ");
+
+                    if ($update){
+                        echo '<script>
+                    swal.fire("Data Updated", "Great Work :)", "success");
+                    setTimeout(function(){window.top.location="input-data.php"},1500);
+                    </script>';
+                    exit;
+                    }
+                    else{
+                        echo "gagal";
+                    }
+
+                }
+            ?>
+
+            <!-- logic delete -->
+            <?php 
+            if (isset($_POST['delete'])){
+                $item = $_POST['id_item'];
+                $item = (int)$item;
+                $del = mysqli_query($conn, "DELETE FROM dt_inventory WHERE id_item = $item");
+            
+                if ($del){
+                    echo '<script>
+                    swal.fire("Data Deleted", "Great Work :)", "success");
+                    setTimeout(function(){window.top.location="input-data.php"},1500);
+                    </script>';
+                    exit;
+                }else{
+                    echo "gagal";
+                }    
+            }
+            ?>
         </div>
         <div class="box">
-
+            <!-- start header -->
             <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                <h5 class="font-weight-bold text-secondary" id="top">Data Inventory</h5>
+                <h5 class="font-weight-bold text-secondary" id="top"><i class="fas fa-box-open mr-3"></i>Data Inventory</h5>
                 <a type="button" data-toggle="modal" data-target=".glossary"
                     style="font-size:13px; opacity:0.6; cursor:pointer;"><i class="far fa-question-circle ml-3"></i></a>
             </div>
@@ -149,6 +217,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 |
                                 <a class="bg-info text-white" id="updateData" type="button"
                                     data-target=".bd-example-modal-lg" data-toggle="modal"
+                                    data-id_item="<?= $data['id_item']; ?>"
                                     data-part_number="<?= $data['part_number']; ?>"
                                     data-item_name="<?= $data['item']; ?>"
                                     data-account_code="<?= $data['account_code']; ?>" data-type="<?= $data['type']; ?>"
@@ -277,54 +346,55 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 <div class="group">
                                     <div class="row">
                                         <div class="form-group col-md-6">
+                                            <input type="text" name="id_item" id="id_item" class="d-none">
                                             <h5 class="font-weight-bold">ITEM</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="item_name">Item Name</label>
-                                                <input type="text" class="form-control bg-light" id="item_name">
+                                                <input type="text" class="form-control bg-light" id="item_name" name="item_name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="type">Type</label>
-                                                <input type="text" class="form-control bg-light" id="type">
+                                                <input type="text" name="type" class="form-control bg-light" id="type">
                                             </div>
                                             <div class="form-group">
                                                 <label for="item_description">Item Description</label>
                                                 <textarea type="text" class="form-control bg-light"
-                                                    id="description"></textarea>
+                                                    id="description" name="description"></textarea>
                                             </div>
                                             <h5 class="font-weight-bold">STOCK</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="on_hand">On Hand</label>
-                                                <input type="text" class="form-control bg-light" id="on_hand">
+                                                <input type="text" name="on_hand" class="form-control bg-light" id="on_hand">
                                             </div>
                                             <div class="form-group">
                                                 <label for="in_transit">In Transit</label>
-                                                <input type="text" class="form-control bg-light" id="in_transit">
+                                                <input type="text" name="in_transit" class="form-control bg-light" id="in_transit">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_prep">On Prep</label>
-                                                <input type="text" class="form-control bg-light" id="on_prep">
+                                                <input type="text" name="on_prep" class="form-control bg-light" id="on_prep">
                                             </div>
                                             <h5 class="font-weight-bold">CHECKING</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="batch_no">Batch#</label>
-                                                <input type="text" class="form-control bg-light" id="batch_no">
+                                                <input type="text" name="batch_no" class="form-control bg-light" id="batch_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="dwg_no">DWG#</label>
-                                                <input type="text" class="form-control bg-light" id="dwg_no">
+                                                <input type="text" name="dwg_no" class="form-control bg-light" id="dwg_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="iqa_no">IQA#</label>
-                                                <input type="text" class="form-control bg-light" id="iqa_no">
+                                                <input type="text" name="iqa" class="form-control bg-light" id="iqa_no">
                                             </div>
                                             <h5 class="font-weight-bold">DATE</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="received_date">Received Date</label>
-                                                <input type="date" id="received_date" class="form-control bg-light">
+                                                <input type="date" name="received_date" id="received_date" class="form-control bg-light">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-6">
@@ -332,22 +402,22 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="supplier">Supplier Name</label>
-                                                <input type="text" class="form-control bg-light" id="supplier">
+                                                <input type="text" name="supplier" class="form-control bg-light" id="supplier">
                                             </div>
                                             <div class="form-group">
                                                 <label for="supplier_no">Supplier#</label>
-                                                <input type="text" class="form-control bg-light" id="supplier_no">
+                                                <input type="text" name="supplier_no" class="form-control bg-light" id="supplier_no">
                                             </div>
                                             <h5 class="font-weight-bold">NUMBERING</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="part_number">Part Number</label>
-                                                <input type="text" class="form-control list-group-item-info"
+                                                <input type="text" name="part_number" class="form-control list-group-item-info"
                                                     id="part_number">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc">Cost Center</label>
-                                                <select id="cc" class="form-control custom-select  bg-light">
+                                                <select id="cc" name="cc" class="form-control custom-select  bg-light">
                                                     <option selected disabled>-- Choose CC --</option>
                                                     <option value="10">10 PCB</option>
                                                     <option value="20">20 PCBA</option>
@@ -357,37 +427,37 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             </div>
                                             <div class="form-group">
                                                 <label for="account_code">Account Code</label>
-                                                <input type="text" class="form-control bg-light" id="account_code">
+                                                <input type="text" name="account_code" class="form-control bg-light" id="account_code">
                                             </div>
                                             <h5 class="font-weight-bold">ORDER</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="moq">MOQ</label>
-                                                <input type="text" class="form-control bg-light" id="moq">
+                                                <input type="text" name="moq" class="form-control bg-light" id="moq">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cost">Cost</label>
-                                                <input type="text" class="form-control bg-light" id="cost">
+                                                <input type="text" name="cost" class="form-control bg-light" id="cost">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_pr_no">On PR#</label>
-                                                <input type="text" class="form-control bg-light" id="on_pr_no">
+                                                <input type="text" name="on_pr_no" class="form-control bg-light" id="on_pr_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_po_no">On PO#</label>
-                                                <input type="text" class="form-control bg-light" id="on_po_no">
+                                                <input type="text" name="on_po_no" class="form-control bg-light" id="on_po_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="pr_date">PR Date</label>
-                                                <input type="date" id="pr_date" class="form-control bg-light">
+                                                <input type="date" name="pr_date" id="pr_date" class="form-control bg-light">
                                             </div>
                                             <div class="form-group">
                                                 <label for="po_date">PO Date</label>
-                                                <input type="date" id="po_date" class="form-control bg-light">
+                                                <input type="date" name="po_date" id="po_date" class="form-control bg-light">
                                             </div>
                                             <div class="form-group">
                                                 <label for="manufacturing_date">Manufacture Date</label>
-                                                <input type="date" id="manufacturing_date"
+                                                <input type="date" name="manufacturing_date" id="manufacturing_date"
                                                     class="form-control bg-light">
                                             </div>
                                         </div>
@@ -396,10 +466,10 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 <div class="row">
                                     <div class="form-group col-md">
                                         <label for="expiration_date">Expiration Date</label>
-                                        <input type="date" id="expiration_date" class="form-control bg-light">
+                                        <input type="date" name="expiration_date" id="expiration_date" class="form-control bg-light">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-sm float-right">Edit Data</button>
+                                <button type="submit" class="btn btn-info btn-sm float-right" name="ubah">Edit Data</button>
                             </form>
                         </div>
                         <div class="modal-footer update mt-2">
@@ -412,6 +482,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
             <script>
                 $(document).on('click', '#updateData', function () {
+                    let id_item = $(this).data('id_item');
                     let partNumber = $(this).data('part_number');
                     let received_date = $(this).data('received_date');
                     let account_code = $(this).data('account_code');
@@ -435,6 +506,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     let pr_date = $(this).data('pr_date');
                     let item_name = $(this).data('item_name');
                     let cc = $(this).data('cc');
+                    $('.modal-body #id_item').val(id_item);
                     $('.modal-body #part_number').val(partNumber);
                     $('.modal-body #item_name').val(item_name);
                     $('.modal-body #received_date').val(received_date);
@@ -478,11 +550,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     });
                 });
             </script>
-
-
-
-
-
 
             <!-- End Modal -->
             <div class="data-entry mt-4">
