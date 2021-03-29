@@ -111,7 +111,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     $po_date = $_POST['po_date'];
                     $pr_date = $_POST['pr_date'];
                     
-                    echo $item_name; PHP_EOL;
                     $update = mysqli_query($conn, "UPDATE dt_inventory SET
                     item = '$item_name',
                     supplier_no = '$supplier_no',
