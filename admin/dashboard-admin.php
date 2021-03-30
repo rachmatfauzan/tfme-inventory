@@ -7,7 +7,7 @@ if(!isset($_SESSION['admin'])){
     header("location: index.php");
 }
 
-$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item ASC");
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
 
 
 ?>
@@ -96,7 +96,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item ASC");
                         <div class="kepala-kanan">
                             <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
                                     class="far fa-question-circle"></i></button>
-                            <a href="input-data.php"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Get Action</a>
+                            <a href="input-data.php"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Get
+                                Action</a>
                             <!-- Large modal -->
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                                 aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -275,15 +276,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item ASC");
                             <thead>
                                 <tr class="bg-dark text-white">
                                     <th>Part Number</th>
-                                    <th>Item</th>
-                                    <th>Account Code</th>
-                                    <th>Type</th>
-                                    <th>Supplier</th>
+                                    <!-- <th>Item</th> -->
                                     <th>Description</th>
+                                    <th>On Hand</th>
+                                    <th>Type</th>
+                                    <th>Cost</th>
+                                    <th>Account Code</th>
+                                    <th>Supplier</th>
                                     <th>Supplier#</th>
                                     <th>CC</th>
-                                    <th>Cost</th>
-                                    <th>On Hand</th>
                                     <th>In Transit</th>
                                     <th>On Prep</th>
                                     <th>moq</th>
@@ -303,15 +304,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item ASC");
                                 <?php foreach ($query as $data) : ?>
                                 <tr>
                                     <td><?= $data['part_number']; ?></td>
-                                    <td><?= $data['item']; ?></td>
-                                    <td><?= $data['account_code']; ?></td>
-                                    <td><?= $data['type']; ?></td>
-                                    <td><?= $data['supplier']; ?></td>
+                                    <!-- <td><?= $data['item']; ?></td> -->
                                     <td><?= $data['description']; ?></td>
+                                    <td><?= $data['on_hand']; ?></td>
+                                    <td><?= $data['type']; ?></td>
+                                    <td><?= $data['cost']; ?></td>
+                                    <td><?= $data['account_code']; ?></td>
+                                    <td><?= $data['supplier']; ?></td>
                                     <td><?= $data['supplier_no']; ?></td>
                                     <td><?= $data['cc']; ?></td>
-                                    <td><?= $data['cost']; ?></td>
-                                    <td><?= $data['on_hand']; ?></td>
                                     <td><?= $data['in_transit']; ?></td>
                                     <td><?= $data['on_prep']; ?></td>
                                     <td><?= $data['moq']; ?></td>
@@ -331,15 +332,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item ASC");
                             <tfoot>
                                 <tr>
                                     <th>Part Number</th>
-                                    <th>Item</th>
-                                    <th>Account Code</th>
-                                    <th>Type</th>
-                                    <th>Supplier</th>
+                                    <!-- <th>Item</th> -->
                                     <th>Description</th>
+                                    <th>On Hand</th>
+                                    <th>Type</th>
+                                    <th>Cost</th>
+                                    <th>Account Code</th>
+                                    <th>Supplier</th>
                                     <th>Supplier#</th>
                                     <th>CC</th>
-                                    <th>Cost</th>
-                                    <th>On Hand</th>
                                     <th>In Transit</th>
                                     <th>On Prep</th>
                                     <th>moq</th>

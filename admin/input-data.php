@@ -88,7 +88,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                 if (isset($_POST['ubah'])){
                     $id_item = $_POST['id_item'];
                     $part_number = $_POST['part_number'];
-                    $item_name = htmlspecialchars($_POST['item_name']); 
+                    // $item_name = htmlspecialchars($_POST['item_name']); 
                     $received_date = $_POST['received_date'];
                     $cc = $_POST['cc'];
                     $type = $_POST['type'];
@@ -112,7 +112,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     $pr_date = $_POST['pr_date'];
                     
                     $update = mysqli_query($conn, "UPDATE dt_inventory SET
-                    item = '$item_name',
+                    item = null,
                     supplier_no = '$supplier_no',
                     cc = '$cc',
                     account_code = '$account_code',
@@ -172,7 +172,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
         <div class="box">
             <!-- start header -->
             <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                <h5 class="font-weight-bold text-secondary" id="top"><i class="fas fa-box-open mr-3"></i>Data Inventory</h5>
+                <h5 class="font-weight-bold text-secondary" id="top"><i class="fas fa-box-open mr-3"></i>Data Inventory
+                </h5>
                 <a type="button" data-toggle="modal" data-target=".glossary"
                     style="font-size:13px; opacity:0.6; cursor:pointer;"><i class="far fa-question-circle ml-3"></i></a>
             </div>
@@ -182,15 +183,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         <tr class="bg-dark text-white">
                             <th>Action</th>
                             <th>Part Number</th>
-                            <th>Item</th>
-                            <th>Account Code</th>
-                            <th>Type</th>
-                            <th>Supplier</th>
+                            <!-- <th>Item</th> -->
                             <th>Description</th>
+                            <th>On Hand</th>
+                            <th>Type</th>
+                            <th>Cost</th>
+                            <th>Account Code</th>
+                            <th>Supplier</th>
                             <th>Supplier#</th>
                             <th>CC</th>
-                            <th>Cost</th>
-                            <th>On Hand</th>
                             <th>In Transit</th>
                             <th>On Prep</th>
                             <th>moq</th>
@@ -237,15 +238,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
                             </td>
                             <td><?= $data['part_number']; ?></td>
-                            <td><?= $data['item']; ?></td>
-                            <td><?= $data['account_code']; ?></td>
-                            <td><?= $data['type']; ?></td>
-                            <td><?= $data['supplier']; ?></td>
+                            <!-- <td><?= $data['item']; ?></td> -->
                             <td><?= $data['description']; ?></td>
+                            <td><?= $data['on_hand']; ?></td>
+                            <td><?= $data['type']; ?></td>
+                            <td><?= $data['cost']; ?></td>
+                            <td><?= $data['account_code']; ?></td>
+                            <td><?= $data['supplier']; ?></td>
                             <td><?= $data['supplier_no']; ?></td>
                             <td><?= $data['cc']; ?></td>
-                            <td><?= $data['cost']; ?></td>
-                            <td><?= $data['on_hand']; ?></td>
                             <td><?= $data['in_transit']; ?></td>
                             <td><?= $data['on_prep']; ?></td>
                             <td><?= $data['moq']; ?></td>
@@ -265,15 +266,15 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     <tfoot>
                         <th>Action</th>
                         <th>Part Number</th>
-                        <th>Item</th>
-                        <th>Account Code</th>
-                        <th>Type</th>
-                        <th>Supplier</th>
+                        <!-- <th>Item</th> -->
                         <th>Description</th>
+                        <th>On Hand</th>
+                        <th>Type</th>
+                        <th>Cost</th>
+                        <th>Account Code</th>
+                        <th>Supplier</th>
                         <th>Supplier#</th>
                         <th>CC</th>
-                        <th>Cost</th>
-                        <th>On Hand</th>
                         <th>In Transit</th>
                         <th>On Prep</th>
                         <th>moq</th>
@@ -348,42 +349,47 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             <input type="text" name="id_item" id="id_item" class="d-none">
                                             <h5 class="font-weight-bold">ITEM</h5>
                                             <hr class="my-4">
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="item_name">Item Name</label>
                                                 <input type="text" class="form-control bg-light" id="item_name" name="item_name">
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label for="type">Type</label>
                                                 <input type="text" name="type" class="form-control bg-light" id="type">
                                             </div>
                                             <div class="form-group">
                                                 <label for="item_description">Item Description</label>
-                                                <textarea type="text" class="form-control bg-light"
-                                                    id="description" name="description"></textarea>
+                                                <textarea type="text" class="form-control bg-light" id="description"
+                                                    name="description"></textarea>
                                             </div>
                                             <h5 class="font-weight-bold">STOCK</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="on_hand">On Hand</label>
-                                                <input type="text" name="on_hand" class="form-control bg-light" id="on_hand">
+                                                <input type="text" name="on_hand" class="form-control bg-light"
+                                                    id="on_hand">
                                             </div>
                                             <div class="form-group">
                                                 <label for="in_transit">In Transit</label>
-                                                <input type="text" name="in_transit" class="form-control bg-light" id="in_transit">
+                                                <input type="text" name="in_transit" class="form-control bg-light"
+                                                    id="in_transit">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_prep">On Prep</label>
-                                                <input type="text" name="on_prep" class="form-control bg-light" id="on_prep">
+                                                <input type="text" name="on_prep" class="form-control bg-light"
+                                                    id="on_prep">
                                             </div>
                                             <h5 class="font-weight-bold">CHECKING</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="batch_no">Batch#</label>
-                                                <input type="text" name="batch_no" class="form-control bg-light" id="batch_no">
+                                                <input type="text" name="batch_no" class="form-control bg-light"
+                                                    id="batch_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="dwg_no">DWG#</label>
-                                                <input type="text" name="dwg_no" class="form-control bg-light" id="dwg_no">
+                                                <input type="text" name="dwg_no" class="form-control bg-light"
+                                                    id="dwg_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="iqa_no">IQA#</label>
@@ -393,7 +399,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="received_date">Received Date</label>
-                                                <input type="date" name="received_date" id="received_date" class="form-control bg-light">
+                                                <input type="date" name="received_date" id="received_date"
+                                                    class="form-control bg-light">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-6">
@@ -401,18 +408,20 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="supplier">Supplier Name</label>
-                                                <input type="text" name="supplier" class="form-control bg-light" id="supplier">
+                                                <input type="text" name="supplier" class="form-control bg-light"
+                                                    id="supplier">
                                             </div>
                                             <div class="form-group">
                                                 <label for="supplier_no">Supplier#</label>
-                                                <input type="text" name="supplier_no" class="form-control bg-light" id="supplier_no">
+                                                <input type="text" name="supplier_no" class="form-control bg-light"
+                                                    id="supplier_no">
                                             </div>
                                             <h5 class="font-weight-bold">NUMBERING</h5>
                                             <hr class="my-4">
                                             <div class="form-group">
                                                 <label for="part_number">Part Number</label>
-                                                <input type="text" name="part_number" class="form-control list-group-item-info"
-                                                    id="part_number">
+                                                <input type="text" name="part_number"
+                                                    class="form-control list-group-item-info" id="part_number">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc">Cost Center</label>
@@ -426,7 +435,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             </div>
                                             <div class="form-group">
                                                 <label for="account_code">Account Code</label>
-                                                <input type="text" name="account_code" class="form-control bg-light" id="account_code">
+                                                <input type="text" name="account_code" class="form-control bg-light"
+                                                    id="account_code">
                                             </div>
                                             <h5 class="font-weight-bold">ORDER</h5>
                                             <hr class="my-4">
@@ -440,19 +450,23 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_pr_no">On PR#</label>
-                                                <input type="text" name="on_pr_no" class="form-control bg-light" id="on_pr_no">
+                                                <input type="text" name="on_pr_no" class="form-control bg-light"
+                                                    id="on_pr_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_po_no">On PO#</label>
-                                                <input type="text" name="on_po_no" class="form-control bg-light" id="on_po_no">
+                                                <input type="text" name="on_po_no" class="form-control bg-light"
+                                                    id="on_po_no">
                                             </div>
                                             <div class="form-group">
                                                 <label for="pr_date">PR Date</label>
-                                                <input type="date" name="pr_date" id="pr_date" class="form-control bg-light">
+                                                <input type="date" name="pr_date" id="pr_date"
+                                                    class="form-control bg-light">
                                             </div>
                                             <div class="form-group">
                                                 <label for="po_date">PO Date</label>
-                                                <input type="date" name="po_date" id="po_date" class="form-control bg-light">
+                                                <input type="date" name="po_date" id="po_date"
+                                                    class="form-control bg-light">
                                             </div>
                                             <div class="form-group">
                                                 <label for="manufacturing_date">Manufacture Date</label>
@@ -465,10 +479,12 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 <div class="row">
                                     <div class="form-group col-md">
                                         <label for="expiration_date">Expiration Date</label>
-                                        <input type="date" name="expiration_date" id="expiration_date" class="form-control bg-light">
+                                        <input type="date" name="expiration_date" id="expiration_date"
+                                            class="form-control bg-light">
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-info btn-sm float-right" name="ubah">Edit Data</button>
+                                <button type="submit" class="btn btn-info btn-sm float-right" name="ubah">Edit
+                                    Data</button>
                             </form>
                         </div>
                         <div class="modal-footer update mt-2">
