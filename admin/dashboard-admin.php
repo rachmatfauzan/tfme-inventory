@@ -35,7 +35,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
     <!-- link script datatable -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Bootstrap Js -->
@@ -300,6 +300,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <th>pr_date</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
                                 <?php foreach ($query as $data) : ?>
                                 <tr>

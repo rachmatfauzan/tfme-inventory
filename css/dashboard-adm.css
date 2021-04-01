@@ -284,6 +284,20 @@ nav a i {
     font-size: 12px;
 }
 
+td i.copy{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+td i.copy:hover{
+    opacity: unset;
+}
+.alertBox{
+    width: 100vh;
+    height: 100vh;
+    background-color: violet;
+}
+
 /*  */
 .kepala-kanan .btn {
     background-color: white;

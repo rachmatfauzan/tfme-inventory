@@ -10,6 +10,8 @@ if(!isset($_SESSION['admin'])){
 $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
 
 
+
+
 ?>
 
 
@@ -36,6 +38,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
     <!-- link script datatable -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="js/masknumber.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
@@ -81,6 +84,85 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     <a class="nav-link " href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
                 </div>
             </div>
+
+            <!-- Logic input Data -->
+            <?php 
+                if (isset($_POST['input'])){
+                    $part_number = $_POST['part_numbering'];
+                    // $item_name = htmlspecialchars($_POST['item_name']); 
+                    $received_date = $_POST['received_date'];
+                    $account_code = $_POST['account_code'];
+                    $supplier = $_POST['supplier'];
+                    $description = $_POST['description'];
+                    $supplier_no = $_POST['supplier_no'];
+                    $cost = $_POST['cost'];
+                    $on_hand = $_POST['on_hand'];
+                    $in_transit = $_POST['in_transit'];
+                    $on_prep = $_POST['on_prep'];
+                    $moq = $_POST['moq'];
+                    $cc = $_POST['cc'];
+                    $dwg_no = $_POST['dwg_no'];
+                    $on_pr_no = $_POST['on_pr_no'];
+                    $on_po_no = $_POST['on_po_no'];
+                    $batch_no = $_POST['batch_no'];
+                    $iqa = $_POST['iqa'];
+                    $manufacturing_date = $_POST['manufacturing_date'];
+                    $expiration_date = $_POST['expiration_date'];
+                    $po_date = $_POST['po_date'];
+                    $pr_date = $_POST['pr_date'];
+                    $type = $_POST['type'];
+                
+                    // cek usernmae sudah ada atau belum
+                    $result = mysqli_query($conn, "SELECT part_number FROM dt_inventory WHERE part_number = '$part_number'");
+                    
+                    if (mysqli_fetch_assoc($result)){
+                        echo '<script>
+                    swal.fire("Part Number Error", "Your part number has been input in to database", "warning");
+                    
+                    setTimeout(function(){window.top.location="input-data.php"},3000);
+                    </script>';
+                    exit;
+                    }
+
+
+                    $input = mysqli_query($conn, "INSERT INTO dt_inventory VALUES ('', '','$part_number','$supplier_no', '$cc','$account_code','$type','$supplier', '$dwg_no', '$description', '$moq', '$cost', '$on_hand', '$in_transit', '$on_prep', '$on_pr_no', '$on_po_no', '$batch_no', '$iqa', '$received_date', '$manufacturing_date', '$expiration_date', '$po_date', '$pr_date')");
+                    
+        
+                    if ($input){
+                        echo '<script>
+                    swal.fire("Success", "Your data has been input to database", "success");
+                    setTimeout(function(){window.top.location="input-data.php"},2200);
+                    </script>';
+                    exit;
+                    }else{
+                        echo "gagal";
+                        mysqli_error($conn);
+                    }
+        
+            }
+
+            ?>
+            <!-- check part_number -->
+            <?php 
+                if (isset($_POST['check_part'])){
+                    $part_number = $_POST['part_numbering'];
+                    
+                    $result = mysqli_query($conn, "SELECT part_number FROM dt_inventory WHERE part_number = '$part_number'");
+                    
+                    if (mysqli_fetch_assoc($result)){
+                        echo '<script>
+                    swal.fire("Part Number Error", "Your part number has been input in to database", "warning");
+                    
+                    setTimeout(function(){window.top.location="input-data.php"},3000);
+                    </script>';
+                    exit;
+                    } else {
+                        $newPart = true;
+                    }
+
+                }
+            
+            ?>
 
             <!-- Logic Update -->
             <?php  
@@ -178,6 +260,17 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     style="font-size:13px; opacity:0.6; cursor:pointer;"><i class="far fa-question-circle ml-3"></i></a>
             </div>
             <div class="table-responsive mt-2">
+                <?php if (isset($newPart)) :?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Congratulation!</strong> You can use this new part number for data inventory tfme <a
+                        href="#newPart"> <strong>click here</strong></a>.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <script>
+                </script>
+                <?php endif; ?>
                 <table class="table table-striped" id="data">
                     <thead>
                         <tr class="bg-dark text-white">
@@ -187,6 +280,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <th>Description</th>
                             <th>On Hand</th>
                             <th>Type</th>
+                            <th>Expiration Date</th>
                             <th>Cost</th>
                             <th>Account Code</th>
                             <th>Supplier</th>
@@ -202,7 +296,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <th>iqa</th>
                             <th>Received Date</th>
                             <th>Manufacturing Date</th>
-                            <th>Expiration Date</th>
                             <th>po_date</th>
                             <th>pr_date</th>
                         </tr>
@@ -242,6 +335,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <td><?= $data['description']; ?></td>
                             <td><?= $data['on_hand']; ?></td>
                             <td><?= $data['type']; ?></td>
+                            <td><?= $data['expiration_date']; ?></td>
                             <td><?= $data['cost']; ?></td>
                             <td><?= $data['account_code']; ?></td>
                             <td><?= $data['supplier']; ?></td>
@@ -257,7 +351,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <td><?= $data['iqa']; ?></td>
                             <td><?= $data['received_date']; ?></td>
                             <td><?= $data['manufacturing_date']; ?></td>
-                            <td><?= $data['expiration_date']; ?></td>
                             <td><?= $data['po_date']; ?></td>
                             <td><?= $data['pr_date']; ?></td>
                         </tr>
@@ -270,6 +363,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         <th>Description</th>
                         <th>On Hand</th>
                         <th>Type</th>
+                        <th>Expiration Date</th>
                         <th>Cost</th>
                         <th>Account Code</th>
                         <th>Supplier</th>
@@ -285,7 +379,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         <th>iqa</th>
                         <th>Received Date</th>
                         <th>Manufacturing Date</th>
-                        <th>Expiration Date</th>
                         <th>po_date</th>
                         <th>pr_date</th>
                     </tfoot>
@@ -402,6 +495,11 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                 <input type="date" name="received_date" id="received_date"
                                                     class="form-control bg-light">
                                             </div>
+                                            <div class="form-group">
+                                                <label for="expiration_date">Expiration Date</label>
+                                                <input type="date" name="expiration_date" id="expiration_date"
+                                                    class="form-control bg-light">
+                                            </div>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <h5 class="font-weight-bold">SUPPLIER</h5>
@@ -474,13 +572,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                     class="form-control bg-light">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md">
-                                        <label for="expiration_date">Expiration Date</label>
-                                        <input type="date" name="expiration_date" id="expiration_date"
-                                            class="form-control bg-light">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-info btn-sm float-right" name="ubah">Edit
@@ -567,164 +658,182 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
             </script>
 
             <!-- End Modal -->
+            <!-- Strat Input Data Manual -->
             <div class="data-entry mt-4">
-                <div class="title mb-4 text-uppercase d-flex justify-content-center">
+                <div class="title mb-4 text-uppercase d-flex justify-content-center" id="newPart">
                     <h5 class="font-weight-bold text-secondary">Input New Part Number</h5>
                 </div>
-                <form>
+                <form method="post" style="font-size:12px;">
                     <div class="group">
-                        <h5 class="font-weight-bold">ITEM</h5>
-                        <hr class="my-4">
                         <div class="row">
-                            <div class="form-group col">
-                                <label for="item-name">Item Name</label>
-                                <input type="text" class="form-control bg-light" id="item-name" placeholder="Item Name">
+                            <div class="form-group col-md-6">
+                                <h5 class="font-weight-bold">ITEM</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="type">Type</label>
+                                    <input type="text" name="type" class="form-control bg-light"
+                                        placeholder="Enter Item Type">
+                                </div>
+                                <div class="form-group">
+                                    <label for="item_description">Item Description</label>
+                                    <textarea type="text" class="form-control bg-light" name="description"
+                                        placeholder="Enter Description"></textarea>
+                                </div>
+                                <h5 class="font-weight-bold">STOCK</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="on_hand">On Hand</label>
+                                    <input type="text" name="on_hand" class="form-control bg-light"
+                                        placeholder="Enter On Hand">
+                                </div>
+                                <div class="form-group">
+                                    <label for="in_transit">In Transit</label>
+                                    <input type="text" placeholder="Enter In Transit" name="in_transit"
+                                        class="form-control bg-light">
+                                </div>
+                                <div class="form-group">
+                                    <label for="on_prep">On Prep</label>
+                                    <input type="text" name="on_prep" placeholder="EnterOn Prep"
+                                        class="form-control bg-light">
+                                </div>
+                                <h5 class="font-weight-bold">CHECKING</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="batch_no">Batch#</label>
+                                    <input type="text" name="batch_no" class="form-control bg-light"
+                                        placeholder="Enter Batch Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dwg_no">DWG#</label>
+                                    <input type="text" name="dwg_no" class="form-control bg-light"
+                                        placeholder="Enter DWG Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="iqa_no">IQA#</label>
+                                    <input type="text" name="iqa" class="form-control bg-light"
+                                        placeholder="Enter IQA Number">
+                                </div>
+                                <h5 class="font-weight-bold">DATE</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="received_date">Received Date</label>
+                                    <input type="date" name="received_date" class="form-control bg-light">
+                                </div>
+                                <div class="form-group">
+                                    <label for="expiration_date">Expiration Date</label>
+                                    <input type="date" name="expiration_date" class="form-control bg-light">
+                                </div>
                             </div>
-                            <div class="form-group col">
-                                <label for="tipe">Type</label>
-                                <input type="text" class="form-control bg-light" id="tipe" placeholder="Type">
+                            <div class="form-group col-sm-6">
+                                <h5 class="font-weight-bold">SUPPLIER</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="supplier">Supplier Name</label>
+                                    <input type="text" name="supplier" class="form-control bg-light"
+                                        placeholder="Enter Supplier Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="supplier_no">Supplier#</label>
+                                    <input type="text" name="supplier_no" class="form-control bg-light"
+                                        placeholder="Enter Supplier Number">
+                                </div>
+                                <h5 class="font-weight-bold">NUMBERING</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="part_number">Part Number</label>
+                                    <?php if (!isset($newPart)): ?>
+                                    <form method="post">
+                                        <div class="d-flex">
+                                            <input type="text" name="part_numbering" class="form-control bg-light"
+                                                placeholder="Enter Part Number">
+                                            <button class="btn ml-2 btn-outline-warning"
+                                                name="check_part">Check</button>
+                                        </div>
+                                    </form>
+                                    <?php endif; ?>
+                                    <?php if (isset($newPart)) :?>
+
+                                    <div class="d-flex">
+                                        <input type="text" name="part_numbering" class="form-control bg-light"
+                                            value="<?= $part_number; ?>">
+                                        <a class="btn ml-2 btn-outline-secondary" href="input-data.php">Reset</a>
+                                    </div>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Congratulation!</strong> You can use the new part number for data
+                                        inventory tfme.
+                                    </div>
+                                    <script>
+                                    </script>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cc">Cost Center Test</label>
+                                    <select name="cc" class="form-control custom-select bg-light" required>
+                                        <option selected disabled value="">-- Choose CC --</option>
+                                        <option value="10">10 PCB</option>
+                                        <option value="20">20 PCBA</option>
+                                        <option value="30">30 IC PACK</option>
+                                        <option value="40">40 GENERAL</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="account_code">Account Code</label>
+                                    <input type="text" name="account_code" class="form-control bg-light"
+                                        placeholder="Enter Account Code">
+                                </div>
+                                <h5 class="font-weight-bold">ORDER</h5>
+                                <hr class="my-4">
+                                <div class="form-group">
+                                    <label for="moq">MOQ</label>
+                                    <input type="text" name="moq" class="form-control bg-light" placeholder="Enter MOQ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cost">Cost</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-muted" id="basic-addon1">Rp</span>
+                                        </div>
+                                        <input type="text" name="cost" class="form-control bg-light"
+                                            placeholder="Enter Cost" id="angka">
+                                    </div>
+
+                                    <script>
+                                        $(document).ready(function () {
+                                            $("#angka").keyup(function () {
+                                                $(this).maskNumber({
+                                                    integer: true,
+                                                    thousands: "."
+                                                })
+                                            })
+                                        })
+                                    </script>
+                                </div>
+                                <div class="form-group">
+                                    <label for="on_pr_no">On PR#</label>
+                                    <input type="text" name="on_pr_no" class="form-control bg-light"
+                                        placeholder="Enter On PR Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="on_po_no">On PO#</label>
+                                    <input type="text" name="on_po_no" class="form-control bg-light"
+                                        placeholder="Enter On PO Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pr_date">PR Date</label>
+                                    <input type="date" name="pr_date" class="form-control bg-light">
+                                </div>
+                                <div class="form-group">
+                                    <label for="po_date">PO Date</label>
+                                    <input type="date" name="po_date" class="form-control bg-light">
+                                </div>
+                                <div class="form-group">
+                                    <label for="manufacturing_date">Manufacture Date</label>
+                                    <input type="date" name="manufacturing_date" class="form-control bg-light">
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="Item">Item Description</label>
-                                <textarea type="text" class="form-control bg-light" id="Item"
-                                    placeholder="Your Name Item"></textarea>
-                            </div>
-                        </div>
+                        <input type="submit" class="btn btn-dark btn-sm " name="input" value="Enter Data">
                     </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">NUMBERING</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="part-number">Part Number</label>
-                                <input type="text" class="form-control bg-light" id="part-number"
-                                    placeholder="Part Number">
-                            </div>
-                            <div class="form-group col">
-                                <label for="inputPosition">Cost Center</label>
-                                <select id="inputPosition" class="form-control custom-select  bg-light">
-                                    <option selected disabled>-- Choose CC --</option>
-                                    <option value="10">10 PCB</option>
-                                    <option value="20">20 PCBA</option>
-                                    <option value="30">30 IC PACK</option>
-                                    <option value="40">40 GENERAL</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md">
-                                <label for="account-code">Account Code</label>
-                                <input type="text" class="form-control bg-light" id="account-code"
-                                    placeholder="Account Code">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">SUPPLIER</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="supplier-name">Supplier Name</label>
-                                <input type="text" class="form-control bg-light" id="supplier-name"
-                                    placeholder="Supplier Name">
-                            </div>
-                            <div class="form-group col">
-                                <label for="supplier#">Supplier#</label>
-                                <input type="text" class="form-control bg-light" id="supplier#" placeholder="Supplier#">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">STOCK</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="on-hand">On Hand</label>
-                                <input type="text" class="form-control bg-light" id="on-hand" placeholder="On Hand">
-                            </div>
-                            <div class="form-group col">
-                                <label for="in-transit">In Transit</label>
-                                <input type="text" class="form-control bg-light" id="in-transit"
-                                    placeholder="In Transit">
-                            </div>
-                            <div class="form-group col">
-                                <label for="on-prep">On Prep</label>
-                                <input type="text" class="form-control bg-light" id="on-prep" placeholder="On Prep">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">ORDER</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="moq">MOQ</label>
-                                <input type="text" class="form-control bg-light" id="moq" placeholder="MOQ">
-                            </div>
-                            <div class="form-group col">
-                                <label for="cost">Cost</label>
-                                <input type="text" class="form-control bg-light" id="cost" placeholder="Cost">
-                            </div>
-                            <div class="form-group col-md">
-                                <label for="on-pr#">On PR#</label>
-                                <input type="text" class="form-control bg-light" id="on-pr#" placeholder="On PR#">
-                            </div>
-                            <div class="form-group col-md">
-                                <label for="on-po#">On PO#</label>
-                                <input type="text" class="form-control bg-light" id="on-po#" placeholder="On PO#">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="pr-date">PR Date</label>
-                                <input type="date" id="datepicker" class="form-control bg-light">
-                            </div>
-                            <div class="form-group col">
-                                <label for="po-date">PO Date</label>
-                                <input type="date" id="datepicker" class="form-control bg-light">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">CHECKING</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col">
-                                <label for="batch#">Batch#</label>
-                                <input type="text" class="form-control bg-light" id="batch#" placeholder="Batch#">
-                            </div>
-                            <div class="form-group col">
-                                <label for="dwg#">DWG#</label>
-                                <input type="text" class="form-control bg-light" id="dwg#" placeholder="DWG#">
-                            </div>
-                            <div class="form-group col">
-                                <label for="iqa#">IQA#</label>
-                                <input type="text" class="form-control bg-light" id="iqa#" placeholder="IQA#">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="group mt-3">
-                        <h5 class="font-weight-bold">DATE</h5>
-                        <hr class="my-4">
-                        <div class="row">
-                            <div class="form-group col-md">
-                                <label for="receive-date">Receive Date</label>
-                                <input type="date" id="datepicker" class="form-control bg-light">
-                            </div>
-                            <div class="form-group col-md">
-                                <label for="manufacture-date">Manufacture Date</label>
-                                <input type="date" id="datepicker" class="form-control bg-light">
-                            </div>
-                            <div class="form-group col-md">
-                                <label for="expiration-date">Expiration Date</label>
-                                <input type="date" id="datepicker" class="form-control bg-light">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end entry">
-                        <button type="submit" class="btn bg-dark text-white">Input New Data</button>
-                    </div>
-                    <a class="top" href="#top">Go Top<i class="fas fa-arrow-circle-up ml-2"></i></a>
                 </form>
             </div>
         </div>
