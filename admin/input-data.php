@@ -544,7 +544,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             </div>
                                             <div class="form-group">
                                                 <label for="cost">Cost</label>
-                                                <input type="text" name="cost" class="form-control bg-light" id="cost">
+                                                <input type="text" id="number" name="cost" class="form-control bg-light" id="cost">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_pr_no">On PR#</label>
@@ -583,6 +583,16 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         </div>
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#number").keyup(function () {
+                            $(this).maskNumber({
+                                integer: true,
+                                thousands: "."
+                            })
+                        })
+                    })
+                </script>
             </div>
 
 
@@ -758,7 +768,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             value="<?= $part_number; ?>">
                                         <a class="btn ml-2 btn-outline-secondary" href="input-data.php">Reset</a>
                                     </div>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 0;">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                        style="border-radius: 0;">
                                         <strong>Congratulation!</strong> You can use the new part number for data
                                         inventory tfme.
                                     </div>
@@ -834,8 +845,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <input type="submit" class="btn btn-dark btn-sm align-self-end" name="input"
-                                value="Enter Data">
+                        <input type="submit" class="btn btn-dark btn-sm align-self-end" name="input" value="Enter Data">
                         <a class="top" href="#top">Go Top<i class="fas fa-arrow-circle-up ml-2"></i>
                     </div>
                 </form>
