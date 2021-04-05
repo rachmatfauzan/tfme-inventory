@@ -764,9 +764,12 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <?php if (isset($newPart)) :?>
 
                                     <div class="d-flex">
-                                        <input type="text" name="part_numbering" class="form-control bg-light"
-                                            value="<?= $part_number; ?>">
-                                        <a class="btn ml-2 btn-outline-secondary" href="input-data.php">Reset</a>
+                                        <input type="text" name="part_numbering" id="myInput" class="form-control bg-light"
+                                            value="<?= $part_number; ?>" required>
+                                            <button class="btn ml-2 btn-outline-danger" onclick="document.getElementById('myInput').value = ''">Reset</button>
+                                            
+                                            <button class="btn ml-2 btn-outline-warning"
+                                                name="check_part">Check</button>
                                     </div>
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"
                                         style="border-radius: 0;">
