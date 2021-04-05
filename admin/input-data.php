@@ -262,8 +262,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
             <div class="table-responsive mt-2">
                 <?php if (isset($newPart)) :?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Congratulation!</strong> You can use this new part number for data inventory tfme <a
-                        href="#newPart"> <strong>click here</strong></a>.
+                    <strong>Congratulation!</strong> You can use <?= $part_number; ?> this new part number for data
+                    inventory tfme <a href="#newPart"> <strong>click here</strong></a>.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -758,7 +758,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             value="<?= $part_number; ?>">
                                         <a class="btn ml-2 btn-outline-secondary" href="input-data.php">Reset</a>
                                     </div>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 0;">
                                         <strong>Congratulation!</strong> You can use the new part number for data
                                         inventory tfme.
                                     </div>
@@ -832,7 +832,11 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" class="btn btn-dark btn-sm " name="input" value="Enter Data">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <input type="submit" class="btn btn-dark btn-sm align-self-end" name="input"
+                                value="Enter Data">
+                        <a class="top" href="#top">Go Top<i class="fas fa-arrow-circle-up ml-2"></i>
                     </div>
                 </form>
             </div>
