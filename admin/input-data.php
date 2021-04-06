@@ -755,7 +755,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <form method="post">
                                         <div class="d-flex">
                                             <input type="text" name="part_numbering" class="form-control bg-light"
-                                                placeholder="Enter Part Number">
+                                                placeholder="Enter Part Number" required>
                                             <button class="btn ml-2 btn-outline-warning"
                                                 name="check_part">Check</button>
                                         </div>

@@ -10,21 +10,19 @@ if(!isset($_SESSION['technician'])){
 
 
 // membuat logik kode_otomatis
-$sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
+$sql = mysqli_query($conn, "SELECT max(kode_pr) as pr_kode FROM form_pr ORDER BY kode_pr ASC");
 $data = mysqli_fetch_array($sql);
 
-$kode = $data['maxID'];
-$kode++;
 
-$ket = "PR";
-$kodeAuto = $ket . sprintf("%05s", $kode);
+$code = (int)$data['pr_kode'] + 1;
+$kodeOtomatis = sprintf("%05s", $code);
 
 // echo $kodeAuto;
 
 
 if(isset($_POST['send'])){
-    $kode_pr = $kodeAuto;
-    $item_name = $_POST['item_name'];
+    $kode_pr = $code;
+    $item_name = null;
     $type = $_POST['type'];
     $quantity = $_POST['quantity'];
     $item_description = $_POST['item_description'];
@@ -154,24 +152,25 @@ if(isset($_POST['send'])){
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="generateForm.php" style="font-size: 11px;" class="btn btn-success btn-sm"><i class="fas fa-plus mr-2"></i>add more P.r</a>
+                        <a href="generateForm.php" style="font-size: 11px;" class="btn btn-success btn-sm"><i
+                                class="fas fa-plus mr-2"></i>add more P.r</a>
                     </div>
                     <form method="post" autocomplete="off">
                         <div class="group">
                             <h5 class="font-weight-bold">ITEM</h5>
                             <hr class="my-4">
                             <div class="row">
-                                <div class="form-group col">
-                                    <label for="item-name">Item Name</label>
-                                    <input type="text" class="form-control bg-light" id="item-name"
-                                        placeholder="Item Name" name="item_name" autofocus required>
+                                <div class="form-group col-md-4">
+                                    <label for="tipe">PR Code</label>
+                                    <input type="text" name="order_no" id="order_no" class="form-control input-sm"
+                                        value="PR-<?= $kodeOtomatis; ?>" disabled />
                                 </div>
-                                <div class="form-group col">
+                                <div class="form-group col-md-4">
                                     <label for="tipe">Type</label>
                                     <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
-                                        name="type" required>
+                                        name="type" required autofocus>
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-4">
                                     <label for="tipe">Quantity</label>
                                     <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
                                         name="quantity" required>
@@ -219,8 +218,8 @@ if(isset($_POST['send'])){
 
                                 <div class="form-group col-md">
                                     <label for="on-pr#">Account Code</label>
-                                    <input type="text" class="form-control bg-light" id="on-pr#" placeholder="Account Code"
-                                        name="account_code" required>
+                                    <input type="number"class="form-control bg-light"
+                                        id="on-pr#" placeholder="Account Code" name="account_code" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;"  required>
                                 </div>
                             </div>
 
@@ -241,14 +240,16 @@ if(isset($_POST['send'])){
             <!-- SWAL action -->
             <?php if(isset($send)) :  ?>
             <script>
-             swal.fire ({
-              title: "Request Success",
-              text: "Waiting Your Approval",
-                icon: "success",
-                showCancelButton: false,
-                showConfirmButton: false
-             });
-               setTimeout(function(){window.top.location="dashboard-tech.php"} , 2700);
+                swal.fire({
+                    title: "Request Success",
+                    text: "Waiting Your Approval",
+                    icon: "success",
+                    showCancelButton: false,
+                    showConfirmButton: false
+                });
+                setTimeout(function () {
+                    window.top.location = "dashboard-tech.php"
+                }, 2700);
             </script>
             <?php endif; ?>
 </body>
