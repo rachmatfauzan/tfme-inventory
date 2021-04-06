@@ -755,7 +755,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <form method="post">
                                         <div class="d-flex">
                                             <input type="text" name="part_numbering" class="form-control bg-light"
-                                                placeholder="Enter Part Number" required>
+                                                placeholder="Enter Part Number" required  maxlength="9">
                                             <button class="btn ml-2 btn-outline-warning"
                                                 name="check_part">Check</button>
                                         </div>
@@ -765,7 +765,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
                                     <div class="d-flex">
                                         <input type="text" name="part_numbering" id="myInput" class="form-control bg-light"
-                                            value="<?= $part_number; ?>" required>
+                                            value="<?= $part_number; ?>" required  maxlength="9">
                                             <button class="btn ml-2 btn-outline-danger" onclick="document.getElementById('myInput').value = ''">Reset</button>
                                             
                                             <button class="btn ml-2 btn-outline-warning"
@@ -792,7 +792,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 </div>
                                 <div class="form-group">
                                     <label for="account_code">Account Code</label>
-                                    <input type="text" name="account_code" class="form-control bg-light"
+                                    <input type="number" name="account_code" class="form-control bg-light"
                                         placeholder="Enter Account Code">
                                 </div>
                                 <h5 class="font-weight-bold">ORDER</h5>
