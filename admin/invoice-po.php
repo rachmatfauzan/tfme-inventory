@@ -121,7 +121,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                     <?php $code = sprintf("%05s", $hasil['id_po']) ?>
                                                     <p
                                                         class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
-                                                        <?= "PR-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
+                                                        <?= "PO-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
                                                     <?php $date = date_create($hasil['po_date']); ?>
                                                     PO Date<br />
                                                     <p
