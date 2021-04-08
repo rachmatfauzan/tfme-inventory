@@ -155,7 +155,7 @@ if (isset($_POST['send'])){
                     <section>
                         <div class="table-responsive">
                             <table class="table table-bordered">
-                                <td colspan="2">
+                                <td colspan="2" style="overflow-x: hidden;">
                                     <div class="row">
                                         <div class="col-md-4">
                                             PR Code
@@ -175,8 +175,7 @@ if (isset($_POST['send'])){
                                         <div class="col-md-4 ">
                                             <form method="post">
                                                 Status
-                                                <select class="form-control status mb-3" name="status"
-                                                    id="status">
+                                                <select class="form-control status mb-3" name="status" id="status">
                                                     <option disabled selected><?= $data['status']; ?>
                                                     </option>
                                                     <option value="approve">Approve</option>
@@ -188,13 +187,60 @@ if (isset($_POST['send'])){
                                                 </div>
                                             </form>
                                         </div>
+
+                                        <div class="col-md-12 detail-pr-mobile">
+                                            <div class="row d-flex ">
+                                                <div class="col-md-6 d-flex flex-column">
+                                                    <hr>
+                                                    <strong>-- ITEM --</strong>
+                                                    <hr>
+                                                    <b>[Item Description]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['item_description']; ?></p>
+                                                    <?php endforeach; ?>
+                                                    <b>[Type]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['type']; ?></p>
+                                                    <?php endforeach; ?>
+                                                    <b>[Quantity]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['quantity']; ?></p>
+                                                    <?php endforeach; ?>
+                                                    <hr>
+                                                </div>
+                                                <di class="col-md-6">
+                                                    <strong>-- NUMBERING --</strong>
+                                                    <hr>
+                                                    <b>[Part Number]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['part_number'];  ?></p>
+                                                    <?php endforeach; ?>
+                                                    <b>[Cost Center]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['cost_center']; ?></p>
+                                                    <?php endforeach; ?>
+                                                    <hr>
+                                                </di>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 d-flex flex-column">
+                                                    <strong>-- ORDER --</strong>
+                                                    <hr>
+                                                    <b>[Account Code]</b>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <p><?= $data['account_code']; ?></p>
+                                                    <?php endforeach; ?>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <br />
-                                    <table id="invoice-item-table" class="table table-bordered detail-tabel">
+                                    <table id="invoice-item-table" class="table table-bordered detail-tabel detail-pr">
                                         <tr>
                                             <th colspan="3">ITEM</th>
                                             <th colspan="2" class="">NUMBERING</th>
-                                            <th >ORDER</th>
+                                            <th>ORDER</th>
                                         </tr>
                                         <tr class="row2">
                                             <th>Item Description</th>
@@ -220,8 +266,8 @@ if (isset($_POST['send'])){
                                                     disabled><?= $data['part_number']; ?></textarea>
                                             </td>
                                             <td>
-                                                <textarea id="account-code" rows="2" class="form-control"
-                                                    disabled style="text-align: center;"> <?= $data['cost_center']; ?></textarea>
+                                                <textarea id="account-code" rows="2" class="form-control" disabled
+                                                    style="text-align: center;"> <?= $data['cost_center']; ?></textarea>
                                             </td>
                                             <td><textarea id="account-code" rows="2" class="form-control"
                                                     disabled><?= $data['account_code']; ?></textarea>
@@ -253,6 +299,8 @@ if (isset($_POST['send'])){
                                             </p>
                                         </div>
                                     </div>
+                                </td>
+                            </table>
                     </section>
 
                     <section>

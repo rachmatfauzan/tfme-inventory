@@ -96,7 +96,7 @@ $hasil = mysqli_fetch_assoc($sql);
             <div class="box">
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
-                        <h5 class="font-weight-bold text-secondary">Invoice</h5>
+                        <h5 class="font-weight-bold text-secondary">Detail P.O</h5>
                         <a href="history-po.php" style="font-size: 11px;" class="btn invoice "><i
                                 class="fas fa-backspace mr-2"></i>history p.o</a>
                     </div>

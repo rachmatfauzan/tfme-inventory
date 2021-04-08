@@ -38,6 +38,9 @@
 table.select th, td{
     font-size: 13px;
 }
+.detail-pr-mobile{
+    display: none;
+}
 
 /* Responsive sidebar */
 @media screen and (max-width:900px){
@@ -50,5 +53,11 @@ table.select th, td{
    .addForm textarea{
        font-size: 10px;
        height: auto;
+   }
+   .detail-pr{
+       display: none;
+   }
+   .detail-pr-mobile{
+       display: block;
    }
 }

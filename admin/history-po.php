@@ -173,7 +173,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                 <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
                                 <?php endif; ?>
                                 <?php if ($data['status_po'] == 'waiting'): ?>
-                                <p>Waiting</p>
+                                <p class="btn btn-secondary disabled btn-sm">Waiting...</p>
                                 <?php endif; ?>
                             </div>
                         </div>

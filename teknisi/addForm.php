@@ -234,6 +234,7 @@ if(isset($_POST['send'])){
                                                         window.top.location = "dashboard-tech.php"
                                                     }, 2700);
                                                 </script>
+                                                <?php exit; ?>
                                                 <?php endif; ?>
                                                 <!-- end alert for form -->
 

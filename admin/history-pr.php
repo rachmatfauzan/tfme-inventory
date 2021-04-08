@@ -129,7 +129,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                                     <p class="btn btn-danger btn-sm disabled"
                                         style="font-size: 11px;text-transform:uppercase;">Rejected</p>
                                     <?php elseif ($data['status'] == 'waiting'): ?>
-                                    <p>Waiting</p>
+                                    <p>Waiting...</p>
                                     <?php endif; ?>
                                 </td>
 
