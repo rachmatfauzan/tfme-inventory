@@ -125,7 +125,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="2" style="overflow-x: hidden;">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     To,<br />
@@ -153,7 +153,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                 <tr>
                                                     <th width="40%" colspan="3">ITEM</th>
                                                     <th width="15%" colspan="2">NUMBERING</th>
-                                                    <th width="15%">ORDER</th>
+                                                    <th width="15%" colspan="2">ORDER</th>
                                                 </tr>
                                                 <tr>
                                                     <th>Item Description</th>
@@ -162,6 +162,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                     <th width="20%">Part Number</th>
                                                     <th width="3%" style="text-align: center;">Cost Center</th>
                                                     <th>Account Code</th>
+                                                    <th>Specification</th>
                                                 </tr>
 
                                                 <?php foreach($sql as $data) :?>
@@ -185,10 +186,16 @@ $hasil = mysqli_fetch_assoc($sql);
                                                     <td><textarea id="account-code" rows="2"
                                                             class="form-control" disabled><?= $data['account_code']; ?></textarea>
                                                     </td>
+                                                    <td><textarea id="account-code" rows="2"
+                                                            class="form-control" disabled><?= $data['spesifikasi']; ?></textarea>
+                                                    </td>
                                                  </tr>
                                                  <?php endforeach; ?>
                            
                                             </table>
+                                        </td>
+                                    </tr>
+                                </table>
                         </div>
                     </form>
                 </div>

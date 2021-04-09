@@ -19,11 +19,18 @@ if (isset($_POST['tombol'])){
     }
 }
 
+
+$kode = mysqli_query($conn, "SELECT max(kode_po) as pr_kode FROM form_po ORDER BY id_po ASC");
+$dataKode = mysqli_fetch_assoc($kode);
+
+$code = (int)$dataKode['pr_kode'] + 1;
+$kodeOtomatis = sprintf("%05s", $code);
+
 // logic input P.O
 
 if (isset($_POST['send'])){
-
-    $id_pr = $id;
+    $kode_po = $code;
+    $kode_pr = $id;
     $supplier_name = $_POST['supplier_name'];
     $supplier_code = $_POST['supplier_code'];
     $on_hand = $_POST['on_hand'];
@@ -31,7 +38,7 @@ if (isset($_POST['send'])){
     $on_prep = $_POST['on_prep'];
     $moq = $_POST['moq'];
     $cost = $_POST['cost'];
-    $po_code = $_POST['po_code'];
+    // $po_code = $_POST['po_code'];
     $po_date = $_POST['po_date'];
     $batch_code = $_POST['batch_code'];
     $dwg_code = $_POST['dwg_code'];
@@ -40,7 +47,8 @@ if (isset($_POST['send'])){
 
     $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
         null,
-        '$id_pr',
+        '$kode_po',
+        '$kode_pr',
         '$supplier_name',
         '$supplier_code',
         '$on_hand',
@@ -48,7 +56,6 @@ if (isset($_POST['send'])){
         '$on_prep',
         '$moq',
         '$cost',
-        '$po_code',
         '$po_date',
         '$batch_code',
         '$dwg_code',
@@ -162,7 +169,7 @@ if (isset($_POST['send'])){
                                             <?php $code = sprintf("%05s", $hasil['kode_pr']) ?>
                                             <p
                                                 class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
-                                                <?= "PR-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
+                                                <?= "PO-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
                                             <?php $date = date_create($hasil['pr_date']); ?>
                                         </div>
                                         <div class="col-md-4">
@@ -187,7 +194,7 @@ if (isset($_POST['send'])){
                                                 </div>
                                             </form>
                                         </div>
-
+    
                                         <div class="col-md-12 detail-pr-mobile">
                                             <div class="row d-flex ">
                                                 <div class="col-md-6 d-flex flex-column">
@@ -240,7 +247,7 @@ if (isset($_POST['send'])){
                                         <tr>
                                             <th colspan="3">ITEM</th>
                                             <th colspan="2" class="">NUMBERING</th>
-                                            <th>ORDER</th>
+                                            <th colspan="2">ORDER</th>
                                         </tr>
                                         <tr class="row2">
                                             <th>Item Description</th>
@@ -249,6 +256,7 @@ if (isset($_POST['send'])){
                                             <th>Part Number</th>
                                             <th width="20">Cost Center</th>
                                             <th>Account Code</th>
+                                            <th>Specification</th>
                                         </tr>
 
                                         <?php foreach($sql as $data) :?>
@@ -271,6 +279,9 @@ if (isset($_POST['send'])){
                                             </td>
                                             <td><textarea id="account-code" rows="2" class="form-control"
                                                     disabled><?= $data['account_code']; ?></textarea>
+                                            </td>
+                                            <td><textarea id="account-code" rows="2" class="form-control"
+                                                    disabled><?= $data['spesifikasi']; ?></textarea>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
@@ -350,7 +361,7 @@ if (isset($_POST['send'])){
                                 </div>
                                 <div class="group mt-3">
                                     <h5 class="font-weight-bold">ORDER</h5>
-                                    <hr class="my-4">
+                                    <hr>
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="moq">MOQ</label>
@@ -363,9 +374,9 @@ if (isset($_POST['send'])){
                                                 name="cost" placeholder="Cost">
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="on-po#">On PO#</label>
-                                            <input required type="text" class="form-control bg-light" id="on-po#"
-                                                name="po_code" placeholder="On PO#">
+                                            <label for="on-po#">PO Code</label>
+                                            <input required type="text" class="form-control  disabled" id="on-po#"
+                                                name="po_code" value="PO-<?= $kodeOtomatis; ?>" disabled>
                                         </div>
                                     </div>
                                     <div class="row">

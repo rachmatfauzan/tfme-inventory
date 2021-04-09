@@ -22,11 +22,12 @@ $kodeOtomatis = sprintf("%05s", $code);
 
 if(isset($_POST['send'])){
     $kode_pr = $code;
-    $item_name = null;
+    // $item_name = null;
     $type = $_POST['type'];
     $quantity = $_POST['quantity'];
     $item_description = $_POST['item_description'];
     $part_number = $_POST['part_number'];
+    $spesifikasi = $_POST['spesifikasi'];
     $cost_center = $_POST['cost_center'];
     $pr_date = $_POST['pr_date'];
     $account_code = $_POST['account_code'];
@@ -35,9 +36,8 @@ if(isset($_POST['send'])){
     $update_po = 0;
 
     $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
-        '',
+        null,
         '$kode_pr',
-        '$item_name',
         '$type',
         '$quantity',
         '$item_description',
@@ -47,6 +47,7 @@ if(isset($_POST['send'])){
         '$account_code',
         '$status',
         '$requestor',
+        '$spesifikasi',
         '$update_po'
     )");
 
@@ -170,14 +171,20 @@ if(isset($_POST['send'])){
                                     <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
                                         name="type" required autofocus>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-2">
                                     <label for="tipe">Quantity</label>
                                     <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
                                         name="quantity" required>
                                 </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="tipe">Specification</label>
+                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="xx kg/Bag"
+                                        name="spesifikasi" required>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col">
+                                <div class="form-group col-md">
                                     <label for="Item">Item Description</label>
                                     <textarea type="text" class="form-control bg-light" id="Item"
                                         placeholder="Your Name Item" name="item_description" required></textarea>
@@ -218,8 +225,9 @@ if(isset($_POST['send'])){
 
                                 <div class="form-group col-md">
                                     <label for="on-pr#">Account Code</label>
-                                    <input type="number"class="form-control bg-light"
-                                        id="on-pr#" placeholder="Account Code" name="account_code" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==7) return false;"  required>
+                                    <input type="number" class="form-control bg-light" id="on-pr#"
+                                        placeholder="Account Code" name="account_code" pattern="/^-?\d+\.?\d*$/"
+                                        onKeyPress="if(this.value.length==7) return false;" required>
                                 </div>
                             </div>
 

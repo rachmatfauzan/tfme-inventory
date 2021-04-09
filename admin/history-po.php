@@ -112,7 +112,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                     <div class="group">
                         <div class="box1 form-group col-sm">
                             <div class="tanda">
-                                <label style="opacity: 0.7; font-size:14px;"> <?php $code = sprintf("%05s", $data["id_po"]) ?>
+                                <label style="opacity: 0.7; font-size:14px;"> <?php $code = sprintf("%05s", $data["kode_po"]) ?>
                                 <?= "PO-". $code; ?> | <b>Requestor</b>
                                     <span style="text-transform: capitalize;"> <?= $_SESSION['user']; ?>
                                     </span></label> <br>
@@ -149,7 +149,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                         <p>....</p>
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
-                                            href="invoice-po.php?id=<?= $data['id_po']?>">Detail P.O <i
+                                            href="invoice-po.php?id=<?= $data['kode_po']?>">Detail P.O <i
                                                 class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                     

@@ -25,7 +25,7 @@ $awalData = ($jumlahDataperHalaman * $halamanAktif) - $jumlahDataperHalaman;
 // var_dump($awalData);
 
 // menampilkan group data keseluruhan 
-$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY id_pr DESC LIMIT $awalData, $jumlahDataperHalaman");
+$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY kode_pr DESC LIMIT $awalData, $jumlahDataperHalaman");
 $list = mysqli_fetch_all($query);
 $kodelist = $list;
 
@@ -166,6 +166,7 @@ $kodelist = $list;
                                                 <th>Quantity</th>
                                                 <th>Part Number</th>
                                                 <th>Cost Center</th>
+                                                <th>Specification</th>
                                             </tr>
                                             <tr>
                                                 <!-- <td><?= $data['item_name']; ?></td> -->
@@ -174,6 +175,7 @@ $kodelist = $list;
                                                 <td><?= $data['quantity']; ?></td>
                                                 <td><?= $data['part_number']; ?></td>
                                                 <td><?= $data['cost_center']; ?></td>
+                                                <td><?= $data['spesifikasi']; ?></td>
                                             </tr>
                                         </table>
                                         <p>....</p>

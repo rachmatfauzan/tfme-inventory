@@ -12,10 +12,15 @@ if(!isset($_SESSION['admin'])){
 // ambil Id
 $id = $_GET['id'];
 
-$sql = mysqli_query($conn, "SELECT * FROM form_po WHERE id_po = '$id'");
+$sql = mysqli_query($conn, "SELECT * FROM form_po WHERE kode_po = '$id'");
 
 $hasil = mysqli_fetch_assoc($sql);
 // var_dump($hasil['kode_pr']);
+
+
+$kode_pr = $hasil['kode_pr'];
+
+$detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr'");
 
 
 
@@ -110,7 +115,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                         </td>
                                     </tr> -->
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="2" style="overflow-x: hidden;">
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <img src="../image/poltek.png" alt="logo poltek"> <br>
@@ -118,7 +123,7 @@ $hasil = mysqli_fetch_assoc($sql);
                                                 <div class="col-md-5 mt-3">
                                                     <h2 class="text-info font-weight-bold">PURCHASE ORDER</h2>
                                                     PO Code<br />
-                                                    <?php $code = sprintf("%05s", $hasil['id_po']) ?>
+                                                    <?php $code = sprintf("%05s", $hasil['kode_po']) ?>
                                                     <p
                                                         class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
                                                         <?= "PO-".$code; ?><i class="fas fa-barcode mr-2"></i></p>

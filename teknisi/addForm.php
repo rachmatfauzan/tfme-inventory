@@ -23,7 +23,6 @@ if(!isset($_SESSION['technician'])){
 
 $kode = mysqli_query($conn, "SELECT max(kode_pr) as pr_kode FROM form_pr ORDER BY kode_pr ASC");
 $dataKode = mysqli_fetch_assoc($kode);
-
 $code = (int)$dataKode['pr_kode'] + 1;
 $kodeOtomatis = sprintf("%05s", $code);
 
@@ -32,7 +31,6 @@ if(isset($_POST['send'])){
     
 
     for ($i=1; $i<=$_POST['total']; $i++){
-
         $kode_pr = $code;
         // $item_name = $_POST['item_name-'.$i];
         $type = $_POST['type-'.$i]; 
@@ -41,6 +39,7 @@ if(isset($_POST['send'])){
         $part_number = $_POST['part_number-'.$i];
         $cost_center = $_POST['cost_center-'.$i];
         $pr_date = $_POST['pr_date'];
+        $spesifikasi = $_POST['spesifikasi-'.$i];
         $account_code = $_POST['account_code-'.$i];
         $status = 'waiting';
         $requestor = $_SESSION['user'];
@@ -48,9 +47,8 @@ if(isset($_POST['send'])){
 
 
         $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
-            '',
+            null,
             '$kode_pr',
-            '',
             '$type',
             '$quantity',
             '$item_description',
@@ -60,8 +58,9 @@ if(isset($_POST['send'])){
             '$account_code',
             '$status',
             '$requestor',
+            '$spesifikasi',
             '$update_po'
-        )");
+        )") or die (mysqli_error($conn));
 
         if ($query){
             $send = true;
@@ -178,7 +177,7 @@ if(isset($_POST['send'])){
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="2" style="overflow-x: hidden;">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     To,<br />
@@ -207,15 +206,16 @@ if(isset($_POST['send'])){
                                                 <tr>
                                                     <th width="40%" colspan="3">ITEM</th>
                                                     <th width="15%" colspan="2">NUMBERING</th>
-                                                    <th width="15%">ORDER</th>
+                                                    <th width="30%" colspan="2">ORDER</th>
                                                 </tr>
                                                 <tr>
                                                     <th>Item Description</th>
                                                     <th>Type</th>
                                                     <th width="3%">Quantity</th>
-                                                    <th width="20%">Part Number</th>
-                                                    <th>Cost Center</th>
+                                                    <th width="10%">Part Number</th>
+                                                    <th width="10%">Cost Center</th>
                                                     <th>Account Code</th>
+                                                    <th>Specification</th>
                                                 </tr>
                                                 <input type="hidden" name="total" value="<?=@$_POST['count_add']?>">
 
@@ -234,12 +234,12 @@ if(isset($_POST['send'])){
                                                         window.top.location = "dashboard-tech.php"
                                                     }, 2700);
                                                 </script>
-                                                <?php exit; ?>
+                                                <!-- <?php exit; ?> -->
                                                 <?php endif; ?>
                                                 <!-- end alert for form -->
 
                                                 <?php if(!isset($_POST['count_add'])) :?>
-                                                    <script>
+                                                <script>
                                                     swal.fire({
                                                         title: "Please Generate Again",
                                                         text: "don't refresh your page directly",
@@ -280,10 +280,14 @@ if(isset($_POST['send'])){
                                                             <option value="30">30 IC PACK</option>
                                                             <option value="40">40 GENERAL</option>
                                                         </select>
+                                                    </td>
                             </div>
                             </td>
                             <td><textarea name="account_code-<?= $i; ?>" id="account-code" rows="2"
                                     class="form-control"></textarea>
+                            </td>
+                            <td><textarea name="spesifikasi-<?= $i; ?>" id="spesifikasi" rows="2" class="form-control"
+                                    placeholder="xx Kg/Bag"></textarea>
                             </td>
                             </tr>
                             <?php endfor; ?>
