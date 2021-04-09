@@ -380,7 +380,7 @@ if (isset($_POST['send'])){
                                                         id="basic-addon1">Rp</span>
                                                 </div>
                                                 <input type="text" name="cost" class="form-control bg-light"
-                                                    placeholder="Enter Cost" id="angka">
+                                                    placeholder="x.000.000" id="angka">
                                             </div>
 
                                             <script>
@@ -395,9 +395,10 @@ if (isset($_POST['send'])){
                                             </script>
                                         </div>
                                         <div class="form-group col-md">
-                                            <label for="on-po#">PO Code</label>
+                                            <label for="on-po#">PO Code</label> <br />
                                             <input required type="text" class="form-control  disabled" id="on-po#"
                                                 name="po_code" value="PO-<?= $kodeOtomatis; ?>" disabled>
+                                            <small class="text-info">*code is generated automatically</small>
                                         </div>
                                     </div>
                                     <div class="row">
