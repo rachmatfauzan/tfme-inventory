@@ -108,6 +108,10 @@ if (isset($_POST['send'])){
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
+
+    <!-- Js membuat format rupiah -->
+    <script src="js/masknumber.js"></script>
+
     <!--  CDN SWAL-->
     <script src="../swal2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
@@ -194,7 +198,7 @@ if (isset($_POST['send'])){
                                                 </div>
                                             </form>
                                         </div>
-    
+
                                         <div class="col-md-12 detail-pr-mobile">
                                             <div class="row d-flex ">
                                                 <div class="col-md-6 d-flex flex-column">
@@ -370,8 +374,25 @@ if (isset($_POST['send'])){
                                         </div>
                                         <div class="form-group col">
                                             <label for="cost">Cost</label>
-                                            <input required type="text" class="form-control bg-light" id="cost"
-                                                name="cost" placeholder="Cost">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-muted"
+                                                        id="basic-addon1">Rp</span>
+                                                </div>
+                                                <input type="text" name="cost" class="form-control bg-light"
+                                                    placeholder="Enter Cost" id="angka">
+                                            </div>
+
+                                            <script>
+                                                $(document).ready(function () {
+                                                    $("#angka").keyup(function () {
+                                                        $(this).maskNumber({
+                                                            integer: true,
+                                                            thousands: "."
+                                                        })
+                                                    })
+                                                })
+                                            </script>
                                         </div>
                                         <div class="form-group col-md">
                                             <label for="on-po#">PO Code</label>

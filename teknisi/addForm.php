@@ -39,7 +39,7 @@ if(isset($_POST['send'])){
         $part_number = $_POST['part_number-'.$i];
         $cost_center = $_POST['cost_center-'.$i];
         $pr_date = $_POST['pr_date'];
-        $spesifikasi = $_POST['spesifikasi-'.$i];
+        $spesifikasi = $_POST['spesifikasi'];
         $account_code = $_POST['account_code-'.$i];
         $status = 'waiting';
         $requestor = $_SESSION['user'];

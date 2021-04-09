@@ -162,22 +162,20 @@ $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr
                                             </div>
                                             <br />
                                             <table id="invoice-item-table" class="table table-bordered">
-                                                <tr>
-                                                    <th width="40%" colspan="3">ITEM</th>
-                                                    <th width="15%" colspan="2">NUMBERING</th>
-                                                    <th width="15%">ORDER</th>
-                                                </tr>
-                                                <tr>
+                                               <tr>
+                                                    <th width="2%">No</th>
                                                     <th>Item Description</th>
                                                     <th>Type</th>
                                                     <th width="3%">Quantity</th>
-                                                    <th width="20%">Part Number</th>
+                                                    <th width="10%">Part Number</th>
                                                     <th width="3%" style="text-align: center;">Cost Center</th>
                                                     <th>Account Code</th>
+                                                    <th>Specification</th>
                                                 </tr>
-
-                                                <?php foreach($sql as $data) :?>
+                                                <?php $i=1; ?>
+                                                <?php foreach($detail_pr as $data) :?>
                                                 <tr class="addForm">
+                                                    <td><?= $i; ?></td>
                                                     <td><textarea id="item_description " rows="2" class="form-control"
                                                             disabled
                                                             style="height: auto;"> <?= $data['item_description']; ?></textarea>
@@ -198,7 +196,11 @@ $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr
                                                     <td><textarea id="account-code" rows="2" class="form-control"
                                                             disabled><?= $data['account_code']; ?></textarea>
                                                     </td>
+                                                    <td><textarea id="account-code" rows="2" class="form-control"
+                                                            disabled><?= $data['spesifikasi']; ?></textarea>
+                                                    </td>
                                                 </tr>
+                                                <?php $i++; ?>
                                                 <?php endforeach; ?>
                                             </table>
                                             <div class="row">
