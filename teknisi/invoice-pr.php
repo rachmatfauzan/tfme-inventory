@@ -228,9 +228,7 @@ $hasil = mysqli_fetch_assoc($sql);
         <!-- alert onclick -->
         <script>
         function navError() {
-               $("#navigation").click(function () {
                    alert("Please enter back button !!");
-               });
        }
         </script>
 </body>
