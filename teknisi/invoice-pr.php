@@ -77,8 +77,8 @@ $hasil = mysqli_fetch_assoc($sql);
             <div class="nav-item">
                 <a class="nav-link active" href="dashboard-tech.php"><i class="fas fa-history"></i>History
                     (PR)</a>
-                <a class="nav-link" href="#"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
+                <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>New Form</a>
+                <a style="opacity: 0.6;" class="nav-link text-white"  id="navigation" onclick="navError()"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -113,7 +113,7 @@ $hasil = mysqli_fetch_assoc($sql);
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
                         <a href="dashboard-tech.php" style="font-size: 11px;" class="btn btn-info btn-sm "><i
-                                class="fas fa-backspace mr-2"></i>all history</a>
+                                class="fas fa-backspace mr-2"></i>back to all history</a>
                     </div>
                     <div class="form-group">
                         <form method="post">
@@ -223,6 +223,16 @@ $hasil = mysqli_fetch_assoc($sql);
             }, 2700);
         </script>
         <?php endif; ?>
+
+
+        <!-- alert onclick -->
+        <script>
+        function navError() {
+               $("#navigation").click(function () {
+                   alert("Please enter back button !!");
+               });
+       }
+        </script>
 </body>
 
 </html>
