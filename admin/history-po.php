@@ -123,28 +123,11 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                     <div class="form-group col table-responsive">
                                         <table class="table  table-bordered table-sm data">
                                             <tr class="bg-dark text-white" style="font-size: 12px;">
-                                                <th>Supplier Name</th>
-                                                <th>Supplier Code</th>
-                                                <th>On Hand</th>
-                                                <th>In Transit</th>
-                                                <th>On Prep</th>
-                                                <th>MOQ</th>
-                                                <th>Cost</th>
-                                                <th>Batch Code</th>
-                                                <th>DWG Code</th>
-                                                <th>IQA Code</th>
-
+                                                <th width="20%">Supplier Name</th>
+                                                <th width="10%">Supplier Code</th>
                                             </tr>
                                             <td><?= $data['supplier_name']; ?></td>
                                             <td><?= $data['supplier_code']; ?></td>
-                                            <td><?= $data['on_hand']; ?></td>
-                                            <td><?= $data['in_transit']; ?></td>
-                                            <td><?= $data['on_prep']; ?></td>
-                                            <td><?= $data['moq']; ?></td>
-                                            <td><?= $data['cost']; ?></td>
-                                            <td><?= $data['batch_code']; ?></td>
-                                            <td><?= $data['dwg_code']; ?></td>
-                                            <td><?= $data['iqa_code']; ?></td>
                                         </table>
                                         <p>....</p>
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"

@@ -12,10 +12,18 @@ if(!isset($_SESSION['admin'])){
 // ambil Id
 $id = $_GET['id'];
 
+// form_po data
 $sql = mysqli_query($conn, "SELECT * FROM form_po WHERE kode_po = '$id'");
 
 $hasil = mysqli_fetch_assoc($sql);
-// var_dump($hasil['kode_pr']);
+
+// unit_price data
+$unit_price = mysqli_query($conn, "SELECT * FROM unit_cost WHERE id_po = $id");
+
+$fetch = mysqli_fetch_array($unit_price);
+
+
+
 
 
 $kode_pr = $hasil['kode_pr'];
@@ -171,42 +179,33 @@ var_dump($total);
                                             </div>
                                             <br />
                                             <table id="invoice-item-table" class="table table-bordered">
-                                               <tr>
+                                                <tr>
                                                     <th width="2%">No</th>
-                                                    <th>Item Description</th>
-                                                    <th>Type</th>
+                                                    <th width="30%">Item Description</th>
+                                                    <th width="10%">Specification</th>
                                                     <th width="3%">Quantity</th>
-                                                    <th width="10%">Part Number</th>
-                                                    <th width="3%" style="text-align: center;">Cost Center</th>
-                                                    <th>Account Code</th>
-                                                    <th>Specification</th>
+                                                    <th>Unit Price</th>
+                                                    <th>Total</th>
                                                 </tr>
                                                 <?php $i=1; ?>
-                                                <?php foreach($detail_pr as $data) :?>
+                                                <?php foreach($unit_price as $dt) :?>
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
                                                     <td><textarea id="item_description " rows="2" class="form-control"
                                                             disabled
-                                                            style="height: auto;"> <?= $data['item_description']; ?></textarea>
+                                                            style="height: auto;"><?= $dt['describ']; ?></textarea>
                                                     </td>
-                                                    <td><textarea id="type" rows="2" class="form-control"
-                                                            disabled><?= $data['type']; ?></textarea>
+                                                    <td><textarea id="account-code" rows="2" class="form-control"
+                                                            disabled><?= $dt['spesifikasi']; ?></textarea>
                                                     </td>
                                                     <td><textarea id="par_number" rows="2" class="form-control" disabled
-                                                            style="text-align: center;"><?= $data['quantity']; ?></textarea>
+                                                            style="text-align: center;"><?= $dt['quantity']; ?></textarea>
+                                                    </td>
+                                                    <td><textarea id="type" rows="2" class="form-control"
+                                                            disabled><?= $dt['unit_cost']; ?></textarea>
                                                     </td>
                                                     <td><textarea id="par_number" rows="2" class="form-control"
-                                                            disabled><?= $data['part_number']; ?></textarea>
-                                                    </td>
-                                                    <td>
-                                                        <textarea id="account-code" rows="2" class="form-control"
-                                                            disabled> <?= $data['cost_center']; ?></textarea>
-                                                    </td>
-                                                    <td><textarea id="account-code" rows="2" class="form-control"
-                                                            disabled><?= $data['account_code']; ?></textarea>
-                                                    </td>
-                                                    <td><textarea id="account-code" rows="2" class="form-control"
-                                                            disabled><?= $data['spesifikasi']; ?></textarea>
+                                                            disabled> </textarea>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>

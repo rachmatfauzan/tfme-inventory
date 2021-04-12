@@ -3,12 +3,11 @@ require '../config/config.php';
 session_start();
 // ambil id dari URL
 $id = $_GET["id"];
-// querry data mahasiswa berdasarkan id
-$query = mysqli_query($conn, "SELECT * FROM form_pr WHERE kode_pr = $id");
 
 $sql = mysqli_query($conn, "SELECT * FROM form_pr WHERE kode_pr = '$id'");
 $hasil = mysqli_fetch_assoc($sql);
-$data = mysqli_fetch_array($query);
+$part_number = $hasil['part_number'];
+$count = mysqli_num_rows($sql);
 
 if (isset($_POST['tombol'])){
     $status = $_POST['status'];
@@ -28,47 +27,83 @@ $kodeOtomatis = sprintf("%05s", $code);
 
 // logic input P.O
 
-if (isset($_POST['send'])){
-    $kode_po = $code;
-    $kode_pr = $id;
-    $supplier_name = $_POST['supplier_name'];
-    $supplier_code = $_POST['supplier_code'];
-    $on_hand = $_POST['on_hand'];
-    $in_transit = $_POST['in_transit'];
-    $on_prep = $_POST['on_prep'];
-    $moq = $_POST['moq'];
-    $cost = $_POST['cost'];
-    // $po_code = $_POST['po_code'];
-    $po_date = $_POST['po_date'];
-    $batch_code = $_POST['batch_code'];
-    $dwg_code = $_POST['dwg_code'];
-    $iqa_code = $_POST['iqa_code'];
-    $status_po = 'waiting';
+// if (isset($_POST['send'])){
+//     $kode_po = $code;
+//     $kode_pr = $id;
+//     $supplier_name = $_POST['supplier_name'];
+//     $supplier_code = $_POST['supplier_code'];
+//     $unit_cost = $_POST['unit_cost'];
+//     $cost = $_POST['cost'];
+//     $po_date = $_POST['po_date'];
+//     $status_po = 'waiting';
 
-    $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
-        null,
-        '$kode_po',
-        '$kode_pr',
-        '$supplier_name',
-        '$supplier_code',
-        '$on_hand',
-        '$in_transit',
-        '$on_prep',
-        '$moq',
-        '$cost',
-        '$po_date',
-        '$batch_code',
-        '$dwg_code',
-        '$iqa_code',
-        '$status_po'       
-        )");
-    if ($query){
-        $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE kode_pr = $id");
-        $send = true;
-    }else{
-        echo "Failed";
-    }
+//     $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
+//         null,
+//         '$kode_po',
+//         '$kode_pr',
+//         '$supplier_name',
+//         '$supplier_code',
+//         '$unit_cost',
+//         '$cost',
+//         '$po_date',
+//         '$status_po'       
+//         )");
+//     if ($query){
+//         $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE kode_pr = $id");
+//         $send = true;
+//     }else{
+//         echo "Failed";
+//     }
 
+// }
+
+
+if(isset($_POST['send'])){
+    
+
+        $kode_po = $code;
+        $kode_pr = $id;
+        $supplier_name = $_POST['supplier_name'];
+        $supplier_code = $_POST['supplier_code'];
+        $po_date = $_POST['po_date'];
+        $status_po = 'waiting';
+
+        $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
+            null,
+            '$kode_po',
+            '$kode_pr',
+            '$supplier_name',
+            '$supplier_code',
+            '',
+            '',
+            '$po_date',
+            '$status_po'       
+            )") or die (mysqli_error($conn));
+
+            if ($query){
+                
+                for ($i=1; $i<=$count; $i++){
+                    $unit_cost = $_POST['unit_cost-'.$i];
+                    $item_description = $_POST['item_description-'.$i];
+                    $spesifikasi = $_POST['spesifikasi-'.$i];
+                    $quantity = $_POST['quantity-'.$i];
+
+                    $update = mysqli_query($conn, "INSERT INTO unit_cost VALUES (
+                        null,
+                        '$code',
+                        '$kode_pr',
+                        '$item_description',
+                        '$unit_cost',       
+                        '$spesifikasi',       
+                        '$quantity'       
+                        )") or die (mysqli_error($conn));
+            
+                }
+                $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE kode_pr = $id");
+                $send = true;
+            }else{
+                echo "Failed";
+            }
 }
 
 
@@ -187,7 +222,7 @@ if (isset($_POST['send'])){
                                             <form method="post">
                                                 Status
                                                 <select class="form-control status mb-3" name="status" id="status">
-                                                    <option disabled selected><?= $data['status']; ?>
+                                                    <option disabled selected><?= $hasil['status']; ?>
                                                     </option>
                                                     <option value="approve">Approve</option>
                                                     <option value="rejected">Reject</option>
@@ -320,121 +355,100 @@ if (isset($_POST['send'])){
 
                     <section>
                         <div class="collapse" id="collapseExample">
-                            <div class="data-entry">
-                                <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                                    <h5 class="font-weight-bold text-secondary">Input Purchase Order</h5>
-                                </div>
-                            </div>
-                            <form method="post">
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">SUPPLIER</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="supplier-name">Supplier Name</label>
-                                            <input required type="text" class="form-control bg-light" id="supplier-name"
-                                                name="supplier_name" placeholder="Supplier Name">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="supplier#">Supplier#</label>
-                                            <input required type="text" class="form-control bg-light" id="supplier#"
-                                                name="supplier_code" placeholder="Supplier#">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">STOCK</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="on-hand">On Hand</label>
-                                            <input required type="text" class="form-control bg-light" id="on-hand"
-                                                name="on_hand" placeholder="On Hand">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="in-transit">In Transit</label>
-                                            <input required type="text" class="form-control bg-light" id="in-transit"
-                                                name="in_transit" placeholder="In Transit">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="on-prep">On Prep</label>
-                                            <input required type="text" class="form-control bg-light" id="on-prep"
-                                                name="on_prep" placeholder="On Prep">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">ORDER</h5>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="moq">MOQ</label>
-                                            <input required type="text" class="form-control bg-light" id="moq"
-                                                name="moq" placeholder="MOQ">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="cost">Cost</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text text-muted"
-                                                        id="basic-addon1">Rp</span>
-                                                </div>
-                                                <input type="text" name="cost" class="form-control bg-light"
-                                                    placeholder="x.000.000" id="angka">
-                                            </div>
 
-                                            <script>
-                                                $(document).ready(function () {
-                                                    $("#angka").keyup(function () {
-                                                        $(this).maskNumber({
-                                                            integer: true,
-                                                            thousands: "."
-                                                        })
-                                                    })
-                                                })
-                                            </script>
-                                        </div>
-                                        <div class="form-group col-md">
-                                            <label for="on-po#">PO Code</label> <br />
-                                            <input required type="text" class="form-control  disabled" id="on-po#"
-                                                name="po_code" value="PO-<?= $kodeOtomatis; ?>" disabled>
-                                            <small class="text-info">*code is generated automatically</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="po-date">PO Date</label>
-                                            <input required type="date" id="datepicker" name="po_date"
-                                                class="form-control bg-light">
-                                        </div>
-                                    </div>
+                            <section>
+                                <div class="table-responsive">
                                 </div>
-                                <div class="group mt-3">
-                                    <h5 class="font-weight-bold">CHECKING</h5>
-                                    <hr class="my-4">
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label for="batch#">Batch#</label>
-                                            <input required type="text" class="form-control bg-light" id="batch#"
-                                                name="batch_code" placeholder="Batch#">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="dwg#">DWG#</label>
-                                            <input required type="text" class="form-control bg-light" id="dwg#"
-                                                name="dwg_code" placeholder="DWG#">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="iqa#">IQA#</label>
-                                            <input required type="text" class="form-control bg-light" id="iqa#"
-                                                name="iqa_code" placeholder="IQA#">
-                                        </div>
+                                <form method="POST">
+                                    <table class="table table-bordered">
+                                        <td colspan="2" style="overflow-x: hidden;">
+                                            <div
+                                                class="title mb-4 text-uppercase bg-light d-flex justify-content-center align-items-center">
+                                                <h5 class="font-weight-bold text-secondary p-2">Input Purchase Order
+                                                </h5>
+                                            </div>
+                                            <div class="data-entry">
+
+                                                <input required type="text" class="form-control  disabled" id="on-po#"
+                                                    name="po_code" value="PO-<?= $kodeOtomatis; ?>" disabled>
+                                                <small class="text-info">*code is generated automatically</small>
+
+
+                                                <input type="date" name="po_date" id="pr_date"
+                                                    class="form-control input-sm mb-2" placeholder="Select PR Date"
+                                                    required />
+
+                                                <div class="row mb-4">
+                                                    <div class="col-md-6">
+                                                        <label>Supplier Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Supplier Name" name="supplier_name">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label>Supplier Code</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Supplier Code" name="supplier_code">
+                                                    </div>
+
+                                                </div>
+                                                <table id="invoice-item-table" class="table table-bordered">
+                                                    <tr>
+                                                        <th width="2%">No</th>
+                                                        <th width="68%">Item Description</th>
+                                                        <th width="30%">Unit Price</th>
+                                                    </tr>
+                                                    <?php $i=1; ?>
+                                                    <?php foreach($sql as $data) :?>
+                                                    <tr class="addForm">
+                                                        <td><?= $i; ?></td>
+                                                        <td><textarea id="item_description " rows="2"
+                                                                class="form-control bg-light"
+                                                                name="item_description-<?= $i; ?>"
+                                                                style="height: auto;"><?= $data['item_description']; ?></textarea>
+                                                        </td>
+                                                        <input type="text" class="d-none" value="<?= $data['spesifikasi']; ?>"
+                                                            name="spesifikasi-<?= $i; ?>">
+                                                        <input type="text" class="d-none" value="<?= $data['quantity']; ?>"
+                                                            name="quantity-<?= $i; ?>">
+                                                        <td>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text text-muted"
+                                                                        id="basic-addon1">Rp</span>
+                                                                </div>
+                                                                <input type="text" name="unit_cost-<?= $i; ?>"
+                                                                    class="form-control" placeholder="x.000.000"
+                                                                    id="angka-<?= $i; ?>">
+                                                            </div>
+                                                            <script>
+                                                                $(document).ready(function () {
+                                                                    $("#angka-<?= $i; ?>").keyup(function () {
+                                                                        $(this).maskNumber({
+                                                                            integer: true,
+                                                                            thousands: "."
+                                                                        })
+                                                                    })
+                                                                })
+                                                            </script>
+                                                        </td>
+                                                    </tr>
+                                                    <?php $i++; ?>
+                                                    <?php endforeach; ?>
+                                                </table>
+                                        </td>
+                                    </table>
+
+                                    <div class="d-flex justify-content-end entry">
+                                        <button type="submit" name="send" class="btn bg-dark text-white">Input Data
+                                            PO</button>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-end entry">
-                                    <button type="submit" name="send" class="btn bg-dark text-white">Input Data
-                                        PO</button>
-                                </div>
-                            </form>
+                                </form>
+                            </section>
+                        </div>
+
+
+
+
                     </section>
                 </div>
             </div>
@@ -473,9 +487,10 @@ if (isset($_POST['send'])){
             showCancelButton: false,
             showConfirmButton: false
         });
+
         setTimeout(function () {
             window.top.location = "history-po.php"
-        }, 2700);
+        }, 2000);
     </script>
     <?php endif; ?>
 </body>
