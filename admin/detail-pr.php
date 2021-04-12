@@ -173,7 +173,7 @@ if (isset($_POST['send'])){
                                             <?php $code = sprintf("%05s", $hasil['kode_pr']) ?>
                                             <p
                                                 class="form-control d-flex justify-content-between align-items-center list-group-item-secondary">
-                                                <?= "PO-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
+                                                <?= "PR-".$code; ?><i class="fas fa-barcode mr-2"></i></p>
                                             <?php $date = date_create($hasil['pr_date']); ?>
                                         </div>
                                         <div class="col-md-4">

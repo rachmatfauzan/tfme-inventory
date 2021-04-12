@@ -23,7 +23,7 @@ $kode_pr = $hasil['kode_pr'];
 $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr'");
 
 
-// logik conver $cost untuk menghilangkan tanda .
+// logik conver $cost untuk menghilangkan tanda(.)
 
 $cost = $hasil['cost'];
 $convert = (int)str_replace('.','', $cost);
