@@ -117,11 +117,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                     <span style="text-transform: capitalize;"> <?= $_SESSION['user']; ?>
                                     </span></label> <br>
                                 <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample"></a>
-                                <div class="form-group collapse" id="collapseExample">
-                                    <div class="form-group col table-responsive">
-                                        <table class="table  table-bordered table-sm data">
+                                <table class="table  table-bordered table-sm data">
                                             <tr class="bg-dark text-white" style="font-size: 12px;">
                                                 <th width="20%">Supplier Name</th>
                                                 <th width="10%">Supplier Code</th>
@@ -129,7 +125,10 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                             <td><?= $data['supplier_name']; ?></td>
                                             <td><?= $data['supplier_code']; ?></td>
                                         </table>
-                                        <p>....</p>
+                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">See Detail</a>
+                                <div class="form-group collapse" id="collapseExample">
+                                    <div class="form-group col table-responsive">
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
                                             href="invoice-po.php?id=<?= $data['kode_po']?>">Detail P.O <i
@@ -156,7 +155,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                 <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
                                 <?php endif; ?>
                                 <?php if ($data['status_po'] == 'waiting'): ?>
-                                <p class="btn btn-secondary disabled btn-sm">Waiting...</p>
+                                <p class="btn btn-secondary disabled btn-sm" style="width: 20%;">Waiting...</p>
                                 <?php endif; ?>
                             </div>
                         </div>
