@@ -51,6 +51,9 @@ a.invoice:hover {
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
 
 }
+.height th{
+     height: 2px;
+ }
 
 @media screen and (max-width:900px) {
     a.invoice {

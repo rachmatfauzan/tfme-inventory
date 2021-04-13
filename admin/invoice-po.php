@@ -33,8 +33,8 @@ $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr
 
 // ++++ logik convert $cost untuk menghilangkan tanda(.) ++++
 
-$harga = $fetch['unit_cost'];
-$convertPrice = (int)str_replace('.','', $harga);
+// $harga = $fetch['unit_cost'];
+// $convertPrice = (int)str_replace('.','', $harga);
 
 // $qty = (int)$fetch['quantity'];
 // $total = $convertPrice * $qty;
@@ -137,7 +137,7 @@ function angka($angka){
                     </div>
                     <div class="form-group">
                         <form method="post">
-                            <div class="table-responsive">
+                            <div class="table-responsive-sm">
                                 <table class="table table-bordered">
                                     <!-- <tr>
                                         <td colspan="2" align="center" class="text-primary">
@@ -191,8 +191,19 @@ function angka($angka){
                                                 </div>
                                             </div>
                                             <br />
-                                            <table id="invoice-item-table" class="table table-bordered">
+                                            <table class="table table-bordered mb-5 table-sm text-center">
+                                                <tr class="bg-info">
+                                                    <th>FOB</th>
+                                                    <th>TERMS</th>
+                                                </tr>
                                                 <tr>
+                                                    <td>DESTINATION</td>
+                                                    <td>N/30</td>
+                                                </tr>
+                                            </table>
+                                            <table id="invoice-item-table"
+                                                class="table table-bordered height table-striped">
+                                                <tr class="bg-info">
                                                     <th width="2%">No</th>
                                                     <th width="30%">Item Description</th>
                                                     <th width="10%">Specification</th>
@@ -200,31 +211,37 @@ function angka($angka){
                                                     <th>Unit Price</th>
                                                     <th>Total</th>
                                                 </tr>
+                                                <?php $total=0; ?>
                                                 <?php $i=1; ?>
                                                 <?php foreach($unit_price as $dt) :?>
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
-                                                    <td><textarea id="item_description " rows="2" class="form-control"
-                                                            disabled
-                                                            style="height: auto;"><?= $dt['describ']; ?></textarea>
+                                                    <td><?= $dt['describ']; ?>
                                                     </td>
-                                                    <td><textarea id="account-code" rows="2" class="form-control"
-                                                            disabled><?= $dt['spesifikasi']; ?></textarea>
+                                                    <td><?= $dt['spesifikasi']; ?>
                                                     </td>
-                                                    <td><textarea id="par_number" rows="2" class="form-control" disabled
-                                                            style="text-align: center;"><?= $dt['quantity']; ?></textarea>
+                                                    <td class="text-center"><?= $dt['quantity']; ?>
                                                     </td>
-                                                    <td><textarea id="type" rows="2" class="form-control"
-                                                            disabled><?= angka($convertPrice); ?></textarea>
+                                                    <td>
+                                                        <?php 
+                                                            $uP = $dt['unit_cost'];
+                                                            $convertPrice = (int)str_replace('.','', $uP);
+                                                        ?>
+                                                        <?= angka($convertPrice); ?>
                                                     </td>
-                                                    <td><textarea id="par_number" rows="2" class="form-control"
-                                                            disabled><?= angka($dt['total']); ?></textarea>
+                                                    <td><?= angka($dt['total']); ?>
                                                     </td>
+                                                    <?php $total += $dt['total']; ?>
                                                 </tr>
                                                 <?php $i++; ?>
                                                 <?php endforeach; ?>
+                                                <tr>
+                                                    <td colspan="4"></td>
+                                                    <td><strong>Total</strong></td>
+                                                    <td><?= angka($total) ?></td>
+                                                </tr>
                                             </table>
-                                            <div class="row">
+                                            <div class="row" style="margin-top: 7em;">
                                                 <div class="col-md-7">
                                                     <div class="detailVendor mt-4" style="font-size: 14px;">
                                                         <p>Batam, <?= date_format($date, 'j F Y'); ?><br>
@@ -245,6 +262,9 @@ function angka($angka){
                                                     </div>
                                                 </div>
                                             </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </form>
                     </div>
