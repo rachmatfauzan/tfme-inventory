@@ -25,37 +25,6 @@ $dataKode = mysqli_fetch_assoc($kode);
 $code = (int)$dataKode['pr_kode'] + 1;
 $kodeOtomatis = sprintf("%05s", $code);
 
-// logic input P.O
-
-// if (isset($_POST['send'])){
-//     $kode_po = $code;
-//     $kode_pr = $id;
-//     $supplier_name = $_POST['supplier_name'];
-//     $supplier_code = $_POST['supplier_code'];
-//     $unit_cost = $_POST['unit_cost'];
-//     $cost = $_POST['cost'];
-//     $po_date = $_POST['po_date'];
-//     $status_po = 'waiting';
-
-//     $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
-//         null,
-//         '$kode_po',
-//         '$kode_pr',
-//         '$supplier_name',
-//         '$supplier_code',
-//         '$unit_cost',
-//         '$cost',
-//         '$po_date',
-//         '$status_po'       
-//         )");
-//     if ($query){
-//         $update = mysqli_query($conn, "UPDATE form_pr SET update_po = '1' WHERE kode_pr = $id");
-//         $send = true;
-//     }else{
-//         echo "Failed";
-//     }
-
-// }
 
 
 if(isset($_POST['send'])){
@@ -86,7 +55,10 @@ if(isset($_POST['send'])){
                     $unit_cost = $_POST['unit_cost-'.$i];
                     $item_description = $_POST['item_description-'.$i];
                     $spesifikasi = $_POST['spesifikasi-'.$i];
-                    $quantity = $_POST['quantity-'.$i];
+                    $quantity = (int) $_POST['quantity-'.$i];
+                    
+                    $convertPrice = (int)str_replace('.','', $unit_cost);
+                    $total = $convertPrice * $quantity;
 
                     $update = mysqli_query($conn, "INSERT INTO unit_cost VALUES (
                         null,
@@ -95,7 +67,8 @@ if(isset($_POST['send'])){
                         '$item_description',
                         '$unit_cost',       
                         '$spesifikasi',       
-                        '$quantity'       
+                        '$quantity',       
+                        '$total'       
                         )") or die (mysqli_error($conn));
             
                 }
@@ -406,9 +379,11 @@ if(isset($_POST['send'])){
                                                                 name="item_description-<?= $i; ?>"
                                                                 style="height: auto;"><?= $data['item_description']; ?></textarea>
                                                         </td>
-                                                        <input type="text" class="d-none" value="<?= $data['spesifikasi']; ?>"
+                                                        <input type="text" class="d-none"
+                                                            value="<?= $data['spesifikasi']; ?>"
                                                             name="spesifikasi-<?= $i; ?>">
-                                                        <input type="text" class="d-none" value="<?= $data['quantity']; ?>"
+                                                        <input type="text" class="d-none"
+                                                            value="<?= $data['quantity']; ?>"
                                                             name="quantity-<?= $i; ?>">
                                                         <td>
                                                             <div class="input-group">

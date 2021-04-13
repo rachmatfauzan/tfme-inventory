@@ -31,20 +31,27 @@ $kode_pr = $hasil['kode_pr'];
 $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr'");
 
 
-// logik conver $cost untuk menghilangkan tanda(.)
+// ++++ logik convert $cost untuk menghilangkan tanda(.) ++++
+
 $harga = $fetch['unit_cost'];
 $convertPrice = (int)str_replace('.','', $harga);
-$qty = (int)$fetch['quantity'];
 
-$total = $convertPrice * $qty;
+// $qty = (int)$fetch['quantity'];
+// $total = $convertPrice * $qty;
 
 
 // $cost = $hasil['cost'];
 // $convert = (int)str_replace('.','', $cost);
 
-// $total = $convert + 1000000;
+// // $total = $convert + 1000000;
 
-var_dump($total);
+// var_dump($total);
+
+// Logik membuat format rupiah 
+function angka($angka){
+    $hasilRupiah = " Rp " . number_format($angka,2,',','.');
+    return $hasilRupiah;
+};
 
 
 
@@ -208,10 +215,10 @@ var_dump($total);
                                                             style="text-align: center;"><?= $dt['quantity']; ?></textarea>
                                                     </td>
                                                     <td><textarea id="type" rows="2" class="form-control"
-                                                            disabled><?= $dt['unit_cost']; ?></textarea>
+                                                            disabled><?= angka($convertPrice); ?></textarea>
                                                     </td>
                                                     <td><textarea id="par_number" rows="2" class="form-control"
-                                                            disabled> </textarea>
+                                                            disabled><?= angka($dt['total']); ?></textarea>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>
