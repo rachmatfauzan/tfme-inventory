@@ -41,6 +41,9 @@ table.select th, td{
 .detail-pr-mobile{
     display: none;
 }
+table.cost .price{
+    height: 48px;
+}
 
 /* Responsive sidebar */
 @media screen and (max-width:900px){
@@ -56,6 +59,17 @@ table.select th, td{
    }
    .detail-pr{
        display: none;
+   }
+   .top-ship{
+       margin-top: 10px;
+   }
+   table.cost tr th{
+       font-size: 11px;
+       width:fit-content;
+       background-color: orange;
+   }
+   table.cost input, span{
+       font-size: 11px;
    }
    .detail-pr-mobile{
        display: block;

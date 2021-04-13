@@ -364,11 +364,11 @@ if(isset($_POST['send'])){
                                                     </div>
 
                                                 </div>
-                                                <table id="invoice-item-table" class="table table-bordered">
+                                                <table id="invoice-item-table" class="table table-bordered cost">
                                                     <tr>
                                                         <th width="2%">No</th>
                                                         <th width="68%">Item Description</th>
-                                                        <th width="30%">Unit Price</th>
+                                                        <th width="40%">Unit Price</th>
                                                     </tr>
                                                     <?php $i=1; ?>
                                                     <?php foreach($sql as $data) :?>
@@ -386,12 +386,12 @@ if(isset($_POST['send'])){
                                                             value="<?= $data['quantity']; ?>"
                                                             name="quantity-<?= $i; ?>">
                                                         <td>
-                                                            <div class="input-group">
+                                                            <div class="input-group input price">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text text-muted"
                                                                         id="basic-addon1">Rp</span>
                                                                 </div>
-                                                                <input type="text" name="unit_cost-<?= $i; ?>"
+                                                                <input type="tel" name="unit_cost-<?= $i; ?>"
                                                                     class="form-control" placeholder="x.000.000"
                                                                     id="angka-<?= $i; ?>">
                                                             </div>
@@ -410,6 +410,40 @@ if(isset($_POST['send'])){
                                                     <?php $i++; ?>
                                                     <?php endforeach; ?>
                                                 </table>
+                                                <div class="row mb-4 p-1 m-1 d-flex justify-content-between">
+                                                    <div class="col-md-5 bg-light rounded">
+                                                        <h5 class="text-center bg-info p-0">VENDOR</h5>
+                                                        <div class="form-group mt-2">
+                                                            <label>Employee of vendor</label>
+                                                            <input type="text" class="form-control" placeholder="Name of Employee" name="supplier_name">
+                                                        </div>
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" placeholder="Address of Vendor (Batam)" name="supplier_name">
+                                                        <div class="form-group mt-2">
+                                                            <label>Address</label>
+                                                            <textarea type="text" class="form-control" placeholder="City of Vendor" name="supplier_name"></textarea>
+                                                        </div>
+                                                        <label>Phone Number</label>
+                                                        <input type="text" class="form-control mb-2" placeholder="Phone of Vendor" name="supplier_name">
+
+                                                    </div>
+                                                    <div class="col-md-5 bg-light top-ship rounded">
+                                                        <h5 class="text-center bg-warning p-0">SHIP TO</h5>
+                                                        <div class="form-group mt-2">
+                                                            <label>Head Of Division</label>
+                                                            <input type="text" value="Nur Sakinah Asaad, MT" class="form-control"  name="supplier_name">
+                                                        </div>
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" value="Batam" name="supplier_name">
+                                                        <div class="form-group mt-2">
+                                                            <label>Address</label>
+                                                            <textarea type="text" class="form-control"  name="supplier_name">Jl. Ahmad Yani, Batam Kota</textarea>
+                                                        </div>
+                                                        <label>Phone Number</label>
+                                                        <input type="text" class="form-control mb-2" name="supplier_name" value="08194114001">
+                                                    </div>
+
+                                                </div>
                                         </td>
                                     </table>
 
