@@ -136,13 +136,13 @@ $po_data = mysqli_fetch_assoc($po_querry);
                                 <!-- disablle buton logic -->
                                 <?php if($data['update_po'] == 1 ) :?>
                                 <td>
-                                    <a href="#" class="btn btn-outline-secondary p-1 disabled">P.O Updated</a>
+                                    <a href="#" class="btn btn-outline-secondary p-1 disabled btn-sm">P.O Updated</a>
                                 </td>
                                 <?php elseif ($data['update_po'] == 0) : ?>
                                 <td>
                                     <a href="detail-pr.php?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1"
                                         style="font-size:12px;">See
-                                        Details</a>
+                                        Details <i class="fas fa-donate text-warning" style="opacity: 0.6;"></i></a>
                                 </td>
                                 <?php endif; ?>
                                 <!-- end logic -->

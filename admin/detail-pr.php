@@ -36,6 +36,14 @@ if(isset($_POST['send'])){
         $supplier_code = $_POST['supplier_code'];
         $po_date = $_POST['po_date'];
         $status_po = 'waiting';
+        $paid = $_POST['paid'];
+        $tax = $_POST['tax'];
+        $name_emp = $_POST['name_emp'];
+        $address_emp = $_POST['address_emp'];
+        $phone_emp = $_POST['phone_emp'];
+        $head_division = $_POST['head_division'];
+        $head_address = $_POST['head_address'];
+        $head_phone = $_POST['head_phone'];
 
         $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
             null,
@@ -43,9 +51,16 @@ if(isset($_POST['send'])){
             '$kode_pr',
             '$supplier_name',
             '$supplier_code',
-            '',
             '$po_date',
-            '$status_po'       
+            '$status_po',       
+            '$paid',       
+            '$tax',       
+            '$name_emp',       
+            '$address_emp',       
+            '$phone_emp',       
+            '$head_division',       
+            '$head_address',       
+            '$head_phone'    
             )") or die (mysqli_error($conn));
 
             if ($query){
@@ -315,7 +330,7 @@ if(isset($_POST['send'])){
                                                 <button class="btn btn-sm btn-secondary disabled" type="button"
                                                     data-toggle="collapse" data-target="#collapseExample"
                                                     aria-expanded="false" aria-controls="collapseExample" disabled>
-                                                    Update P.O 
+                                                    Update P.O
                                                 </button>
                                                 <?php endif; ?>
                                             </p>
@@ -353,27 +368,36 @@ if(isset($_POST['send'])){
                                                 <div class="row mb-4 mt-2">
                                                     <div class="col-md-6">
                                                         <label>Supplier Name</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" required
                                                             placeholder="Supplier Name" name="supplier_name">
                                                     </div>
                                                     <div class="col-md-6">
                                                         <label>Supplier Code</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" class="form-control" required
                                                             placeholder="Supplier Code" name="supplier_code">
                                                     </div>
                                                 </div>
 
 
                                                 <div class="row mb-4 mt-2">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-3">
                                                         <label>Freight Paid</label>
                                                         <div class="input-group input price">
-                                                            <input type="tel" name="paid" maxlength="3" class="form-control text-end"
+                                                            <input type="tel" name="paid" maxlength="4"
+                                                                class="form-control text-end"
                                                                 placeholder="decimal (10.0/1.5)" id="angka">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text text-muted"
                                                                     id="basic-addon1">%</span>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label>Terms</label>
+                                                        <div class="input-group input price">
+                                                            <input type="tel" name="terms" pattern="[1-31]+"
+                                                                maxlength="2" class="form-control text-end"
+                                                                placeholder="N/30">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -384,7 +408,7 @@ if(isset($_POST['send'])){
                                                                     id="basic-addon1">Rp</span>
                                                             </div>
 
-                                                            <input type="tel" name="tax" class="form-control"
+                                                            <input type="tel" name="tax" class="form-control" required
                                                                 placeholder="Price of Tax" id="number">
                                                         </div>
                                                     </div>
@@ -449,47 +473,55 @@ if(isset($_POST['send'])){
                                                 </table>
                                                 <div class="row mb-4 p-1 m-1 d-flex justify-content-between">
                                                     <div class="col-md-5 bg-light rounded">
-                                                        <h5 class="text-center bg-info p-1" style="font-size: small;"><strong><i class="fas fa-warehouse mr-2"></i>VENDOR</strong></h5>
+                                                        <h5 class="text-center bg-info p-1" style="font-size: small;">
+                                                            <strong><i class="fas fa-warehouse mr-2"></i>VENDOR</strong>
+                                                        </h5>
                                                         <div class="form-group mt-2">
                                                             <label>Employee of vendor</label>
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Name of Employee" name="supplier_name">
+                                                            <input type="text" class="form-control" required
+                                                                placeholder="Name of Employee" name="name_emp">
                                                         </div>
                                                         <label>City</label>
-                                                        <input type="text" class="form-control"
-                                                            placeholder="Address of Vendor (Batam)"
-                                                            name="supplier_name">
+                                                        <input type="text" class="form-control" required
+                                                            placeholder="Address of Vendor (Batam)" name="ciy_emp">
                                                         <div class="form-group mt-2">
                                                             <label>Address</label>
-                                                            <textarea type="text" class="form-control"
+                                                            <textarea type="text" class="form-control" required
                                                                 placeholder="City of Vendor"
-                                                                name="supplier_name"></textarea>
+                                                                name="address_emp"></textarea>
                                                         </div>
                                                         <label>Phone Number</label>
-                                                        <input type="text" class="form-control mb-2"
-                                                            placeholder="Phone of Vendor" name="supplier_name">
+                                                        <input type="number" class="form-control mb-2"
+                                                            placeholder="Phone of Vendor" name="phone_emp">
 
                                                     </div>
                                                     <div class="col-md-5 bg-light top-ship rounded">
-                                                        <h5 class="text-center bg-warning p-1" style="font-size: small;"><strong><i class="fas fa-truck-moving mr-2"></i>SHIP TO</strong></h5>
+                                                        <h5 class="text-center bg-warning p-1"
+                                                            style="font-size: small;"><strong><i
+                                                                    class="fas fa-truck-moving mr-2"></i>SHIP
+                                                                TO</strong></h5>
                                                         <div class="form-group mt-2">
                                                             <label>Head Of Division</label>
                                                             <input type="text" value="Muhammad Arifin, S.Si., M.Si"
-                                                                class="form-control" name="supplier_name">
+                                                                class="form-control" required name="head_division">
                                                         </div>
                                                         <label>City</label>
-                                                        <input type="text" class="form-control" value="Batam"
-                                                            name="supplier_name">
+                                                        <input type="text" class="form-control" required value="Batam"
+                                                            name="head_city">
                                                         <div class="form-group mt-2">
                                                             <label>Address</label>
-                                                            <textarea type="text" class="form-control"
-                                                                name="supplier_name">Jl. Ahmad Yani, Batam Kota (Gedung TFME Politeknik Negeri Batam)</textarea>
+                                                            <textarea type="text" class="form-control" required
+                                                                name="head_address">Jl. Ahmad Yani, Batam Kota (Gedung TFME Politeknik Negeri Batam)</textarea>
                                                         </div>
                                                         <label>Phone Number</label>
-                                                        <input type="text" class="form-control mb-2"
-                                                            name="supplier_name" value="08194114001">
+                                                        <input type="text" class="form-control mb-2" name="head_phone"
+                                                            value="08194114001">
                                                     </div>
-
+                                                    <div class="col-md-12 form-control mt-4 bg-light">
+                                                        <label>- Comment -</label>
+                                                        <textarea id="item_description " rows="5" class="form-control" name="comment" style="height: auto;"></textarea>
+                                                        <small class="text-info float-right">*fill it if needed</small>
+                                                    </div>
                                                 </div>
                                         </td>
                                     </table>
