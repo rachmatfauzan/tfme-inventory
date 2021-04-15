@@ -44,6 +44,8 @@ if(isset($_POST['send'])){
         $head_division = $_POST['head_division'];
         $head_address = $_POST['head_address'];
         $head_phone = $_POST['head_phone'];
+        $terms = $_POST['terms'];
+        $comment = $_POST['comment'];
 
         $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
             null,
@@ -60,7 +62,9 @@ if(isset($_POST['send'])){
             '$phone_emp',       
             '$head_division',       
             '$head_address',       
-            '$head_phone'    
+            '$head_phone',    
+            '$terms',    
+            '$comment'
             )") or die (mysqli_error($conn));
 
             if ($query){
@@ -137,6 +141,14 @@ if(isset($_POST['send'])){
     <!--  CDN SWAL-->
     <script src="../swal2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../simditor-2.3.28/site/assets/styles/simditor.css" />
+
+    <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/module.js"></script>
+    <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/hotkeys.js"></script>
+    <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/simditor.js"></script>
+
     <title>Dashboard Inventory</title>
 </head>
 
@@ -345,198 +357,210 @@ if(isset($_POST['send'])){
 
                             <section>
                                 <div class="table-responsive">
-                                </div>
-                                <form method="POST">
-                                    <table class="table table-bordered">
-                                        <td colspan="2" style="overflow-x: hidden;">
-                                            <div
-                                                class="title mb-4 text-uppercase bg-light d-flex justify-content-center align-items-center">
-                                                <h5 class="font-weight-bold text-secondary p-2">Input Purchase Order
-                                                </h5>
-                                            </div>
-                                            <div class="data-entry">
-
-                                                <input required type="text" class="form-control  disabled" id="on-po#"
-                                                    name="po_code" value="PO-<?= $kodeOtomatis; ?>" disabled>
-                                                <small class="text-info">*code is generated automatically</small>
-
-
-                                                <input type="date" name="po_date" id="pr_date"
-                                                    class="form-control input-sm mb-2" placeholder="Select PR Date"
-                                                    required />
-
-                                                <div class="row mb-4 mt-2">
-                                                    <div class="col-md-6">
-                                                        <label>Supplier Name</label>
-                                                        <input type="text" class="form-control" required
-                                                            placeholder="Supplier Name" name="supplier_name">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Supplier Code</label>
-                                                        <input type="text" class="form-control" required
-                                                            placeholder="Supplier Code" name="supplier_code">
-                                                    </div>
+                                    <form method="POST">
+                                        <table class="table table-bordered">
+                                            <td colspan="2" style="overflow-x: hidden;">
+                                                <div
+                                                    class="title mb-4 text-uppercase bg-light d-flex justify-content-center align-items-center">
+                                                    <h5 class="font-weight-bold text-secondary p-2">Input Purchase Order
+                                                    </h5>
                                                 </div>
+                                                <div class="data-entry">
+
+                                                    <input required type="text" class="form-control  disabled"
+                                                        id="on-po#" name="po_code" value="PO-<?= $kodeOtomatis; ?>"
+                                                        disabled>
+                                                    <small class="text-info">*code is generated automatically</small>
 
 
-                                                <div class="row mb-4 mt-2">
-                                                    <div class="col-md-3">
-                                                        <label>Freight Paid</label>
-                                                        <div class="input-group input price">
-                                                            <input type="tel" name="paid" maxlength="4"
-                                                                class="form-control text-end"
-                                                                placeholder="decimal (10.0/1.5)" id="angka">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text text-muted"
-                                                                    id="basic-addon1">%</span>
+                                                    <input type="date" name="po_date" id="pr_date"
+                                                        class="form-control input-sm mb-2" placeholder="Select PR Date"
+                                                        required />
+
+                                                    <div class="row mb-4 mt-2">
+                                                        <div class="col-md-6">
+                                                            <label>Supplier Name</label>
+                                                            <input type="text" class="form-control" required
+                                                                placeholder="Supplier Name" name="supplier_name">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Supplier Code</label>
+                                                            <input type="text" class="form-control" required
+                                                                placeholder="Supplier Code" name="supplier_code">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row mb-4 mt-2">
+                                                        <div class="col-md-3">
+                                                            <label>Freight Paid</label>
+                                                            <div class="input-group input price">
+                                                                <input type="tel" name="paid" maxlength="4"
+                                                                    class="form-control text-end"
+                                                                    placeholder="decimal (10.0/1.5)" id="angka">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text text-muted"
+                                                                        id="basic-addon1">%</span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Terms</label>
-                                                        <div class="input-group input price">
-                                                            <input type="tel" name="terms" pattern="[1-31]+"
-                                                                maxlength="2" class="form-control text-end"
-                                                                placeholder="N/30">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Tax</label>
-                                                        <div class="input-group input price">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text text-muted"
-                                                                    id="basic-addon1">Rp</span>
+                                                        <div class="col-md-3">
+                                                            <label>Terms</label>
+                                                            <div class="input-group input price">
+                                                                <input type="tel" name="terms"
+                                                                    maxlength="2" class="form-control text-end"
+                                                                    placeholder="N/30">
                                                             </div>
-
-                                                            <input type="tel" name="tax" class="form-control" required
-                                                                placeholder="Price of Tax" id="number">
                                                         </div>
-                                                    </div>
-
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            $("#number").keyup(function () {
-                                                                $(this).maskNumber({
-                                                                    integer: true,
-                                                                    thousands: "."
-                                                                })
-                                                            })
-                                                        })
-                                                    </script>
-                                                </div>
-
-                                                <table id="invoice-item-table" class="table table-bordered cost">
-                                                    <tr>
-                                                        <th width="2%">No</th>
-                                                        <th width="68%">Item Description</th>
-                                                        <th width="40%">Unit Price</th>
-                                                    </tr>
-                                                    <?php $i=1; ?>
-                                                    <?php foreach($sql as $data) :?>
-                                                    <tr class="addForm">
-                                                        <td><?= $i; ?></td>
-                                                        <td><textarea id="item_description " rows="2"
-                                                                class="form-control bg-light"
-                                                                name="item_description-<?= $i; ?>"
-                                                                style="height: auto;"><?= $data['item_description']; ?></textarea>
-                                                        </td>
-                                                        <input type="text" class="d-none"
-                                                            value="<?= $data['spesifikasi']; ?>"
-                                                            name="spesifikasi-<?= $i; ?>">
-                                                        <input type="text" class="d-none"
-                                                            value="<?= $data['quantity']; ?>"
-                                                            name="quantity-<?= $i; ?>">
-                                                        <td>
+                                                        <div class="col-md-6">
+                                                            <label>Tax</label>
                                                             <div class="input-group input price">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text text-muted"
                                                                         id="basic-addon1">Rp</span>
                                                                 </div>
-                                                                <input type="tel" name="unit_cost-<?= $i; ?>"
-                                                                    class="form-control" placeholder="x.000.000"
-                                                                    id="angka-<?= $i; ?>">
+
+                                                                <input type="tel" name="tax" class="form-control"
+                                                                    required placeholder="Price of Tax" id="number">
                                                             </div>
-                                                            <script>
-                                                                $(document).ready(function () {
-                                                                    $("#angka-<?= $i; ?>").keyup(function () {
-                                                                        $(this).maskNumber({
-                                                                            integer: true,
-                                                                            thousands: "."
-                                                                        })
+                                                        </div>
+
+                                                        <script>
+                                                            $(document).ready(function () {
+                                                                $("#number").keyup(function () {
+                                                                    $(this).maskNumber({
+                                                                        integer: true,
+                                                                        thousands: "."
                                                                     })
                                                                 })
-                                                            </script>
-                                                        </td>
-                                                    </tr>
-                                                    <?php $i++; ?>
-                                                    <?php endforeach; ?>
-                                                </table>
-                                                <div class="row mb-4 p-1 m-1 d-flex justify-content-between">
-                                                    <div class="col-md-5 bg-light rounded">
-                                                        <h5 class="text-center bg-info p-1" style="font-size: small;">
-                                                            <strong><i class="fas fa-warehouse mr-2"></i>VENDOR</strong>
-                                                        </h5>
-                                                        <div class="form-group mt-2">
-                                                            <label>Employee of vendor</label>
+                                                            })
+                                                        </script>
+                                                    </div>
+
+                                                    <table id="invoice-item-table" class="table table-bordered cost">
+                                                        <tr>
+                                                            <th width="2%">No</th>
+                                                            <th width="68%">Item Description</th>
+                                                            <th width="40%">Unit Price</th>
+                                                        </tr>
+                                                        <?php $i=1; ?>
+                                                        <?php foreach($sql as $data) :?>
+                                                        <tr class="addForm">
+                                                            <td><?= $i; ?></td>
+                                                            <td><textarea id="item_description " rows="2"
+                                                                    class="form-control bg-light"
+                                                                    name="item_description-<?= $i; ?>"
+                                                                    style="height: auto;"><?= $data['item_description']; ?></textarea>
+                                                            </td>
+                                                            <input type="text" class="d-none"
+                                                                value="<?= $data['spesifikasi']; ?>"
+                                                                name="spesifikasi-<?= $i; ?>">
+                                                            <input type="text" class="d-none"
+                                                                value="<?= $data['quantity']; ?>"
+                                                                name="quantity-<?= $i; ?>">
+                                                            <td>
+                                                                <div class="input-group input price">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text text-muted"
+                                                                            id="basic-addon1">Rp</span>
+                                                                    </div>
+                                                                    <input type="tel" name="unit_cost-<?= $i; ?>"
+                                                                        class="form-control" placeholder="x.000.000"
+                                                                        id="angka-<?= $i; ?>">
+                                                                </div>
+                                                                <script>
+                                                                    $(document).ready(function () {
+                                                                        $("#angka-<?= $i; ?>").keyup(
+                                                                    function () {
+                                                                            $(this).maskNumber({
+                                                                                integer: true,
+                                                                                thousands: "."
+                                                                            })
+                                                                        })
+                                                                    })
+                                                                </script>
+                                                            </td>
+                                                        </tr>
+                                                        <?php $i++; ?>
+                                                        <?php endforeach; ?>
+                                                    </table>
+                                                    <div class="row mb-4 p-1 m-1 d-flex justify-content-between">
+                                                        <div class="col-md-5 bg-light rounded">
+                                                            <h5 class="text-center bg-info p-1"
+                                                                style="font-size: small;">
+                                                                <strong><i
+                                                                        class="fas fa-warehouse mr-2"></i>VENDOR</strong>
+                                                            </h5>
+                                                            <div class="form-group mt-2">
+                                                                <label>Employee of vendor</label>
+                                                                <input type="text" class="form-control" required
+                                                                    placeholder="Name of Employee" name="name_emp">
+                                                            </div>
+                                                            <label>City</label>
                                                             <input type="text" class="form-control" required
-                                                                placeholder="Name of Employee" name="name_emp">
-                                                        </div>
-                                                        <label>City</label>
-                                                        <input type="text" class="form-control" required
-                                                            placeholder="Address of Vendor (Batam)" name="ciy_emp">
-                                                        <div class="form-group mt-2">
-                                                            <label>Address</label>
-                                                            <textarea type="text" class="form-control" required
-                                                                placeholder="City of Vendor"
-                                                                name="address_emp"></textarea>
-                                                        </div>
-                                                        <label>Phone Number</label>
-                                                        <input type="number" class="form-control mb-2"
-                                                            placeholder="Phone of Vendor" name="phone_emp">
+                                                                placeholder="Address of Vendor (Batam)" name="ciy_emp">
+                                                            <div class="form-group mt-2">
+                                                                <label>Address</label>
+                                                                <textarea type="text" class="form-control" required
+                                                                    placeholder="City of Vendor"
+                                                                    name="address_emp"></textarea>
+                                                            </div>
+                                                            <label>Phone Number</label>
+                                                            <input type="number" class="form-control mb-2"
+                                                                placeholder="Phone of Vendor" name="phone_emp">
 
-                                                    </div>
-                                                    <div class="col-md-5 bg-light top-ship rounded">
-                                                        <h5 class="text-center bg-warning p-1"
-                                                            style="font-size: small;"><strong><i
-                                                                    class="fas fa-truck-moving mr-2"></i>SHIP
-                                                                TO</strong></h5>
-                                                        <div class="form-group mt-2">
-                                                            <label>Head Of Division</label>
-                                                            <input type="text" value="Muhammad Arifin, S.Si., M.Si"
-                                                                class="form-control" required name="head_division">
                                                         </div>
-                                                        <label>City</label>
-                                                        <input type="text" class="form-control" required value="Batam"
-                                                            name="head_city">
-                                                        <div class="form-group mt-2">
-                                                            <label>Address</label>
-                                                            <textarea type="text" class="form-control" required
-                                                                name="head_address">Jl. Ahmad Yani, Batam Kota (Gedung TFME Politeknik Negeri Batam)</textarea>
+                                                        <div class="col-md-5 bg-light top-ship rounded">
+                                                            <h5 class="text-center bg-warning p-1"
+                                                                style="font-size: small;"><strong><i
+                                                                        class="fas fa-truck-moving mr-2"></i>SHIP
+                                                                    TO</strong></h5>
+                                                            <div class="form-group mt-2">
+                                                                <label>Head Of Division</label>
+                                                                <input type="text" value="Muhammad Arifin, S.Si., M.Si"
+                                                                    class="form-control" required name="head_division">
+                                                            </div>
+                                                            <label>City</label>
+                                                            <input type="text" class="form-control" required
+                                                                value="Batam" name="head_city">
+                                                            <div class="form-group mt-2">
+                                                                <label>Address</label>
+                                                                <textarea type="text" class="form-control" required
+                                                                    name="head_address">Jl. Ahmad Yani, Batam Kota (Gedung TFME Politeknik Negeri Batam)</textarea>
+                                                            </div>
+                                                            <label>Phone Number</label>
+                                                            <input type="text" class="form-control mb-2"
+                                                                name="head_phone" value="08194114001">
                                                         </div>
-                                                        <label>Phone Number</label>
-                                                        <input type="text" class="form-control mb-2" name="head_phone"
-                                                            value="08194114001">
                                                     </div>
-                                                    <div class="col-md-12 form-control mt-4 bg-light">
+                                                    <div class="col-md-12 form-control mt-4 bg-light editor-web">
                                                         <label>- Comment -</label>
-                                                        <textarea id="item_description " rows="5" class="form-control" name="comment" style="height: auto;"></textarea>
-                                                        <small class="text-info float-right">*fill it if needed</small>
+                                                        <textarea id="editor" rows="5" cols="6" class="form-control"
+                                                            name="comment" style="font-size: 13px;"></textarea>
+                                                        <small class="text-info">*fill it if needed</small>
                                                     </div>
-                                                </div>
-                                        </td>
-                                    </table>
 
-                                    <div class="d-flex justify-content-end entry">
-                                        <button type="submit" name="send" class="btn bg-dark text-white">Input Data
-                                            PO</button>
-                                    </div>
-                                </form>
+                                                    <script>
+                                                        Simditor.locale = 'en-US';
+                                                        var editor = new Simditor({
+                                                            textarea: $('#editor'),
+                                                            toolbar: ['bold', 'italic', 'underline',
+                                                                'strikethrough', 'color', '|', 'ol', 'ul',
+                                                                '|', 'link', 'hr', '|', 'alignment'
+                                                            ],
+                                                        });
+                                                    </script>
+                                            </td>
+                                        </table>
+
+                                        <div class="d-flex justify-content-end entry">
+                                            <button type="submit" name="send" class="btn bg-dark text-white">Input Data
+                                                PO</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </section>
                         </div>
-
-
-
-
                     </section>
                 </div>
             </div>
