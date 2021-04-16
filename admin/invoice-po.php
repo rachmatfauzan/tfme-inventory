@@ -181,7 +181,7 @@ function angka($angka){
                                                 <div class="col-md-5">
                                                     <b class="bg-info p-1">SHIP TO</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p class="text-transform:capitalization;">Politeknik Negeri Batam <br>
+                                                        <p style="text-transform:capitalization;">Politeknik Negeri Batam <br>
                                                             <?= $hasil['head_division']; ?> <br>
                                                             <?= $hasil['head_address']; ?><br>
                                                             Kota <?= $hasil['city_head']; ?> <br>
@@ -218,7 +218,7 @@ function angka($angka){
                                                     <td class="text-center"><?= $i; ?></td>
                                                     <td><?= $dt['describ']; ?>
                                                     </td>
-                                                    <td><?= $dt['spesifikasi']; ?>
+                                                    <td style="text-transform:uppercase;"><?= $dt['spesifikasi']; ?>
                                                     </td>
                                                     <td class="text-center"><?= $dt['quantity']; ?>
                                                     </td>
