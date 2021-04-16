@@ -102,7 +102,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                 </div>
             </div>
             <div class="kepala d-flex justify-content-between align-items-center mt-2 ml-2">
-                <h5 class="mt-2 judul"><i class="fas fa-history mr-2"></i>History PO <span
+                <h5 class="mt-2 judul"><i class="fas fa-file-invoice-dollar mr-2"></i>PO Release History<span
                         style="font-style:italic; opacity:0.6;">(Purchase Order)</span></h5>
                 <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
             </div>

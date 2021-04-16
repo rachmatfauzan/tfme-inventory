@@ -170,22 +170,22 @@ function angka($angka){
                                                 <div class="col-md-7">
                                                     <b class="bg-info p-1 ">VENDOR</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p>PT. Prochem Tritama <br>
-                                                            Mrs. Ratni, penyedia barang <br>
-                                                            Komp. Limindo Trade Centre Blok B No. 04 Batam Centre <br>
-                                                            Kota Batam <br>
-                                                            0778-945565 <br>
+                                                        <p class="text-transform:capitalization;"><?= $hasil['supplier_name']; ?> <br>
+                                                            <?= $hasil['name_emp']; ?> <br>
+                                                            <?= $hasil['address_emp']; ?> <br>
+                                                            Kota <?= $hasil['city_emp']; ?> <br>
+                                                            <?= wordwrap($hasil['phone_emp'],4,'-', TRUE); ?>
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-5">
                                                     <b class="bg-info p-1">SHIP TO</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p>Polibatam <br>
-                                                            Nur Sakinah Asaad, MT, Kepala Unit TFME <br>
-                                                            Jl. Ahmad Yani, Batam Kota<br>
-                                                            Kota Batam <br>
-                                                            08194114001<br>
+                                                        <p class="text-transform:capitalization;">Politeknik Negeri Batam <br>
+                                                            <?= $hasil['head_division']; ?> <br>
+                                                            <?= $hasil['head_address']; ?><br>
+                                                            Kota <?= $hasil['city_head']; ?> <br>
+                                                            <?= wordwrap($hasil['head_phone'], 4 ,'-', TRUE); ?><br>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -198,11 +198,11 @@ function angka($angka){
                                                 </tr>
                                                 <tr>
                                                     <td>DESTINATION</td>
-                                                    <td>N/30</td>
+                                                    <td><?= $hasil['terms']; ?>/30</td>
                                                 </tr>
                                             </table>
-                                            <table id="invoice-item-table"
-                                                class="table table-bordered height table-striped">
+                                            <table id="invoice-item-table" class="table table-bordered table-sm height"
+                                                style="border-collapse: collapse;">
                                                 <tr class="bg-info">
                                                     <th width="2%">No</th>
                                                     <th width="30%">Item Description</th>
@@ -215,7 +215,7 @@ function angka($angka){
                                                 <?php $i=1; ?>
                                                 <?php foreach($unit_price as $dt) :?>
                                                 <tr class="addForm">
-                                                    <td><?= $i; ?></td>
+                                                    <td class="text-center"><?= $i; ?></td>
                                                     <td><?= $dt['describ']; ?>
                                                     </td>
                                                     <td><?= $dt['spesifikasi']; ?>
@@ -235,10 +235,36 @@ function angka($angka){
                                                 </tr>
                                                 <?php $i++; ?>
                                                 <?php endforeach; ?>
-                                                <tr>
-                                                    <td colspan="4"></td>
-                                                    <td><strong>Total</strong></td>
-                                                    <td><?= angka($total) ?></td>
+                                                <tr class="bg-light">
+                                                    <td colspan="4" class="bg-white"></td>
+                                                    <td>Total</td>
+                                                    <td class="bg-white">- <?= angka($total) ?> -</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td colspan="4" class="bg-white"></td>
+                                                    <?php $tax = $hasil['tax'];
+                                                        $total_item=(float)$total;
+                                                        $div = ($tax/100) * $total_item;
+                                                        $convertTax = str_replace('.',',', $tax);
+                                                        ?>
+                                                    <td>Tax <?= $convertTax; ?>%</td>
+                                                    <td class="bg-white">- <?= angka($div) ?> -</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td colspan="4" class="bg-white"></td>
+                                                    <?php $paid = $hasil['paid'];
+                                                        $convertPaid = (int)str_replace('.','', $paid);
+                                                        ?>
+                                                    <td>Freight Paid</td>
+                                                    <td class="bg-white">- <?= angka($convertPaid) ?> -</td>
+                                                </tr>
+                                                <tr class="bg-light">
+                                                    <td colspan="4" class="bg-white"></td>
+                                                    <?php 
+                                                        $sub_total = $total+(int)$div+$convertPaid;
+                                                    ?>
+                                                    <td><strong>Sub Total</strong></td>
+                                                    <td><?= angka($sub_total) ?></td>
                                                 </tr>
                                             </table>
                                             <div class="row" style="margin-top: 7em;">
@@ -246,7 +272,7 @@ function angka($angka){
                                                     <div class="detailVendor mt-4" style="font-size: 14px;">
                                                         <p>Batam, <?= date_format($date, 'j F Y'); ?><br>
                                                             <b>Politeknik Negeri Batam</b> <br> <br> <br> <br> <br> <br>
-                                                            <b><u>Nur Sakinah Asaad, MT</u></b> <br>
+                                                            <b><u><?= $hasil['head_division']; ?></u></b> <br>
                                                             Penanggung Jawab Teknis <br>
                                                         </p>
                                                     </div>
@@ -254,9 +280,9 @@ function angka($angka){
                                                 <div class="col-md-5">
                                                     <div class="detailVendor mt-4" style="font-size: 14px;">
                                                         <p>Menerima dan menyetujui : <br>
-                                                            <b>PT. Prochem Tritama</b> <br> <br> <br> <br> <br> <br>
+                                                            <b><?= $hasil['supplier_name']; ?></b> <br> <br> <br> <br> <br> <br>
                                                             <!-- <input type="file"> <br> -->
-                                                            <b><u>Ratni</u></b> <br>
+                                                            <b><u><?= $hasil['name_emp']; ?></u></b> <br>
                                                             Penyedia Barang<br>
                                                         </p>
                                                     </div>

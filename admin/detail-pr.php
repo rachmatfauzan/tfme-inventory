@@ -39,9 +39,11 @@ if(isset($_POST['send'])){
         $paid = $_POST['paid'];
         $tax = $_POST['tax'];
         $name_emp = $_POST['name_emp'];
+        $city_emp = $_POST['city_emp'];
         $address_emp = $_POST['address_emp'];
         $phone_emp = $_POST['phone_emp'];
         $head_division = $_POST['head_division'];
+        $city_head = $_POST['city_head'];
         $head_address = $_POST['head_address'];
         $head_phone = $_POST['head_phone'];
         $terms = $_POST['terms'];
@@ -58,9 +60,11 @@ if(isset($_POST['send'])){
             '$paid',       
             '$tax',       
             '$name_emp',       
+            '$city_emp',       
             '$address_emp',       
             '$phone_emp',       
             '$head_division',       
+            '$city_head',       
             '$head_address',       
             '$head_phone',    
             '$terms',    
@@ -136,15 +140,16 @@ if(isset($_POST['send'])){
     <link rel="icon" href="../image/TFME.jpg">
 
     <!-- Js membuat format rupiah -->
-    <script src="js/masknumber.js"></script>
+    <script type="text/javascript" src="js/masknumber.js"></script>
 
     <!--  CDN SWAL-->
     <script src="../swal2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../simditor-2.3.28/site/assets/styles/simditor.css" />
+    <!-- simditor File Js -->
+    <link rel="stylesheet" type="text/css" href="../simditor-2.3.28/styles/simditor.css" />
 
-    <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/jquery.min.js"></script> -->
     <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/module.js"></script>
     <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/hotkeys.js"></script>
     <script type="text/javascript" src="../simditor-2.3.28/site/assets/scripts/simditor.js"></script>
@@ -393,11 +398,11 @@ if(isset($_POST['send'])){
 
                                                     <div class="row mb-4 mt-2">
                                                         <div class="col-md-3">
-                                                            <label>Freight Paid</label>
+                                                            <label>Tax</label>
                                                             <div class="input-group input price">
-                                                                <input type="tel" name="paid" maxlength="4"
+                                                                <input type="tel" name="tax" maxlength="4"
                                                                     class="form-control text-end"
-                                                                    placeholder="decimal (10.0/1.5)" id="angka">
+                                                                    placeholder="decimal (10.0/1.5)">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text text-muted"
                                                                         id="basic-addon1">%</span>
@@ -413,14 +418,14 @@ if(isset($_POST['send'])){
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <label>Tax</label>
+                                                            <label>Freight Paid</label>
                                                             <div class="input-group input price">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text text-muted"
                                                                         id="basic-addon1">Rp</span>
                                                                 </div>
 
-                                                                <input type="tel" name="tax" class="form-control"
+                                                                <input type="tel" name="paid" class="form-control"
                                                                     required placeholder="Price of Tax" id="number">
                                                             </div>
                                                         </div>
@@ -554,7 +559,7 @@ if(isset($_POST['send'])){
                                         </table>
 
                                         <div class="d-flex justify-content-end entry">
-                                            <button type="submit" name="send" class="btn bg-dark text-white">Input Data
+                                            <button type="submit" name="send" class="btn bg-dark text-white btn-sm"><i class="fas fa-file-invoice-dollar mr-2 text-white"></i>Release
                                                 PO</button>
                                         </div>
                                     </form>
