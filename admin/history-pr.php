@@ -161,6 +161,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                     </table>
                 </div>
                 <div class="btn">
+                    <small>Clicked the button</small><i class="far fa-hand-point-down ml-2"></i> <br>
                     <a href="history-po.php" class="judul btn btn-sm">History PO<i
                             class="far fa-window-restore ml-2 text-white"></i></a>
                 </div>
