@@ -57,8 +57,8 @@ if(isset($_POST['send'])){
             '$supplier_code',
             '$po_date',
             '$status_po',       
-            '$paid',       
             '$tax',       
+            '$paid',       
             '$name_emp',       
             '$city_emp',       
             '$address_emp',       
@@ -503,7 +503,7 @@ if(isset($_POST['send'])){
                                                             </div>
                                                             <label>City</label>
                                                             <input type="text" class="form-control" required
-                                                                placeholder="Address of Vendor (Batam)" name="ciy_emp">
+                                                                placeholder="Address of Vendor (Batam)" name="city_emp">
                                                             <div class="form-group mt-2">
                                                                 <label>Address</label>
                                                                 <textarea type="text" class="form-control" required
@@ -527,7 +527,7 @@ if(isset($_POST['send'])){
                                                             </div>
                                                             <label>City</label>
                                                             <input type="text" class="form-control" required
-                                                                value="Batam" name="head_city">
+                                                                value="Batam" name="city_head">
                                                             <div class="form-group mt-2">
                                                                 <label>Address</label>
                                                                 <textarea type="text" class="form-control" required

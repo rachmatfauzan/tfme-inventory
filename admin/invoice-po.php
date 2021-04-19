@@ -170,7 +170,7 @@ function angka($angka){
                                                 <div class="col-md-7">
                                                     <b class="bg-info p-1 ">VENDOR</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p class="text-transform:capitalization;">
+                                                        <p class="text-capitalize">
                                                             <?= $hasil['supplier_name']; ?> <br>
                                                             <?= $hasil['name_emp']; ?> <br>
                                                             <?= $hasil['address_emp']; ?> <br>
@@ -287,7 +287,7 @@ function angka($angka){
                                                 </div>
                                                 <div class="col" style="width: 300px;">
                                                     <div class="detailVendor mt-4 mr-4 d-flex justify-content-end" style="font-size:14px;">
-                                                        <p>Menerima dan menyetujui : <br>
+                                                        <p class="text-capitalize">Menerima dan menyetujui : <br>
                                                             <b><?= $hasil['supplier_name']; ?></b> <br> <br> <br> <br>
                                                             <br> <br>
                                                             <!-- <input type="file"> <br> -->
