@@ -170,7 +170,8 @@ function angka($angka){
                                                 <div class="col-md-7">
                                                     <b class="bg-info p-1 ">VENDOR</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p class="text-transform:capitalization;"><?= $hasil['supplier_name']; ?> <br>
+                                                        <p class="text-transform:capitalization;">
+                                                            <?= $hasil['supplier_name']; ?> <br>
                                                             <?= $hasil['name_emp']; ?> <br>
                                                             <?= $hasil['address_emp']; ?> <br>
                                                             Kota <?= $hasil['city_emp']; ?> <br>
@@ -181,7 +182,8 @@ function angka($angka){
                                                 <div class="col-md-5">
                                                     <b class="bg-info p-1">SHIP TO</b><br />
                                                     <div class="detailVendor mt-2" style="font-size: 14px;">
-                                                        <p style="text-transform:capitalization;">Politeknik Negeri Batam <br>
+                                                        <p style="text-transform:capitalization;">Politeknik Negeri
+                                                            Batam <br>
                                                             <?= $hasil['head_division']; ?> <br>
                                                             <?= $hasil['head_address']; ?><br>
                                                             Kota <?= $hasil['city_head']; ?> <br>
@@ -267,9 +269,15 @@ function angka($angka){
                                                     <td><?= angka($sub_total) ?></td>
                                                 </tr>
                                             </table>
-                                            <div class="row" style="margin-top: 7em;">
-                                                <div class="col-md-7">
-                                                    <div class="detailVendor mt-4" style="font-size: 14px;">
+                                            <div class="row comment">
+                                                <div class="col-md-12">
+                                                    <label class="font-weight-bold">COMMENT / SYARAT DAN KETENTUAN :</label>
+                                                    <p><?= $hasil['comment']; ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 3em;">
+                                                <div class="col">
+                                                    <div class="detailVendor mt-4" style="width:300px; font-size:14px;">
                                                         <p>Batam, <?= date_format($date, 'j F Y'); ?><br>
                                                             <b>Politeknik Negeri Batam</b> <br> <br> <br> <br> <br> <br>
                                                             <b><u><?= $hasil['head_division']; ?></u></b> <br>
@@ -277,10 +285,11 @@ function angka($angka){
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <div class="detailVendor mt-4" style="font-size: 14px;">
+                                                <div class="col" style="width: 300px;">
+                                                    <div class="detailVendor mt-4 mr-4 d-flex justify-content-end" style="font-size:14px;">
                                                         <p>Menerima dan menyetujui : <br>
-                                                            <b><?= $hasil['supplier_name']; ?></b> <br> <br> <br> <br> <br> <br>
+                                                            <b><?= $hasil['supplier_name']; ?></b> <br> <br> <br> <br>
+                                                            <br> <br>
                                                             <!-- <input type="file"> <br> -->
                                                             <b><u><?= $hasil['name_emp']; ?></u></b> <br>
                                                             Penyedia Barang<br>

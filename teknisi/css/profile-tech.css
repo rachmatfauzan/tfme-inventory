@@ -71,6 +71,16 @@ a.invoice:hover {
 .tag {
     margin: 10px;
 }
+.comment{
+    margin-left: 2px;
+    margin-right: 10px;
+    width: 50em;
+    border: 3px solid #17A2B8
+}
+.comment label{
+    width: 100%;
+    text-align: center;
+}
 
 /*  */
 .form-row {
