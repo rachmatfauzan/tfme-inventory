@@ -100,7 +100,7 @@ function angka($angka){
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <link rel="icon" href="../image/TFME.jpg">
-    <title>Dashboard Inventory</title>
+    <title>TFME Detail PO</title>
 </head>
 
 <body>
@@ -108,8 +108,6 @@ function angka($angka){
 
         <!-- start header -->
         <div class="invoice-po">
-            <div class="atap"><span> </span></div>
-
             <div class="navbar justify-content-between bg-dark text-white">
                 <div class="profile">
                     <div class="wrapper-image">
@@ -130,10 +128,10 @@ function angka($angka){
             </div>
             <div class="box">
                 <div class="data-entry">
+                        <h5 class="tron font-weight-bold text-secondary text-center">Detail P.O</h5>
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
-                        <h5 class="font-weight-bold text-secondary">Detail P.O</h5>
-                        <a href="history-po.php" style="font-size: 11px;" class="btn invoice "><i
-                                class="fas fa-backspace mr-2"></i>history p.o</a>
+                        <a href="history-po.php" style="font-size: 11px;" class="btn tron btn-light btn-sm border-0 mb-2"><i class="fas fa-backspace mr-2"></i>history p.o</a>
+                        <a href="#" onclick="window.print();" style="font-size: 11px;" class="btn tron invoice"><i class="fas fa-print mr-2"></i>print</a>
                     </div>
                     <div class="form-group">
                         <form method="post">
@@ -275,9 +273,9 @@ function angka($angka){
                                                     <p><?= $hasil['comment']; ?></p>
                                                 </div>
                                             </div>
-                                            <div class="row" style="margin-top: 3em;">
+                                            <div class="row" style="margin-top: 1em;">
                                                 <div class="col">
-                                                    <div class="detailVendor mt-4" style="width:300px; font-size:14px;">
+                                                    <div class="detailVendor" style="width:300px; font-size:14px;">
                                                         <p>Batam, <?= date_format($date, 'j F Y'); ?><br>
                                                             <b>Politeknik Negeri Batam</b> <br> <br> <br> <br> <br> <br>
                                                             <b><u><?= $hasil['head_division']; ?></u></b> <br>
@@ -286,7 +284,7 @@ function angka($angka){
                                                     </div>
                                                 </div>
                                                 <div class="col" style="width: 300px;">
-                                                    <div class="detailVendor mt-4 mr-4 d-flex justify-content-end" style="font-size:14px;">
+                                                    <div class="detailVendor mr-4 d-flex justify-content-end" style="font-size:14px;">
                                                         <p class="text-capitalize">Menerima dan menyetujui : <br>
                                                             <b><?= $hasil['supplier_name']; ?></b> <br> <br> <br> <br>
                                                             <br> <br>
