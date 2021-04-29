@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['admin'])){
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 // Ambil Data PR

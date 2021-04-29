@@ -10,7 +10,7 @@ $query =  mysqli_query($conn, "SELECT * FROM user WHERE id_user ='$idUser'");
 $result = mysqli_fetch_array($query);
 
 if(!isset($_SESSION['head'])){
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 ?>

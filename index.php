@@ -10,6 +10,9 @@ if (isset($_SESSION["admin"] )){
 }else if (isset($_SESSION["technician"] )){
     header("location: teknisi/dashboard-tech.php"); //Buat session sesuaikan dengan posisi
 }
+else if (isset($_SESSION["head"] )){
+    header("location: teknisi/dashboard-tech.php"); //Buat session sesuaikan dengan posisi
+}
 
 
 

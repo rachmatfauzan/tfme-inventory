@@ -4,7 +4,7 @@ session_start();
 include "../config/config.php";
 
 if(!isset($_SESSION['technician'])){
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 $name = $_SESSION['user'];

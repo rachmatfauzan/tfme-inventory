@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['head'])){
-    header("location: index.php");
+    header("location: ../index.php");
 }
 
 
@@ -144,7 +144,7 @@ if(!isset($_SESSION['head'])){
                                 <p>19 November 2020</p>
 
                                 <label class="title">Status</label>
-                                <select name="status" id="status" class="custom-select col-sm-3 mb-2">
+                                <select name="status" id="status" class="custom-select col-sm-3 mb-2 form-control">
                                     <option value="waiting" selected disabled>Waiting</option> //sesuaikan dengan data yang ada di dalam database
                                     <option value="approve">Approve</option>
                                     <option value="rejected">Rejected</option>
