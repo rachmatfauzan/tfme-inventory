@@ -195,7 +195,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     $pr_date = $_POST['pr_date'];
                     
                     $update = mysqli_query($conn, "UPDATE dt_inventory SET
-                    item = null,
                     supplier_no = '$supplier_no',
                     cc = '$cc',
                     account_code = '$account_code',
@@ -400,7 +399,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <form id="formDelete" method="post" class="d-flex justify-content-center flex-column">
                                 <input type="text" class="bg-light form-control" style="text-align: center;" name="part"
                                     id="part_number" disabled>
-                                <input type="text" class="bg-light form-control d-none
+                                <input type="text" class="bg-light form-control d-none"
                                     style=" text-align: center;" name="id_item" id="id_item">
                                 <div class="btn">
                                     <button name="delete" class="btn btn-danger btn-sm text-white"
@@ -756,7 +755,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <form method="post">
                                         <div class="d-flex">
                                             <input type="text" name="part_numbering" class="form-control bg-light"
-                                                placeholder="Enter Part Number" required  maxlength="9">
+                                                placeholder="Enter Part Number" required  maxlength="10">
                                             <button class="btn ml-2 btn-outline-warning"
                                                 name="check_part">Check</button>
                                         </div>
@@ -766,7 +765,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 
                                     <div class="d-flex">
                                         <input type="text" name="part_numbering" id="myInput" class="form-control bg-light"
-                                            value="<?= $part_number; ?>" required  maxlength="9">
+                                            value="<?= $part_number; ?>" required  maxlength="10">
                                             <button class="btn ml-2 btn-outline-danger" onclick="document.getElementById('myInput').value = ''">Reset</button>
                                             
                                             <button class="btn ml-2 btn-outline-warning"

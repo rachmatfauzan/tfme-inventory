@@ -10,7 +10,7 @@ require 'PHPMailer/src/SMTP.php';
 $email_send =  "rachmatfauzan87@gmail.com";
 $name_send =  "Teknisi TFME";
 $email_received =  "rachmatfauzan07@gmail.com";
-$subjek =  "Halo!!, ada pesanan baru LOH !!";
+$subjek =  "Halo!!, Ada Pesanan Baru !!";
 
 $pesan = '
 
