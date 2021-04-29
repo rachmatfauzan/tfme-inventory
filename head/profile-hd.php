@@ -1,3 +1,21 @@
+<?php 
+
+session_start();
+include "../config/config.php";
+
+
+$idUser=$_SESSION["id-user"];
+
+$query =  mysqli_query($conn, "SELECT * FROM user WHERE id_user ='$idUser'");
+$result = mysqli_fetch_array($query);
+
+if(!isset($_SESSION['head'])){
+    header("location: index.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +50,7 @@
 
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="icon" href="../../image/TFME.jpg">
+    <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
 </head>
 
@@ -44,7 +62,7 @@
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-hd.html"><i class="fas fa-box-open"></i>Purchase Order</a>
+                <a class="nav-link" href="dashboard-hd.php"><i class="fas fa-box-open"></i>Purchase Order</a>
                 <a class="nav-link active" href="#"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -58,23 +76,23 @@
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../../image/HOD.png" alt="">
+                        <img src="../image/HOD.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5>Rachmat Fauzan</h5>
+                        <h5 style="text-transform: capitalize;"><?= $_SESSION['user']; ?></h5>
                         <p>Head of Division</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="box">
-                <form>
+            <form>
                     <div class="form-row d-flex justify-content-center">
                         <div class="profile-tag d-flex align-items-center justify-content-center">
                             <div class="tag">
@@ -87,33 +105,29 @@
                     </div>
                     <hr style="border-color: gray; opacity: 0.6;">
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-sm-10">
                             <label class="text-bold">Full Name</label>
-                            <input type="text" class="form-control" placeholder="First name" disabled>
+                            <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['name']; ?>" disabled>
                         </div>
                         <div class="col">
                             <label>ID</label>
-                            <input type="text" class="form-control" placeholder="Last name" disabled>
+                            <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['id_user']; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-sm-10">
                             <label class="text-bold">Email</label>
-                            <input type="text" class="form-control" placeholder="First name" disabled>
+                            <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['email']; ?>" disabled>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-2">
                             <label>Handphone</label>
-                            <input type="text" class="form-control" placeholder="Last name" disabled>
+                            <input type="text" class="form-control" style="text-transform: capitalize;" value="<?= $result['handphone']; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col">
-                            <label class="text-bold">Position</label>
-                            <input type="text" class="form-control" placeholder="First name" disabled>
-                        </div>
-                        <div class="col">
-                            <label>address</label>
-                            <input type="text" class="form-control" placeholder="Last name" disabled>
+                            <label>Address</label>
+                            <textarea style="height: 7rem;" class="form-control" disabled><?= $result['address']; ?></textarea>
                         </div>
                     </div>
                 </form>

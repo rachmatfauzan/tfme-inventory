@@ -1,3 +1,18 @@
+<?php 
+session_start();
+
+require "../config/config.php";
+
+if(!isset($_SESSION['head'])){
+    header("location: index.php");
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +46,7 @@
 
     <!-- Bootstrap Ordered Datatables  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="icon" href="../../image/TFME.jpg">
+    <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
 </head>
 
@@ -43,8 +58,8 @@
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link active" href="dashboard-iqa.html"><i class="fas fa-box-open"></i>Purchase Order</a>
-                <a class="nav-link " href="profile-hd.html"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link active" href="dashboard-iqa.php"><i class="fas fa-box-open"></i>Purchase Order</a>
+                <a class="nav-link " href="profile-hd.php"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -57,17 +72,17 @@
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../../image/HOD.png" alt="">
+                        <img src="../image/HOD.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5>Rachmat Fauzan</h5>
+                        <h5 style="text-transform:capitalize;"><?= $_SESSION['user']; ?></h5>
                         <p>Head of Division</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>

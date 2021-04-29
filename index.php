@@ -45,6 +45,10 @@ if (isset($_POST["login"])){
                 header("location: teknisi/dashboard-tech.php");
                 // Set session
                 $_SESSION['technician'] = $result['position'] == 'technician';
+            }else if($result['position'] == "head"){
+                header("location: head/dashboard-hd.php");
+                // Set session
+                $_SESSION['head'] = $result['position'] == 'head';
             }
 
         }
