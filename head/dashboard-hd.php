@@ -8,6 +8,19 @@ if(!isset($_SESSION['head'])){
 }
 
 
+// pagination and select data
+$jumlahDataperHalaman = 4; 
+$rows = mysqli_query($conn, "SELECT * FROM form_po ");
+$jumlahRows = mysqli_num_rows($rows);
+
+// Jumlah halaman yang tampil
+$jumlahHalaman = ceil($jumlahRows/ $jumlahDataperHalaman);
+
+// ternary logic
+$halamanAktif = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+$awalData = ($jumlahDataperHalaman * $halamanAktif) - $jumlahDataperHalaman;
+
+$query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $awalData, $jumlahDataperHalaman");
 
 ?>
 
@@ -87,143 +100,87 @@ if(!isset($_SESSION['head'])){
                     </div>
                 </div>
             </div>
+            <?php foreach ($query as $data) :?>
             <div class="box">
-                <div class="data-entry">
-                    <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                        <h5 class="font-weight-bold text-secondary">List of Purchase Order</h5>
-                    </div>
+                <div class="content">
                     <div class="group">
-                        <div class="form-group row d-flex justify-content-between">
-                            <div class="tanda col-md-6">
+                        <div class="box1 form-group col-sm">
+                            <div class="tanda">
+                                <label style="opacity: 0.7; font-size:14px;"> <?php $code = sprintf("%05s", $data["kode_po"]) ?>
+                                <?= "PO-". $code; ?> | <b>Requestor</b>
+                                    <span style="text-transform: capitalize;"> <?= $data['requestor_po']; ?>
+                                    </span></label> <br>
                                 <label class="title">Item Detail</label>
+                                <table class="table  table-bordered table-sm data">
+                                            <tr class="bg-dark text-white" style="font-size: 12px;">
+                                                <th width="20%">Supplier Name</th>
+                                                <th width="10%">Supplier Code</th>
+                                            </tr>
+                                            <td><?= $data['supplier_name']; ?></td>
+                                            <td><?= $data['supplier_code']; ?></td>
+                                        </table>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample"></a>
+                                    aria-expanded="false" aria-controls="collapseExample">See Detail</a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
-                                        <table class="table">
-                                            <tr>
-                                                <th>Item Name</th>
-                                                <th>Specification</th>
-                                                <th>Quantity</th>
-                                                <th>Unit Price</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Cooper Sulfat Pentahydrate
-                                                </td>
-                                                <td>
-                                                    20kg/bag
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Rp2.600.000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Cooper Sulfat Pentahydrate
-                                                </td>
-                                                <td>
-                                                    20kg/bag
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Rp2.600.000
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <a class="btn list-group-item-dark btn-sm list-group-item-action"
+                                            style="font-size: 11px; width:100px;"
+                                            href="invoice-po.php?id=<?= $data['kode_po']?>">Detail P.O <i
+                                                class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
+                                    
                                 </div>
                             </div>
-                            <div class="tanda form-group col-md-6 d-flex flex-column align-items-end ">
+                            <div class="tanda form-group col d-flex flex-column">
                                 <label class="title">Date of Request</label>
-                                <p>19 November 2020</p>
-
+                                <?php $date = date_create($data['po_date']); ?>
+                                <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
-                                <select name="status" id="status" class="custom-select col-sm-3 mb-2 form-control">
-                                    <option value="waiting" selected disabled>Waiting</option> //sesuaikan dengan data yang ada di dalam database
-                                    <option value="approve">Approve</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                                <button class="btn-warning rounded mb-2">Update</button>
-
-                                <div class="detail">
-                                    <a href="#"><i class="fas fa-print mr-2"></i>Print</a>
-                                </div>
-                            </div>
-                        </div>
-                        <hr style="border-color: black; width: 80%; opacity: 0.3;">
-                    </div>
-                    <div class="group">
-                        <div class="form-group row d-flex justify-content-between">
-                            <div class="tanda col-md-6">
-                                <label class="title">Item Detail</label>
-                                <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample"></a>
-                                <div class="form-group collapse" id="collapseExample">
-                                    <div class="form-group col table-responsive">
-                                        <table class="table">
-                                            <tr>
-                                                <th>Item Name</th>
-                                                <th>Specification</th>
-                                                <th>Quantity</th>
-                                                <th>Unit Price</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Cooper Sulfat Pentahydrate
-                                                </td>
-                                                <td>
-                                                    20kg/bag
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Rp2.600.000
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Cooper Sulfat Pentahydrate
-                                                </td>
-                                                <td>
-                                                    20kg/bag
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Rp2.600.000
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tanda form-group col-md-6 d-flex flex-column align-items-end ">
-                                <label class="title">Date of Request</label>
-                                <p>19 November 2020</p>
-                                
-                                <label class="title">Status</label>
-                                <select name="status" id="status" class="custom-select col-sm-3 mb-2">
-                                    <option value="waiting" selected disabled>Waiting</option> //sesuaikan dengan data yang ada di dalam database
-                                    <option value="approve">Approve</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                                <button class="btn-primary mb-2">Update</button>
-                                
+                                <?php if ($data['status_po'] == 'approve'): ?>
+                                <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve
+                                </p>
                                 <div class="detail">
                                     <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
                                 </div>
+                                <?php endif; ?>
+                                <?php if ($data['status_po'] == 'rejected'): ?>
+                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
+                                </p>
+                                <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <?php endif; ?>
+                                <?php if ($data['status_po'] == 'waiting'): ?>
+                                <p class="btn btn-secondary disabled btn-sm" style="width: 20%;">Waiting...</p>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <hr style="border-color: black; width: 80%; opacity: 0.3;">
                     </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <!-- navigasi -->
+            <div class="pagination ml-3 d-flex justify-content-between align-items-end">
+                <div class="align-self-end">
+                    <p style="opacity: 0.6; font-size:13px;">Page <?= $halamanAktif; ?> to <?= $jumlahHalaman; ?> of <?= $jumlahRows; ?> Entries</p>
+                </div>
+                <div class="page-nav p-3">
+                    <?php if($halamanAktif > 1) :?>
+                    <a href="?page=<?= $halamanAktif- 1;?>" class="ml-2 bg-dark text-white p-2"><i
+                            class="fas fa-chevron-left mr-2"></i>Prev</a>
+                    <?php if($halamanAktif < $jumlahHalaman ) : ?>
+                    <a href="?page=<?= $halamanAktif-1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif-1; ?></a>
+                    <?php endif; ?>
+                    <?php endif; ?>
+
+                    <a href="?page=<?= $halamanAktif;?>" class="ml-2 bg-dark p-2 text-white"><?= $halamanAktif; ?></a>
+                    <?php if($halamanAktif < $jumlahHalaman) : ?>
+                    <?php if($halamanAktif > 1 ) : ?>
+                    <a href="?page=<?= $halamanAktif+1;?>"
+                        class="ml-2 bg-secondary p-2 text-white"><?= $halamanAktif+1; ?></a>
+                    <?php endif; ?>
+                    <a href="?page=<?= $halamanAktif+1;?>" class="ml-2 bg-dark text-white p-2">Next<i
+                            class="fas fa-chevron-right ml-2"></i></a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

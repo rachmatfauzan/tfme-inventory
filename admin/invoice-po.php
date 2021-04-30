@@ -305,26 +305,6 @@ function angka($angka){
                 </div>
             </div>
 
-
-
-
-
-
-            <!-- SWAL action -->
-            <?php if(isset($send)) :  ?>
-            <script>
-                swal.fire({
-                    title: "Request Success",
-                    text: "Waiting Your Approval",
-                    icon: "success",
-                    showCancelButton: false,
-                    showConfirmButton: false
-                });
-                setTimeout(function () {
-                    window.top.location = "dashboard-tech.php"
-                }, 2700);
-            </script>
-            <?php endif; ?>
 </body>
 
 </html>

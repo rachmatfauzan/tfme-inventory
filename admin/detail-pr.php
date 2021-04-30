@@ -48,6 +48,7 @@ if(isset($_POST['send'])){
         $head_phone = $_POST['head_phone'];
         $terms = $_POST['terms'];
         $comment = $_POST['comment'];
+        $requestor_po = $_SESSION['user'];
 
         $query = mysqli_query($conn, "INSERT INTO form_po VALUES (
             null,
@@ -68,9 +69,11 @@ if(isset($_POST['send'])){
             '$head_address',       
             '$head_phone',    
             '$terms',    
-            '$comment'
+            '$comment',
+            '$requestor_po'
             )") or die (mysqli_error($conn));
-
+            
+            // logik perulangan data cost item dari pr
             if ($query){
                 
                 for ($i=1; $i<=$count; $i++){
