@@ -183,7 +183,7 @@
                     <div class="kepala">
                         <h1>Table all User</h1>
                     </div>
-                    <div class="table-responsive mt-2">
+                    <div class="table-responsive-sm mt-2">
                         <table class="table" id="data">
                             <thead>
                                 <tr>
@@ -214,8 +214,8 @@
                                             data-password="<?= $user['password'];?>"
                                             data-address="<?= $user['address'];?>">Detail</a>
                                     </td>
-
                                     <td style="display: none;"><?= $no; ?></td>
+
                                     <td><?= $user['id_user']; ?></td>
                                     <td style="text-transform: capitalize;"><?= $user['name']; ?></td>
                                     <td><?= $user['address']; ?></td>
@@ -226,6 +226,7 @@
                             </tbody>
                             <tfoot>
                                 <th>Action</th>
+                                <th class="d-none">no</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Address</th>

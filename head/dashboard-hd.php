@@ -149,10 +149,10 @@ if(!isset($_SESSION['head'])){
                                     <option value="approve">Approve</option>
                                     <option value="rejected">Rejected</option>
                                 </select>
-                                <button class="btn-primary mb-2">Update</button>
+                                <button class="btn-warning rounded mb-2">Update</button>
 
                                 <div class="detail">
-                                    <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
+                                    <a href="#"><i class="fas fa-print mr-2"></i>Print</a>
                                 </div>
                             </div>
                         </div>
