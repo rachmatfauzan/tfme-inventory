@@ -429,7 +429,7 @@ if(isset($_POST['send'])){
                                                                 </div>
 
                                                                 <input type="tel" name="paid" class="form-control"
-                                                                    required placeholder="Price of Tax" id="number">
+                                                                    required placeholder="Price of Tax" id="number" required>
                                                             </div>
                                                         </div>
 
@@ -474,7 +474,7 @@ if(isset($_POST['send'])){
                                                                     </div>
                                                                     <input type="tel" name="unit_cost-<?= $i; ?>"
                                                                         class="form-control" placeholder="x.000.000"
-                                                                        id="angka-<?= $i; ?>">
+                                                                        id="angka-<?= $i; ?>" required>
                                                                 </div>
                                                                 <script>
                                                                     $(document).ready(function () {

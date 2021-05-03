@@ -7,7 +7,7 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-$email_send =  "rachmatfauzan87@gmail.com";
+$email_send =  "tfmeminteraktif@gmail.com";
 $name_send =  "Teknisi TFME";
 $email_received =  "rachmatfauzan07@gmail.com";
 $subjek =  "Halo!!, Ada Pesanan Baru !!";
@@ -78,7 +78,7 @@ $mail->isSMTP();
 
 $mail->Host = 'smtp.gmail.com'; // domain. outlook sesuaikan dengan email penerima
 $mail->Username = $email_send;
-$mail->Password = 'hmcffwegcedvdjrs';
+$mail->Password = 'bogglxovdlvzvtpe';
 $mail->Port = 465;
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'ssl';
