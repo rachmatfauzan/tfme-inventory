@@ -137,19 +137,16 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                 <p><?= date_format($date, 'j F Y'); ?></p>
                                 <label class="title">Status</label>
                                 <?php if ($data['status_po'] == 'approve'): ?>
-                                <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:100px;">Approve
+                                <p class="btn btn-success btn-sm disabled" style="font-size: 11px; width:200px;">Approve
                                 </p>
-                                <div class="detail">
-                                    <a href="#"><i class="fas fa-download mr-2"></i>Download</a>
-                                </div>
                                 <?php endif; ?>
                                 <?php if ($data['status_po'] == 'rejected'): ?>
-                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
+                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:200px;">Rejected
                                 </p>
-                                <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <!-- <a href="delete.php?id=<?= $data['kode_po']?>"  onclick="return confirm('Want to Delete <?= $data['supplier_name']?>');"><i class="far fa-trash-alt mr-2"></i>Delete</a> -->
                                 <?php endif; ?>
                                 <?php if ($data['status_po'] == 'waiting'): ?>
-                                <p class="btn btn-secondary disabled btn-sm" style="width: 20%;">Waiting...</p>
+                                <p class="btn btn-secondary disabled btn-sm" style="width: 200px;">Waiting...</p>
                                 <?php endif; ?>
                             </div>
                         </div>

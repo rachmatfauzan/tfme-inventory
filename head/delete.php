@@ -1,22 +1,4 @@
-<?php 
 
-session_start();
-include '../config/config.php';
-
-$id = $_GET["id"];
-
-if ( hapus($id) > 0 ){
-    $berhasil = true;
-} else {
-    echo "
-    <script>
-         alert('Data gagal di Hapus !');
-         document.location.href = 'add-user.php';
-    </script>";
-}
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,11 +21,26 @@ if ( hapus($id) > 0 ){
     <title>Dashboard Inventory</title>
 </head>
 <body>
-<?php if(isset($berhasil)) :  ?>
+    
+
+<?php 
+
+require '../config/config.php';
+
+$id = $_GET['id'];
+
+
+$query = mysqli_query($conn, "DELETE FROM form_po WHERE kode_po = $id");
+
+if($query){
+    echo ' 
     <script>
         swal.fire("Data Deleted", "Great Work :)", "success");
-        setTimeout(function(){window.top.location="add-user.php"},1000);
+        setTimeout(function(){window.top.location="dashboard-hd.php"},1000);
     </script>
-    <?php endif; ?>
+    ';
+}
+
+?>
+
 </body>
-</html>

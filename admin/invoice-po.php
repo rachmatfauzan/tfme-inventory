@@ -131,7 +131,7 @@ function angka($angka){
                         <h5 class="tron font-weight-bold text-secondary text-center">Detail P.O</h5>
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <a href="history-po.php" style="font-size: 11px;" class="btn tron btn-light btn-sm border-0 mb-2"><i class="fas fa-backspace mr-2"></i>history p.o</a>
-                        <a href="#" onclick="window.print();" style="font-size: 11px;" class="btn tron invoice"><i class="fas fa-print mr-2"></i>print</a>
+                        <a href="#" onclick="window.print();" style="font-size: 11px;" class="btn tron invoice <?php $status = ($hasil['status_po'] == 'approve') ? ' ': print 'd-none' ?>"><i class="fas fa-print mr-2"></i>print</a>
                     </div>
                     <div class="form-group">
                         <form method="post">

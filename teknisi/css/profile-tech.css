@@ -109,7 +109,7 @@ select {
     .tron {
         display: none;
     }
-    .head{
+    div.head{
         display: none;
     }
     .comment{
