@@ -336,7 +336,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <td><?= $data['on_hand']; ?></td>
                             <td><?= $data['type']; ?></td>
                             <td><?= $data['expiration_date']; ?></td>
-                            <td><?= $data['cost']; ?></td>
+                            <td>Rp. <?= $data['cost']; ?></td>
                             <td><?= $data['account_code']; ?></td>
                             <td><?= $data['supplier']; ?></td>
                             <td><?= $data['supplier_no']; ?></td>
@@ -399,8 +399,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             <form id="formDelete" method="post" class="d-flex justify-content-center flex-column">
                                 <input type="text" class="bg-light form-control" style="text-align: center;" name="part"
                                     id="part_number" disabled>
-                                <input type="text" class="bg-light form-control d-none"
-                                    style=" text-align: center;" name="id_item" id="id_item">
+                                <input type="text" class="bg-light form-control d-none" style=" text-align: center;"
+                                    name="id_item" id="id_item">
                                 <div class="btn">
                                     <button name="delete" class="btn btn-danger btn-sm text-white"
                                         type="submit">Delete</button>
@@ -544,7 +544,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                             </div>
                                             <div class="form-group">
                                                 <label for="cost">Cost</label>
-                                                <input type="text" id="number" name="cost" class="form-control bg-light" id="cost">
+                                                <input type="text" id="number" name="cost" class="form-control bg-light"
+                                                    id="cost">
                                             </div>
                                             <div class="form-group">
                                                 <label for="on_pr_no">On PR#</label>
@@ -755,7 +756,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <form method="post">
                                         <div class="d-flex">
                                             <input type="text" name="part_numbering" class="form-control bg-light"
-                                                placeholder="Enter Part Number" required  maxlength="10">
+                                                placeholder="Enter Part Number" required maxlength="10">
                                             <button class="btn ml-2 btn-outline-warning"
                                                 name="check_part">Check</button>
                                         </div>
@@ -764,12 +765,13 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     <?php if (isset($newPart)) :?>
 
                                     <div class="d-flex">
-                                        <input type="text" name="part_numbering" id="myInput" class="form-control bg-light"
-                                            value="<?= $part_number; ?>" required  maxlength="10">
-                                            <button class="btn ml-2 btn-outline-danger" onclick="document.getElementById('myInput').value = ''">Reset</button>
-                                            
-                                            <button class="btn ml-2 btn-outline-warning"
-                                                name="check_part">Check</button>
+                                        <input type="text" name="part_numbering" id="myInput"
+                                            class="form-control bg-light" value="<?= $part_number; ?>" required
+                                            maxlength="10">
+                                        <button class="btn ml-2 btn-outline-danger"
+                                            onclick="document.getElementById('myInput').value = ''">Reset</button>
+
+                                        <button class="btn ml-2 btn-outline-warning" name="check_part">Check</button>
                                     </div>
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"
                                         style="border-radius: 0;">
@@ -847,9 +849,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <input type="submit" class="btn btn-dark btn-sm align-self-end" name="input" value="Enter Data">
-                        <a class="top" href="#top">Go Top<i class="fas fa-arrow-circle-up ml-2"></i>
+                    <div class="w-100">
+                        <input type="submit" class="btn btn-dark btn-sm justify-content-end" name="input"
+                            value="Enter Data">
                     </div>
                 </form>
             </div>
@@ -1023,19 +1025,40 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                 </div>
             </div>
         </div>
-    </div>
-
-
-
-
-    <!-- script data tables -->
-    <script>
-        $(document).ready(function () {
-            $('#data').DataTable({
-                scrollX: true,
+        <!-- scrool go top -->
+        <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top bg-info" role="button"><i
+                class="fas fa-chevron-up text-white"></i></a>
+        <script>
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 50) {
+                        $('#back-to-top').fadeIn();
+                    } else {
+                        $('#back-to-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-to-top').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 400);
+                    return false;
+                });
             });
-        });
-    </script>
+        </script>
+        <!-- end scrooll -->
+
+
+
+
+        <!-- script data tables -->
+        <script>
+            $(document).ready(function () {
+                $('#data').DataTable({
+                    scrollX: true,
+                });
+            });
+        </script>
 </body>
 
 </html>

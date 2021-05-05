@@ -363,6 +363,27 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
             </div>
         </div>
     </div>
+    <!-- scrool go top -->
+    <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top bg-info" role="button"><i class="fas fa-chevron-up text-white"></i></a>
+    <script>
+    $(document).ready(function(){
+	$(window).scroll(function () {
+			if ($(this).scrollTop() > 50) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 400);
+			return false;
+		});
+        });
+    </script>
+    <!-- end scrooll -->
 
     <!-- script data tables -->
     <script>
@@ -370,8 +391,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
             $('#data').DataTable({
                 scrollX: true,
                 "lengthMenu": [
-                    [15, 50, 100, -1],
-                    [15, 50, 100, "All"]
+                    [30, 50, 100, -1],
+                    [30, 50, 100, "All"]
                 ],
             });
         });

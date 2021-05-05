@@ -470,3 +470,12 @@ h5.judul {
 ::-webkit-input-placeholder {
     font-size: 13px;
 }
+
+/* scrool hover go top */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    transform: scale(0.7);
+}
