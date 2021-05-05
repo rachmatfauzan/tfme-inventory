@@ -5,7 +5,7 @@ include "../config/config.php";
 
 
 if(!isset($_SESSION['technician'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 
@@ -127,10 +127,10 @@ if(isset($_POST['send'])){
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-tech.php"><i class="fas fa-history"></i>History
+                <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -155,7 +155,7 @@ if(isset($_POST['send'])){
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@ if(isset($_POST['send'])){
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="formulir-tech.php" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
+                        <a href="formulir-tech" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
                                 class="fas fa-backspace mr-2"></i>back to 1 pr</a>
                     </div>
                     <div class="form-group">
@@ -231,7 +231,7 @@ if(isset($_POST['send'])){
                                                         showConfirmButton: false
                                                     });
                                                     setTimeout(function () {
-                                                        window.top.location = "dashboard-tech.php"
+                                                        window.top.location = "dashboard-tech"
                                                     }, 2700);
                                                 </script>
                                                 <!-- <?php exit; ?> -->
@@ -248,7 +248,7 @@ if(isset($_POST['send'])){
                                                         showConfirmButton: false
                                                     });
                                                     setTimeout(function () {
-                                                        window.top.location = "generateForm.php"
+                                                        window.top.location = "generateForm"
                                                     }, 1500);
                                                 </script>
 

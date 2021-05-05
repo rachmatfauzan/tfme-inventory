@@ -10,7 +10,7 @@ $query =  mysqli_query($conn, "SELECT * FROM user WHERE id_user ='$idUser'");
 $result = mysqli_fetch_array($query);
 
 if(!isset($_SESSION['head'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 ?>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['head'])){
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-hd.php"><i class="fas fa-box-open"></i>Purchase Order</a>
+                <a class="nav-link" href="dashboard-hd"><i class="fas fa-box-open"></i>Purchase Order</a>
                 <a class="nav-link active" href="#"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -86,7 +86,7 @@ if(!isset($_SESSION['head'])){
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>

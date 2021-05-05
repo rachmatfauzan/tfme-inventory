@@ -4,7 +4,7 @@ session_start();
 include "../config/config.php";
 
 if(!isset($_SESSION['technician'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 $name = $_SESSION['user'];
@@ -84,8 +84,8 @@ $kodelist = $list;
             <div class="nav-item">
                 <a class="nav-link active" href="#"><i class="fas fa-history"></i>History
                     (PR)</a>
-                <a class="nav-link" href="formulir-tech.php"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -110,7 +110,7 @@ $kodelist = $list;
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ $kodelist = $list;
                                 showConfirmButton: false
                             });
                             setTimeout(function () {
-                                window.top.location = "generateForm.php"
+                                window.top.location = "generateForm"
                             }, 2700);
                     </script>
                     ';
@@ -181,7 +181,7 @@ $kodelist = $list;
                                         <p>....</p>
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
-                                            href="invoice-pr.php?id=<?= $data['kode_pr']?>">Detail P.R <i
+                                            href="invoice-pr?id=<?= $data['kode_pr']?>">Detail P.R <i
                                                 class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                 </div>

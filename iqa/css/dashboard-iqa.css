@@ -105,6 +105,9 @@ nav a i{
         border-radius: 0;
         position: unset;
     }
+    nav.active{
+        background-color: unset;
+    }
     .brand{
         text-align: center;
     }
@@ -231,4 +234,231 @@ nav a i{
 /* placeholder font custome*/
 ::-webkit-input-placeholder{
     font-size: 13px;
+}
+
+/*  */
+
+.table-responsive .top:hover{
+    color: salmon;
+    transition: .5s ease-out;
+}
+/* End */
+.table-responsive .btn{
+    margin-bottom: 10px;
+    width: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+.modal-body b{
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+}
+.btn i{
+    color: #9999;
+}
+.btn i:hover{
+    color: salmon;
+}
+.btn:focus, .btn:active{
+    outline: none !important;
+    box-shadow: none;
+}
+.modal-body p {
+    text-transform: lowercase;
+    font-size: 12px;
+}
+.modal.modal-fullscreen .modal-dialog {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    max-width: none; 
+  }
+  
+  .modal.modal-fullscreen .modal-content {
+    height: auto;
+    height: 100vh;
+    border-radius: 0;
+    border: none; 
+  }
+  
+  .modal.modal-fullscreen .modal-body {
+    overflow-y: auto; 
+  }
+.modal .update{
+    margin: 0;
+    border: 0;
+    padding: 10px;
+    border-radius: 0;
+    /* color */
+    background: rgba(1, 96, 228, 1);
+    background: -moz-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(8%, rgba(1, 96, 228, 1)), color-stop(30%, rgba(2, 76, 178, 1)), color-stop(100%, rgba(6, 12, 20, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    background: linear-gradient(135deg, rgba(1, 96, 228, 1) 8%, rgba(2, 76, 178, 1) 30%, rgba(6, 12, 20, 1) 100%);
+    color: white;
+}
+.modal .update a, button.btn{
+    font-size: 12px;
+    cursor: pointer;
+}
+.modal-header span{
+    display: none;
+}
+@media screen and (max-width: 900px ){
+    .modal-body b{
+        text-align: left;
+    }
+    .table-responsive .modal-header span{
+        display: contents;
+    }
+    .table-responsive .btn{
+        width: unset;
+    }
+    .table-responsive .top{
+        bottom: -30px;
+        left: 42%;
+    }
+}
+/*  */
+
+.table a{
+    width: 70px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    padding: 3px;
+    border: 0;
+}
+
+textarea.form-control{
+    height: 8rem;
+}
+
+textarea.form-control:focus, 
+input[type]:focus, 
+input[password]:focus,
+input[email]:focus,
+select.form-control:focus,
+.uneditable-input:focus {   
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}
+
+/* Responsive Header  */
+@media screen and (max-width:900px){
+    body{
+        padding: 0;
+    }
+    .table a{
+        width: auto;
+        font-size: 11px;
+        padding: 7px;
+    }
+    .konten{
+        width: 100%;
+    }
+    .grid{
+        flex-direction: column;
+        padding: 0;
+    }
+    .copyright{
+        top: 0;
+        right: 0;
+        text-align: right;
+        padding-right: 10px;
+        width: auto;
+        height: 20px;
+    }
+    .dropdown .btn{
+        color: white;
+    }
+    .konten{
+        margin: 0;
+    }
+   
+    .profile h5{
+        color: white;
+        font-size: 14px;
+    }
+    .profile p{
+        color: white;
+        font-size: 11px;
+    }
+    .profile{
+        width: 100vw;
+
+    }
+    .wrapper-image{
+        display: none;
+        height: 0;
+        width: 0;
+    }
+    .entry .btn{
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Start box Content */
+table.select th, td{
+    font-size: 13px;
+}
+.box {
+    margin-top: 20px;
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+.table td,th{
+    white-space: nowrap;
+    max-width: 5%;
+}
+.table td:nth-child(3){
+    width: 12%;
+    white-space: pre-wrap;
+}
+/* Responsive Box */
+@media screen and (max-width:900px){
+    .box{
+        margin: 0;
+        border-radius: 0;
+    }
+    .table th, td, td a{
+        font-size: 12px;
+    }
+    .table td:nth-child(3){
+        width: unset;
+    }
+}
+
+/* data table */
+.page-item.active .page-link{
+    background-color: #1E7E34;
+    color: white !important;
+    border: 0;
+}
+.page-link{
+    color: black !important;
+}
+
+
+/* placeholder font custome*/
+::-webkit-input-placeholder{
+    font-size: 13px;
+}
+
+/* scrool hover go top */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    transform: scale(0.7);
 }

@@ -5,7 +5,7 @@ include "../config/config.php";
 
 
 if(!isset($_SESSION['admin'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 
@@ -121,7 +121,7 @@ function angka($angka){
                         <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ function angka($angka){
                 <div class="data-entry">
                         <h5 class="tron font-weight-bold text-secondary text-center">Detail P.O</h5>
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
-                        <a href="history-po.php" style="font-size: 11px;" class="btn tron btn-light btn-sm border-0 mb-2"><i class="fas fa-backspace mr-2"></i>history p.o</a>
+                        <a href="history-po" style="font-size: 11px;" class="btn tron btn-light btn-sm border-0 mb-2"><i class="fas fa-backspace mr-2"></i>history p.o</a>
                         <a href="#" onclick="window.print();" style="font-size: 11px;" class="btn tron invoice <?php $status = ($hasil['status_po'] == 'approve') ? ' ': print 'd-none' ?>"><i class="fas fa-print mr-2"></i>print</a>
                     </div>
                     <div class="form-group">

@@ -167,8 +167,8 @@ if(isset($_POST['send'])){
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
-                <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
                 <a class="nav-link active" href="#"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
@@ -194,7 +194,7 @@ if(isset($_POST['send'])){
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -203,7 +203,7 @@ if(isset($_POST['send'])){
                 <div class="content">
                     <div class="pr-form d-flex justify-content-between kepala">
                         <h5 class="mb-4">Purchase Request Info</h5>
-                        <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back to PR</a>
+                        <a href="history-pr"><i class="fas fa-undo-alt mr-2"></i>Back to PR</a>
                     </div>
                     <section>
                         <div class="table-responsive">
@@ -592,7 +592,7 @@ if(isset($_POST['send'])){
             showConfirmButton: false,
             timer: 1000
         }).then(function () {
-            window.location = "history-pr.php";
+            window.location = "history-pr";
         });
     </script>
     <?php endif; ?>
@@ -609,7 +609,7 @@ if(isset($_POST['send'])){
         });
 
         setTimeout(function () {
-            window.top.location = "history-po.php"
+            window.top.location = "history-po"
         }, 2000);
     </script>
     <?php endif; ?>

@@ -4,7 +4,7 @@ session_start();
 include "../config/config.php";
 
 if(!isset($_SESSION['admin'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 // pagination and select data
@@ -68,8 +68,8 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
-                <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
                 <a class="nav-link active" href="#"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
@@ -96,7 +96,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
             <div class="kepala d-flex justify-content-between align-items-center mt-2 ml-2">
                 <h5 class="mt-2 judul"><i class="fas fa-file-invoice-dollar mr-2"></i>PO Release History<span
                         style="font-style:italic; opacity:0.6;">(Purchase Order)</span></h5>
-                <a href="history-pr.php"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
+                <a href="history-pr"><i class="fas fa-undo-alt mr-2"></i>Back To PR</a>
             </div>
             <?php foreach ($query as $data) :?>
             <div class="box">
@@ -131,7 +131,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                     <div class="form-group col table-responsive">
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
-                                            href="invoice-po.php?id=<?= $data['kode_po']?>">Detail P.O <i
+                                            href="invoice-po?id=<?= $data['kode_po']?>">Detail P.O <i
                                                 class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                     

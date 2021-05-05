@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['admin'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
@@ -58,8 +58,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
             <hr>
             <div class="nav-item">
                 <a class="nav-link active" href="#"><i class="fas fa-database"></i>Data Site</a>
-                <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
-                <a class="nav-link" href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
+                <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="history-pr"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">
@@ -84,7 +84,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
                         <div class="kepala-kanan">
                             <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-lg"><i
                                     class="far fa-question-circle"></i></button>
-                            <a href="input-data.php"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Get
+                            <a href="input-data"><i class="fas fa-box-open" style="margin-right: 10px;"></i>Get
                                 Action</a>
                             <!-- Large modal -->
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"

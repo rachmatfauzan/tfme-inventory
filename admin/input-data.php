@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['admin'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
@@ -76,13 +76,13 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                        <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link active" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
-                    <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
-                    <a class="nav-link " href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
+                    <a class="nav-link active" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
+                    <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
+                    <a class="nav-link " href="history-pr"><i class="fas fa-list"></i>Select PR</a>
                 </div>
             </div>
 
@@ -120,7 +120,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         echo '<script>
                     swal.fire("Part Number Error", "Your part number has been input in to database", "warning");
                     
-                    setTimeout(function(){window.top.location="input-data.php"},3000);
+                    setTimeout(function(){window.top.location="input-data"},3000);
                     </script>';
                     exit;
                     }
@@ -132,7 +132,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     if ($input){
                         echo '<script>
                     swal.fire("Success", "Your data has been input to database", "success");
-                    setTimeout(function(){window.top.location="input-data.php"},2200);
+                    setTimeout(function(){window.top.location="input-data"},2200);
                     </script>';
                     exit;
                     }else{
@@ -154,7 +154,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         echo '<script>
                     swal.fire("Part Number Error", "Your part number has been input in to database", "warning");
                     
-                    setTimeout(function(){window.top.location="input-data.php"},3000);
+                    setTimeout(function(){window.top.location="input-data"},3000);
                     </script>';
                     exit;
                     } else {
@@ -221,7 +221,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     if ($update){
                         echo '<script>
                     swal.fire("Data Updated", "Great Work :)", "success");
-                    setTimeout(function(){window.top.location="input-data.php"},1500);
+                    setTimeout(function(){window.top.location="input-data"},1500);
                     </script>';
                     exit;
                     }
@@ -242,7 +242,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                 if ($del){
                     echo '<script>
                     swal.fire("Data Deleted", "Great Work :)", "success");
-                    setTimeout(function(){window.top.location="input-data.php"},1500);
+                    setTimeout(function(){window.top.location="input-data"},1500);
                     </script>';
                     exit;
                 }else{
@@ -848,10 +848,10 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="w-100">
-                        <input type="submit" class="btn btn-dark btn-sm justify-content-end" name="input"
-                            value="Enter Data">
+                        <div class="w-100">
+                            <input type="submit" class="btn btn-dark btn-sm justify-content-end" name="input"
+                                value="Enter Data">
+                        </div>
                     </div>
                 </form>
             </div>

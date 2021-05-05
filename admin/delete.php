@@ -11,7 +11,7 @@ if ( hapus($id) > 0 ){
     echo "
     <script>
          alert('Data gagal di Hapus !');
-         document.location.href = 'add-user.php';
+         document.location.href = 'add-user';
     </script>";
 }
 
@@ -42,7 +42,7 @@ if ( hapus($id) > 0 ){
 <?php if(isset($berhasil)) :  ?>
     <script>
         swal.fire("Data Deleted", "Great Work :)", "success");
-        setTimeout(function(){window.top.location="add-user.php"},1000);
+        setTimeout(function(){window.top.location="add-user"},1000);
     </script>
     <?php endif; ?>
 </body>

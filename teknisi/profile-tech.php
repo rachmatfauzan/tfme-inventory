@@ -10,7 +10,7 @@ $query =  mysqli_query($conn, "SELECT * FROM user WHERE id_user ='$idUser'");
 $result = mysqli_fetch_array($query);
 
 if(!isset($_SESSION['technician'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 ?>
@@ -62,10 +62,10 @@ if(!isset($_SESSION['technician'])){
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-tech.php"><i class="fas fa-history"></i>History
+                <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
-                <a class="nav-link" href="formulir-tech.php"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link active" href="profile-tech.php"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link active" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -90,7 +90,7 @@ if(!isset($_SESSION['technician'])){
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>

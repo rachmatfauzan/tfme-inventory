@@ -4,14 +4,14 @@ session_start();
 include 'config/config.php';
 
 if (isset($_SESSION["admin"] )){
-    header("location: admin/dashboard-admin.php"); //Buat session sesuaikan dengan posisi
+    header("location: admin/dashboard-admin"); //Buat session sesuaikan dengan posisi
 }else if (isset($_SESSION["iqa"] )){
-    header("location: iqa/dashboard-iqa.php"); //Buat session sesuaikan dengan posisi
+    header("location: iqa/dashboard-iqa"); //Buat session sesuaikan dengan posisi
 }else if (isset($_SESSION["technician"] )){
-    header("location: teknisi/dashboard-tech.php"); //Buat session sesuaikan dengan posisi
+    header("location: teknisi/dashboard-tech"); //Buat session sesuaikan dengan posisi
 }
 else if (isset($_SESSION["head"] )){
-    header("location: head/dashboard-hd.php"); //Buat session sesuaikan dengan posisi
+    header("location: head/dashboard-hd"); //Buat session sesuaikan dengan posisi
 }
 
 
@@ -36,20 +36,20 @@ if (isset($_POST["login"])){
         if ( $pass === $result['password']){
             
             if($result['position'] == 'admin'){
-                header("location: admin/dashboard-admin.php");
+                header("location: admin/dashboard-admin");
                 // Set session
                 $_SESSION['admin'] = $result['position'] == 'admin';
             }else if($result['position'] == "iqa"){
-                header("location: iqa/dashboard-iqa.php");
+                header("location: iqa/dashboard-iqa");
                 // Set session
                 $_SESSION['iqa'] = $result['position'] == 'iqa';
             }
             else if($result['position'] == "technician"){
-                header("location: teknisi/dashboard-tech.php");
+                header("location: teknisi/dashboard-tech");
                 // Set session
                 $_SESSION['technician'] = $result['position'] == 'technician';
             }else if($result['position'] == "head"){
-                header("location: head/dashboard-hd.php");
+                header("location: head/dashboard-hd");
                 // Set session
                 $_SESSION['head'] = $result['position'] == 'head';
             }

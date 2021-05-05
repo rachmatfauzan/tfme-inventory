@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['head'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 
@@ -71,8 +71,8 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link active" href="dashboard-iqa.php"><i class="fas fa-box-open"></i>Purchase Order</a>
-                <a class="nav-link " href="profile-hd.php"><i class="fas fa-user"></i>Profile</a>
+                <a class="nav-link active" href="dashboard-iqa"><i class="fas fa-box-open"></i>Purchase Order</a>
+                <a class="nav-link " href="profile-hd"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -95,7 +95,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                     <div class="form-group col table-responsive">
                                         <a class="btn list-group-item-dark btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
-                                            href="invoice-po.php?id=<?= $data['kode_po']?>">Detail P.O <i
+                                            href="invoice-po?id=<?= $data['kode_po']?>">Detail P.O <i
                                                 class="fas fa-file-invoice ml-2"></i></a>
                                     </div>
                                     
@@ -143,7 +143,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                                 <?php if ($data['status_po'] == 'rejected'): ?>
                                 <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:200px;">Rejected
                                 </p>
-                                <!-- <a href="delete.php?id=<?= $data['kode_po']?>"  onclick="return confirm('Want to Delete <?= $data['supplier_name']?>');"><i class="far fa-trash-alt mr-2"></i>Delete</a> -->
+                                <!-- <a href="delete?id=<?= $data['kode_po']?>"  onclick="return confirm('Want to Delete <?= $data['supplier_name']?>');"><i class="far fa-trash-alt mr-2"></i>Delete</a> -->
                                 <?php endif; ?>
                                 <?php if ($data['status_po'] == 'waiting'): ?>
                                 <p class="btn btn-secondary disabled btn-sm" style="width: 200px;">Waiting...</p>

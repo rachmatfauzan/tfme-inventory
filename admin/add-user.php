@@ -104,9 +104,9 @@
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link active" href="#"><i class="fas fa-users"></i>User List</a>
-                <a class="nav-link" href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
+                <a class="nav-link" href="history-pr"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">
@@ -121,7 +121,7 @@
                 <div class="content">
                     <div class="kepala">
                         <h1>Add New User Form</h1>
-                        <a href="dashboard-user-list.php"><i class="fas fa-undo-alt"></i>Back To Dashboard</a>
+                        <a href="dashboard-user-list"><i class="fas fa-undo-alt"></i>Back To Dashboard</a>
                     </div>
                     <div class="formulir mt-5">
                         <form method="post">
@@ -200,7 +200,7 @@
                                 <?php foreach ($query as $user ) : ?>
                                 <tr>
                                     <td>
-                                        <a class="bg-danger text-white" href="delete.php?id=<?= $user['id_user']?>" onclick="return confirm('Want to Delete <?= $user['name']?>');">Delete</a>
+                                        <a class="bg-danger text-white" href="delete?id=<?= $user['id_user']?>" onclick="return confirm('Want to Delete <?= $user['name']?>');">Delete</a>
                                         <a class="bg-info text-white" id="updateData" data-toggle="modal"
                                             data-target="#update" data-id="<?= $user['id_user'];?>"
                                             data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
@@ -406,7 +406,7 @@
     <?php if(isset($update)) :  ?>
     <script>
         swal.fire("Success Updated", "Happy Working :)", "success");
-        setTimeout(function(){window.top.location="add-user.php"},1000);
+        setTimeout(function(){window.top.location="add-user"},1000);
     </script>
     <?php endif; ?>
 

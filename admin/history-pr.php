@@ -4,7 +4,7 @@ session_start();
 require "../config/config.php";
 
 if(!isset($_SESSION['admin'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 // Ambil Data PR
@@ -62,8 +62,8 @@ $po_data = mysqli_fetch_assoc($po_querry);
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
-                <a class="nav-link" href="dashboard-user-list.php"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
                 <a class="nav-link active" href="#"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
@@ -89,7 +89,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                                 </td>
                                 <?php elseif ($data['update_po'] == 0) : ?>
                                 <td>
-                                    <a href="detail-pr.php?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1"
+                                    <a href="detail-pr?id=<?= $data['kode_pr']?>" class="btn btn-outline-info p-1"
                                         style="font-size:12px;">See
                                         Details <i class="fas fa-donate text-warning" style="opacity: 0.6;"></i></a>
                                 </td>
@@ -162,7 +162,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                 </div>
                 <div class="btn">
                     <small>Clicked the button</small><i class="far fa-hand-point-down ml-2"></i> <br>
-                    <a href="history-po.php" class="judul btn btn-sm">History PO<i
+                    <a href="history-po" class="judul btn btn-sm">History PO<i
                             class="far fa-window-restore ml-2 text-white"></i></a>
                 </div>
             </div>

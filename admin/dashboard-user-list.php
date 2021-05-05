@@ -54,9 +54,9 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-admin.php"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link active" href="#"><i class="fas fa-users"></i>User List</a>
-                <a class="nav-link" href="history-pr.php"><i class="fas fa-list"></i>Select PR</a>
+                <a class="nav-link" href="history-pr"><i class="fas fa-list"></i>Select PR</a>
             </div>
 
             <div class="copyright">
@@ -73,7 +73,7 @@ $queryIqa = mysqli_query($conn, "SELECT * FROM user WHERE position = 'iqa'");
                 <div class="content">
                     <div class="kepala">
                         <h1><i class="fas fa-users"></i>List of Technician Accounts (TECHNICIAN)</h1>
-                        <a href="add-user.php"><i class="fas fa-user-plus"></i>Add New user</a>
+                        <a href="add-user"><i class="fas fa-user-plus"></i>Add New user</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">

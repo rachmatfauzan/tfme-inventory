@@ -36,7 +36,7 @@ if($query){
     echo ' 
     <script>
         swal.fire("Data Deleted", "Great Work :)", "success");
-        setTimeout(function(){window.top.location="dashboard-hd.php"},1000);
+        setTimeout(function(){window.top.location="dashboard-hd"},1000);
     </script>
     ';
 }

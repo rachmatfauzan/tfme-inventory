@@ -5,7 +5,7 @@ include "../config/config.php";
 
 
 if(!isset($_SESSION['head'])){
-    header("location: ../index.php");
+    header("location: ../index");
 }
 
 
@@ -130,7 +130,7 @@ function angka($angka){
                         <button class="btn dropdown-toggle text-white" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+                            <a class="dropdown-item" href="../logout"><i class="fas fa-sign-out-alt"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ function angka($angka){
                         <h5 class="tron font-weight-bold text-secondary text-center">Detail P.O</h5>
                         <div
                             class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
-                            <a href="dashboard-hd.php" style="font-size: 11px;"
+                            <a href="dashboard-hd" style="font-size: 11px;"
                                 class="btn tron btn-light btn-sm border-0 mb-2"><i
                                     class="fas fa-backspace mr-2"></i>history p.o</a>
                         </div>
@@ -359,7 +359,7 @@ function angka($angka){
                     showConfirmButton: false
                 });
                 setTimeout(function () {
-                    window.top.location = "dashboard-hd.php"
+                    window.top.location = "dashboard-hd"
                 }, 2700);
             </script>
             <?php endif; ?>
