@@ -111,7 +111,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Search Table</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i> Search Table</h5>
                         </div>
                         <div class="modal-body">
                             <div class="table-responsive">
