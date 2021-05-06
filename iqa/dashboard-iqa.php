@@ -60,9 +60,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link active" href="dashboard-iqa.html"><i class="fas fa-box-open"></i>Input & Update</a>
-                <a class="nav-link " href="po-return.html"><i class="fas fa-truck-moving"></i>PO Return</a>
-                <a class="nav-link" href="history-po.html"><i class="fas fa-history"></i>History (PO)</a>
+                <a class="nav-link active" href="dashboard-iqa"><i class="fas fa-box-open"></i>Input & Update</a>
+                <a class="nav-link " href="history-po"><i class="fas fa-truck-moving"></i>History PO</a>
+                <a class="nav-link" href="profile-iqa"><i class="fas fa-history"></i>Profile</a>
             </div>
 
             <div class="copyright">
