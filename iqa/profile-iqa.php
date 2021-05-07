@@ -63,8 +63,8 @@ if(!isset($_SESSION['iqa'])){
             <hr>
             <div class="nav-item">
                 <a class="nav-link" href="dashboard-iqa"><i class="fas fa-box-open"></i>Input & Update</a>
-                <a class="nav-link" href="history-po"><i class="fas fa-truck-moving"></i>History PO</a>
-                <a class="nav-link active" href="profile-iqa"><i class="fas fa-history"></i>Profile</a>
+                <a class="nav-link" href="history-po"><i class="fas fa-history"></i>History PO</a>
+                <a class="nav-link active" href="profile-iqa"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
