@@ -115,10 +115,6 @@ $kodelist = $list;
                     </div>
                 </div>
             </div>
-            <div class="judul mt-2">
-                <h5 class="mt-2 judul"><i class="fas fa-history mr-2"></i>History PR <span
-                        style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
-            </div>
 
             <!-- cek History PR -->
             <?php  
@@ -142,6 +138,61 @@ $kodelist = $list;
                     exit;
                 }
                 ?>
+            <div class=" mt-2 d-flex flex-column align-items-center justify-content-center">
+                <h5 class="mt-2 teknisi" style="width: 90%;"><i class="fas fa-history mr-2"></i>History PR <span
+                        style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
+                <a class="mt-2 btn btn-sm btn-primary text-white rounded-0 p-1" data-toggle="modal"
+                    data-target="#search"><i class="fa fa-table mr-2"></i>Search Table</a>
+            </div>
+            <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i> Search Table
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm inventory table-striped" id="data"
+                                    style="font-size: 12px;">
+                                    <thead style="width: fit-content;">
+                                        <tr class="bg-dark text-white">
+                                            <th>PR Code</th>
+                                            <th width=30%>Item Description</th>
+                                            <th>Part Number</th>
+                                            <th>Date</th>
+                                            <th>Detail PO</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php foreach ($query as $data) : ?>
+                                        <tr>
+                                            <td><?php $code = sprintf("%05s", $data["kode_pr"]) ?>
+                                                <?= "PR-". $code; ?></td>
+                                            <td><?= $data['item_description']; ?></td>
+                                            <td><?= $data['part_number']; ?></td>
+                                            <td>
+                                                <?php $date = date_create($data['pr_date']); ?>
+                                                <?= date_format($date, 'j F Y'); ?>
+                                            </td>
+                                            <td><a href="invoice-pr?id=<?= $data['kode_pr']?>" class="btn"><i
+                                                        class="fa fa-search"></i> <span class="text-sm text-dark"
+                                                        style="font-size: 12px;">See</span></a></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
@@ -154,31 +205,33 @@ $kodelist = $list;
                                     <span style="text-transform: capitalize;"> <?= $data['requestor']; ?>
                                     </span></label> <br>
                                 <label class="title">Item Detail</label>
+                                <div class="table-responsive">
+                                    <table class="table  table-bordered table-sm data">
+                                        <tr class="bg-dark text-white">
+                                            <!-- <th>Item Name</th> -->
+                                            <th>Item Description</th>
+                                            <th>Type</th>
+                                            <th>Quantity</th>
+                                            <th>Part Number</th>
+                                            <th>Cost Center</th>
+                                            <th>Specification</th>
+                                        </tr>
+                                        <tr>
+                                            <!-- <td><?= $data['item_name']; ?></td> -->
+                                            <td><?= $data['item_description']; ?></td>
+                                            <td><?= $data['type']; ?></td>
+                                            <td><?= $data['quantity']; ?></td>
+                                            <td><?= $data['part_number']; ?></td>
+                                            <td><?= $data['cost_center']; ?></td>
+                                            <td><?= $data['spesifikasi']; ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample"></a>
+                                    aria-expanded="false" aria-controls="collapseExample">See Detail</a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
-                                        <table class="table  table-bordered table-sm data">
-                                            <tr class="bg-dark text-white">
-                                                <!-- <th>Item Name</th> -->
-                                                <th>Item Description</th>
-                                                <th>Type</th>
-                                                <th>Quantity</th>
-                                                <th>Part Number</th>
-                                                <th>Cost Center</th>
-                                                <th>Specification</th>
-                                            </tr>
-                                            <tr>
-                                                <!-- <td><?= $data['item_name']; ?></td> -->
-                                                <td><?= $data['item_description']; ?></td>
-                                                <td><?= $data['type']; ?></td>
-                                                <td><?= $data['quantity']; ?></td>
-                                                <td><?= $data['part_number']; ?></td>
-                                                <td><?= $data['cost_center']; ?></td>
-                                                <td><?= $data['spesifikasi']; ?></td>
-                                            </tr>
-                                        </table>
-                                        <p>....</p>
+
                                         <a class="btn list-group-item-info btn-sm list-group-item-action"
                                             style="font-size: 11px; width:100px;"
                                             href="invoice-pr?id=<?= $data['kode_pr']?>">Detail P.R <i
@@ -249,7 +302,20 @@ $kodelist = $list;
             $('#data').DataTable({
                 scrollX: true,
                 lengthChange: false,
+                "order": [
+                    [0, "desc"]
+                ],
+                "lengthMenu": [
+                    [4, 10, 100, -1],
+                    [4, 10, 100, "All"]
+                ],
             });
+        });
+        $('#search').on('shown.bs.modal', function (e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
         });
     </script>
 

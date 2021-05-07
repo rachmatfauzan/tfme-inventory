@@ -273,8 +273,8 @@ if(isset($_POST['send'])){
                                                     <td>
                                                         <select id="inputPosition"
                                                             class="form-control custom-select bg-light"
-                                                            name="cost_center-<?= $i; ?>" required>
-                                                            <option selected disabled>-- Choose CC --</option>
+                                                            name="cost_center-<?= $i; ?>" style="font-size: 12px;" required>
+                                                            <option selected disabled>Choose CC</option>
                                                             <option value="10">10 PCB</option>
                                                             <option value="20">20 PCBA</option>
                                                             <option value="30">30 IC PACK</option>
