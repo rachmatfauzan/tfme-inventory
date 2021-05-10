@@ -200,14 +200,14 @@
                                 <?php foreach ($query as $user ) : ?>
                                 <tr>
                                     <td>
-                                        <a class="bg-danger text-white" href="delete?id=<?= $user['id_user']?>" onclick="return confirm('Want to Delete <?= $user['name']?>');">Delete</a>
-                                        <a class="bg-info text-white" id="updateData" data-toggle="modal"
+                                        <a class="bg-danger text-white btn-sm" href="delete?id=<?= $user['id_user']?>" onclick="return confirm('Want to Delete <?= $user['name']?>');">Delete</a>
+                                        <a class="bg-info text-white btn-sm" id="updateData" data-toggle="modal"
                                             data-target="#update" data-id="<?= $user['id_user'];?>"
                                             data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
                                             data-email="<?= $user['email'];?>" data-position="<?= $user['position'];?>"
                                             data-password="<?= $user['password'];?>"
                                             data-address="<?= $user['address'];?>">Update</a>
-                                        <a class="bg-success text-white" id="view" data-toggle="modal"
+                                        <a class="bg-success text-white btn-sm" id="view" data-toggle="modal"
                                             data-target="#detail" data-id="<?= $user['id_user'];?>"
                                             data-name="<?= $user['name'];?>" data-handphone="<?= $user['handphone'];?>"
                                             data-email="<?= $user['email'];?>" data-position="<?= $user['position'];?>"
@@ -256,11 +256,11 @@
                 </div> -->
                 <!-- Modal Detail -->
                 <!-- ##################################################################### -->
-                <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade p-0 m-0" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-secondary text-white">
+                            <div class="modal-header bg-secondary text-white p-2 rounded-0">
                                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Detail
                                     User</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -321,7 +321,7 @@
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header bg-secondary text-white">
+                            <div class="modal-header bg-secondary text-white p-2 rounded-0">
                                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-users mr-2"></i>Update Data
                                     User</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
