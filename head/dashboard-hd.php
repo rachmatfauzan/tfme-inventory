@@ -100,6 +100,59 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
                     </div>
                 </div>
             </div>
+            <div class="kepala d-flex container flex-column justify-content-center align-items-center mt-2 ml-2">
+                <h5 class="mt-2 judul text-center"><i class="fas fa-file-invoice-dollar mr-2" ></i>PO Release History</h5>
+                <a data-toggle="modal" class="btn-sm bg-white" style="cursor:cell" data-target="#search"><i class="fas fa-table mr-2"></i>Search Table</a>
+            </div>
+
+            <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i> Search Table</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table w-100 table-sm inventory table-striped" id="data"
+                                    style="font-size: 12px;">
+                                    <thead style="width: fit-content;">
+                                        <tr class="bg-dark text-white">
+                                            <th>PO Code</th>
+                                            <th>Supplier Name</th>
+                                            <th>Supplier Code</th>
+                                            <th>Date</th>
+                                            <th>Detail PO</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php foreach ($query as $data) : ?>
+                                        <tr>
+                                            <td><?php $code = sprintf("%05s", $data["kode_po"]) ?>
+                                                <?= "PO-". $code; ?></td>
+                                            <td><?= $data['supplier_name']; ?></td>
+                                            <td><?= $data['supplier_code']; ?></td>
+                                            <td>
+                                                <?php $date = date_create($data['po_date']); ?>
+                                                <?= date_format($date, 'j F Y'); ?>
+                                            </td>
+                                            <td><a href="invoice-po?id=<?= $data['kode_po']?>" class="btn"><i
+                                                        class="fa fa-search"></i> <span class="text-sm text-dark"
+                                                        style="font-size: 12px;">See</span></a></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <?php foreach ($query as $data) :?>
             <div class="box">
                 <div class="content">
@@ -183,6 +236,29 @@ $query = mysqli_query($conn, "SELECT * FROM form_po ORDER BY id_po DESC LIMIT $a
         </div>
     </div>
 
+
+    <!-- script data tables -->
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                scrollX: true,
+                lengthChange: false,
+                "order": [
+                    [0, "desc"]
+                ],
+                "lengthMenu": [
+                    [4, 10, 100, -1],
+                    [4, 10, 100, "All"]
+                ],
+            });
+        });
+        $('#search').on('shown.bs.modal', function (e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        });
+    </script>
 
     <!-- Collapse  -->
     <script>
