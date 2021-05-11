@@ -28,9 +28,10 @@ $mail->setFrom($email_send, $name_send);
 $mail->addAddress($email_received);
 $mail->isHTML(true);
 $mail->Subject = $subjek;
-$mail->AddEmbeddedImage("image/box.png", "my-attach" );
+// $mail->AddEmbeddedImage("image/box.png", "logo" );
 
 $pesan = '
+
 
 
 
@@ -39,13 +40,10 @@ $pesan = '
 <head>
     <style>
         div.bg {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin: 0;
-            padding: 0;
+            background-color:#F2F2F2;
+            width: 80%;
+            margin: auto;
+            padding: 8%;
             height: 100%;
         }
 
@@ -55,6 +53,7 @@ $pesan = '
         }
 
         .content {
+            background-color:#FFFF;
             padding: 20px;
             border: 2px solid white;
             text-align: center;
@@ -74,7 +73,7 @@ $pesan = '
         }
 
         footer {
-            margin-top: 5em;
+            margin-top: 2em;
         }
     </style>
 </head>
@@ -85,12 +84,15 @@ $pesan = '
 
         <div class="content">
             <header>
-                <img src="cid:my-attach">
+                <img src="https://thumbs.dreamstime.com/b/loader-man-moving-dolly-cart-flat-illustration-loader-man-moving-dolly-cart-flat-illustration-warehouse-worker-packages-173716499.jpg">
                 <h2>New Purchase Request From Technician <br> "Axel Agatha Ibrahim"</h2>
             </header>
             <section>
                 <table border="1" cellspacing="0" style="text-align: left; margin-left:auto; margin-right:auto;"
                     cellpadding="2">
+                    <tr>
+                        <td colspan="4" style="text-align: center;background-color:wheat;">PR-00001</td>
+                    </tr>
                     <tr>
                         <th>Item Description</th>
                         <th>Type</th>
@@ -107,8 +109,8 @@ $pesan = '
                <p>Status : Waiting</p>
             </section>
             <footer>
-                <strong>go to the website : <a href="http://tfme.polibatam.ac.id/inventory"
-                        target="_blank">tfme.polibatam.ac.id/inventory</a></strong>
+               <small> <strong>go to the website : <a href="http://tfme.polibatam.ac.id/inventory"
+                        target="_blank">tfme.polibatam.ac.id/inventory</a></strong></small>
             </footer>
         </div>
     </div>
@@ -129,4 +131,6 @@ if($send){
 echo "<script>alert('data terkirim')</script>";
 
 ?>
+
+
 
