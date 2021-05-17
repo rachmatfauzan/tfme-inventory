@@ -131,7 +131,7 @@ $kodelist = $list;
                                 showConfirmButton: false
                             });
                             setTimeout(function () {
-                                window.top.location = "generateForm"
+                                window.top.location = "formulir-tech"
                             }, 2700);
                     </script>
                     ';

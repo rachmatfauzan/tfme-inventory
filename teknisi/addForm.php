@@ -260,15 +260,15 @@ if(isset($_POST['send'])){
                                                 <tr class="addForm">
                                                     <td><textarea name="item_description-<?= $i; ?>"
                                                             id="iem_description " rows="2" class="form-control"
-                                                            autofocus></textarea></td>
+                                                            autofocus required></textarea></td>
                                                     <td><textarea name="type-<?= $i; ?>" id="type" rows="2"
                                                             class="form-control"></textarea>
                                                     </td>
                                                     <td><input type="number" placeholder="0" name="quantity-<?= $i; ?>"
-                                                            class="form-control">
+                                                            class="form-control" required>
                                                     </td>
                                                     <td><textarea name="part_number-<?= $i; ?>" id="par_number" rows="2"
-                                                            class="form-control"></textarea>
+                                                            class="form-control" required></textarea>
                                                     </td>
                                                     <td>
                                                         <select id="inputPosition"
@@ -284,10 +284,10 @@ if(isset($_POST['send'])){
                             </div>
                             </td>
                             <td><textarea name="account_code-<?= $i; ?>" id="account-code" rows="2"
-                                    class="form-control"></textarea>
+                                    class="form-control" required></textarea>
                             </td>
                             <td><textarea name="spesifikasi-<?= $i; ?>" id="spesifikasi" rows="2" class="form-control"
-                                    placeholder="xx Kg/Bag"></textarea>
+                                    placeholder="xx Kg/Bag" required></textarea>
                             </td>
                             </tr>
                             <?php endfor; ?>

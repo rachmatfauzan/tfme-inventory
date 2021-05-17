@@ -9,8 +9,8 @@ require 'PHPMailer/src/SMTP.php';
 
 $email_send =  "tfmeminteraktif@gmail.com";
 $name_send =  "TFME Website";
-$email_received =  "rachmatfauzan07@gmail.com";
-$subjek =  "Halo!!, Ada Pesanan Baru !!";
+$email_received =  "rachmat3311801036@students.polibatam.ac.id";
+$subjek =  "New Order From Technician !!";
 
 
 $mail = new PHPMailer;
@@ -28,7 +28,9 @@ $mail->setFrom($email_send, $name_send);
 $mail->addAddress($email_received);
 $mail->isHTML(true);
 $mail->Subject = $subjek;
-// $mail->AddEmbeddedImage("image/box.png", "logo" );
+$mail->AddEmbeddedImage("image/box.png", "logo" );
+
+$mail->AddCC("rachmatfauzan07@gmail.com");
 
 $pesan = '
 
@@ -41,10 +43,11 @@ $pesan = '
     <style>
         div.bg {
             background-color:#F2F2F2;
-            width: 80%;
+            width: 100%;
             margin: auto;
-            padding: 8%;
+            padding: 0;
             height: 100%;
+            position:relative;
         }
 
         img {
@@ -84,7 +87,7 @@ $pesan = '
 
         <div class="content">
             <header>
-                <img src="https://thumbs.dreamstime.com/b/loader-man-moving-dolly-cart-flat-illustration-loader-man-moving-dolly-cart-flat-illustration-warehouse-worker-packages-173716499.jpg">
+                <img src="cid:logo">
                 <h2>New Purchase Request From Technician <br> "Axel Agatha Ibrahim"</h2>
             </header>
             <section>
@@ -120,6 +123,7 @@ $pesan = '
 
 ';
 $mail->Body = $pesan;
+
 
 $send = $mail->send();
 

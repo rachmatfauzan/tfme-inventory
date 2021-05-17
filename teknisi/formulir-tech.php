@@ -1,6 +1,14 @@
 <?php 
 
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer/src/Exception.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
+
 include "../config/config.php";
 
 
@@ -52,7 +60,133 @@ if(isset($_POST['send'])){
     )");
 
     if ($query){
-        $send = true;
+
+        $email_send =  "tfmeminteraktif@gmail.com";
+        $name_send =  "TFME Website";
+        $email_received =  "rachmatfauzan07@gmail.com";
+        $subjek =  "New Order From Technician !!";
+
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+
+        $mail->Host = 'smtp.gmail.com'; // domain. outlook sesuaikan dengan email penerima
+        $mail->Username = $email_send;
+        $mail->Password = 'bogglxovdlvzvtpe';
+        $mail->Port = 465;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        // $mail->SMTPDebug = 2;
+
+        $mail->setFrom($email_send, $name_send);
+        $mail->addAddress($email_received);
+        $mail->isHTML(true);
+        $mail->Subject = $subjek;
+        $mail->AddEmbeddedImage("../image/box.png", "logo" );
+
+        
+        $mail->AddCC("rachmat3311801036@students.polibatam.ac.id");
+        $pesan = '
+
+
+
+
+        <html>
+
+        <head>
+            <style>
+                div.bg {
+                    background-color:#F2F2F2;
+                    width: 100%;
+                    margin: auto;
+                    height: 100%;
+                    position: relative;
+                }
+
+                img {
+                    width: 30%;
+                    background-size: cover;
+                }
+
+                .content {
+                    background-color:#FFFF;
+                    padding: 20px;
+                    border: 2px solid white;
+                    text-align: center;
+                }
+
+                table {
+                    width: 100%;
+                }
+
+                p {
+                    margin-top:2em;
+                    color:white;
+                    background-color: #0078D4;
+                    padding: 5px;
+                    -webkit-box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                    -moz-box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                    box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                }
+
+                footer {
+                    margin-top: 2em;
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <div class="bg">
+
+                <div class="content">
+                    <header>
+                        <img src="cid:logo">
+                        <h2>New Purchase Request From Technician <br> <span style="text-transform: uppercase;">"'.$_SESSION['user'].'"</span></h2>
+                    </header>
+                    <section>
+                        <table border="1" cellspacing="0" style="text-align: left; margin-left:auto; margin-right:auto;"
+                            cellpadding="2">
+                            <tr>
+                                <td colspan="4" style="text-align: center;background-color:#0078D4;color:white;">PR-'.$kodeOtomatis.'</td>
+                            </tr>
+                            <tr>
+                                <th>Item Description</th>
+                                <th>Type</th>
+                                <th>Part Number</th>
+                                <th>Quantity</th>
+                            </tr>
+                            <tr>
+                                <td>'.$item_description.'</td>
+                                <td>'.$type.'</td>
+                                <td>'.$part_number.'</td>
+                                <td>'.$quantity.'</td>
+                            </tr>
+                        </table>
+                    <p>Status : Waiting</p>
+                    </section>
+                    <footer>
+                    <small> <strong>go to the website : <a href="http://tfme.polibatam.ac.id/inventory"
+                                target="_blank">tfme.polibatam.ac.id/inventory</a></strong></small>
+                    </footer>
+                </div>
+            </div>
+        </body>
+
+        </html>
+
+        ';
+        $mail->Body = $pesan;
+
+        $send = $mail->send();
+
+        if($send){
+            $send = true;
+        } else{
+            echo "gagal";
+        }
+        // echo "<script>alert('data terkirim')</script>";
+
     } else {
         echo "Failed !";
     }
