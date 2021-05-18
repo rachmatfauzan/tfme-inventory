@@ -25,7 +25,7 @@ $data = mysqli_fetch_array($sql);
 $code = (int)$data['pr_kode'] + 1;
 $kodeOtomatis = sprintf("%05s", $code);
 
-// echo $kodeAuto;
+// var_dump($code);
 
 
 if(isset($_POST['send'])){
@@ -165,9 +165,8 @@ if(isset($_POST['send'])){
                         </table>
                     <p>Status : Waiting</p>
                     </section>
-                    <footer>
-                    <small> <strong>go to the website : <a href="http://tfme.polibatam.ac.id/inventory"
-                                target="_blank">tfme.polibatam.ac.id/inventory</a></strong></small>
+                    <footer><strong>follow url to change status and login : <a href="http://tfme.polibatam.ac.id/inventory"
+                                target="_blank">tfme.polibatam.ac.id/inventory</a></strong>
                     </footer>
                 </div>
             </div>
