@@ -262,7 +262,7 @@ if(isset($_POST['send'])){
                                                             id="iem_description " rows="2" class="form-control"
                                                             autofocus required></textarea></td>
                                                     <td><textarea name="type-<?= $i; ?>" id="type" rows="2"
-                                                            class="form-control"></textarea>
+                                                            class="form-control" required></textarea>
                                                     </td>
                                                     <td><input type="number" placeholder="0" name="quantity-<?= $i; ?>"
                                                             class="form-control" required>
@@ -271,10 +271,8 @@ if(isset($_POST['send'])){
                                                             class="form-control" required></textarea>
                                                     </td>
                                                     <td>
-                                                        <select id="inputPosition"
-                                                            class="form-control custom-select bg-light"
-                                                            name="cost_center-<?= $i; ?>" style="font-size: 12px;" required>
-                                                            <option selected disabled>Choose CC</option>
+                                                        <select id="inputPosition"  class="form-control custom-select bg-light"  name="cost_center-<?= $i; ?>" style="font-size: 12px;" required>
+                                                            <option selected disabled value="">Choose CC</option>
                                                             <option value="10">10 PCB</option>
                                                             <option value="20">20 PCBA</option>
                                                             <option value="30">30 IC PACK</option>
