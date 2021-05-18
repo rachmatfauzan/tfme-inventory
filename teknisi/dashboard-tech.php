@@ -141,7 +141,7 @@ $kodelist = $list;
             <div class=" mt-2 d-flex flex-column align-items-center justify-content-center">
                 <h5 class="mt-2 teknisi" style="width: 90%;"><i class="fas fa-history mr-2"></i>History PR <span
                         style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
-                <a class="mt-2 btn btn-sm btn-primary text-white rounded-0 p-1" data-toggle="modal"
+                <a class="mt-2 btn btn-sm bg-white  rounded-0 p-1" data-toggle="modal"
                     data-target="#search"><i class="fa fa-table mr-2"></i>Search Table</a>
             </div>
             <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

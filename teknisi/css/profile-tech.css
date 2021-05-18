@@ -13,7 +13,9 @@
     -moz-box-shadow: 0px 10px 11px 8px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 10px 11px 8px rgba(0, 0, 0, 0.12);
 }
-
+#see:hover{
+    color: salmon;
+}
 a.invoice {
     /* color */
     background: rgba(1, 96, 228, 1);
