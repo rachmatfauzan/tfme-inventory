@@ -16,6 +16,7 @@ if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory");
 
 // membuat logik kode_otomatis
 $sql = mysqli_query($conn, "SELECT max(kode_pr) as pr_kode FROM form_pr ORDER BY kode_pr ASC");
@@ -235,6 +236,8 @@ if(isset($_POST['send'])){
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
 
     <!-- Bootstrap Js -->
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
@@ -288,6 +291,55 @@ if(isset($_POST['send'])){
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
                         <a href="generateForm" style="font-size: 11px;" class="btn btn-success btn-sm"><i
                                 class="fas fa-plus mr-2"></i>add more P.r</a>
+                        <a class="mt-2 btn btn-sm bg-dark text-white  rounded-0 p-1" data-toggle="modal"
+                            data-target="#search"><i class="fa fa-table mr-2"></i>Search Part Number</a>
+                    </div>
+                    <div class="modal fade" id="search" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
+                                        Search Table
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm inventory table-striped w-100" id="data"
+                                            style="font-size: 12px;">
+                                            <thead style="width: fit-content;">
+                                                <tr class="bg-dark text-white">
+                                                    <th width="2%">No</th>
+                                                    <th>Part Number</th>
+                                                    <th>Item Description</th>
+                                                    <th>Cost Center</th>
+                                                    <th>Account Code</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($query as $data) : ?>
+                                                <tr>
+                                                    <td><?= $i; ?></td>
+                                                    <td><?= $data['part_number']; ?></td>
+                                                    <td><?= $data['description']; ?></td>
+                                                    <td><?= $data['cc']; ?></td>
+                                                    <td><?= $data['account_code']; ?></td>
+                                                    <td><?= $data['type']; ?></td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <form method="post" autocomplete="off">
                         <div class="group">
@@ -374,6 +426,30 @@ if(isset($_POST['send'])){
             </div>
 
 
+
+
+            <!-- script data tables -->
+            <script>
+                $(document).ready(function () {
+                    $('#data').DataTable({
+                        scrollX: true,
+                        lengthChange: false,
+                        "order": [
+                            [0, "asc"]
+                        ],
+                        "lengthMenu": [
+                            [4, 10, 100, -1],
+                            [4, 10, 100, "All"]
+                        ],
+                    });
+                });
+                $('#search').on('shown.bs.modal', function (e) {
+                    $.fn.dataTable.tables({
+                        visible: true,
+                        api: true
+                    }).columns.adjust();
+                });
+            </script>
 
 
 

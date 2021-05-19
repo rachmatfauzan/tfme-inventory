@@ -29,7 +29,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GR
 $list = mysqli_fetch_all($query);
 $kodelist = $list;
 
-
+$show = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY kode_pr DESC");
 
 
 ?>
@@ -167,7 +167,7 @@ $kodelist = $list;
                                     </thead>
 
                                     <tbody>
-                                        <?php foreach ($query as $data) : ?>
+                                        <?php foreach ($show as $data) : ?>
                                         <tr>
                                             <td><?php $code = sprintf("%05s", $data["kode_pr"]) ?>
                                                 <?= "PR-". $code; ?></td>
