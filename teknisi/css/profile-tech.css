@@ -99,11 +99,37 @@ input {
 
 .addForm td textarea, input[type=number],
 select {
-    font-size: 12px;
+    font-size: 13px;
 }
+.date {
+    position: relative;
+}
+  
+.date i{
+    position: absolute;
+    right: 20px;
+    top: 9px;
+    color: gray;
+}
+
+
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+
 @media print{
     *{
         margin: 0;

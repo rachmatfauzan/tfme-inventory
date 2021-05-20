@@ -196,9 +196,12 @@ if(isset($_POST['send'])){
                                                     <input type="text" name="order_no" id="order_no"
                                                         class="form-control input-sm" value="PR-<?= $kodeOtomatis; ?>"
                                                         disabled />
-                                                    <input type="date" name="pr_date" id="pr_date"
-                                                        class="form-control input-sm" placeholder="Select PR Date"
-                                                        required />
+                                                    <div class="date">
+                                                        <input type="date" name="pr_date" id="pr_date"
+                                                            class="form-control input-sm"
+                                                            required />
+                                                        <i class="fas fa-calendar-day"></i>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <br />

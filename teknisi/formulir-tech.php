@@ -348,31 +348,31 @@ if(isset($_POST['send'])){
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="tipe">PR Code</label>
-                                    <input type="text" name="order_no" id="order_no" class="form-control input-sm"
+                                    <input type="text" name="order_no" id="order_no" class="form-control form-control-sm input-sm"
                                         value="PR-<?= $kodeOtomatis; ?>" disabled />
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="tipe">Type</label>
-                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="Type"
-                                        name="type" required autofocus>
+                                    <label for="tipe">Item Description</label>
+                                    <input type="text" class="form-control form-control-sm bg-light" id="tipe" placeholder="Item Name"
+                                        name="item_description" required autofocus>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="tipe">Quantity</label>
-                                    <input type="number" class="form-control bg-light" id="tipe" placeholder="0"
+                                    <input type="number" class="form-control form-control-sm bg-light" id="tipe" placeholder="0"
                                         name="quantity" required>
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for="tipe">Specification</label>
-                                    <input type="text" class="form-control bg-light" id="tipe" placeholder="xx kg/Bag"
+                                    <input type="text" class="form-control form-control-sm bg-light" id="tipe" placeholder="xx kg/Bag"
                                         name="spesifikasi" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md">
-                                    <label for="Item">Item Description</label>
+                                    <label for="Item">Type</label>
                                     <textarea type="text" class="form-control bg-light" id="Item"
-                                        placeholder="Your Name Item" name="item_description" required></textarea>
+                                        placeholder="Your Item Type" name="type" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -382,12 +382,12 @@ if(isset($_POST['send'])){
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="part-number">Part Number</label>
-                                    <input type="text" class="form-control bg-light" id="part-number"
-                                        placeholder="Part Number" name="part_number" required>
+                                    <input type="text" class="form-control form-control-sm bg-light" id="part-number"
+                                        placeholder="Part Number" name="part_number" maxlength="10" required>
                                 </div>
                                 <div class="form-group col">
                                     <label for="inputPosition">Cost Center</label>
-                                    <select id="inputPosition" class="form-control custom-select  bg-light"
+                                    <select id="inputPosition" class="form-control form-control-sm custom-select  bg-light"
                                         name="cost_center" required>
                                         <option selected disabled value="">-- Choose CC --</option>
                                         <option value="10">10 PCB</option>
@@ -404,13 +404,16 @@ if(isset($_POST['send'])){
                             <div class="row">
                                 <div class="form-group col-md">
                                     <label for="pr-date">PR Date</label>
-                                    <input type="date" id="pr-date" class="form-control bg-light" name="pr_date"
-                                        required>
+                                    <div class="date">
+                                        <input type="date" id="pr-date" class="form-control form-control-sm bg-light" name="pr_date"
+                                            required>
+                                        <i class="fas fa-calendar-day"></i> <i class="fas fa-calender-day"></i>
+                                    </div>
                                 </div>
 
                                 <div class="form-group col-md">
                                     <label for="on-pr#">Account Code</label>
-                                    <input type="number" class="form-control bg-light" id="on-pr#"
+                                    <input type="number" class="form-control form-control-sm bg-light" id="on-pr#"
                                         placeholder="Account Code" name="account_code" pattern="/^-?\d+\.?\d*$/"
                                         onKeyPress="if(this.value.length==7) return false;" required>
                                 </div>
