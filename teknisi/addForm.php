@@ -3,7 +3,6 @@
 session_start();
 include "../config/config.php";
 
-
 if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
@@ -61,13 +60,14 @@ if(isset($_POST['send'])){
             '$spesifikasi',
             '$update_po'
         )") or die (mysqli_error($conn));
-
+    }
         if ($query){
             $send = true;
+            $_SESSION['email'] = $code;
+        
         } else {
             echo "Failed !";
         }
-    }
 }
 
 
@@ -271,7 +271,10 @@ if(isset($_POST['send'])){
                                                             class="form-control" required></textarea>
                                                     </td>
                                                     <td>
-                                                        <select id="inputPosition"  class="form-control custom-select bg-light"  name="cost_center-<?= $i; ?>" style="font-size: 12px;" required>
+                                                        <select id="inputPosition"
+                                                            class="form-control custom-select bg-light"
+                                                            name="cost_center-<?= $i; ?>" style="font-size: 12px;"
+                                                            required>
                                                             <option selected disabled value="">Choose CC</option>
                                                             <option value="10">10 PCB</option>
                                                             <option value="20">20 PCBA</option>
@@ -281,8 +284,8 @@ if(isset($_POST['send'])){
                                                     </td>
                             </div>
                             </td>
-                            <td><textarea name="account_code-<?= $i; ?>" id="account-code" rows="2"
-                                    class="form-control" required></textarea>
+                            <td><textarea name="account_code-<?= $i; ?>" id="account-code" rows="2" class="form-control"
+                                    required></textarea>
                             </td>
                             <td><textarea name="spesifikasi-<?= $i; ?>" id="spesifikasi" rows="2" class="form-control"
                                     placeholder="xx Kg/Bag" required></textarea>

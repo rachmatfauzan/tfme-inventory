@@ -97,9 +97,12 @@ input {
     border: none;
 }
 
-.addForm td textarea,
+.addForm td textarea, input[type=number],
 select {
     font-size: 12px;
+}
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 @media print{
     *{

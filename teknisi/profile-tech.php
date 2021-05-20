@@ -160,8 +160,8 @@ if(isset($_POST['update'])){
                                 <label>Password</label>
                                 <input type="password" id="pwd" class="form-control" value="<?= $result['password']; ?>"
                                     name="password">
-                                <p style="font-size: small;cursor:pointer;" class="text-center" id="see"><i
-                                        class="fa fa-eye"></i></p>
+                                <p style="font-size: small;cursor:pointer;display:block;" class="text-center" id="see"><i
+                                        class="fa fa-eye"></i> <span>See</span></p>
                             </div>
                         </div>
                     </fieldset>

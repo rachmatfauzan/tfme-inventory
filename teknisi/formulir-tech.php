@@ -64,7 +64,7 @@ if(isset($_POST['send'])){
 
         $email_send =  "tfmeminteraktif@gmail.com";
         $name_send =  "TFME Website";
-        $email_received =  "rachmatfauzan07@gmail.com";
+        $email_received =  "rachmat3311801036@students.polibatam.ac.id";
         $subjek =  "New Order From Technician !!";
 
 
@@ -86,7 +86,7 @@ if(isset($_POST['send'])){
         $mail->AddEmbeddedImage("../image/box.png", "logo" );
 
         
-        $mail->AddCC("rachmat3311801036@students.polibatam.ac.id");
+        $mail->AddCC("");
         $pesan = '
 
 

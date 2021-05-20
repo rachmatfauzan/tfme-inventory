@@ -3,11 +3,20 @@
 session_start();
 include "../config/config.php";
 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer/src/Exception.php';
+require '../PHPMailer/src/PHPMailer.php';
+require '../PHPMailer/src/SMTP.php';
+
 if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
 $name = $_SESSION['user'];
+
 
 
 // pagination and select data
@@ -31,6 +40,141 @@ $kodelist = $list;
 
 $show = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GROUP BY kode_pr ORDER BY kode_pr DESC");
 
+
+if (isset($_SESSION['email'])){
+
+    $code = $_SESSION["email"];
+    $kodeOtomatis = sprintf("%05s", $code);
+
+    $dt_pr = mysqli_query($conn, "SELECT * FROM form_pr WHERE kode_pr = '$code'");
+
+    $email_send =  "tfmeminteraktif@gmail.com";
+        $name_send =  "TFME Website";
+        $email_received =  "rachmatfauzan07@gmail.com";
+        $subjek =  "New Order From Technician !!";
+
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+
+        $mail->Host = 'smtp.gmail.com'; // domain. outlook sesuaikan dengan email penerima
+        $mail->Username = $email_send;
+        $mail->Password = 'bogglxovdlvzvtpe';
+        $mail->Port = 465;
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
+        // $mail->SMTPDebug = 2;
+
+        $mail->setFrom($email_send, $name_send);
+        $mail->addAddress($email_received);
+        $mail->isHTML(true);
+        $mail->Subject = $subjek;
+        $mail->AddEmbeddedImage("../image/box.png", "logo" );
+
+        
+        $mail->AddCC("rachmat3311801036@students.polibatam.ac.id");
+        $pesan = '
+
+
+
+
+        <html>
+
+        <head>
+            <style>
+                div.bg {
+                    background-color:#F2F2F2;
+                    width: 100%;
+                    margin: auto;
+                    height: 100%;
+                    position: relative;
+                }
+
+                img {
+                    width: 30%;
+                    background-size: cover;
+                }
+
+                .content {
+                    background-color:#FFFF;
+                    padding: 20px;
+                    border: 2px solid white;
+                    text-align: center;
+                }
+
+                table {
+                    width: 100%;
+                }
+
+                p {
+                    margin-top:2em;
+                    color:white;
+                    background-color: #0078D4;
+                    padding: 5px;
+                    -webkit-box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                    -moz-box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                    box-shadow: 0px 10px 7px 4px rgba(0, 0, 0, 0.06);
+                }
+
+                footer {
+                    margin-top: 2em;
+                }
+            </style>
+        </head>
+
+        <body>
+
+            <div class="bg">
+
+                <div class="content">
+                    <header>
+                        <img src="cid:logo">
+                        <h2>New Purchase Request From Technician <br> <span style="text-transform: uppercase;">"'.$_SESSION['user'].'"</span></h2>
+                    </header>
+                    <section>
+                        <table border="1" cellspacing="0" style="text-align: left; margin-left:auto; margin-right:auto;"
+                            cellpadding="2">
+                            <tr>
+                                <td colspan="4" style="text-align: center;background-color:#0078D4;color:white;">PR-'.$kodeOtomatis.'</td>
+                            </tr>
+                            <tr>
+                                <th>Item Description</th>
+                                <th>Type</th>
+                                <th>Part Number</th>
+                                <th>Quantity</th>
+                            </tr>
+                            '; foreach ($dt_pr as $dt) : $pesan .= '
+                            <tr>
+                                <td>'.$dt["item_description"].'</td>
+                                <td>'.$dt["type"].'</td>
+                                <td>'.$dt["part_number"].'</td>
+                                <td>'.$dt["quantity"].'</td>
+                            </tr>
+                            '; endforeach; $pesan .='
+                        </table>
+                    <p>Status : Waiting</p>
+                    </section>
+                    <footer><strong>follow url to change status and login : <a href="http://tfme.polibatam.ac.id/inventory"
+                                target="_blank">tfme.polibatam.ac.id/inventory</a></strong>
+                    </footer>
+                </div>
+            </div>
+        </body>
+
+        </html>
+
+        ';
+        $mail->Body = $pesan;
+
+        $send = $mail->send();
+
+        if($send){
+            $alert = true;
+            unset($_SESSION['email']);
+        } else{
+            echo "gagal";
+        }
+}
 
 ?>
 
@@ -76,6 +220,22 @@ $show = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GRO
 </head>
 
 <body>
+    <?php if (isset($alert)) :?>
+    <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert"
+        style=" font-size:13px; max-width: 18rem; position: absolute; bottom:1.5em;z-index:9999; right:3em">
+        <strong>Success Sended!</strong> Your request sended to admin TFME.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <script>
+        window.setTimeout(function () {
+            $(".alert").fadeTo(200, 0).slideUp(200, function () {
+                $(this).remove();
+            });
+        }, 5000);
+    </script>
+    <?php endif; ?>
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
@@ -141,8 +301,8 @@ $show = mysqli_query($conn, "SELECT * FROM form_pr WHERE requestor = '$name' GRO
             <div class=" mt-2 d-flex flex-column align-items-center justify-content-center">
                 <h5 class="mt-2 teknisi" style="width: 90%;"><i class="fas fa-history mr-2"></i>History PR <span
                         style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
-                <a class="mt-2 btn btn-sm bg-white  rounded-0 p-1" data-toggle="modal"
-                    data-target="#search"><i class="fa fa-table mr-2"></i>Search Table</a>
+                <a class="mt-2 btn btn-sm bg-white  rounded-0 p-1" data-toggle="modal" data-target="#search"><i
+                        class="fa fa-table mr-2"></i>Search Table</a>
             </div>
             <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                 aria-hidden="true">
