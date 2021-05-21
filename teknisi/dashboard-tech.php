@@ -388,7 +388,7 @@ if (isset($_SESSION['email'])){
                                     </table>
                                 </div>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample">See Detail</a>
+                                     aria-controls="collapseExample">See Detail <i class="far fa-hand-point-down"></i></a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
 

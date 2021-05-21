@@ -255,6 +255,7 @@ if(isset($_POST['send'])){
                 <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link" href="withdraw"><i class="fas fa-fax"></i>Withdraw Item</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -353,7 +354,7 @@ if(isset($_POST['send'])){
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="tipe">Item Description</label>
-                                    <input type="text" class="form-control form-control-sm bg-light" id="tipe" placeholder="Item Name"
+                                    <input type="text" class="form-control form-control-sm bg-light" id="desc" placeholder="Item Name"
                                         name="item_description" required autofocus>
                                 </div>
                                 <div class="form-group col-md-2">
@@ -364,14 +365,14 @@ if(isset($_POST['send'])){
 
                                 <div class="form-group col-md-2">
                                     <label for="tipe">Specification</label>
-                                    <input type="text" class="form-control form-control-sm bg-light" id="tipe" placeholder="xx kg/Bag"
+                                    <input type="text" class="form-control form-control-sm bg-light" id="spec" placeholder="xx kg/Bag"
                                         name="spesifikasi" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md">
                                     <label for="Item">Type</label>
-                                    <textarea type="text" class="form-control bg-light" id="Item"
+                                    <textarea type="text" class="form-control bg-light" id="type"
                                         placeholder="Your Item Type" name="type" required></textarea>
                                 </div>
                             </div>
@@ -382,8 +383,8 @@ if(isset($_POST['send'])){
                             <div class="row">
                                 <div class="form-group col">
                                     <label for="part-number">Part Number</label>
-                                    <input type="text" class="form-control form-control-sm bg-light" id="part-number"
-                                        placeholder="Part Number" name="part_number" maxlength="10" required>
+                                    <input type="text" class="form-control form-control-sm bg-light" id="part"
+                                        placeholder="Part Number" name="part_number" maxlength="10" required >
                                 </div>
                                 <div class="form-group col">
                                     <label for="inputPosition">Cost Center</label>

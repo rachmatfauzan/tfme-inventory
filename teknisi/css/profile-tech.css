@@ -13,9 +13,11 @@
     -moz-box-shadow: 0px 10px 11px 8px rgba(0, 0, 0, 0.12);
     box-shadow: 0px 10px 11px 8px rgba(0, 0, 0, 0.12);
 }
-#see:hover{
+
+#see:hover {
     color: salmon;
 }
+
 a.invoice {
     /* color */
     background: rgba(1, 96, 228, 1);
@@ -51,25 +53,55 @@ a.invoice:hover {
     -webkit-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
     box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.15);
-    
+
 }
 
-.height th{
-     height: 2px;
- }
+.height th {
+    height: 2px;
+}
+div.row.top{
+    background-color: #F0F0F0;
+}
+
+table.withdraw tr th {
+    background-color: #F0F0F0;
+    text-align: center;
+    vertical-align: middle;
+}
+.error img{
+    display: none;
+}
 
 @media screen and (max-width:900px) {
     a.invoice {
         width: 300px;
     }
+
+    .error img{
+        display: block;
+        width: 20%;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+    }
+    
+    table.title h3{
+        font-size: 14px;
+    }
+    table.withdraw, .send{
+        display: none;
+    }
+
     a.invoice:hover {
         width: 300px;
         color: black;
     }
-    table img{
+
+    table img {
         max-width: 30%;
     }
-    .head{
+
+    .head {
         flex-direction: column;
     }
 }
@@ -77,13 +109,15 @@ a.invoice:hover {
 .tag {
     margin: 10px;
 }
-.comment{
+
+.comment {
     margin-left: 2px;
     margin-right: 10px;
     width: 50em;
     border: 3px solid rgb(108, 117, 125);
 }
-.comment label{
+
+.comment label {
     width: 100%;
     text-align: center;
 }
@@ -97,15 +131,17 @@ input {
     border: none;
 }
 
-.addForm td textarea, input[type=number],
+.addForm td textarea,
+input[type=number],
 select {
     font-size: 13px;
 }
+
 .date {
     position: relative;
 }
-  
-.date i{
+
+.date i {
     position: absolute;
     right: 20px;
     top: 9px;
@@ -116,6 +152,7 @@ select {
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
     bottom: 0;
@@ -130,20 +167,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-@media print{
-    *{
+
+@media print {
+    * {
         margin: 0;
     }
-    div.navbar{
+
+    div.navbar {
         display: none;
     }
+
     .tron {
         display: none;
     }
-    div.head{
+
+    div.head {
         display: none;
     }
-    .comment{
+
+    .comment {
         border: 3px solid rgba(61, 61, 61, 0.5);
     }
 }
