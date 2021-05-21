@@ -78,6 +78,7 @@ $hasil = mysqli_fetch_assoc($sql);
                 <a class="nav-link active" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>New Form</a>
+                <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>With Draw Item</a>
                 <a style="opacity: 0.6;" class="nav-link text-white"  id="navigation" onclick="navError()"><i class="fas fa-user"></i>Profile</a>
             </div>
 

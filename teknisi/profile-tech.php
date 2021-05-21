@@ -83,6 +83,7 @@ if(isset($_POST['update'])){
                 <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link " href="withdraw"><i class="fas fa-edit"></i>With Draw Item</a>
                 <a class="nav-link active" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -158,19 +159,20 @@ if(isset($_POST['update'])){
                             </div>
                             <div class="col-sm-2">
                                 <label>Password</label>
-                                <input type="password" id="pwd" class="form-control" value="<?= $result['password']; ?>"
-                                    name="password">
-                                <p style="font-size: small;cursor:pointer;display:block;" class="text-center" id="see"><i
-                                        class="fa fa-eye"></i> <span>See</span></p>
+                                <div class="see" style="position: relative;">
+                                    <input type="password" id="pwd" class="form-control"
+                                        value="<?= $result['password']; ?>" name="password">
+                                    <i class="fa fa-eye" style="position: absolute; top:10px; right:10px;" id="see"></i></p>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
-                    <label>
+                    <label class=" text-center w-100">
                         <input class="checkbox" type="checkbox" onchange="toggleDisable(this);" id="check" />
                         Edit
-                    </label>
-                    <button class="btn btn-sm float-right btn-info rounded-0" id="btn-update"
+                    <button class="btn btn-sm float-right btn-info rounded-0 align-self-end" id="btn-update"
                         name="update">Update</button>
+                    </label>
                 </form>
             </div>
         </div>

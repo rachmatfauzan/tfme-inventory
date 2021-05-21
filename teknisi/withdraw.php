@@ -97,22 +97,59 @@ if(!isset($_SESSION['technician'])){
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <div class="data-entry">
-                    <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                        <h5 class="font-weight-bold text-secondary"><i class="fas fa-fax mr-2"></i>Withdraw Item</h5>
-                    </div>
-                    <form method="post" action="withdrawForm" autocomplete="off">
-                        <div class="col-lg-6 col-lg-offset-3">
-                           <div class="form-group">
-                                <label for="count_add">Add record <b>< 5 Item</b></label>
-                                <input type="text" autofocus name="count_add" id="count_add" maxlength="1" pattern="[1-5]+" class="form-control" placeholder="How Many item You Need ? 1-5" required>
-                           </div>
-                           <div class="form-group pull-right">
-                                <input type="submit" name="genarate" value="Generate" class="btn-sm btn-info">
-                           </div>
+            <div class="box" style="position:relative;">
+                <div class="row">
+                    <div class="data-entry col-sm-6">
+                        <div class="title mb-4 text-uppercase d-flex justify-content-center">
+                            <h5 class="font-weight-bold text-secondary"><i class="fas fa-fax mr-2"></i>Withdraw Item
+                            </h5>
                         </div>
-                    </form>
+                        <form method="post" action="withdrawForm" autocomplete="off">
+                            <div class="col-lg-6 col-lg-offset-3">
+                                <div class="form-group">
+                                    <label for="count_add">Add record <b>
+                                            < 5 Item</b> </label> <input type="text" autofocus name="count_add"
+                                                id="count_add" maxlength="1" pattern="[1-5]+" class="form-control"
+                                                placeholder="How Many item You Need ? 1-5" required>
+                                </div>
+                                <div class="form-group pull-right">
+                                    <input type="submit" name="genarate" value="Generate" class="btn-sm btn-info" style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44);">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="title mb-4  d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>Withdraw Item</h5>
+                            <a href="" class="btn btn-info w-100" style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;"> see history</a>
+                        </div>
+                        <light>- Your Last Request -</light>
+                        <div class="table-responsive">
+                            <table class="table table-sm" style="font-size: 13px;">
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Purpose</th>
+                                    <th>QTY</th>
+                                    <th>Date</th>
+                                </tr>
+                                <tr>
+                                    <td>Magazine LEad Frame</td>
+                                    <td>Polshing skuiji</td>
+                                    <td>10 Batang</td>
+                                    <td>21 May 2021</td>
+                                </tr>
+                                <tr>
+                                    <td>Magazine LEad Frame</td>
+                                    <td>Polshing skuiji</td>
+                                    <td>10 Batang</td>
+                                    <td>21 May 2021</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="position: absolute;bottom:0;">
+                    <strong class="text-secondary"><small><i>*Chosse What You Needed</i></small></strong>
                 </div>
             </div>
 

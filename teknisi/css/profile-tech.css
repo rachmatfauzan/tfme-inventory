@@ -71,12 +71,18 @@ table.withdraw tr th {
 .error img{
     display: none;
 }
+.data-entry{
+    border-right: double;
+}
 
 @media screen and (max-width:900px) {
     a.invoice {
         width: 300px;
     }
 
+    div.data-entry{
+        border-right: none;
+    }
     .error img{
         display: block;
         width: 20%;
@@ -188,4 +194,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .comment {
         border: 3px solid rgba(61, 61, 61, 0.5);
     }
+
 }
