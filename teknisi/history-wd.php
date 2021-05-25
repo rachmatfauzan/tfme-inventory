@@ -97,65 +97,89 @@ if(!isset($_SESSION['technician'])){
                     </div>
                 </div>
             </div>
-            <div class="box" style="position:relative;">
-                <div class="row">
-                    <div class="dataEntry col-sm-6">
-                        <div class="title mb-4 text-uppercase d-flex justify-content-center">
-                            <h5 class="font-weight-bold text-secondary"><i class="fas fa-fax mr-2"></i>Withdraw Item
-                            </h5>
+            <div class="box" style="position:relative;font-family:'Times New Roman', Times, serif;">
+                <div class="content">
+                    <header>
+                        <div class="row" style=" border-bottom:double;">
+                            <div class="col-3 title">
+                                <img src="../image/poltek.png" style="width: 200px; height:150px;">
+                            </div>
+                            <div class="col-lg-6 text-center">
+                                <label>
+                                    <p>POLITEKNIK NEGERI BATAM</p>
+                                    <h5><strong>TEACHING FACTORY MANUFACTURING OF ELECTRONICS</strong></h5>
+                                    <p class="m-0">Jalan Ahmad Yani, Batam Centre, Kecamatan Batam Kota, Batam 29461</p>
+                                    <p class="m-0">Telepon +62 778 469856 - 469860 Faksimile +62 778 463620</p>
+                                    <p class="m-0">Laman: www.tfme.ac.id/inventory Surel: tfmeminteractive@gmail.com</p>
+                                </label>
+                            </div>
+                            <div class="col-3 d-flex justify-content-end title">
+                                <img src="../image/black-tfme.png" style="width: 250px; height:150px;">
+                            </div>
                         </div>
-                        <form method="post" action="withdrawForm" autocomplete="off">
-                            <div class="col-lg-12 col-lg-offset-3">
-                                <div class="form-group">
-                                    <label for="count_add">Add record <b>
-                                            < 5 Item</b> </label> <input type="text" autofocus name="count_add"
-                                                id="count_add" maxlength="1" pattern="[1-5]+" class="form-control"
-                                                placeholder="How Many item You Need ? 1-5" required>
-                                </div>
-                                <div class="form-group pull-right">
-                                    <input type="submit" name="genarate" value="Generate" class="btn-sm btn-info"
-                                        style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44);">
+                    </header>
+                    <section>
+                        <div class="row mt-2">
+                            <h5 class="text-center w-100"><b>BUKTI PENGELUARAN INVENTORY</b></h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="indent ml-5">
+                                    <label style="width:150px;"><b>Ditujukan Kepada</b></label>
+                                    <label>: Garda</label>
+                                    <br>
+                                    <label style="width:150px;"><b>NIP</b></label>
+                                    <label>: 3311801036</label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="title mb-4  d-flex flex-column align-items-center justify-content-center">
-                            <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>Withdraw Item
-                            </h5>
-                            <a href="history-wd" class="btn btn-info w-100"
-                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;"> see history</a>
+                            <div class="col-4">
+                                <div class="indent ">
+                                    <label style="width:150px;" class="text-left"><b>No. Bukti</b></label>
+                                    <label>: BP0000001</label>
+                                    <br>
+                                    <label style="width:150px;" class="text-left"><b>Tanggal</b></label>
+                                    <label>: 19 MEI 2021</label>
+                                </div>
+                            </div>
+                            <div class="col-6"></div>
                         </div>
-                        <light>- Your Last Request -</light>
-                        <div class="table-responsive">
-                            <table class="table table-sm" style="font-size: 13px;">
+                    </section>
+                    <div class="row container">
+                        <div class="status text-center w-100">
+                            <label ><b>Status</b></label>
+                            <label>: <span class="bg-danger p-1 text-white rounded">Rejected</span></b></label>
+                        </div>
+                    </div>
+                    <div class="section mt-4">
+                        <div class="table-responsive container">
+                            <table class="table table-hover table-bordered">
                                 <tr>
-                                    <th>Item Name</th>
-                                    <th>Purpose</th>
+                                    <th width="1%" rowspan="2">No</th>
+                                    <th rowspan="2">ITEM</th>
+                                    <th rowspan="2">CC</th>
+                                    <th rowspan="2">Part Number</th>
+                                    <th rowspan="2">Purpose</th>
+                                    <th colspan="2">Volume</th>
+                                </tr>
+                                <tr>
                                     <th>QTY</th>
-                                    <th>Date</th>
+                                    <th>UOM</th>
                                 </tr>
                                 <tr>
-                                    <td>Magazine LEad Frame</td>
-                                    <td>Polshing skuiji</td>
-                                    <td>10 Batang</td>
-                                    <td>21 May 2021</td>
-                                </tr>
-                                <tr>
-                                    <td>Magazine LEad Frame</td>
-                                    <td>Polshing skuiji</td>
-                                    <td>10 Batang</td>
-                                    <td>21 May 2021</td>
+                                    <td>1</td>
+                                    <td>Magazine Lead Frame</td>
+                                    <td>40</td>
+                                    <td>PIK9091</td>
+                                    <td>Penelitian</td>
+                                    <td>209 Liter</td>
+                                    <td>-</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="row" style="position: absolute;bottom:0;">
-                    <strong class="text-secondary"><small><i>*Chosse What You Needed</i></small></strong>
-                </div>
             </div>
-
+        </div>
 </body>
 
 </html>

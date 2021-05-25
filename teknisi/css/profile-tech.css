@@ -59,7 +59,8 @@ a.invoice:hover {
 .height th {
     height: 2px;
 }
-div.row.top{
+
+div.row.top {
     background-color: #F0F0F0;
 }
 
@@ -68,11 +69,19 @@ table.withdraw tr th {
     text-align: center;
     vertical-align: middle;
 }
-.error img{
+
+div.error {
     display: none;
 }
-.data-entry{
+
+div.dataEntry {
     border-right: double;
+}
+
+.section table tr th{
+    background-color: #F0F0F0;
+    text-align: center;
+    vertical-align: middle;
 }
 
 @media screen and (max-width:900px) {
@@ -80,21 +89,50 @@ table.withdraw tr th {
         width: 300px;
     }
 
-    div.data-entry{
+    /* wd-invoice */
+    .box .content {
+        transform: scale(0.8);
+    }
+
+    .content .indent {
+        margin-left: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content .title img {
+        display: none;
+    }
+    .section .table-responsive {
+        font-size: 13px;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* end */
+
+    div.dataEntry {
         border-right: none;
     }
-    .error img{
+
+    div.error {
         display: block;
+    }
+
+    div.error img {
+
         width: 20%;
         background-position: center;
         background-size: cover;
         width: 100%;
     }
-    
-    table.title h3{
+
+    table.title h3 {
         font-size: 14px;
     }
-    table.withdraw, .send{
+
+    table.withdraw,
+    .send {
         display: none;
     }
 

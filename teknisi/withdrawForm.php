@@ -129,7 +129,8 @@ if(isset($_POST['send'])){
             <div class="nav-item">
                 <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
-                <a class="nav-link active" href="#"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link" href="#"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link active" href="withdraw"><i class="fas fa-edit"></i>With Draw Item</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
