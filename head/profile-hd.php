@@ -15,7 +15,7 @@ if(!isset($_SESSION['head'])){
 
 
 if(isset($_POST['update'])){
-    $id = $_POST['id'];
+    $id = $idUser;
     $fname = $_POST['name'];
     $password = $_POST['password'];
     $handphone = $_POST['handphone'];
