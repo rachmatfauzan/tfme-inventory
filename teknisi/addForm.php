@@ -7,7 +7,7 @@ if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
-
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory");
 // Panutan membuat logik kode_otomatis
 // $sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
 // $data = mysqli_fetch_array($sql);
@@ -17,6 +17,7 @@ if(!isset($_SESSION['technician'])){
 
 // $ket = "PR";
 // $kodeAuto = $ket . sprintf("%05s", $kode);
+
 
 // echo $kodeAuto;
 
@@ -113,6 +114,8 @@ if(isset($_POST['send'])){
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
 
     <!-- Bootstrap Js -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
@@ -166,7 +169,56 @@ if(isset($_POST['send'])){
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
                         <a href="formulir-tech" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
-                                class="fas fa-backspace mr-2"></i>back to 1 pr</a>
+                                class="fas fa-backspace mr-2"></i>Generate Again</a>
+                        <a class="mt-2 btn btn-sm bg-dark text-white  rounded-0" data-toggle="modal"
+                            data-target="#search"><i class="fa fa-table mr-2"></i>Search Part Number</a>
+                    </div>
+                    <div class="modal fade" id="search" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
+                                        Search Table
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm inventory table-striped w-100" id="data"
+                                            style="font-size: 12px;">
+                                            <thead style="width: fit-content;">
+                                                <tr class="bg-dark text-white">
+                                                    <th width="2%">No</th>
+                                                    <th>Part Number</th>
+                                                    <th>Item Description</th>
+                                                    <th>Cost Center</th>
+                                                    <th>Account Code</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($query as $data) : ?>
+                                                <tr>
+                                                    <td><?= $i; ?></td>
+                                                    <td><?= $data['part_number']; ?></td>
+                                                    <td><?= $data['description']; ?></td>
+                                                    <td><?= $data['cc']; ?></td>
+                                                    <td><?= $data['account_code']; ?></td>
+                                                    <td><?= $data['type']; ?></td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <form method="post">
@@ -199,8 +251,7 @@ if(isset($_POST['send'])){
                                                         disabled />
                                                     <div class="date">
                                                         <input type="date" name="pr_date" id="pr_date"
-                                                            class="form-control input-sm"
-                                                            required />
+                                                            class="form-control input-sm" required />
                                                         <i class="fas fa-calendar-day"></i>
                                                     </div>
                                                 </div>
@@ -313,5 +364,29 @@ if(isset($_POST['send'])){
         </div>
 
 </body>
+
+
+<!-- script data tables -->
+<script>
+    $(document).ready(function () {
+        $('#data').DataTable({
+            scrollX: true,
+            lengthChange: false,
+            "order": [
+                [0, "asc"]
+            ],
+            "lengthMenu": [
+                [4, 10, 100, -1],
+                [4, 10, 100, "All"]
+            ],
+        });
+    });
+    $('#search').on('shown.bs.modal', function (e) {
+        $.fn.dataTable.tables({
+            visible: true,
+            api: true
+        }).columns.adjust();
+    });
+</script>
 
 </html>
