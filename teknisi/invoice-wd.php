@@ -100,7 +100,7 @@ if(!isset($_SESSION['technician'])){
             <div class="box" style="position:relative;font-family:'Times New Roman', Times, serif;">
                 <div class="content">
                     <div class="row">
-                        <a href="" class="btn text-danger container"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
+                        <a href="history-wd" class="btn text-danger container"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                     </div>
                     <header>
                         <div class="row" style=" border-bottom:double;">

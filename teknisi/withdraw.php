@@ -148,6 +148,7 @@ if(!isset($_SESSION['technician'])){
                                     <td>21 May 2021</td>
                                 </tr>
                             </table>
+                            <div>... <a href="history-wd"><small>Load More</small></a></div>
                         </div>
                     </div>
                 </div>
