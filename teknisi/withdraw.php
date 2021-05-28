@@ -123,8 +123,8 @@ if(!isset($_SESSION['technician'])){
                         <div class="title mb-4  d-flex flex-column align-items-center justify-content-center">
                             <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>Withdraw Item
                             </h5>
-                            <a href="history-wd" class="btn btn-info w-100"
-                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;">see history<i class="fa fa-search ml-2"></i></a>
+                            <a href="history-wd" class="btn btn-info w-100 btn-sm"
+                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;">See History<i class="fa fa-search ml-2"></i></a>
                         </div>
                         <light>- Your Last Request -</light>
                         <div class="table-responsive">

@@ -108,8 +108,8 @@ if(!isset($_SESSION['technician'])){
                                     class="fas fa-long-arrow-alt-left mr-2"></i>Back</a>
                             <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>History
                                 Withdraw</h5>
-                            <label href="history-wd" class=" bg-info text-white p-1 w-100 rounded-0 text-center"
-                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;" disabled>See
+                                <hr>
+                            <label href="history-wd" class=" bg-info text-white p-1 w-100 rounded-top text-center" disabled>See
                                 History<i class="fa fa-search ml-2"></i></label>
                         </div>
                         <div class="table-responsive">
@@ -118,8 +118,8 @@ if(!isset($_SESSION['technician'])){
                                     <tr class="text-center list-group-item-info">
                                         <th>Item Name</th>
                                         <th>Purpose</th>
-                                        <th>QTY</th>
                                         <th>Date</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -127,19 +127,28 @@ if(!isset($_SESSION['technician'])){
                                     <tr>
                                         <td>Magazine LEad Frame</td>
                                         <td>Polshing skuiji</td>
-                                        <td>10 Batang</td>
                                         <td>21 May 2021</td>
-                                        <td>
-                                            <a href="invoice-wd" class="btn btn-sm text-danger">See Detail</a>
+                                        <td class="text-center"><span class="badge badge-light">Waiting</span></td>
+                                        <td class="text-center">
+                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Magazine LEad Frame</td>
                                         <td>Polshing skuiji</td>
                                         <td>10 Lembar</td>
-                                        <td>21 May 2021</td>
-                                        <td>
-                                            <a href="invoice-wd" class="btn btn-sm text-danger">See Detail</a>
+                                        <td class="text-center"><span class="badge badge-danger">Rejected</span></td>
+                                        <td class="text-center ">
+                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magazine LEad Frame</td>
+                                        <td>Polshing skuiji</td>
+                                        <td>4 Slinder</td>
+                                        <td class="text-center"><span class="badge badge-success">Success</span></td>
+                                        <td class="text-center ">
+                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
