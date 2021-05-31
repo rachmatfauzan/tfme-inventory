@@ -113,7 +113,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     $pr_date = $_POST['pr_date'];
                     $type = $_POST['type'];
                 
-                    // cek usernmae sudah ada atau belum
+                    // cek partnumber sudah ada atau belum
                     $result = mysqli_query($conn, "SELECT part_number FROM dt_inventory WHERE part_number = '$part_number'");
                     
                     if (mysqli_fetch_assoc($result)){

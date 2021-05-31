@@ -79,6 +79,7 @@ $hasil = mysqli_fetch_assoc($sql);
                     (PR)</a>
                 <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>New Form</a>
                 <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-copy"></i>Material Issues</a>
                 <a style="opacity: 0.6;" class="nav-link text-white"  id="navigation" onclick="navError()"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -113,8 +114,8 @@ $hasil = mysqli_fetch_assoc($sql);
                 <div class="data-entry">
                     <div class="title mb-4 text-uppercase d-flex justify-content-center flex-column align-items-center">
                         <h5 class="font-weight-bold text-secondary">PURCHASE REQUEST</h5>
-                        <a href="dashboard-tech" style="font-size: 11px;" class="btn btn-info btn-sm "><i
-                                class="fas fa-backspace mr-2"></i>back to all history</a>
+                        <a href="dashboard-tech" style="font-size: 11px;" class="btn text-info btn-sm "><i
+                                class="fas fa-backspace mr-2"></i><b>back to all history</b></a>
                     </div>
                     <div class="form-group">
                         <form method="post">

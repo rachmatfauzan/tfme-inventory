@@ -50,7 +50,6 @@ if(!isset($_SESSION['technician'])){
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
 
     <!-- Bootstrap Js -->
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
@@ -68,8 +67,8 @@ if(!isset($_SESSION['technician'])){
                 <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
                     (PR)</a>
                 <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
-                <a class="nav-link active" href="#"><i class="fas fa-edit"></i>With Draw Item</a>
-                <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
+                <a class="nav-link" href="withdraw"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a class="nav-link active" href="#"><i class="fas fa-copy"></i>Material Issues</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -100,75 +99,96 @@ if(!isset($_SESSION['technician'])){
                     </div>
                 </div>
             </div>
-            <div class="box" style="position:relative;">
-                <div class="row">
-
-                    <div class="col-sm-12">
-                        <div class="title mb-4  d-flex flex-column align-items-center justify-content-center">
-                            <a href="withdraw" class="text-danger container"><i
-                                    class="fas fa-long-arrow-alt-left mr-2"></i>Back</a>
-                            <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>History
-                                Withdraw</h5>
-                                <hr>
-                            <label href="history-wd" class=" bg-info text-white p-1 w-100 rounded-top text-center" disabled>See
-                                History<i class="fa fa-search ml-2"></i></label>
+            <div class="box" style="position:relative;font-family:'Times New Roman', Times, serif;">
+                <div class="content">
+                    <header style="transform: scale(0.9);">
+                        <div class="row" style=" border-bottom:double;">
+                            <div class="col-3 title">
+                                <img src="../image/poltek.png" style="width: 200px; height:150px;">
+                            </div>
+                            <div class="col-lg-6 text-center">
+                                <label>
+                                    <p>POLITEKNIK NEGERI BATAM</p>
+                                    <h5><strong>TEACHING FACTORY MANUFACTURING OF ELECTRONICS</strong></h5>
+                                    <p class="m-0">Jalan Ahmad Yani, Batam Centre, Kecamatan Batam Kota, Batam 29461</p>
+                                    <p class="m-0">Telepon +62 778 469856 - 469860 Faksimile +62 778 463620</p>
+                                    <p class="m-0">Laman: www.tfme.polibatam.ac.id/inventory Surel: tfmeminteractive@gmail.com</p>
+                                </label>
+                            </div>
+                            <div class="col-3 d-flex justify-content-end title">
+                                <img src="../image/black-tfme.png" style="width: 250px; height:150px;">
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-bordered w-100" id="data" style="font-size: 13px;">
+                    </header>
+
+                    <div class="row container mt-5">
+                        <div class="status text-center w-100">
+                            <label><b>RECEIVED AND RETRIEVED/BORROWED INVENTORY IN</b></label>
+                        </div>
+                    </div>
+                    <div class="section mt-4">
+                        <div class="table-responsive container">
+                            <table class="table table-sm table-hover table-bordered" id="data">
                                 <thead>
-                                    <tr class="text-center list-group-item-info">
-                                        <th>Item Name</th>
-                                        <th>Purpose</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                    <tr class="pivot">
+                                        <th width="1%" rowspan="2">No</th>
+                                        <th rowspan="2" width="10%">DATE</th>
+                                        <th rowspan="2">CODE</th>
+                                        <th rowspan="2">ITEM</th>
+                                        <th rowspan="2">CC</th>
+                                        <th rowspan="2">Part Number</th>
+                                        <th rowspan="2">USED FOR</th>
+                                        <th colspan="3">VOLUME</th>
+                                        <th rowspan="2">GIVER</th>
+                                        <th colspan="2">RECEIVER</th>
+                                    </tr>
+                                    <tr class="pivot">
+                                        <th>IN</th>
+                                        <th>OUT</th>
+                                        <th>UOM</th>
+                                        <th>NAME</th>
+                                        <th>NIK/NIP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
+                                        <td class="text-center">1</td>
                                         <td>21 May 2021</td>
-                                        <td class="text-center"><span class="badge badge-light">Waiting</span></td>
-                                        <td class="text-center">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
-                                        <td>10 Lembar</td>
-                                        <td class="text-center"><span class="badge badge-danger">Rejected</span></td>
-                                        <td class="text-center ">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
-                                        <td>4 Slinder</td>
-                                        <td class="text-center"><span class="badge badge-success">Success</span></td>
-                                        <td class="text-center ">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
-                                        </td>
+                                        <td>BP00001</td>
+                                        <td>Magazine Lead Frame</td>
+                                        <td>30</td>
+                                        <td>AKOP11KN</td>
+                                        <td>Produksi PCB dan SMT</td>
+                                        <td>20</td>
+                                        <td>-</td>
+                                        <td>LEAD</td>
+                                        <td>ANAWATY</td>
+                                        <td>Garda</td>
+                                        <td>3311909765</td>
                                     </tr>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="row" style="position: absolute;bottom:0;">
-                    <strong class="text-secondary"><small><i>*Chosse What You Needed</i></small></strong>
-                </div>
             </div>
+        </div>
 
-</body>
 
-<script>
+
+
+
+
+
+
+
+
+
+        <script>
         $(document).ready(function () {
             $('#data').DataTable({
-                scrollX: true,
-                "ordering": false,
+                "ordering": true,
                 "lengthMenu": [
                     [10, 50, 100, -1],
                     [10, 50, 100, "All"]
@@ -176,4 +196,6 @@ if(!isset($_SESSION['technician'])){
             });
         });
     </script>
+</body>
+
 </html>

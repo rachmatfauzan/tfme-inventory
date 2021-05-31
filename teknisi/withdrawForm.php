@@ -131,6 +131,7 @@ if(isset($_POST['send'])){
                     (PR)</a>
                 <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
                 <a class="nav-link active" href="withdraw"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 

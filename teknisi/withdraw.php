@@ -67,6 +67,7 @@ if(!isset($_SESSION['technician'])){
                     (PR)</a>
                 <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -124,7 +125,8 @@ if(!isset($_SESSION['technician'])){
                             <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>Withdraw Item
                             </h5>
                             <a href="history-wd" class="btn btn-info w-100 btn-sm"
-                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;">See History<i class="fa fa-search ml-2"></i></a>
+                                style="box-shadow: 2px 10px 26px -7px rgba(0,0,0,0.44); height:100%;">See History<i
+                                    class="fa fa-search ml-2"></i></a>
                         </div>
                         <light>- Your Last Request -</light>
                         <div class="table-responsive">
@@ -156,6 +158,8 @@ if(!isset($_SESSION['technician'])){
                     <strong class="text-secondary"><small><i>*Chosse What You Needed</i></small></strong>
                 </div>
             </div>
+        </div>
+    </div>
 
 </body>
 

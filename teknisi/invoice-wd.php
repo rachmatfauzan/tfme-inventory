@@ -67,6 +67,7 @@ if(!isset($_SESSION['technician'])){
                     (PR)</a>
                 <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
                 <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
@@ -113,7 +114,7 @@ if(!isset($_SESSION['technician'])){
                                     <h5><strong>TEACHING FACTORY MANUFACTURING OF ELECTRONICS</strong></h5>
                                     <p class="m-0">Jalan Ahmad Yani, Batam Centre, Kecamatan Batam Kota, Batam 29461</p>
                                     <p class="m-0">Telepon +62 778 469856 - 469860 Faksimile +62 778 463620</p>
-                                    <p class="m-0">Laman: www.tfme.ac.id/inventory Surel: tfmeminteractive@gmail.com</p>
+                                    <p class="m-0">Laman: www.tfme.polibatam.ac.id/inventory Surel: tfmeminteractive@gmail.com</p>
                                 </label>
                             </div>
                             <div class="col-3 d-flex justify-content-end title">
@@ -155,7 +156,7 @@ if(!isset($_SESSION['technician'])){
                     </div>
                     <div class="section mt-4">
                         <div class="table-responsive container">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered table-sm">
                                 <tr>
                                     <th width="1%" rowspan="2">No</th>
                                     <th rowspan="2">ITEM</th>
@@ -169,7 +170,7 @@ if(!isset($_SESSION['technician'])){
                                     <th>UOM</th>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
+                                    <td class="text-center">1</td>
                                     <td>Magazine Lead Frame</td>
                                     <td>40</td>
                                     <td>PIK9091</td>
