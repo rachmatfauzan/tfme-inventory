@@ -126,7 +126,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                     }
 
 
-                    $input = mysqli_query($conn, "INSERT INTO dt_inventory VALUES ('', '','$part_number','$supplier_no', '$cc','$account_code','$type','$supplier', '$dwg_no', '$description', '$moq', '$cost', '$on_hand', '$in_transit', '$on_prep', '$on_pr_no', '$on_po_no', '$batch_no', '$iqa', '$received_date', '$manufacturing_date', '$expiration_date', '$po_date', '$pr_date')");
+                    $input = mysqli_query($conn, "INSERT INTO dt_inventory VALUES ( null, null,'$part_number','$supplier_no', '$cc','$account_code','$type','$supplier', '$dwg_no', '$description', '$moq', '$cost', '$on_hand', '$in_transit', '$on_prep', '$on_pr_no', '$on_po_no', '$batch_no', '$iqa', '$received_date', '$manufacturing_date', '$expiration_date', '$po_date', '$pr_date')")or die (mysqli_error($conn));
                     
         
                     if ($input){

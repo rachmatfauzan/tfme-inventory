@@ -213,8 +213,6 @@ if(isset($_POST['send'])){
                                                 </tr>
                                                 <tr>
                                                     <th width="1%" rowspan="2">No</th>
-                                                    <th rowspan="2">ITEM</th>
-                                                    <th rowspan="2">CC</th>
                                                     <th rowspan="2">Part Number</th>
                                                     <th rowspan="2">Purpose</th>
                                                     <th colspan="2">Volume</th>
@@ -265,9 +263,7 @@ if(isset($_POST['send'])){
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
                                                     <td><input type="text" class="form-control"></td>
-                                                    <td><input type="text" class="form-control"></td>
-                                                    <td><input type="text" class="form-control"></td>
-                                                    <td><input type="text" class="form-control"></td>
+                                                    <td><textarea type="text" class="form-control"></textarea></td>
                                                     <td><input type="text" class="form-control"></td>
                                                     <td><input type="text" class="form-control"></td>
                                                 </tr>

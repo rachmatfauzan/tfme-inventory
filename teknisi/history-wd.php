@@ -110,13 +110,13 @@ if(!isset($_SESSION['technician'])){
                             <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>History
                                 Withdraw</h5>
                                 <hr>
-                            <label href="history-wd" class=" bg-info text-white p-1 w-100 rounded-top text-center" disabled>See
+                            <label href="history-wd" class=" bg-secondary text-white p-1 w-100 rounded-top text-center" disabled>See
                                 History<i class="fa fa-search ml-2"></i></label>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-sm table-bordered w-100" id="data" style="font-size: 13px;">
                                 <thead>
-                                    <tr class="text-center list-group-item-info">
+                                    <tr class="text-center list-group-item-secondary">
                                         <th>Item Name</th>
                                         <th>Purpose</th>
                                         <th>Date</th>

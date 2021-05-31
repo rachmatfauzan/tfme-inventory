@@ -67,6 +67,14 @@ div.row.top {
 table tr.pivot{
     height: 10px;
 }
+table.withdraw tr th {
+    background-color: #F0F0F0;
+    text-align: center;
+    vertical-align: middle;
+}
+.withdraw input[type=text]{
+    font-size: 13px;
+}
 div.error {
     display: none;
 }
@@ -80,6 +88,10 @@ div.dataEntry {
     text-align: center;
     vertical-align: middle;
     line-height: 20px;
+}
+
+.section table tr td input{
+    font-size: 12px;
 }
 
 @media screen and (max-width:900px) {
