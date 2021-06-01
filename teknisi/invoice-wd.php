@@ -103,7 +103,7 @@ if(!isset($_SESSION['technician'])){
                     <div class="row">
                         <a href="history-wd" class="btn text-danger container"><i class="fas fa-long-arrow-alt-left"></i> Back</a>
                     </div>
-                    <header>
+                    <header style="transform: scale(0.9);">
                         <div class="row" style=" border-bottom:double;">
                             <div class="col-3 title">
                                 <img src="../image/poltek.png" style="width: 200px; height:150px;">

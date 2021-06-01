@@ -7,7 +7,7 @@ if(!isset($_SESSION['admin'])){
     header("location: ../index");
 }
 
-$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC");
+$query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DESC");
 
 
 

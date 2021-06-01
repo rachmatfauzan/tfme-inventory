@@ -20,9 +20,9 @@ if(!isset($_SESSION['technician'])){
 
 // echo $kodeAuto;
 
-$kode = mysqli_query($conn, "SELECT max(kode_pr) as pr_kode FROM form_pr ORDER BY kode_pr ASC");
+$kode = mysqli_query($conn, "SELECT max(kode_wd) as kode_wd FROM form_wd ORDER BY id_wd ASC");
 $dataKode = mysqli_fetch_assoc($kode);
-$code = (int)$dataKode['pr_kode'] + 1;
+$code = (int)$dataKode['kode_wd'] + 1;
 $kodeOtomatis = sprintf("%05s", $code);
 
 
@@ -30,35 +30,36 @@ if(isset($_POST['send'])){
     
 
     for ($i=1; $i<=$_POST['total']; $i++){
-        $kode_pr = $code;
-        // $item_name = $_POST['item_name-'.$i];
-        $type = $_POST['type-'.$i]; 
-        $quantity = $_POST['quantity-'.$i];
-        $item_description = $_POST['item_description-'.$i];
-        $part_number = $_POST['part_number-'.$i];
-        $cost_center = $_POST['cost_center-'.$i];
-        $pr_date = $_POST['pr_date'];
-        $spesifikasi = $_POST['spesifikasi-'.$i];
-        $account_code = $_POST['account_code-'.$i];
-        $status = 'waiting';
-        $requestor = $_SESSION['user'];
-        $update_po = 0; 
+        $id_wd = null;
+        $kode_wd = $code;
+        $receiver = $_POST['receiver'];
+        $nip = $_POST['nip'];
+        $tanggal = $_POST['tanggal'];
+        $no_bukti = $_POST['no_bukti'];
+        $part_number = $_POST['part_number-'. $i];
+        $purpose = $_POST['purpose-'. $i];
+        $qty = $_POST['qty-'. $i];
+        $uom = $_POST['uom-'. $i];
+        $status = "waiting";
+        $requestor = $_SESSION["user"];
 
 
-        $query = mysqli_query($conn, "INSERT INTO form_pr VALUES (
-            null,
-            '$kode_pr',
-            '$type',
-            '$quantity',
-            '$item_description',
+
+        $query = mysqli_query($conn, "INSERT INTO form_wd VALUES (
+            '$id_wd',
+            '$kode_wd',
+            '$receiver',
+            '$nip',
+            '$tanggal',
+            '$no_bukti',
             '$part_number',
-            '$cost_center',
-            '$pr_date',
-            '$account_code',
+            '$purpose',
+            '$qty',
+            '$uom',
             '$status',
-            '$requestor',
-            '$spesifikasi',
-            '$update_po'
+            '$requestor'
+
+            
         )") or die (mysqli_error($conn));
     }
         if ($query){
@@ -69,6 +70,16 @@ if(isset($_POST['send'])){
             echo "Failed !";
         }
 }
+
+// logic current date
+$month = date('m');
+$day = date('d');
+$year = date('Y');
+
+$today = $year . '-' . $month . '-' . $day;
+// endof logic
+
+
 
 
 
@@ -182,7 +193,8 @@ if(isset($_POST['send'])){
                                     </tr>
                                     <div class="error">
                                         <img src="../image/404.png">
-                                        <p class="w-100 text-center bg-warning text" style="opacity: 0.8;"><strong>Erorr !! </strong>Please Use a PC</p>
+                                        <p class="w-100 text-center bg-warning text" style="opacity: 0.8;"><strong>Erorr
+                                                !! </strong>Please Use a PC</p>
                                     </div>
                                     <tr>
                                         <td colspan="2" style="overflow-x: hidden;">
@@ -190,26 +202,34 @@ if(isset($_POST['send'])){
                                             <table id="invoice-item-table" class="table table-bordered withdraw"
                                                 style="font-size: 13px;">
                                                 <tr>
-                                                <td colspan="7">
-                                                <div class="row m-2 p-3 top  rounded">
-                                                    <div class="col-md-6 ">
-                                                        <label>Diterima dari :</label>
-                                                        <input type="text" class="form-control form-control-sm" placeholder="Name of Staff" autofocus> <br />
-                                                        <label>NIP :</label>
-                                                        <input type="text" class="form-control form-control-sm" placeholder="Nip">
-                                                    </div>
-                                                    <div class="col-md-6 ">
-                                                        <label>No Bukti :</label>
-                                                        <input type="text" class="form-control form-control-sm" placeholder="BPI000001" disabled> <br />
-                                                        <label>Tanggal :</label>
-                                                        <div class="date">
-                                                            <input type="date" id="pr-date" class="form-control form-control-sm bg-light" name="pr_date" required>
-                                                            <i class="fas fa-calendar-day"></i> <i class="fas fa-calender-day"></i>
-                                                        </div>
-                                                    </div>
+                                                    <td colspan="7">
+                                                        <div class="row m-2 p-3 top  rounded">
+                                                            <div class="col-md-6 ">
+                                                                <label>Diterima dari :</label>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    placeholder="Name of Staff" name="receiver"
+                                                                    autofocus required> <br />
+                                                                <label>NIP :</label>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    placeholder="NIP" name="nip" required>
+                                                            </div>
+                                                            <div class="col-md-6 ">
+                                                                <label>No Bukti :</label>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    value="BP<?= $kodeOtomatis; ?>" name="no_bukti"
+                                                                    readonly> <br />
+                                                                <label>Tanggal :</label>
+                                                                <div class="date">
+                                                                    <input type="date" id="pr-date"
+                                                                        class="form-control form-control-sm bg-light"
+                                                                        name="tanggal" value="<?php echo $today; ?>" required>
+                                                                    <i class="fas fa-calendar-day"></i> <i
+                                                                        class="fas fa-calender-day"></i>
+                                                                </div>
+                                                            </div>
 
-                                                </div>
-                                                </td>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th width="1%" rowspan="2">No</th>
@@ -235,7 +255,7 @@ if(isset($_POST['send'])){
                                                         showConfirmButton: false
                                                     });
                                                     setTimeout(function () {
-                                                        window.top.location = "dashboard-tech"
+                                                        window.top.location = "history-wd"
                                                     }, 2700);
                                                 </script>
                                                 <!-- <?php exit; ?> -->
@@ -262,10 +282,11 @@ if(isset($_POST['send'])){
                                                 <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
-                                                    <td><input type="text" class="form-control"></td>
-                                                    <td><textarea type="text" class="form-control"></textarea></td>
-                                                    <td><input type="text" class="form-control"></td>
-                                                    <td><input type="text" class="form-control"></td>
+                                                    <td><input type="text" class="form-control" name="part_number-<?= $i; ?>" required></td>
+                                                    <td><textarea type="text" class="form-control"
+                                                            name="purpose-<?= $i; ?>" required></textarea></td>
+                                                    <td><input type="text" class="form-control" name="qty-<?= $i; ?>" required></td>
+                                                    <td><input type="text" class="form-control" name="uom-<?= $i; ?>" required style="text-transform: uppercase;"></td>
                                                 </tr>
                                                 <?php endfor; ?>
                                             </table>
@@ -273,14 +294,14 @@ if(isset($_POST['send'])){
                                     </tr>
                                 </table>
                             </div>
+
+                            <div class="d-flex justify-content-end entry">
+                                <button type="submit" class="btn bg-dark text-white send" name="send"><i
+                                        class="fas fa-paper-plane mr-3"></i>Send</button>
+                            </div>
                         </form>
                     </div>
 
-
-                    <div class="d-flex justify-content-end entry">
-                        <button type="submit" class="btn bg-dark text-white send" name="send"><i
-                                class="fas fa-paper-plane mr-3"></i>Send</button>
-                    </div>
                     </form>
                 </div>
             </div>

@@ -193,6 +193,14 @@ if(isset($_POST['send'])){
     
 }
 
+// logic current date
+$month = date('m');
+$day = date('d');
+$year = date('Y');
+
+$today = $year . '-' . $month . '-' . $day;
+// endof logic
+
 
 
 
@@ -407,7 +415,7 @@ if(isset($_POST['send'])){
                                 <div class="form-group col-md">
                                     <label for="pr-date">PR Date</label>
                                     <div class="date">
-                                        <input type="date" id="pr-date" class="form-control form-control-sm bg-light" name="pr_date"
+                                        <input type="date" id="pr-date" class="form-control form-control-sm bg-light" name="pr_date" value="<?php echo $today; ?>"
                                             required>
                                         <i class="fas fa-calendar-day"></i> <i class="fas fa-calender-day"></i>
                                     </div>

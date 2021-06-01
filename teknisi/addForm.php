@@ -71,7 +71,13 @@ if(isset($_POST['send'])){
         }
 }
 
+// logic current date
+$month = date('m');
+$day = date('d');
+$year = date('Y');
 
+$today = $year . '-' . $month . '-' . $day;
+// endof logic
 
 
 ?>
@@ -252,7 +258,7 @@ if(isset($_POST['send'])){
                                                         disabled />
                                                     <div class="date">
                                                         <input type="date" name="pr_date" id="pr_date"
-                                                            class="form-control input-sm" required />
+                                                            class="form-control input-sm" value="<?php echo $today; ?>" required >
                                                         <i class="fas fa-calendar-day"></i>
                                                     </div>
                                                 </div>
