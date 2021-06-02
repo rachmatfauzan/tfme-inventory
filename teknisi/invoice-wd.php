@@ -144,7 +144,7 @@ $join = mysqli_query($conn, "SELECT fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,
                                     <label>: <?= $_SESSION['user']; ?></label>
                                     <br>
                                     <label style="width:150px;"><b>NIP</b></label>
-                                    <label>: <?= $fetch['nip'] ?></label>
+                                    <label>: <?= $_SESSION['id-user'] ?></label>
                                 </div>
                             </div>
                             <div class="col-4">

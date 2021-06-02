@@ -37,6 +37,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Js membuat rupiah format -->
+    <script src="js/masknumber.js"></script>
+
     <!-- Bootstrap Js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
@@ -53,7 +56,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
 </head>
 
 <body>
-
     <div class="grid">
         <!-- start navigasi -->
         <nav class="nav flex-column navbar-expand-lg bg-dark">
@@ -416,8 +418,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="in_transit">In Transit</label>
-                                                    <input type="text" name="in_transit" class="form-control bg-light"
-                                                        id="in_transit">
+                                                    <strong class="text-danger"> <br><p class="w-100 list-group-item-danger m-0 p-0">*Not for fill</p></strong>
+                                                    <input type="text" name="in_transit" readonly
+                                                        class="form-control bg-light" id="in_transit">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="on_prep">On Prep</label>
@@ -471,7 +474,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                 <hr class="my-4">
                                                 <div class="form-group">
                                                     <label for="part_number">Part Number</label>
-                                                    <input type="text" name="part_number"
+                                                    <strong class="text-danger"> <br><p class="w-100 list-group-item-danger m-0 p-0">*Not for fill</p></strong>
+                                                    <input type="text" name="part_number" readonly
                                                         class="form-control list-group-item-info" id="part_number">
                                                 </div>
                                                 <div class="form-group">
@@ -494,18 +498,30 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                 <hr class="my-4">
                                                 <div class="form-group">
                                                     <label for="moq">MOQ</label>
-                                                    <input type="text" name="moq" class="form-control bg-light"
-                                                        id="moq">
+                                                    <strong class="text-danger"> <br><p class="w-100 list-group-item-danger m-0 p-0">*Not for fill</p></strong>
+                                                    <input type="text" name="moq" class="form-control bg-light" id="moq"
+                                                        readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="cost">Cost</label>
                                                     <input type="text" id="number" name="cost"
-                                                        class="form-control bg-light" id="cost">
+                                                        class="form-control bg-light">
                                                 </div>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("#number").keyup(function () {
+                                                            $(this).maskNumber({
+                                                                integer: true,
+                                                                thousands: "."
+                                                            })
+                                                        })
+                                                    })
+                                                </script>
                                                 <div class="form-group">
                                                     <label for="on_pr_no">On PR#</label>
+                                                    <strong class="text-danger"> <br><p class="w-100 list-group-item-danger m-0 p-0">*Not for fill</p></strong>
                                                     <input type="text" name="on_pr_no" class="form-control bg-light"
-                                                        id="on_pr_no">
+                                                        id="on_pr_no" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="on_po_no">On PO#</label>
@@ -514,8 +530,9 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="pr_date">PR Date</label>
+                                                    <strong class="text-danger"> <br><p class="w-100 list-group-item-danger m-0 p-0">*Not for fill</p></strong>
                                                     <input type="date" name="pr_date" id="pr_date"
-                                                        class="form-control bg-light">
+                                                        class="form-control bg-light" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="po_date">PO Date</label>
@@ -588,7 +605,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         $('.modal-body #supplier').val(supplier);
                         $('.modal-body #description').val(description);
                         $('.modal-body #supplier_no').val(supplier_no);
-                        $('.modal-body #cost').val(cost);
+                        $('.modal-body #number').val(cost);
                         $('.modal-body #on_hand').val(on_hand);
                         $('.modal-body #in_transit').val(in_transit);
                         $('.modal-body #on_prep').val(on_prep);
@@ -597,7 +614,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                         $('.modal-body #on_pr_no').val(on_pr_no);
                         $('.modal-body #on_po_no').val(on_po_no);
                         $('.modal-body #batch_no').val(batch_no);
-                        $('.modal-body #iqa').val(iqa);
+                        $('.modal-body #iqa_no').val(iqa);
                         $('.modal-body #manufacturing_date').val(manufacturing_date);
                         $('.modal-body #expiration_date').val(expiration_date);
                         $('.modal-body #po_date').val(po_date);
@@ -805,8 +822,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY id_item DESC")
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" class="btn btn-dark btn-sm" name="input"
-                                value="Enter Data">
+                            <input type="submit" class="btn btn-dark btn-sm" name="input" value="Enter Data">
                         </div>
                     </form>
                 </div>

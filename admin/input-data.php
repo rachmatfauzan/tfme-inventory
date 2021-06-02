@@ -62,6 +62,17 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
 </head>
 
 <body>
+    <input type="text" id="test">
+    <script>
+        $(document).ready(function () {
+            $("#test").keyup(function () {
+                $(this).maskNumber({
+                    integer: true,
+                    thousands: "."
+                })
+            })
+        })
+    </script>
     <div class="konten">
         <div class="navbar bg-dark justify-content-between">
             <div class="profile">
@@ -633,7 +644,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                     $('.modal-body #supplier').val(supplier);
                     $('.modal-body #description').val(description);
                     $('.modal-body #supplier_no').val(supplier_no);
-                    $('.modal-body #cost').val(cost);
+                    $('.modal-body #number').val(cost);
                     $('.modal-body #on_hand').val(on_hand);
                     $('.modal-body #in_transit').val(in_transit);
                     $('.modal-body #on_prep').val(on_prep);
@@ -642,7 +653,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                     $('.modal-body #on_pr_no').val(on_pr_no);
                     $('.modal-body #on_po_no').val(on_po_no);
                     $('.modal-body #batch_no').val(batch_no);
-                    $('.modal-body #iqa').val(iqa);
+                    $('.modal-body #iqa_no').val(iqa);
                     $('.modal-body #manufacturing_date').val(manufacturing_date);
                     $('.modal-body #expiration_date').val(expiration_date);
                     $('.modal-body #po_date').val(po_date);
@@ -752,6 +763,7 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
                                 <hr class="my-4">
                                 <div class="form-group">
                                     <label for="part_number">Part Number</label>
+
                                     <?php if (!isset($newPart)): ?>
                                     <form method="post">
                                         <div class="d-flex">
