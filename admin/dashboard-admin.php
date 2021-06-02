@@ -60,6 +60,8 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
                 <a class="nav-link active" href="#"><i class="fas fa-database"></i>Data Site</a>
                 <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
                 <a class="nav-link" href="history-pr"><i class="fas fa-list"></i>Select PR</a>
+                <a class="nav-link" href="history-wd"><i class="fas fa-edit"></i>With Draw Item</a>
+                <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
             </div>
 
             <div class="copyright">
