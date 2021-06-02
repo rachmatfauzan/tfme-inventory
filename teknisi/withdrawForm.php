@@ -282,11 +282,11 @@ $today = $year . '-' . $month . '-' . $day;
                                                 <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
-                                                    <td><input type="text" class="form-control" name="part_number-<?= $i; ?>" required></td>
+                                                    <td><input type="text" class="form-control" name="part_number-<?= $i; ?>" placeholder="Part Number" required></td>
                                                     <td><textarea type="text" class="form-control"
-                                                            name="purpose-<?= $i; ?>" required></textarea></td>
-                                                    <td><input type="text" class="form-control" name="qty-<?= $i; ?>" required></td>
-                                                    <td><input type="text" class="form-control" name="uom-<?= $i; ?>" required style="text-transform: uppercase;"></td>
+                                                            name="purpose-<?= $i; ?>" required placeholder="Write Purpose"></textarea></td>
+                                                    <td><input type="number" class="form-control" placeholder="1" name="qty-<?= $i; ?>" required></td>
+                                                    <td><input type="text" class="form-control" placeholder="ex : Liter" name="uom-<?= $i; ?>" required style="text-transform: uppercase;"></td>
                                                 </tr>
                                                 <?php endfor; ?>
                                             </table>

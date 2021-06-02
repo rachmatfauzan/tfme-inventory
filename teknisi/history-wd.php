@@ -9,6 +9,11 @@ if(!isset($_SESSION['technician'])){
 }
 
 
+$name = $_SESSION['user'];
+
+$query = mysqli_query($conn, "SELECT * FROM form_wd WHERE requestor = '$name' GROUP BY kode_wd ORDER BY kode_wd DESC");
+
+
 ?>
 
 <!-- Kode PR Auto -->
@@ -109,15 +114,16 @@ if(!isset($_SESSION['technician'])){
                                     class="fas fa-long-arrow-alt-left mr-2"></i>Back</a>
                             <h5 class="font-weight-bold text-secondary"><i class="fas fa-history mr-2"></i>History
                                 Withdraw</h5>
-                                <hr>
-                            <label href="history-wd" class=" bg-secondary text-white p-1 w-100 rounded-top text-center" disabled>See
+                            <hr>
+                            <label href="history-wd" class=" bg-secondary text-white p-1 w-100 rounded-top text-center"
+                                disabled>See
                                 History<i class="fa fa-search ml-2"></i></label>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-sm table-bordered w-100" id="data" style="font-size: 13px;">
                                 <thead>
                                     <tr class="text-center list-group-item-secondary">
-                                        <th>Item Name</th>
+                                        <th>Part Number</th>
                                         <th>Purpose</th>
                                         <th>Date</th>
                                         <th>Status</th>
@@ -125,33 +131,21 @@ if(!isset($_SESSION['technician'])){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                    <?php foreach ($query as $data) : ?>
                                     <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
-                                        <td>21 May 2021</td>
-                                        <td class="text-center"><span class="badge badge-light">Waiting</span></td>
+                                        <td><?= $data['part_number']; ?></td>
+                                        <td><?= $data['purpose']; ?></td>
+                                        <td><?= $data['tanggal']; ?></td>
+                                        <td class="text-center"><span
+                                                class="badge badge-light"><?= $data['status']; ?></span></td>
                                         <td class="text-center">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
+                                            <a href="invoice-wd?id=<?= $data['kode_wd']; ?>" class="btn btn-sm text-success">See Detail <i
+                                                    class="fas fa-long-arrow-alt-right mr-2"></i></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
-                                        <td>10 Lembar</td>
-                                        <td class="text-center"><span class="badge badge-danger">Rejected</span></td>
-                                        <td class="text-center ">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Magazine LEad Frame</td>
-                                        <td>Polshing skuiji</td>
-                                        <td>4 Slinder</td>
-                                        <td class="text-center"><span class="badge badge-success">Success</span></td>
-                                        <td class="text-center ">
-                                            <a href="invoice-wd" class="btn btn-sm text-success">See Detail <i class="fas fa-long-arrow-alt-right mr-2"></i></a>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -165,15 +159,16 @@ if(!isset($_SESSION['technician'])){
 </body>
 
 <script>
-        $(document).ready(function () {
-            $('#data').DataTable({
-                scrollX: true,
-                "ordering": false,
-                "lengthMenu": [
-                    [10, 50, 100, -1],
-                    [10, 50, 100, "All"]
-                ]
-            });
+    $(document).ready(function () {
+        $('#data').DataTable({
+            scrollX: true,
+            "ordering": false,
+            "lengthMenu": [
+                [10, 50, 100, -1],
+                [10, 50, 100, "All"]
+            ]
         });
-    </script>
+    });
+</script>
+
 </html>

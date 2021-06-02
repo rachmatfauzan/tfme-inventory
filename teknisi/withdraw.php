@@ -9,7 +9,15 @@ if(!isset($_SESSION['technician'])){
 }
 
 
+$name = $_SESSION['user'];
+
+$query = mysqli_query($conn, "SELECT * FROM form_wd WHERE requestor = '$name' GROUP BY kode_wd ORDER BY kode_wd DESC LIMIT 2 ");
+
+
+
+
 ?>
+
 
 <!-- Kode PR Auto -->
 
@@ -132,23 +140,19 @@ if(!isset($_SESSION['technician'])){
                         <div class="table-responsive">
                             <table class="table table-sm" style="font-size: 13px;">
                                 <tr>
-                                    <th>Item Name</th>
+                                    <th>Part Number</th>
                                     <th>Purpose</th>
                                     <th>QTY</th>
                                     <th>Date</th>
                                 </tr>
+                                <?php foreach ($query as $data) : ?>
                                 <tr>
-                                    <td>Magazine LEad Frame</td>
-                                    <td>Polshing skuiji</td>
-                                    <td>10 Batang</td>
-                                    <td>21 May 2021</td>
+                                    <td><?= $data['part_number']; ?></td>
+                                    <td><?= $data['purpose']; ?></td>
+                                    <td><?= $data['qty']; ?></td>
+                                    <td><?= $data['tanggal']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Magazine LEad Frame</td>
-                                    <td>Polshing skuiji</td>
-                                    <td>10 Batang</td>
-                                    <td>21 May 2021</td>
-                                </tr>
+                                <?php endforeach; ?>
                             </table>
                             <div>... <a href="history-wd"><small>Load More</small></a></div>
                         </div>

@@ -8,6 +8,17 @@ if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
+$id = $_GET['id'];
+$query = mysqli_query($conn, "SELECT * FROM form_wd WHERE kode_wd = '$id'");
+$fetch = mysqli_fetch_assoc($query);
+$rows = mysqli_num_rows($query);
+
+$join = mysqli_query($conn, "SELECT fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,dt.description,dt.cc, dt.on_hand  
+        FROM form_wd AS fwd JOIN dt_inventory AS dt ON fwd.part_number=dt.part_number WHERE kode_wd = '$id'");
+                                        
+    $tangkap = mysqli_fetch_assoc($join);
+                                       
+
 
 ?>
 
@@ -130,19 +141,20 @@ if(!isset($_SESSION['technician'])){
                             <div class="col-8">
                                 <div class="indent ml-5">
                                     <label style="width:150px;"><b>Ditujukan Kepada</b></label>
-                                    <label>: Garda</label>
+                                    <label>: <?= $_SESSION['user']; ?></label>
                                     <br>
                                     <label style="width:150px;"><b>NIP</b></label>
-                                    <label>: 3311801036</label>
+                                    <label>: <?= $fetch['nip'] ?></label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="indent ">
                                     <label style="width:150px;" class="text-left"><b>No. Bukti</b></label>
-                                    <label>: BP0000001</label>
+                                    <label>: <?= $fetch['no_bukti']; ?></label>
                                     <br>
                                     <label style="width:150px;" class="text-left"><b>Tanggal</b></label>
-                                    <label>: 19 MEI 2021</label>
+                                    <label>: <?php $date = date_create($fetch['tanggal']); ?>
+                                                <?= date_format($date, 'j F Y'); ?></label>
                                 </div>
                             </div>
                             <div class="col-6"></div>
@@ -151,7 +163,7 @@ if(!isset($_SESSION['technician'])){
                     <div class="row container">
                         <div class="status text-center w-100">
                             <label ><b>Status</b></label>
-                            <label>: <span class="bg-danger p-1 text-white rounded">Rejected</span></b></label>
+                            <label>: <span class="badge badge-light bg-light p-1 rounded"><?= $fetch['status']; ?></span></b></label>
                         </div>
                     </div>
                     <div class="section mt-4">
@@ -169,16 +181,30 @@ if(!isset($_SESSION['technician'])){
                                     <th>QTY</th>
                                     <th>UOM</th>
                                 </tr>
+                                <?php $i = 1; ?>
+                                <?php foreach ($join as $data) : ?>
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td>Magazine Lead Frame</td>
-                                    <td>40</td>
-                                    <td>PIK9091</td>
-                                    <td>Penelitian</td>
-                                    <td>209 Liter</td>
-                                    <td>-</td>
+                                    <td class="text-center"><?= $i; ?></td>
+                                    <td><?= $data['description']; ?></td>
+                                    <td class="text-center"><?= $data['cc']; ?></td>
+                                    <td><?= $data['part_number']; ?></td>
+                                    <td><?= $data['purpose']; ?></td>
+                                    <td><?= $data['qty']; ?></td>
+                                    <td><?= $data['part_number']; ?></td>
                                 </tr>
+                                <?php $i++; ?>
+                                <?php endforeach; ?>
                             </table>
+                        </div>
+                    </div>
+                    <div class="section mt-3">
+                        <div class="row">
+                                    <div class="col-md-4">
+                                        Stock Tersedia :  <br>
+                                        <?php foreach ($join as $stock) :?>
+                                        <?= $stock['description']; ?>: <?= $stock['on_hand']; ?> - <?= $stock['qty']; ?> = <?= $total = (int)$stock['on_hand']-(int)$stock['qty']; ?> <br>
+                                        <?php endforeach; ?>
+                                    </div>
                         </div>
                     </div>
                 </div>
