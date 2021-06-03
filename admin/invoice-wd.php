@@ -19,6 +19,23 @@ $join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd
                                         
     $tangkap = mysqli_fetch_assoc($join);
 
+if (isset($_POST['tombol'])) {
+
+    $status = $_POST['status'];
+    $comment = $_POST['comment'];
+
+    $query = mysqli_query($conn, "UPDATE form_wd SET 
+            status ='$status',
+            comment = '$comment' WHERE kode_wd = '$id'");
+
+    if ($query){
+        echo "<script>alert('Updated Data')</script>";
+        header('Location: history-wd');
+    }
+}
+
+
+
 
 ?>
 
@@ -156,6 +173,12 @@ $join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd
                             <div class="col-6"></div>
                         </div>
                     </section>
+                    <?php if ($fetch['status'] == "approve" OR $fetch['status'] == 'rejected') : ?>
+                        <div class="row w-100 flex-column">
+                        <span class="badge badge-secondary p-1" style="opacity: 0.6;">( <?= $fetch['status']; ?> )</span>
+                        <p class="text-center">You have been updated this data</p>
+                        </div>
+                    <?php else : ?>
                     <div class="row">
                         <div class="status text-center w-100">
                             <form method="post">
@@ -167,7 +190,7 @@ $join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd
                                     <option value="rejected">Reject</option>
                                 </select> <br>
                                 <label class="list-group-item-secondary w-100 ">Give Comment for Technician</label> <br>
-                                <textarea name="comment" cols="30" rows="3" placeholder="comment ..." class=""></textarea>
+                                <textarea name="comment" cols="30" rows="3" placeholder="comment ..." required></textarea>
                                 <div>
                                     <button type="submit" class="btn btn-sm btn-info" name="tombol"><i
                                             class="far fa-hand-pointer text-white p-1"></i>Update</button>
@@ -175,6 +198,7 @@ $join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd
                             </form>
                         </div>
                     </div>
+                    <?php endif; ?>
                     <div class="section mt-4">
                         <div class="table-responsive container">
                             <table class="table table-hover table-bordered table-sm">

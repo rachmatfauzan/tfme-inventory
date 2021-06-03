@@ -62,17 +62,6 @@ $query = mysqli_query($conn, "SELECT * FROM dt_inventory ORDER BY part_number DE
 </head>
 
 <body>
-    <input type="text" id="test">
-    <script>
-        $(document).ready(function () {
-            $("#test").keyup(function () {
-                $(this).maskNumber({
-                    integer: true,
-                    thousands: "."
-                })
-            })
-        })
-    </script>
     <div class="konten">
         <div class="navbar bg-dark justify-content-between">
             <div class="profile">

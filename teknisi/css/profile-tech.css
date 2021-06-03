@@ -273,11 +273,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .bd-callout-info {
-    border-left-color: #5bc0de
+    border-left-color: #28A745
 }
 
 .bd-callout-info h4 {
-    color: #5bc0de
+    color: #28A745
 }
 
 .bd-callout-warning {

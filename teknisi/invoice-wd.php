@@ -205,12 +205,35 @@ $tangkap = mysqli_fetch_assoc($join);
                                 <?php $i++; ?>
                                 <?php endforeach; ?>
                             </table>
-
+                            <?php if ($fetch['status'] == 'rejected'): ?>
                             <div class="bd-callout bd-callout-danger">
-                                    <h4>-- Comment --</h4>
-                                    <p>Maaf di reject, untuk stock item dengan part number AK990AS Sudah Habis</p>
-                            
+                                <h4>-- Comment --</h4>
+
+                                <?php 
+                                $data = $fetch['comment'];
+                                $job = strlen($data);
+                                ?>
+                                <?php if ($job <= 0 ) :?>
+                                    <p>"You Dont' have Comment, because your data has not been updated"</p>
+                                <?php else : ?>
+                                    <p><?= $fetch['comment']; ?></p>
+                                <?php endif; ?>
                             </div>
+                            <?php else : ?>
+                                <div class="bd-callout bd-callout-info">
+                                <h4>-- Comment --</h4>
+
+                                <?php 
+                                $data = $fetch['comment'];
+                                $job = strlen($data);
+                                ?>
+                                <?php if ($job <= 0 ) :?>
+                                    <p>"You Dont' have Comment, because your data has not been updated"</p>
+                                <?php else : ?>
+                                    <p><?= $fetch['comment']; ?></p>
+                                <?php endif; ?>
+                            </div><P></P>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!-- <div class="section mt-3">
