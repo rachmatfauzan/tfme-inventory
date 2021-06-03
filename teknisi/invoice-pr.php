@@ -79,7 +79,6 @@ $hasil = mysqli_fetch_assoc($sql);
                     (PR)</a>
                 <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>New Form</a>
                 <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-edit"></i>With Draw Item</a>
-                <a style="opacity: 0.6;" class="nav-link text-white" id="navigation" onclick="navError()"><i class="fas fa-copy"></i>Material Issues</a>
                 <a style="opacity: 0.6;" class="nav-link text-white"  id="navigation" onclick="navError()"><i class="fas fa-user"></i>Profile</a>
             </div>
 
