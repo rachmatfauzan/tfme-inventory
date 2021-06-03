@@ -32,6 +32,7 @@ if(isset($_POST['send'])){
     for ($i=1; $i<=$_POST['total']; $i++){
         $id_wd = null;
         $kode_wd = $code;
+        $nip_req = (int)$_SESSION['id-user'];
         $receiver = $_POST['receiver'];
         $nip = $_POST['nip'];
         $tanggal = $_POST['tanggal'];
@@ -50,6 +51,7 @@ if(isset($_POST['send'])){
             '$kode_wd',
             '$receiver',
             '$nip',
+            '$nip_req',
             '$tanggal',
             '$no_bukti',
             '$part_number',
@@ -57,7 +59,8 @@ if(isset($_POST['send'])){
             '$qty',
             '$uom',
             '$status',
-            '$requestor'
+            '$requestor',
+            ''
 
             
         )") or die (mysqli_error($conn));
@@ -107,6 +110,7 @@ $today = $year . '-' . $month . '-' . $day;
     <!-- Link CSS -->
     <link rel="stylesheet" href="css/dashboard-tech.css">
     <link rel="stylesheet" href="css/profile-tech.css">
+    <link rel="stylesheet" href="../teknisi/css/profile-tech.css">
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">

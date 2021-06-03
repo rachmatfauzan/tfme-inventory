@@ -1,32 +1,26 @@
 <?php 
-
 session_start();
-include "../config/config.php";
 
+require "../config/config.php";
 
-if(!isset($_SESSION['technician'])){
+if(!isset($_SESSION['admin'])){
     header("location: ../index");
 }
+
 
 $id = $_GET['id'];
 $query = mysqli_query($conn, "SELECT * FROM form_wd WHERE kode_wd = '$id'");
 $fetch = mysqli_fetch_assoc($query);
 $rows = mysqli_num_rows($query);
 
-$join = mysqli_query($conn, "SELECT fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,dt.description,dt.cc, dt.on_hand  
-        FROM form_wd AS fwd JOIN dt_inventory AS dt ON fwd.part_number=dt.part_number WHERE kode_wd = '$id'");
+$join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,fwd.requestor,
+        dt.description,dt.cc, dt.on_hand  
+            FROM form_wd AS fwd JOIN dt_inventory AS dt ON fwd.part_number=dt.part_number WHERE kode_wd = '$id'");
                                         
-$tangkap = mysqli_fetch_assoc($join);
-                                       
+    $tangkap = mysqli_fetch_assoc($join);
 
 
 ?>
-
-<!-- Kode PR Auto -->
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +35,10 @@ $tangkap = mysqli_fetch_assoc($join);
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Link CSS -->
-    <link rel="stylesheet" href="css/dashboard-tech.css">
-    <link rel="stylesheet" href="css/profile-tech.css">
+    <link rel="stylesheet" href="../css/dashboard-adm.css">
+    <link rel="stylesheet" href="../css/history-pr.css">
+    <link rel="stylesheet" href="../teknisi/css/profile-tech.css">
+
 
     <!-- Link CDN font-awesome  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -55,14 +51,13 @@ $tangkap = mysqli_fetch_assoc($join);
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
-    <!--  CDN SWAL-->
-    <script src="../swal2/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
-
     <!-- Bootstrap Js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="icon" href="../image/TFME.jpg">
     <title>Dashboard Inventory</title>
 </head>
@@ -74,12 +69,11 @@ $tangkap = mysqli_fetch_assoc($join);
             <a class="brand" href="#">Inventory.</a>
             <hr>
             <div class="nav-item">
-                <a class="nav-link" href="dashboard-tech"><i class="fas fa-history"></i>History
-                    (PR)</a>
-                <a class="nav-link" href="formulir-tech"><i class="fas fa-edit"></i>New Form</a>
+                <a class="nav-link" href="dashboard-admin"><i class="fas fa-database"></i>Data Site</a>
+                <a class="nav-link" href="dashboard-user-list"><i class="fas fa-users"></i>User List</a>
+                <a class="nav-link" href="history-pr"><i class="fas fa-list"></i>Select PR</a>
                 <a class="nav-link active" href="#"><i class="fas fa-edit"></i>With Draw Item</a>
                 <a class="nav-link" href="mtl"><i class="fas fa-copy"></i>Material Issues</a>
-                <a class="nav-link" href="profile-tech"><i class="fas fa-user"></i>Profile</a>
             </div>
 
             <div class="copyright">
@@ -87,18 +81,18 @@ $tangkap = mysqli_fetch_assoc($join);
             </div>
         </nav>
         <!-- End navigasi -->
+
         <!-- start header -->
         <div class="konten">
             <div class="atap"><span> </span></div>
-
             <div class="navbar justify-content-between">
                 <div class="profile">
                     <div class="wrapper-image">
-                        <img src="../image/TECHNICIAN.png" alt="">
+                        <img src="../image/profile.png" alt="">
                     </div>
                     <div class="profile-name">
-                        <h5 style="text-transform:capitalize;"><?= $_SESSION['user']; ?></h5>
-                        <p>Technician TFME</p>
+                        <h5 style="text-transform: capitalize;"><?= $_SESSION["user"]; ?></h5>
+                        <p>Inventory admin</p>
                     </div>
                     <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -143,10 +137,10 @@ $tangkap = mysqli_fetch_assoc($join);
                             <div class="col-8">
                                 <div class="indent ml-5">
                                     <label style="width:150px;"><b>Ditujukan Kepada</b></label>
-                                    <label>: <?= $_SESSION['user']; ?></label>
+                                    <label class="text-capitalize">: <?= $tangkap['requestor']; ?></label>
                                     <br>
                                     <label style="width:150px;"><b>NIP</b></label>
-                                    <label>: <?= $_SESSION['id-user'] ?></label>
+                                    <label>: <?= $tangkap['nip_req'] ?></label>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -162,19 +156,23 @@ $tangkap = mysqli_fetch_assoc($join);
                             <div class="col-6"></div>
                         </div>
                     </section>
-                    <div class="row container">
+                    <div class="row">
                         <div class="status text-center w-100">
-                            <label><b>Status</b></label>
-                            <label>: <b>
-                                    <?php if ($fetch['status'] == 'approve'): ?>
-                                    <span class="badge badge-success"><?= $fetch['status']; ?></span>
-                                    <?php elseif ($fetch['status'] == 'rejected'): ?>
-                                    <span class="badge badge-danger"><?= $fetch['status']; ?></span>
-                                    <?php elseif ($fetch['status'] == 'waiting'): ?>
-                                    <span class="badge badge-light"><?= $fetch['status']; ?></span>
-                                    <?php endif; ?>
-
-                                </b></label>
+                            <form method="post">
+                                <label><b>Status</b></label>
+                                <select class="status mb-3 ml-3" name="status" id="status">
+                                    <option disabled selected><?= $fetch['status']; ?>
+                                    </option>
+                                    <option value="approve">Approve</option>
+                                    <option value="rejected">Reject</option>
+                                </select> <br>
+                                <label class="list-group-item-secondary w-100 ">Give Comment for Technician</label> <br>
+                                <textarea name="comment" cols="30" rows="3" placeholder="comment ..." class=""></textarea>
+                                <div>
+                                    <button type="submit" class="btn btn-sm btn-info" name="tombol"><i
+                                            class="far fa-hand-pointer text-white p-1"></i>Update</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="section mt-4">
@@ -206,28 +204,28 @@ $tangkap = mysqli_fetch_assoc($join);
                                 <?php $i++; ?>
                                 <?php endforeach; ?>
                             </table>
-
-                            <div class="bd-callout bd-callout-danger">
-                                    <h4>-- Comment --</h4>
-                                    <p>Maaf di reject, untuk stock item dengan part number AK990AS Sudah Habis</p>
-                            
-                            </div>
                         </div>
                     </div>
-                    <!-- <div class="section mt-3">
-                        <div class="row">
-                            <div class="col-md-4">
-                                Stock Tersedia : <br>
-                                <?php foreach ($join as $stock) :?>
-                                <?= $stock['description']; ?>: <?= $stock['on_hand']; ?> - <?= $stock['qty']; ?> =
-                                <?= $total = (int)$stock['on_hand']-(int)$stock['qty']; ?> <br>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+
+    <!-- script data tables -->
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                scrollX: true,
+                "ordering": false,
+                "lengthMenu": [
+                    [10, 50, 100, -1],
+                    [10, 50, 100, "All"]
+                ]
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -137,8 +137,16 @@ $query = mysqli_query($conn, "SELECT * FROM form_wd WHERE requestor = '$name' GR
                                         <td><?= $data['part_number']; ?></td>
                                         <td><?= $data['purpose']; ?></td>
                                         <td><?= $data['tanggal']; ?></td>
-                                        <td class="text-center"><span
-                                                class="badge badge-light"><?= $data['status']; ?></span></td>
+                                        <td class="text-center">
+                                        <?php if ($data['status'] == 'approve'): ?>
+                                                <span class="badge badge-success"><?= $data['status']; ?></span>
+                                            <?php elseif ($data['status'] == 'rejected'): ?>
+                                                <span class="badge badge-danger"><?= $data['status']; ?></span>
+                                            <?php elseif ($data['status'] == 'waiting'): ?>
+                                                <span class="badge badge-light"><?= $data['status']; ?></span>
+                                            <?php endif; ?>
+
+                                        </td>
                                         <td class="text-center">
                                             <a href="invoice-wd?id=<?= $data['kode_wd']; ?>" class="btn btn-sm text-success">See Detail <i
                                                     class="fas fa-long-arrow-alt-right mr-2"></i></a>
