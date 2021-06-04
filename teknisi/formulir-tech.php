@@ -15,6 +15,10 @@ include "../config/config.php";
 if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
+$user = mysqli_query($conn, "SELECT * FROM user WHERE position = 'admin'");
+$admin = mysqli_fetch_assoc($user);
+$admin = $admin['email'];
+
 
 $query = mysqli_query($conn, "SELECT * FROM dt_inventory");
 
@@ -64,7 +68,7 @@ if(isset($_POST['send'])){
 
         $email_send =  "tfmeminteraktif@gmail.com";
         $name_send =  "TFME Website";
-        $email_received =  "rachmat3311801036@students.polibatam.ac.id";
+        $email_received =  $admin;
         $subjek =  "New Order From Technician !!";
 
 
@@ -86,7 +90,7 @@ if(isset($_POST['send'])){
         $mail->AddEmbeddedImage("../image/box.png", "logo" );
 
         
-        $mail->AddCC("");
+        // $mail->AddCC("cnth@gmail.com");
         $pesan = '
 
 

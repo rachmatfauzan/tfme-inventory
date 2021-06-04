@@ -15,6 +15,10 @@ if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
+$user = mysqli_query($conn, "SELECT * FROM user WHERE position = 'admin'");
+$admin = mysqli_fetch_assoc($user);
+$admin = $admin['email'];
+
 $name = $_SESSION['user'];
 
 
@@ -50,7 +54,7 @@ if (isset($_SESSION['email'])){
 
     $email_send =  "tfmeminteraktif@gmail.com";
         $name_send =  "TFME Website";
-        $email_received =  "rachmatfauzan07@gmail.com";
+        $email_received =  $admin;
         $subjek =  "New Order From Technician !!";
 
 
@@ -72,7 +76,7 @@ if (isset($_SESSION['email'])){
         $mail->AddEmbeddedImage("../image/box.png", "logo" );
 
         
-        $mail->AddCC("rachmat3311801036@students.polibatam.ac.id");
+        // $mail->AddCC("rachmat3311801036@students.polibatam.ac.id");
         $pesan = '
 
 
@@ -223,7 +227,7 @@ if (isset($_SESSION['email'])){
     <?php if (isset($alert)) :?>
     <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert"
         style=" font-size:13px; max-width: 18rem; position: absolute; bottom:1em;z-index:9999; right:3em">
-        <strong>Success Sended!</strong> Your request sended to admin TFME.
+        <strong>Success!</strong> Your request sended to admin TFME.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
