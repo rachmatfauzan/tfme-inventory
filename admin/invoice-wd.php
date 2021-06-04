@@ -104,6 +104,8 @@ if (isset($_POST['tombol'])) {
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <!-- Bootstrap Js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
@@ -212,7 +214,6 @@ if (isset($_POST['tombol'])) {
                                         <?= date_format($date, 'j F Y'); ?></label>
                                 </div>
                             </div>
-                            <div class="col-6"></div>
                         </div>
                     </section>
                     <?php if ($fetch['status'] == "approve" OR $fetch['status'] == 'rejected') : ?>
@@ -257,52 +258,8 @@ if (isset($_POST['tombol'])) {
                                 </div>
                             </form>
                         </div>
-                        <div class="modal fade" id="search" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
-                                        Search Table
-                                    </h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-sm inventory table-striped w-100" id="data"
-                                            style="font-size: 12px;">
-                                            <thead style="width: fit-content;">
-                                                <tr class="bg-dark text-white">
-                                                    <th width="2%">No</th>
-                                                    <th>Part Number</th>
-                                                    <th>Item Description</th>
-                                                    <th>Cost Center</th>
-                                                    <th>On Hand</th>
-                                                </tr>
-                                            </thead>
+                    </div>
 
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($dt_inventory as $data) : ?>
-                                                <tr>
-                                                    <td><?= $i; ?></td>
-                                                    <td><?= $data['part_number']; ?></td>
-                                                    <td><?= $data['description']; ?></td>
-                                                    <td><?= $data['cc']; ?></td>
-                                                    <td><?= $data['on_hand']; ?></td>
-                                                </tr>
-                                                <?php $i++; ?>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
                     <?php endif; ?>
                     <div class="section mt-4">
                         <div class="table-responsive container">
@@ -335,11 +292,54 @@ if (isset($_POST['tombol'])) {
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
+                        Search Table
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm inventory table-striped w-100" id="data" style="font-size: 12px;">
+                            <thead style="width: fit-content;">
+                                <tr class="bg-dark text-white">
+                                    <th width="2%">No</th>
+                                    <th>Part Number</th>
+                                    <th>Item Description</th>
+                                    <th>Cost Center</th>
+                                    <th>On Hand</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($dt_inventory as $data) : ?>
+                                <tr>
+                                    <td><?= $i; ?></td>
+                                    <td><?= $data['part_number']; ?></td>
+                                    <td><?= $data['description']; ?></td>
+                                    <td><?= $data['cc']; ?></td>
+                                    <td><?= $data['on_hand']; ?></td>
+                                </tr>
+                                <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <?php if(isset($send)) :  ?>
@@ -359,26 +359,26 @@ if (isset($_POST['tombol'])) {
 
     <!-- script data tables -->
     <script>
-                $(document).ready(function () {
-                    $('#data').DataTable({
-                        scrollX: true,
-                        lengthChange: false,
-                        "order": [
-                            [0, "asc"]
-                        ],
-                        "lengthMenu": [
-                            [4, 10, 100, -1],
-                            [4, 10, 100, "All"]
-                        ],
-                    });
-                });
-                $('#search').on('shown.bs.modal', function (e) {
-                    $.fn.dataTable.tables({
-                        visible: true,
-                        api: true
-                    }).columns.adjust();
-                });
-            </script>
+        $(document).ready(function () {
+            $('#data').DataTable({
+                scrollX: true,
+                lengthChange: false,
+                "order": [
+                    [0, "asc"]
+                ],
+                "lengthMenu": [
+                    [4, 10, 100, -1],
+                    [4, 10, 100, "All"]
+                ],
+            });
+        });
+        $('#search').on('shown.bs.modal', function (e) {
+            $.fn.dataTable.tables({
+                visible: true,
+                api: true
+            }).columns.adjust();
+        });
+    </script>
 </body>
 
 </html>
