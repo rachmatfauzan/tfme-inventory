@@ -419,7 +419,7 @@ if (isset($_SESSION['email'])){
                                 <?php if ($data['status'] == 'rejected'): ?>
                                 <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
                                 </p>
-                                <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a>
+                                <!-- <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a> -->
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'waiting'): ?>
                                 <p class="btn btn-sm btn-secondary disabled" style="font-size: 11px; width:100px;">
