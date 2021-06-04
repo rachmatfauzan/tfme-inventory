@@ -214,7 +214,7 @@ $tangkap = mysqli_fetch_assoc($join);
                                 $job = strlen($data);
                                 ?>
                                 <?php if ($job <= 0 ) :?>
-                                    <p>"You Dont' have Comment, because your data has not been updated"</p>
+                                    <p>"You Dont' have Comment, because your data has not been update"</p>
                                 <?php else : ?>
                                     <p><?= $fetch['comment']; ?></p>
                                 <?php endif; ?>
@@ -228,7 +228,7 @@ $tangkap = mysqli_fetch_assoc($join);
                                 $job = strlen($data);
                                 ?>
                                 <?php if ($job <= 0 ) :?>
-                                    <p>"You Dont' have Comment, because your data has not been updated"</p>
+                                    <p>"You Dont' have Comment, because your data has not been update"</p>
                                 <?php else : ?>
                                     <p><?= $fetch['comment']; ?></p>
                                 <?php endif; ?>

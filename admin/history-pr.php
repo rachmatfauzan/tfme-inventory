@@ -103,7 +103,7 @@ $po_data = mysqli_fetch_assoc($po_querry);
                             style="font-style:italic; opacity:0.6;">(Purchase Request)</span></h5>
                 </div>
                 <div class=" table-responsive">
-                    <table class="table select table-bordered table-hover table-striped" id="data" style="width: 100%;">
+                    <table class="table table-sm select table-bordered table-hover table-striped" id="data" style="width: 100%;">
                         <thead>
                             <tr class="bg-dark text-white">
                                 <th>PR Code</th>

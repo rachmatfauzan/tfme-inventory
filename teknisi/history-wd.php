@@ -122,7 +122,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_wd WHERE requestor = '$name' GR
                             <table class="table table-sm table-bordered w-100" id="data" style="font-size: 13px;">
                                 <thead>
                                     <tr class="text-center list-group-item-secondary">
-                                        <th>Part Number</th>
+                                        <th>Withdraw Code</th>
                                         <th>Purpose</th>
                                         <th>Date</th>
                                         <th>Status</th>
@@ -133,7 +133,7 @@ $query = mysqli_query($conn, "SELECT * FROM form_wd WHERE requestor = '$name' GR
                                     
                                     <?php foreach ($query as $data) : ?>
                                     <tr>
-                                        <td><?= $data['part_number']; ?></td>
+                                        <td><?= $data['no_bukti']; ?></td>
                                         <td><?= $data['purpose']; ?></td>
                                         <td><?= $data['tanggal']; ?></td>
                                         <td class="text-center">
