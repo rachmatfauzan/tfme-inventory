@@ -224,9 +224,9 @@ if (isset($_SESSION['email'])){
 </head>
 
 <body>
-    <?php if (isset($alert)) :?>
+    <?php if (isset($alert)) : ?>
     <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert"
-        style=" font-size:13px; max-width: 18rem; position: absolute; bottom:1em;z-index:9999; right:3em">
+        style=" font-size:13px; max-width: 18rem; position: absolute; top:2em;z-index:9999; right:4em">
         <strong>Success!</strong> Your request sended to admin TFME.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

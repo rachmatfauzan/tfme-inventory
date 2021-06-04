@@ -156,7 +156,7 @@ if(!isset($_SESSION['admin'])){
                                         <td>-</td>
                                         <td>LEAD</td>
                                         <td>ANAWATY</td>
-                                        <td>Garda</td>
+                                        <td>Axel Agatha Ibrahim</td>
                                         <td>3311909765</td>
                                     </tr>
                                 </tbody>
