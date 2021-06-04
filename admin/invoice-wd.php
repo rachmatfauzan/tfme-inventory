@@ -7,6 +7,7 @@ if(!isset($_SESSION['admin'])){
     header("location: ../index");
 }
 
+$dt_inventory = mysqli_query($conn, "SELECT * FROM dt_inventory");
 
 $id = $_GET['id'];
 $query = mysqli_query($conn, "SELECT * FROM form_wd WHERE kode_wd = '$id'");
@@ -216,13 +217,17 @@ if (isset($_POST['tombol'])) {
                     </section>
                     <?php if ($fetch['status'] == "approve" OR $fetch['status'] == 'rejected') : ?>
                     <div class="row w-100 flex-column">
-                        <span class="badge badge-secondary p-1" style="opacity: 0.6;">( <?= $fetch['status']; ?>
+                        <span
+                            class="badge <?= $status = ($fetch['status'] == 'approve') ? 'badge-success' : 'badge-danger' ;?> p-1"
+                            style="opacity: 0.6;">( <?= $fetch['status']; ?>
                             )</span>
                         <p class="text-center">" You had been updated this data "</p>
                     </div>
                     <?php else : ?>
                     <div class="row">
                         <div class="status text-center w-100">
+                            <a class="mt-2 btn btn-sm bg-light rounded-0 p-1" data-toggle="modal"
+                                data-target="#search"><i class="fa fa-table mr-2"></i>Search Part Number</a>
                             <form method="post">
                                 <label><b>Status</b></label>
                                 <select class="status mb-3 ml-3" name="status" id="status">
@@ -252,6 +257,51 @@ if (isset($_POST['tombol'])) {
                                 </div>
                             </form>
                         </div>
+                        <div class="modal fade" id="search" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
+                                        Search Table
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm inventory table-striped w-100" id="data"
+                                            style="font-size: 12px;">
+                                            <thead style="width: fit-content;">
+                                                <tr class="bg-dark text-white">
+                                                    <th width="2%">No</th>
+                                                    <th>Part Number</th>
+                                                    <th>Item Description</th>
+                                                    <th>Cost Center</th>
+                                                    <th>On Hand</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($dt_inventory as $data) : ?>
+                                                <tr>
+                                                    <td><?= $i; ?></td>
+                                                    <td><?= $data['part_number']; ?></td>
+                                                    <td><?= $data['description']; ?></td>
+                                                    <td><?= $data['cc']; ?></td>
+                                                    <td><?= $data['on_hand']; ?></td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <?php endif; ?>
                     <div class="section mt-4">
@@ -278,7 +328,7 @@ if (isset($_POST['tombol'])) {
                                     <td><?= $data['part_number']; ?></td>
                                     <td><?= $data['purpose']; ?></td>
                                     <td><?= $data['qty']; ?></td>
-                                    <td><?= $data['part_number']; ?></td>
+                                    <td class="text-uppercase"><?= $data['uom']; ?></td>
                                 </tr>
                                 <?php $i++; ?>
                                 <?php endforeach; ?>
@@ -309,17 +359,26 @@ if (isset($_POST['tombol'])) {
 
     <!-- script data tables -->
     <script>
-        $(document).ready(function () {
-            $('#data').DataTable({
-                scrollX: true,
-                "ordering": false,
-                "lengthMenu": [
-                    [10, 50, 100, -1],
-                    [10, 50, 100, "All"]
-                ]
-            });
-        });
-    </script>
+                $(document).ready(function () {
+                    $('#data').DataTable({
+                        scrollX: true,
+                        lengthChange: false,
+                        "order": [
+                            [0, "asc"]
+                        ],
+                        "lengthMenu": [
+                            [4, 10, 100, -1],
+                            [4, 10, 100, "All"]
+                        ],
+                    });
+                });
+                $('#search').on('shown.bs.modal', function (e) {
+                    $.fn.dataTable.tables({
+                        visible: true,
+                        api: true
+                    }).columns.adjust();
+                });
+            </script>
 </body>
 
 </html>
