@@ -47,7 +47,7 @@ if(isset($_POST['send'])){
 
 
         $query = mysqli_query($conn, "INSERT INTO form_wd VALUES (
-            '$id_wd',
+            null,
             '$kode_wd',
             '$receiver',
             '$nip',
@@ -288,7 +288,7 @@ $today = $year . '-' . $month . '-' . $day;
                                                     <td><input type="text" class="form-control" name="part_number-<?= $i; ?>" placeholder="Part Number" required></td>
                                                     <td><textarea type="text" class="form-control"
                                                             name="purpose-<?= $i; ?>" required placeholder="Write Purpose"></textarea></td>
-                                                    <td><input type="number" class="form-control" placeholder="1" name="qty-<?= $i; ?>" required></td>
+                                                    <td><input type="number" class="form-control" placeholder="ex: 1" name="qty-<?= $i; ?>" required></td>
                                                     <td><input type="text" class="form-control" placeholder="ex : Liter" name="uom-<?= $i; ?>" required style="text-transform: uppercase;"></td>
                                                 </tr>
                                                 <?php endfor; ?>
