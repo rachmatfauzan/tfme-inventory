@@ -136,14 +136,13 @@ $query = mysqli_query($conn, "SELECT * FROM mtl ORDER BY id_mtl DESC");
                                         <th rowspan="2">USED FOR</th>
                                         <th colspan="3">VOLUME</th>
                                         <th rowspan="2">GIVER</th>
-                                        <th colspan="2">RECEIVER</th>
+                                        <th colspan="1">RECEIVER</th>
                                     </tr>
                                     <tr class="pivot">
                                         <th>IN</th>
                                         <th>OUT</th>
                                         <th>UOM</th>
                                         <th>NAME</th>
-                                        <th>NIK/NIP</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -162,7 +161,7 @@ $query = mysqli_query($conn, "SELECT * FROM mtl ORDER BY id_mtl DESC");
                                         <td class="text-uppercase"><?= $data['uom_volume']; ?></td>
                                         <td><?= $data['giver']; ?></td>
                                         <td class="text-lowercase"><?= $data['name_receiver']; ?></td>
-                                        <td><?= $data['nip']; ?></td>
+                                        <!-- <td><?= $data['nip']; ?></td> -->
                                     </tr>
                                     <?php $i++ ?>
                                     <?php endforeach; ?>

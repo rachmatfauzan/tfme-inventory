@@ -16,6 +16,7 @@ $id = $_GET['id'];
 $sql = mysqli_query($conn, "SELECT * FROM form_po WHERE kode_po = '$id'");
 
 $hasil = mysqli_fetch_assoc($sql);
+$kode_pr = $hasil['kode_pr'];
 
 // unit_price data
 $unit_price = mysqli_query($conn, "SELECT * FROM unit_cost WHERE id_po = $id");
@@ -23,20 +24,59 @@ $unit_price = mysqli_query($conn, "SELECT * FROM unit_cost WHERE id_po = $id");
 $fetch = mysqli_fetch_array($unit_price);
 
 
+
+// join data
+$join = mysqli_query($conn, "SELECT po.po_date, po.kode_po, pr.item_description, pr.cost_center, pr.part_number, pr.quantity,pr.spesifikasi, pr.requestor
+        FROM form_po AS po JOIN form_pr AS pr ON po.kode_pr=pr.kode_pr WHERE kode_po = '$id'") or die(mysqli_error($conn));
+
+        $dt = mysqli_fetch_array($join);
+        $total = mysqli_num_rows($join);
+        $code_po = "PO". sprintf("%05s", $dt['kode_po']);
+
 // update status PO 
 if(isset($_POST['update'])){
     $status = $_POST['status'];
 
-    $query = mysqli_query($conn, "UPDATE form_po SET status_po = '$status' WHERE kode_po = '$id' ");
+    if ($status == "approve"){
+    
 
-    if($query){
-        $send = true;
+        for ($i=1; $i<=$total; $i++){
+            $uom = $_POST['spesifikasi-'.$i];
+            $description = $_POST['item_description-'.$i];
+            $requestor = $_POST['requestor'];
+            $part_number = $_POST['part_number-'.$i];
+            $qty = $_POST['quantity-'.$i]; 
+            $cc = $_POST['cost_center-'.$i]; 
+            $code_po = $_POST['code_po-'.$i]; 
+            $po_date = $_POST['po_date-'.$i]; 
+
+
+            $mtl = mysqli_query($conn, "INSERT INTO mtl VALUES (null, '$po_date', '$code_po', '$description', '$cc', '$part_number', '-', '$qty', '-', '$uom', '-', '$requestor', ' ')") or die(mysqli_error($conn));
+
+        }
+        if ($mtl){
+            $query = mysqli_query($conn, "UPDATE form_po SET status_po = '$status' WHERE kode_po = '$id' ");
+
+            if($query){
+                $send = true;
+            }
+        }
+
+        
+
     }
+    else{
+        $query = mysqli_query($conn, "UPDATE form_po SET status_po = '$status' WHERE kode_po = '$id' ");
+
+            if($query){
+                $send = true;
+            }
+    }
+    
 }
 
 
 $kode_pr = $hasil['kode_pr'];
-
 $detail_pr = mysqli_query($conn,"SELECT * FROM form_pr WHERE kode_pr = '$kode_pr'");
 
 
@@ -149,11 +189,6 @@ function angka($angka){
                             <form method="post">
                                 <div class="table-responsive-sm">
                                     <table class="table table-bordered">
-                                        <!-- <tr>
-                                        <td colspan="2" align="center" class="text-primary">
-                                            <h2 style="margin-top:10.5px">PURCHASE ORDER</h2>
-                                        </td>
-                                    </tr> -->
                                         <tr>
                                             <td colspan="2" style="overflow-x: hidden;">
                                                 <div class="row">
@@ -328,6 +363,14 @@ function angka($angka){
                         <small class="mt-2 bg-dark w-100 text-white text-center">Change Status PO :</small>
                         <form method="POST" class="w-100">
                             <div class="input-group input-group-sm mt-1">
+
+                                <?php if ($hasil['status_po'] == "approve" OR $hasil['status_po'] == "rejected") :?>
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-sm btn-outline-secondary text-dark" type="submit"
+                                        name="update" disabled>Update</button>
+                                </div>
+                                    <p class="<?= $status = ($hasil['status_po'] == 'approve') ? 'bg-success text-white' : 'bg-danger text-white' ;?> form-control">Data has been updated ( <?= $hasil['status_po']; ?> )</p>
+                                <?php else : ?>
                                 <div class="input-group-prepend">
                                     <button class="btn btn-sm btn-outline-secondary text-dark" type="submit"
                                         name="update">Update</button>
@@ -337,7 +380,28 @@ function angka($angka){
                                     <option value="approve">Approve</option>
                                     <option value="rejected">Reject</option>
                                 </select>
+                                <?php endif; ?>
                             </div>
+                            <section class="d-none">
+                                <?php $i=1; ?>
+                                <?php foreach($join as $fil ) :?>
+                                <p class=""><?= $i; ?></p>
+                                <input class="" type="text" value="<?= $fil['item_description']?>"
+                                    name="item_description-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['po_date']?>" name="po_date-<?= $i;?>">
+                                <input class="" type="text" value="<?= $code_po?>" name="code_po-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['cost_center']?>"
+                                    name="cost_center-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['part_number']?>"
+                                    name="part_number-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['quantity']?> " name="quantity-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['spesifikasi']?>"
+                                    name="spesifikasi-<?= $i;?>">
+                                <input class="" type="text" value="<?= $fil['requestor']?>" name="requestor">
+                                <?php $i++; ?>
+                                <?php endforeach; ?>
+                            </section>
+
                         </form>
                     </div>
                 </div>
