@@ -125,11 +125,9 @@ $po_data = mysqli_fetch_assoc($po_querry);
                                 <td style="text-transform: capitalize;"><?= $data['requestor']; ?></td>
                                 <td>
                                     <?php if ($data['status'] == 'approve'): ?>
-                                    <p class="btn btn-success btn-sm disabled"
-                                        style="font-size: 11px;text-transform:uppercase;">Approve</p>
+                                    <span class="badge badge-success">Approve</span>
                                     <?php elseif ($data['status'] == 'rejected'): ?>
-                                    <p class="btn btn-danger btn-sm disabled"
-                                        style="font-size: 11px;text-transform:uppercase;">Rejected</p>
+                                    <span class="badge badge-danger">Rejected</span>
                                     <?php elseif ($data['status'] == 'waiting'): ?>
                                     <p>Waiting...</p>
                                     <?php endif; ?>
