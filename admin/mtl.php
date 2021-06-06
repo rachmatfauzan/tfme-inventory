@@ -7,6 +7,8 @@ if(!isset($_SESSION['admin'])){
     header("location: ../index");
 }
 
+$query = mysqli_query($conn, "SELECT * FROM mtl ORDER BY id_mtl DESC");
+
 
 
 
@@ -23,7 +25,7 @@ if(!isset($_SESSION['admin'])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="../teknisi/css/profile-tech.css">
+    <link rel="stylesheet" href="../teknisi/css/profile-tech.css">
 
     <!-- Link CSS -->
     <link rel="stylesheet" href="../css/dashboard-adm.css">
@@ -105,7 +107,8 @@ if(!isset($_SESSION['admin'])){
                                     <h5><strong>TEACHING FACTORY MANUFACTURING OF ELECTRONICS</strong></h5>
                                     <p class="m-0">Jalan Ahmad Yani, Batam Centre, Kecamatan Batam Kota, Batam 29461</p>
                                     <p class="m-0">Telepon +62 778 469856 - 469860 Faksimile +62 778 463620</p>
-                                    <p class="m-0">Laman: www.tfme.polibatam.ac.id/inventory Surel: tfmeminteractive@gmail.com</p>
+                                    <p class="m-0">Laman: www.tfme.polibatam.ac.id/inventory Surel:
+                                        tfmeminteractive@gmail.com</p>
                                 </label>
                             </div>
                             <div class="col-3 d-flex justify-content-end title">
@@ -119,8 +122,8 @@ if(!isset($_SESSION['admin'])){
                             <label><b>RECEIVED AND RETRIEVED/BORROWED INVENTORY IN</b></label>
                         </div>
                     </div>
-                    <div class="section mt-4">
-                        <div class="table-responsive container">
+                    <div class="section container mt-4">
+                        <div class="table-responsive">
                             <table class="table table-sm table-hover table-bordered" id="data">
                                 <thead>
                                     <tr class="pivot">
@@ -144,21 +147,25 @@ if(!isset($_SESSION['admin'])){
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $i = 1;  ?>
+                                    <?php foreach ($query as $data) : ?>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td>21 May 2021</td>
-                                        <td>BP00001</td>
-                                        <td>Magazine Lead Frame</td>
-                                        <td>30</td>
-                                        <td>AKOP11KN</td>
-                                        <td>Produksi PCB dan SMT</td>
-                                        <td>20</td>
-                                        <td>-</td>
-                                        <td>LEAD</td>
-                                        <td>ANAWATY</td>
-                                        <td>Axel Agatha Ibrahim</td>
-                                        <td>3311909765</td>
+                                        <td class="text-center"><?= $i; ?></td>
+                                        <td><?= $data['date']; ?></td>
+                                        <td><?= $data['code']; ?></td>
+                                        <td><?= $data['description']; ?></td>
+                                        <td><?= $data['cc']; ?></td>
+                                        <td><?= $data['part_number']; ?></td>
+                                        <td><?= $data['purpose']; ?></td>
+                                        <td><?= $data['in_volume']; ?></td>
+                                        <td><?= $data['out_volume']; ?></td>
+                                        <td class="text-uppercase"><?= $data['uom_volume']; ?></td>
+                                        <td><?= $data['giver']; ?></td>
+                                        <td class="text-lowercase"><?= $data['name_receiver']; ?></td>
+                                        <td><?= $data['nip']; ?></td>
                                     </tr>
+                                    <?php $i++ ?>
+                                    <?php endforeach; ?>
                                 </tbody>
 
                             </table>
@@ -168,19 +175,19 @@ if(!isset($_SESSION['admin'])){
             </div>
         </div>
 
-    <!-- script data tables -->
-    <script>
-        $(document).ready(function () {
-            $('#data').DataTable({
-                
-                "ordering": true,
-                "lengthMenu": [
-                    [10, 50, 100, -1],
-                    [10, 50, 100, "All"]
-                ]
+        <!-- script data tables -->
+        <script>
+            $(document).ready(function () {
+                $('#data').DataTable({
+
+                    "ordering": true,
+                    "lengthMenu": [
+                        [10, 50, 100, -1],
+                        [10, 50, 100, "All"]
+                    ]
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

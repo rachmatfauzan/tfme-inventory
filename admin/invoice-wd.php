@@ -30,6 +30,16 @@ if (isset($_POST['tombol'])) {
         $total = $_POST['total'] - 1;
         // echo "berhasil";
         for ($i=1; $i<= $total; $i++){
+            $nip = $fetch['nip_req'];
+            $date = $fetch['tanggal'];
+            $no_bukti = $fetch['no_bukti'];
+            $cc = $_POST['cc-'.$i];
+            $in_volume = "-";
+            $giver = $fetch['receiver'];
+            $requestor = $fetch['requestor'];
+            $uom = $_POST['uom-'.$i];
+            $purpose = $_POST['purpose-'.$i];
+            $description = $_POST['description-'.$i];
             $on_hand = (int) $_POST['on_hand-'.$i];
             $part_number = $_POST['part_number-'.$i];
             $qty = (int) $_POST['qty-'.$i];
@@ -44,6 +54,7 @@ if (isset($_POST['tombol'])) {
                 WHERE part_number = '$part_number'
             ");
             
+            $mtl = mysqli_query($conn, "INSERT INTO mtl VALUES (null, '$date', '$no_bukti', '$description', '$cc', '$part_number', '$purpose', '$in_volume', '$qty', '$uom', '$giver', '$requestor', '$nip')") or die(mysqli_error($conn));
 
             
         }
@@ -242,12 +253,20 @@ if (isset($_POST['tombol'])) {
                                     required></textarea>
                                 <?php $i=1; ?>
                                 <?php foreach($join as $fil ) :?>
-                                <p class="d-none"><?= $i; ?></p>
-                                <input class="d-none" type="text" value="<?= $fil['part_number']?>"
-                                    name="part_number-<?= $i;?>">
-                                <input class="d-none" type="text" value="<?= $fil['on_hand']?> "
-                                    name="on_hand-<?= $i;?>">
-                                <input class="d-none" type="text" value="<?= $fil['qty']?>" name="qty-<?= $i;?>">
+                                    <p class="d-none"><?= $i; ?></p>
+                                    <input class="d-none" type="text" value="<?= $fil['description']?>"
+                                        name="description-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['uom']?>"
+                                        name="uom-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['purpose']?>"
+                                        name="purpose-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['cc']?>"
+                                        name="cc-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['part_number']?>"
+                                        name="part_number-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['on_hand']?> "
+                                        name="on_hand-<?= $i;?>">
+                                    <input class="d-none" type="text" value="<?= $fil['qty']?>" name="qty-<?= $i;?>">
                                 <?php $i++; ?>
                                 <?php endforeach; ?> <br>
                                 <input class="d-none" type="text" value="<?= $i;?>" name="total">
