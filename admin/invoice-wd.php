@@ -17,9 +17,8 @@ $rows = mysqli_num_rows($query);
 $join = mysqli_query($conn, "SELECT fwd.nip_req, fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,fwd.requestor,
         dt.description,dt.cc, dt.on_hand  
             FROM form_wd AS fwd JOIN dt_inventory AS dt ON fwd.part_number=dt.part_number WHERE kode_wd = '$id'");
-                                        
-    $tangkap = mysqli_fetch_assoc($join);
-
+$tangkap = mysqli_fetch_assoc($join);
+$rowsTangkap = mysqli_num_rows($join);
 if (isset($_POST['tombol'])) {
 
     $status = $_POST['status'];
@@ -65,6 +64,8 @@ if (isset($_POST['tombol'])) {
 
 
               $send = true;
+              $_SESSION['email'] = $fetch['no_bukti'];
+              $_SESSION['nip'] = $fetch['nip_req'];
         }else{
             echo "gagal";
         }
@@ -75,6 +76,8 @@ if (isset($_POST['tombol'])) {
 
         if ($update){
            $send =true;
+           $_SESSION['email'] = $fetch['no_bukti'];
+           $_SESSION['nip'] = $fetch['nip_req'];
         }
     }
     
@@ -209,10 +212,10 @@ if (isset($_POST['tombol'])) {
                             <div class="col-8">
                                 <div class="indent ml-5">
                                     <label style="width:150px;"><b>Ditujukan Kepada</b></label>
-                                    <label class="text-capitalize">: <?= $tangkap['requestor']; ?></label>
+                                    <label class="text-capitalize">: <?= $fetch['requestor']; ?></label>
                                     <br>
                                     <label style="width:150px;"><b>NIP</b></label>
-                                    <label>: <?= $tangkap['nip_req'] ?></label>
+                                    <label>: <?= $fetch['nip_req'] ?></label>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -253,20 +256,18 @@ if (isset($_POST['tombol'])) {
                                     required></textarea>
                                 <?php $i=1; ?>
                                 <?php foreach($join as $fil ) :?>
-                                    <p class="d-none"><?= $i; ?></p>
-                                    <input class="d-none" type="text" value="<?= $fil['description']?>"
-                                        name="description-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['uom']?>"
-                                        name="uom-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['purpose']?>"
-                                        name="purpose-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['cc']?>"
-                                        name="cc-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['part_number']?>"
-                                        name="part_number-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['on_hand']?> "
-                                        name="on_hand-<?= $i;?>">
-                                    <input class="d-none" type="text" value="<?= $fil['qty']?>" name="qty-<?= $i;?>">
+                                <p class="d-none"><?= $i; ?></p>
+                                <input class="d-none" type="text" value="<?= $fil['description']?>"
+                                    name="description-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['uom']?>" name="uom-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['purpose']?>"
+                                    name="purpose-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['cc']?>" name="cc-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['part_number']?>"
+                                    name="part_number-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['on_hand']?> "
+                                    name="on_hand-<?= $i;?>">
+                                <input class="d-none" type="text" value="<?= $fil['qty']?>" name="qty-<?= $i;?>">
                                 <?php $i++; ?>
                                 <?php endforeach; ?> <br>
                                 <input class="d-none" type="text" value="<?= $i;?>" name="total">
@@ -280,9 +281,11 @@ if (isset($_POST['tombol'])) {
                     </div>
 
                     <?php endif; ?>
+
                     <div class="section mt-4">
                         <div class="table-responsive container">
                             <table class="table table-hover table-bordered table-sm">
+                                <p class="bg-light">## Request Withdraw <?= $rows; ?> Item ##</p>
                                 <tr>
                                     <th width="1%" rowspan="2">No</th>
                                     <th rowspan="2">ITEM</th>
@@ -308,6 +311,11 @@ if (isset($_POST['tombol'])) {
                                 </tr>
                                 <?php $i++; ?>
                                 <?php endforeach; ?>
+                                <?php if ($rowsTangkap < $rows) :?>
+                                <td colspan="7" class="w-100 text-center text-danger"><b> "Part Number Data Not
+                                        Synchronize"</b>
+                                </td>
+                                <?php endif; ?>
                             </table>
                         </div>
                     </div>
