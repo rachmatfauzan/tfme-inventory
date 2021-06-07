@@ -7,6 +7,7 @@ if(!isset($_SESSION['technician'])){
     header("location: ../index");
 }
 
+$dt_inventory = mysqli_query($conn, "SELECT * FROM dt_inventory");
 
 // Panutan membuat logik kode_otomatis
 // $sql = mysqli_query($conn, "SELECT max(id_pr) as maxID FROM form_pr");
@@ -123,6 +124,9 @@ $today = $year . '-' . $month . '-' . $day;
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Bootstrap Ordered Datatables  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+
     <!--  CDN SWAL-->
     <script src="../swal2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../swal2/dist/sweetalert2.min.css">
@@ -182,6 +186,55 @@ $today = $year . '-' . $month . '-' . $day;
                         <span class="font-weight-bold text-secondary">PURCHASE REQUEST</span>
                         <a href="withdraw" style="font-size: 11px;" class="btn btn-primary btn-sm"><i
                                 class="fas fa-backspace mr-2"></i>Generate Again</a>
+                        <a class="mt-2 btn btn-sm bg-dark text-white  rounded-0 p-1" data-toggle="modal"
+                            data-target="#search"><i class="fa fa-table mr-2"></i>Search Part Number</a>
+                    </div>
+                    <div class="modal fade" id="search" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><i class="fa fa-table"></i>
+                                        Search Table
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm inventory table-striped w-100" id="data"
+                                            style="font-size: 12px;">
+                                            <thead style="width: fit-content;">
+                                                <tr class="bg-dark text-white">
+                                                    <th width="2%">No</th>
+                                                    <th>Part Number</th>
+                                                    <th>Item Description</th>
+                                                    <th>Cost Center</th>
+                                                    <th>Account Code</th>
+                                                    <th>Type</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($dt_inventory as $data) : ?>
+                                                <tr>
+                                                    <td><?= $i; ?></td>
+                                                    <td><?= $data['part_number']; ?></td>
+                                                    <td><?= $data['description']; ?></td>
+                                                    <td><?= $data['cc']; ?></td>
+                                                    <td><?= $data['account_code']; ?></td>
+                                                    <td><?= $data['type']; ?></td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <form method="post">
@@ -225,7 +278,8 @@ $today = $year . '-' . $month . '-' . $day;
                                                                 <div class="date">
                                                                     <input type="date" id="pr-date"
                                                                         class="form-control form-control-sm bg-light"
-                                                                        name="tanggal" value="<?php echo $today; ?>" required>
+                                                                        name="tanggal" value="<?php echo $today; ?>"
+                                                                        required>
                                                                     <i class="fas fa-calendar-day"></i> <i
                                                                         class="fas fa-calender-day"></i>
                                                                 </div>
@@ -285,11 +339,17 @@ $today = $year . '-' . $month . '-' . $day;
                                                 <?php for ($i=1; $i<=$_POST['count_add']; $i++) : ?>
                                                 <tr class="addForm">
                                                     <td><?= $i; ?></td>
-                                                    <td><input type="text" class="form-control" name="part_number-<?= $i; ?>" placeholder="Part Number" required></td>
+                                                    <td><input type="text" class="form-control"
+                                                            name="part_number-<?= $i; ?>" placeholder="Part Number"
+                                                            required></td>
                                                     <td><textarea type="text" class="form-control"
-                                                            name="purpose-<?= $i; ?>" required placeholder="Write Purpose"></textarea></td>
-                                                    <td><input type="number" class="form-control" placeholder="ex: 1" name="qty-<?= $i; ?>" required></td>
-                                                    <td><input type="text" class="form-control" placeholder="ex : Liter" name="uom-<?= $i; ?>" required style="text-transform: uppercase;"></td>
+                                                            name="purpose-<?= $i; ?>" required
+                                                            placeholder="Write Purpose"></textarea></td>
+                                                    <td><input type="number" class="form-control" placeholder="ex: 1"
+                                                            name="qty-<?= $i; ?>" required></td>
+                                                    <td><input type="text" class="form-control" placeholder="ex : Liter"
+                                                            name="uom-<?= $i; ?>" required
+                                                            style="text-transform: uppercase;"></td>
                                                 </tr>
                                                 <?php endfor; ?>
                                             </table>
@@ -308,6 +368,30 @@ $today = $year . '-' . $month . '-' . $day;
                     </form>
                 </div>
             </div>
+
+
+            <!-- script data tables -->
+            <script>
+                $(document).ready(function () {
+                    $('#data').DataTable({
+                        scrollX: true,
+                        lengthChange: false,
+                        "order": [
+                            [0, "asc"]
+                        ],
+                        "lengthMenu": [
+                            [4, 10, 100, -1],
+                            [4, 10, 100, "All"]
+                        ],
+                    });
+                });
+                $('#search').on('shown.bs.modal', function (e) {
+                    $.fn.dataTable.tables({
+                        visible: true,
+                        api: true
+                    }).columns.adjust();
+                });
+            </script>
 
 </body>
 
