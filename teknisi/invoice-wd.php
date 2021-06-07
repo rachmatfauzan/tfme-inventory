@@ -17,6 +17,7 @@ $join = mysqli_query($conn, "SELECT fwd.part_number,fwd.purpose,fwd.qty,fwd.uom,
         FROM form_wd AS fwd JOIN dt_inventory AS dt ON fwd.part_number=dt.part_number WHERE kode_wd = '$id'");
                                         
 $tangkap = mysqli_fetch_assoc($join);
+$rowsTangkap = mysqli_num_rows($join);
                                        
 
 
@@ -179,6 +180,7 @@ $tangkap = mysqli_fetch_assoc($join);
                     <div class="section mt-4">
                         <div class="table-responsive container">
                             <table class="table table-hover table-bordered table-sm">
+                            <p class="bg-light">## Request Withdraw <?= $rows; ?> Item ##</p>
                                 <tr>
                                     <th width="1%" rowspan="2">No</th>
                                     <th rowspan="2">ITEM</th>
@@ -204,6 +206,11 @@ $tangkap = mysqli_fetch_assoc($join);
                                 </tr>
                                 <?php $i++; ?>
                                 <?php endforeach; ?>
+                                <?php if ($rowsTangkap < $rows) :?>
+                                <td colspan="7" class="w-100 text-center text-danger"><b> "Part Number Data Not
+                                        Synchronize"</b>
+                                </td>
+                                <?php endif; ?>
                             </table>
                             <?php if ($fetch['status'] == 'rejected'): ?>
                             <div class="bd-callout bd-callout-danger">
