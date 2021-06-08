@@ -209,7 +209,7 @@ $today = $year . '-' . $month . '-' . $day;
                                                     <th>Item Description</th>
                                                     <th>Cost Center</th>
                                                     <th>Account Code</th>
-                                                    <th>Type</th>
+                                                    <th>On Hand</th>
                                                 </tr>
                                             </thead>
 
@@ -222,7 +222,7 @@ $today = $year . '-' . $month . '-' . $day;
                                                     <td><?= $data['description']; ?></td>
                                                     <td><?= $data['cc']; ?></td>
                                                     <td><?= $data['account_code']; ?></td>
-                                                    <td><?= $data['type']; ?></td>
+                                                    <td><?= $data['on_hand']; ?></td>
                                                 </tr>
                                                 <?php $i++; ?>
                                                 <?php endforeach; ?>

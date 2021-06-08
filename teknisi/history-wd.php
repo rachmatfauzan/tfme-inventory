@@ -110,7 +110,7 @@ if (isset($_SESSION['email'])){
                 <div class="content">
                     <header>
                         <img src="cid:logo">
-                        <h2>New Purchase Request From Technician <br> <span style="text-transform: uppercase;">"'.$name.'"</span></h2>
+                        <h2>New Withdraw From Technician <br> <span style="text-transform: uppercase;">"'.$name.'"</span></h2>
                     </header>
                     <section>
                         <table border="1" cellspacing="0" style="text-align: left; margin-left:auto; margin-right:auto;"

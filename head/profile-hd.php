@@ -133,7 +133,7 @@ if(isset($_POST['update'])){
                             </div>
                             <div class="col">
                                 <label>ID</label>
-                                <input type="text" class="form-control" style="text-transform: capitalize;"
+                                <input type="text" readonly class="form-control" style="text-transform: capitalize;"
                                     value="<?= $result['id_user']; ?>" name="id">
                             </div>
                         </div>
