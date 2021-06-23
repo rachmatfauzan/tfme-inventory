@@ -201,6 +201,11 @@ function angka($angka){
                                                     <td><?= $hasil['terms']; ?>/30</td>
                                                 </tr>
                                             </table>
+                                            <!-- letak di PR nya si IQA -->
+                                            <?php 
+                                                $kodePR = sprintf("%05s", $fetch['kode_pr']);
+                                            ?>
+                                            <span><small><i>## Data has been get from PR CODE : <?= 'PR-'.$kodePR ?> ##</i></small></span>
                                             <table id="invoice-item-table" class="table table-bordered table-sm height"
                                                 style="border-collapse: collapse;">
                                                 <tr class="bg-info">
@@ -267,6 +272,7 @@ function angka($angka){
                                                     <td><?= angka($sub_total) ?></td>
                                                 </tr>
                                             </table>
+
                                             <div class="row comment">
                                                 <div class="col-md-12">
                                                     <label class="font-weight-bold">COMMENT / SYARAT DAN KETENTUAN :</label>
