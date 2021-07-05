@@ -393,7 +393,8 @@ if (isset($_SESSION['email'])){
                                     </table>
                                 </div>
                                 <a class="btn dropdown-toggle collapser" data-toggle="collapse" role="button"
-                                     aria-controls="collapseExample">See Detail <i class="far fa-hand-point-down"></i></a>
+                                    aria-controls="collapseExample">See Detail <i
+                                        class="far fa-hand-point-down"></i></a>
                                 <div class="form-group collapse" id="collapseExample">
                                     <div class="form-group col table-responsive">
 
@@ -417,8 +418,12 @@ if (isset($_SESSION['email'])){
                                     </div> -->
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'rejected'): ?>
-                                <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">Rejected
-                                </p>
+                                <div class="d-flex">
+                                    <p class="btn btn-danger btn-sm disabled" style="font-size: 11px; width:100px;">
+                                        Rejected<?php endif; ?>
+                                    </p> <?php if ($data['hod_status'] == '1') : ?> <small class="ml-2"><i>| Rejected by Head Of
+                                            Division</i></small>
+                                </div>
                                 <!-- <a href="#"><i class="far fa-trash-alt mr-2"></i>Delete</a> -->
                                 <?php endif; ?>
                                 <?php if ($data['status'] == 'waiting'): ?>

@@ -205,6 +205,7 @@ function angka($angka){
                                                 style="border-collapse: collapse;">
                                                 <tr class="bg-secondary">
                                                     <th width="2%">No</th>
+                                                    <th width="2%">Part Number</th>
                                                     <th width="30%">Item Description</th>
                                                     <th width="10%">Specification</th>
                                                     <th width="3%">Quantity</th>
@@ -216,6 +217,8 @@ function angka($angka){
                                                 <?php foreach($unit_price as $dt) :?>
                                                 <tr class="addForm">
                                                     <td class="text-center"><?= $i; ?></td>
+                                                    <td><?= $dt['part_number']; ?>
+                                                    </td>
                                                     <td><?= $dt['describ']; ?>
                                                     </td>
                                                     <td style="text-transform:uppercase;"><?= $dt['spesifikasi']; ?>

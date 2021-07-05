@@ -80,7 +80,8 @@ if(isset($_POST['send'])){
                     $unit_cost = $_POST['unit_cost-'.$i];
                     $item_description = $_POST['item_description-'.$i];
                     $spesifikasi = $_POST['spesifikasi-'.$i];
-                    $quantity = (int) $_POST['quantity-'.$i];
+                    $quantity = $_POST['quantity-'.$i];
+                    $part_number = $_POST['part_number-'.$i];
                     
                     $convertPrice = (int)str_replace('.','', $unit_cost);
                     $total = $convertPrice * $quantity;
@@ -93,7 +94,8 @@ if(isset($_POST['send'])){
                         '$unit_cost',       
                         '$spesifikasi',       
                         '$quantity',       
-                        '$total'       
+                        '$total',
+                        '$part_number'     
                         )") or die (mysqli_error($conn));
             
                 }
@@ -468,6 +470,9 @@ if(isset($_POST['send'])){
                                                             <input type="text" class="d-none"
                                                                 value="<?= $data['quantity']; ?>"
                                                                 name="quantity-<?= $i; ?>">
+                                                            <input type="text" class="d-none"
+                                                                value="<?= $data['part_number']; ?>"
+                                                                name="part_number-<?= $i; ?>">
                                                             <td>
                                                                 <div class="input-group input price">
                                                                     <div class="input-group-prepend">

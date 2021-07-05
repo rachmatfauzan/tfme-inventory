@@ -61,7 +61,8 @@ if(isset($_POST['send'])){
         '$status',
         '$requestor',
         '$spesifikasi',
-        '$update_po'
+        '$update_po',
+        '0'
     )");
 
     if ($query){

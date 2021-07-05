@@ -67,6 +67,7 @@ if(isset($_POST['update'])){
     }
     else{
         $query = mysqli_query($conn, "UPDATE form_po SET status_po = '$status' WHERE kode_po = '$id' ");
+        $formPr = mysqli_query($conn, "UPDATE form_pr SET status = '$status', hod_status = '1' WHERE kode_pr = '$kode_pr' ");
 
             if($query){
                 $send = true;

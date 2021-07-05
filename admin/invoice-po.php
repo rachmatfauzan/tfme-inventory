@@ -210,6 +210,7 @@ function angka($angka){
                                                 style="border-collapse: collapse;">
                                                 <tr class="bg-info">
                                                     <th width="2%">No</th>
+                                                    <th width="2%">Part Number</th>
                                                     <th width="30%">Item Description</th>
                                                     <th width="10%">Specification</th>
                                                     <th width="3%">Quantity</th>
@@ -221,6 +222,8 @@ function angka($angka){
                                                 <?php foreach($unit_price as $dt) :?>
                                                 <tr class="addForm">
                                                     <td class="text-center"><?= $i; ?></td>
+                                                    <td><?= $dt['part_number']; ?>
+                                                    </td>
                                                     <td><?= $dt['describ']; ?>
                                                     </td>
                                                     <td style="text-transform:uppercase;"><?= $dt['spesifikasi']; ?>
@@ -241,12 +244,12 @@ function angka($angka){
                                                 <?php $i++; ?>
                                                 <?php endforeach; ?>
                                                 <tr class="bg-light">
-                                                    <td colspan="4" class="bg-white"></td>
+                                                    <td colspan="5" class="bg-white"></td>
                                                     <td>Total</td>
                                                     <td class="bg-white">- <?= angka($total) ?> -</td>
                                                 </tr>
                                                 <tr class="bg-light">
-                                                    <td colspan="4" class="bg-white"></td>
+                                                    <td colspan="5" class="bg-white"></td>
                                                     <?php $tax = $hasil['tax'];
                                                         $total_item=(float)$total;
                                                         $div = ($tax/100) * $total_item;
@@ -256,7 +259,7 @@ function angka($angka){
                                                     <td class="bg-white">- <?= angka($div) ?> -</td>
                                                 </tr>
                                                 <tr class="bg-light">
-                                                    <td colspan="4" class="bg-white"></td>
+                                                    <td colspan="5" class="bg-white"></td>
                                                     <?php $paid = $hasil['paid'];
                                                         $convertPaid = (int)str_replace('.','', $paid);
                                                         ?>
@@ -264,7 +267,7 @@ function angka($angka){
                                                     <td class="bg-white">- <?= angka($convertPaid) ?> -</td>
                                                 </tr>
                                                 <tr class="bg-light">
-                                                    <td colspan="4" class="bg-white"></td>
+                                                    <td colspan="5" class="bg-white"></td>
                                                     <?php 
                                                         $sub_total = $total+(int)$div+$convertPaid;
                                                     ?>

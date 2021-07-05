@@ -59,7 +59,8 @@ if(isset($_POST['send'])){
             '$status',
             '$requestor',
             '$spesifikasi',
-            '$update_po'
+            '$update_po',
+            '0'
         )") or die (mysqli_error($conn));
     }
         if ($query){
